@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>HairBox · Catálogo</title>
   <style>
-    /* ===== IMPORTAÇÃO DE FONTES ===== */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@200;300;400;500;600;700&display=swap');
 
     * {
@@ -89,7 +88,7 @@
     }
 
     /* ============================================================
-       HEADER — FONTES MAIORES
+       HEADER — APENAS LOGO + HAMBÚRGUER
        ============================================================ */
     .header {
       display: flex;
@@ -111,12 +110,6 @@
       background: var(--gold);
       opacity: 0.4;
       border-radius: 2px;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
     }
 
     .header-brand {
@@ -156,106 +149,253 @@
       transition: color 0.3s ease;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .header-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 300;
-      position: relative;
-    }
-
-    .header-btn:hover {
-      color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    .header-btn .count {
-      font-size: 0.7rem;
-      font-weight: 500;
-      background: var(--gold);
-      color: #0a0808;
-      padding: 2px 12px;
-      border-radius: 20px;
-      margin-left: 2px;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.02em;
-      transition: all 0.3s ease;
-    }
-
-    .header-btn:hover .count {
-      transform: scale(1.1);
-    }
-
-    .theme-toggle {
+    /* ===== BOTÃO HAMBÚRGUER ===== */
+    .hamburger {
       background: transparent;
       border: 1px solid var(--border-subtle);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 1rem;
+      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      color: var(--text-muted);
+      padding: 12px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hamburger:hover {
+      border-color: var(--gold);
+      background: var(--gold-glow);
+    }
+
+    .hamburger .bar {
+      width: 24px;
+      height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: all var(--transition-smooth);
+    }
+
+    .hamburger .bar:nth-child(2) {
+      width: 18px;
+      align-self: flex-end;
+    }
+
+    .hamburger .bar:nth-child(3) {
+      width: 12px;
+      align-self: flex-end;
+    }
+
+    .hamburger:hover .bar {
+      background: var(--gold);
+    }
+
+    .hamburger .badge-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #ff4757;
+      color: #fff;
+      font-size: 0.55rem;
+      font-weight: 600;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all var(--transition-smooth);
     }
 
-    .theme-toggle:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: rotate(20deg);
+    .hamburger .badge-count.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* ============================================================
-       KICKER EDITORIAL
-       ============================================================ */
-    .home-kicker {
+    /* ===== MENU OVERLAY ===== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100;
+      display: none;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .menu-overlay.active {
+      display: flex;
+      animation: fadeInMenu 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .menu-panel {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 24px 20px;
+      width: 100%;
+      max-width: 340px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-subtle);
+      animation: slideMenu 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes slideMenu {
+      from { transform: translateX(30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .menu-panel::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .menu-panel::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 16px;
+    }
+
+    .menu-header span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .menu-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 4px;
+      transition: all var(--transition-smooth);
+    }
+
+    .menu-close:hover {
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    .menu-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 20px 0 8px 0;
-      color: var(--text-muted);
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+      gap: 14px;
+      padding: 14px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
       font-weight: 300;
+      letter-spacing: 0.03em;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
     }
 
-    .home-kicker .kicker-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
+    .menu-item:hover {
+      background: var(--gold-glow);
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+
+    .menu-item .icon {
+      font-size: 1.2rem;
+      width: 32px;
+      text-align: center;
+    }
+
+    .menu-item .item-count {
+      margin-left: auto;
       background: var(--gold);
-      opacity: 0.5;
-      animation: pulse-dot 2s ease-in-out infinite;
+      color: #0a0808;
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 2px 12px;
+      border-radius: 20px;
+      min-width: 28px;
+      text-align: center;
     }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.3); }
+    .menu-item .item-count.empty {
+      background: var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .menu-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 8px 0;
+    }
+
+    .menu-theme {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 8px;
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    .menu-theme .theme-switch {
+      background: var(--border-subtle);
+      border: none;
+      border-radius: 20px;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      color: var(--text-secondary);
+      min-height: 32px;
+      min-width: 56px;
+    }
+
+    .menu-theme .theme-switch:hover {
+      background: var(--gold-glow);
+      color: var(--gold);
     }
 
     /* ============================================================
-       FILTROS — FONTES MAIORES
+       FILTROS
        ============================================================ */
     .filter-bar {
       display: flex;
       gap: 6px;
-      padding: 16px 0 14px 0;
+      padding: 0 0 14px 0;
       flex-shrink: 0;
       overflow-x: auto;
       scrollbar-width: none;
@@ -313,7 +453,7 @@
     }
 
     /* ============================================================
-       CHIPS — FONTES MAIORES
+       CHIPS
        ============================================================ */
     .chip-carousel-wrapper {
       padding: 6px 0 20px 0;
@@ -373,7 +513,7 @@
     }
 
     /* ============================================================
-       BUSCADOR — FONTES MAIORES
+       BUSCADOR
        ============================================================ */
     .search-wrapper {
       margin: 18px 0 24px 0;
@@ -540,7 +680,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
       pointer-events: none;
       transition: all var(--transition-smooth);
       opacity: 0.6;
@@ -597,7 +737,7 @@
       left: 0;
       right: 0;
       padding: 44px 20px 24px 20px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -667,7 +807,107 @@
     }
 
     /* ============================================================
-       MODAL — FONTES MAIORES
+       PÁGINA DE FAVORITOS
+       ============================================================ */
+    .fav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 8px 0;
+    }
+
+    .fav-grid .empty-favs {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .fav-grid .empty-favs .heart-big {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+
+    .fav-grid .grid-item {
+      aspect-ratio: 9/12;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .fav-grid .grid-item:hover {
+      border-color: var(--border-gold);
+      transform: scale(1.03) translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .fav-grid .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%) sepia(20%) contrast(1.1);
+      transition: filter 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .fav-grid .grid-item:hover img {
+      filter: grayscale(0%) sepia(0%) contrast(1);
+    }
+
+    .fav-grid .grid-item .grid-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 12px 10px 12px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    }
+
+    .fav-grid .grid-item .grid-overlay .grid-title {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: #fff;
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    .fav-grid .grid-item .grid-fav-remove {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      color: #ff4757;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-smooth);
+    }
+
+    .fav-grid .grid-item .grid-fav-remove:hover {
+      transform: scale(1.15);
+      background: rgba(255, 71, 87, 0.2);
+    }
+
+    /* ============================================================
+       MODAL — ESTILO STORIES
        ============================================================ */
     .modal-overlay {
       position: fixed;
@@ -715,8 +955,14 @@
     }
 
     @keyframes slideModal {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .modal-indicators {
@@ -844,8 +1090,12 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    .modal-nav.prev { left: 10px; }
-    .modal-nav.next { right: 10px; }
+    .modal-nav.prev {
+      left: 10px;
+    }
+    .modal-nav.next {
+      right: 10px;
+    }
 
     .modal-info-overlay {
       position: absolute;
@@ -858,7 +1108,7 @@
       justify-content: space-between;
       gap: 16px;
       padding: 48px 18px 24px 20px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0,0,0,0.5) 45%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
     }
 
     .modal-text-block {
@@ -963,7 +1213,7 @@
     }
 
     /* ============================================================
-       PÁGINAS SECUNDÁRIAS — FONTES MAIORES
+       PÁGINAS SECUNDÁRIAS
        ============================================================ */
     .page-container {
       flex: 1;
@@ -990,8 +1240,14 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .page-header {
@@ -1494,88 +1750,277 @@
        RESPONSIVO
        ============================================================ */
     @media (max-width: 400px) {
-      .app { padding: 20px 16px 14px 16px; }
-      .header-brand .brand-main { font-size: 1.5rem; }
-      .filter-btn { font-size: 0.6rem; padding: 8px 14px; }
-      .chip { font-size: 0.7rem; padding: 8px 20px; }
-      .search-wrapper input { font-size: 0.85rem; padding: 14px 8px 14px 0; }
-      .search-wrapper button { padding: 12px 20px; font-size: 0.7rem; }
-      .carousel-item { flex: 0 0 72%; min-width: 170px; }
-      .item-overlay h3 { font-size: 1.1rem; }
-      .modal-content { height: min(74vh, 600px); }
-      .modal-title { font-size: 1.2rem; }
-      .modal-desc { font-size: 0.7rem; }
+      .app {
+        padding: 20px 16px 14px 16px;
+      }
+      .header-brand .brand-main {
+        font-size: 1.5rem;
+      }
+      .filter-btn {
+        font-size: 0.6rem;
+        padding: 8px 14px;
+      }
+      .chip {
+        font-size: 0.7rem;
+        padding: 8px 20px;
+      }
+      .search-wrapper input {
+        font-size: 0.85rem;
+        padding: 14px 8px 14px 0;
+      }
+      .search-wrapper button {
+        padding: 12px 20px;
+        font-size: 0.7rem;
+      }
+      .carousel-item {
+        flex: 0 0 72%;
+        min-width: 170px;
+      }
+      .item-overlay h3 {
+        font-size: 1.1rem;
+      }
+      .modal-content {
+        height: min(74vh, 600px);
+      }
+      .modal-title {
+        font-size: 1.2rem;
+      }
+      .modal-desc {
+        font-size: 0.7rem;
+      }
+      .hamburger {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     @media (max-width: 360px) {
-      .app { padding: 16px 12px 12px 12px; }
-      .header-brand .brand-main { font-size: 1.3rem; }
-      .filter-btn { font-size: 0.5rem; padding: 6px 10px; min-height: 36px; }
-      .chip { font-size: 0.6rem; padding: 6px 14px; min-height: 38px; }
-      .search-wrapper input { font-size: 0.75rem; padding: 12px 6px 12px 0; min-height: 44px; }
-      .search-wrapper button { padding: 10px 14px; font-size: 0.6rem; min-height: 44px; }
-      .carousel-item { flex: 0 0 68%; min-width: 140px; }
-      .item-overlay h3 { font-size: 0.95rem; }
-      .item-overlay .item-badge { font-size: 0.5rem; padding: 4px 12px; min-height: 26px; }
+      .app {
+        padding: 16px 12px 12px 12px;
+      }
+      .header-brand .brand-main {
+        font-size: 1.3rem;
+      }
+      .filter-btn {
+        font-size: 0.5rem;
+        padding: 6px 10px;
+        min-height: 36px;
+      }
+      .chip {
+        font-size: 0.6rem;
+        padding: 6px 14px;
+        min-height: 38px;
+      }
+      .search-wrapper input {
+        font-size: 0.75rem;
+        padding: 12px 6px 12px 0;
+        min-height: 44px;
+      }
+      .search-wrapper button {
+        padding: 10px 14px;
+        font-size: 0.6rem;
+        min-height: 44px;
+      }
+      .carousel-item {
+        flex: 0 0 68%;
+        min-width: 140px;
+      }
+      .item-overlay h3 {
+        font-size: 0.95rem;
+      }
+      .item-overlay .item-badge {
+        font-size: 0.5rem;
+        padding: 4px 12px;
+        min-height: 26px;
+      }
+      .hamburger {
+        width: 38px;
+        height: 38px;
+      }
+      .hamburger .bar {
+        width: 18px;
+      }
+      .hamburger .bar:nth-child(2) {
+        width: 14px;
+      }
+      .hamburger .bar:nth-child(3) {
+        width: 10px;
+      }
     }
 
     @media (max-height: 620px) and (orientation: landscape) {
-      .app { padding: 12px 18px 8px 18px; }
-      .header { padding: 4px 0 14px 0; }
-      .header-brand .brand-main { font-size: 1.2rem; }
-      .filter-bar { padding: 8px 0 4px 0; }
-      .chip-carousel-wrapper { padding: 2px 0 10px 0; }
-      .search-wrapper { margin: 8px 0 12px 0; }
-      .search-wrapper input { padding: 8px 4px 8px 0; font-size: 0.7rem; min-height: 36px; }
-      .search-wrapper button { padding: 8px 14px; font-size: 0.6rem; min-height: 36px; }
-      .carousel-item { flex: 0 0 46%; min-width: 130px; aspect-ratio: 9/10; }
-      .item-overlay { padding: 20px 12px 12px 12px; }
-      .item-overlay h3 { font-size: 0.8rem; }
-      .item-overlay .item-sub { display: none; }
-      .item-overlay .item-badge { font-size: 0.45rem; padding: 3px 10px; min-height: 24px; }
-      .home-kicker { display: none; }
-      .footer-minimal { margin-top: 4px; padding: 8px 0 2px 0; }
-      .modal-content { height: min(66vh, 420px); }
-      .modal-title { font-size: 1rem; }
-      .modal-desc { font-size: 0.6rem; }
-      .modal-fav-btn .fav-icon { width: 40px; height: 40px; font-size: 1rem; }
+      .app {
+        padding: 12px 18px 8px 18px;
+      }
+      .header {
+        padding: 4px 0 14px 0;
+      }
+      .header-brand .brand-main {
+        font-size: 1.2rem;
+      }
+      .filter-bar {
+        padding: 8px 0 4px 0;
+      }
+      .chip-carousel-wrapper {
+        padding: 2px 0 10px 0;
+      }
+      .search-wrapper {
+        margin: 8px 0 12px 0;
+      }
+      .search-wrapper input {
+        padding: 8px 4px 8px 0;
+        font-size: 0.7rem;
+        min-height: 36px;
+      }
+      .search-wrapper button {
+        padding: 8px 14px;
+        font-size: 0.6rem;
+        min-height: 36px;
+      }
+      .carousel-item {
+        flex: 0 0 46%;
+        min-width: 130px;
+        aspect-ratio: 9/10;
+      }
+      .item-overlay {
+        padding: 20px 12px 12px 12px;
+      }
+      .item-overlay h3 {
+        font-size: 0.8rem;
+      }
+      .item-overlay .item-sub {
+        display: none;
+      }
+      .item-overlay .item-badge {
+        font-size: 0.45rem;
+        padding: 3px 10px;
+        min-height: 24px;
+      }
+      .footer-minimal {
+        margin-top: 4px;
+        padding: 8px 0 2px 0;
+      }
+      .modal-content {
+        height: min(66vh, 420px);
+      }
+      .modal-title {
+        font-size: 1rem;
+      }
+      .modal-desc {
+        font-size: 0.6rem;
+      }
+      .modal-fav-btn .fav-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .hamburger {
+        width: 40px;
+        height: 40px;
+      }
     }
 
     @media (min-width: 500px) {
-      .carousel-item { flex: 0 0 60%; min-width: 280px; }
+      .carousel-item {
+        flex: 0 0 60%;
+        min-width: 280px;
+      }
     }
 
     @media (min-width: 768px) {
-      .app { max-width: 600px; padding: 32px 32px 24px 32px; }
-      .header-brand .brand-main { font-size: 2.2rem; }
-      .carousel-item { flex: 0 0 50%; min-width: 320px; }
+      .app {
+        max-width: 600px;
+        padding: 32px 32px 24px 32px;
+      }
+      .header-brand .brand-main {
+        font-size: 2.2rem;
+      }
+      .carousel-item {
+        flex: 0 0 50%;
+        min-width: 320px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="app">
 
-    <!-- HEADER -->
+    <!-- HEADER — APENAS LOGO + HAMBÚRGUER -->
     <header class="header">
-      <div class="header-left">
-        <div class="header-brand" id="homeBtn">
-          <span class="brand-main">hairbox<span>.</span></span>
-          <span class="brand-sub">· catálogo ·</span>
-        </div>
-        <button class="theme-toggle" id="themeToggle" title="Alternar tema">🌙</button>
+      <div class="header-brand" id="homeBtn">
+        <span class="brand-main">hairbox<span>.</span></span>
+        <span class="brand-sub">· catálogo ·</span>
       </div>
-      <div class="header-actions">
-        <button class="header-btn" id="favCounter">
-          ♥ <span class="count">0</span>
-        </button>
-        <span style="color:var(--text-muted);font-size:0.9rem;opacity:0.3;">◆</span>
-      </div>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="badge-count" id="menuBadge">0</span>
+      </button>
     </header>
 
-    <!-- KICKER -->
-    <div class="home-kicker">
-      <span class="kicker-dot"></span>
-      coleção atual · são paulo
+    <!-- MENU OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel">
+        <div class="menu-header">
+          <span>✦ menu</span>
+          <button class="menu-close" id="menuClose">✕</button>
+        </div>
+
+        <!-- Favoritos -->
+        <button class="menu-item" id="menuFavs">
+          <span class="icon">♥</span>
+          favoritos
+          <span class="item-count" id="menuFavCount">0</span>
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <!-- Cortes -->
+        <button class="menu-item" data-page="pageHome">
+          <span class="icon">✧</span>
+          cortes
+        </button>
+
+        <!-- Tendências -->
+        <button class="menu-item" data-page="pageTendencias">
+          <span class="icon">✦</span>
+          tendências
+        </button>
+
+        <!-- Galeria -->
+        <button class="menu-item" data-page="pageGaleria">
+          <span class="icon">◈</span>
+          galeria
+        </button>
+
+        <!-- Sobre -->
+        <button class="menu-item" data-page="pageSobre">
+          <span class="icon">◎</span>
+          sobre
+        </button>
+
+        <!-- Contato -->
+        <button class="menu-item" data-page="pageContato">
+          <span class="icon">✉</span>
+          contato
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <!-- Tema -->
+        <div class="menu-theme">
+          <span>🌙 tema</span>
+          <button class="theme-switch" id="menuThemeToggle">alternar</button>
+        </div>
+
+        <div class="menu-divider"></div>
+
+        <div style="padding: 12px 8px 0 8px; font-size: 0.5rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.4;">
+          hairbox · são paulo
+        </div>
+      </div>
     </div>
 
     <!-- FILTROS -->
@@ -1640,6 +2085,15 @@
         <div class="galeria-grid" id="galeriaGrid"></div>
       </div>
 
+      <!-- FAVORITOS -->
+      <div class="page" id="pageFavoritos">
+        <div class="page-header">
+          <h2>♥ favoritos</h2>
+          <span class="back-home" id="backHomeFav">← voltar</span>
+        </div>
+        <div class="fav-grid" id="favGrid"></div>
+      </div>
+
       <!-- SOBRE -->
       <div class="page" id="pageSobre">
         <div class="page-header">
@@ -1697,6 +2151,7 @@
         <a class="active-link" data-page="pageHome">cortes</a>
         <a data-page="pageTendencias">tendências</a>
         <a data-page="pageGaleria">galeria</a>
+        <a data-page="pageFavoritos">♥ favoritos</a>
         <a data-page="pageSobre">sobre</a>
         <a data-page="pageContato">contato</a>
       </div>
@@ -1918,8 +2373,26 @@
 
       function updateFavUI() {
         const count = favorites.length;
-        document.getElementById('favCounter').querySelector('.count').textContent = count;
+        const badge = document.getElementById('menuBadge');
+        const favCount = document.getElementById('menuFavCount');
+
+        badge.textContent = count;
+        favCount.textContent = count;
+
+        if (count > 0) {
+          badge.classList.add('show');
+          favCount.classList.remove('empty');
+          favCount.style.background = 'var(--gold)';
+          favCount.style.color = '#0a0808';
+        } else {
+          badge.classList.remove('show');
+          favCount.classList.add('empty');
+          favCount.style.background = 'var(--border-subtle)';
+          favCount.style.color = 'var(--text-muted)';
+        }
+
         document.getElementById('favCountStat').textContent = count;
+        generateFavGrid();
       }
 
       function updateAllFavButtons(key) {
@@ -1937,6 +2410,45 @@
         updateFavUI();
       }
 
+      // ===== PÁGINA DE FAVORITOS =====
+      function generateFavGrid() {
+        const grid = document.getElementById('favGrid');
+        grid.innerHTML = '';
+
+        if (favorites.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-favs">
+              <span class="heart-big">♡</span>
+              Você ainda não tem favoritos.<br>
+              Toque no ♥ de um estilo para salvá-lo!
+            </div>
+          `;
+          return;
+        }
+
+        favorites.forEach(key => {
+          const data = styleData[key];
+          if (!data) return;
+          const item = document.createElement('div');
+          item.className = 'grid-item';
+          item.innerHTML = `
+            <button class="grid-fav-remove" data-fav-key="${key}" title="Remover dos favoritos">✕</button>
+            <img src="${data.img}" alt="${data.title}" loading="lazy">
+            <div class="grid-overlay"><span class="grid-title">${data.title}</span></div>
+          `;
+          item.querySelector('.grid-fav-remove').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleFavorite(this.dataset.favKey);
+            updateAllFavButtons(this.dataset.favKey);
+          });
+          item.addEventListener('click', function(e) {
+            if (e.target.closest('.grid-fav-remove')) return;
+            openModal(key);
+          });
+          grid.appendChild(item);
+        });
+      }
+
       const searchInput = document.getElementById('searchInput');
       const searchButton = document.getElementById('searchButton');
       const unifiedCarousel = document.getElementById('unifiedCarousel');
@@ -1947,6 +2459,7 @@
         cortes: document.getElementById('pageCortes'),
         tendencias: document.getElementById('pageTendencias'),
         galeria: document.getElementById('pageGaleria'),
+        favoritos: document.getElementById('pageFavoritos'),
         sobre: document.getElementById('pageSobre'),
         contato: document.getElementById('pageContato')
       };
@@ -1966,7 +2479,10 @@
       const modalPrev = document.getElementById('modalPrev');
       const modalNext = document.getElementById('modalNext');
       const filterBtns = document.querySelectorAll('.filter-btn');
-      const themeToggle = document.getElementById('themeToggle');
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const menuClose = document.getElementById('menuClose');
+      const menuFavs = document.getElementById('menuFavs');
 
       let currentStyle = 'velvet bob';
       let currentFilter = 'all';
@@ -1977,14 +2493,54 @@
 
       // ===== TEMA =====
       let currentTheme = localStorage.getItem('hairbox_theme') || 'dark';
+      const themeToggle = document.getElementById('menuThemeToggle');
+
       function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        themeToggle.textContent = theme === 'dark' ? '🌙 escuro' : '☀️ claro';
         localStorage.setItem('hairbox_theme', theme);
         currentTheme = theme;
       }
       applyTheme(currentTheme);
-      themeToggle.addEventListener('click', () => applyTheme(currentTheme === 'dark' ? 'light' : 'dark'));
+
+      themeToggle.addEventListener('click', () => {
+        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        closeMenu();
+      });
+
+      // ===== MENU HAMBÚRGUER =====
+      function openMenu() {
+        menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      hamburgerBtn.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      menuOverlay.addEventListener('click', e => {
+        if (e.target === e.currentTarget) closeMenu();
+      });
+
+      // ===== MENU ITEMS =====
+      document.querySelectorAll('.menu-item[data-page]').forEach(item => {
+        item.addEventListener('click', function() {
+          const pageId = this.dataset.page;
+          if (pageId) {
+            navigateTo(pageId);
+            closeMenu();
+          }
+        });
+      });
+
+      // Favoritos pelo menu
+      menuFavs.addEventListener('click', function() {
+        navigateTo('pageFavoritos');
+        closeMenu();
+      });
 
       // ===== CHIPS =====
       function generateChips() {
@@ -2291,11 +2847,11 @@
           chipWrapper.style.display = isHome ? 'block' : 'none';
           searchWrapper.style.display = isHome ? 'flex' : 'none';
           document.querySelector('.filter-bar').style.display = isHome ? 'flex' : 'none';
-          document.querySelector('.home-kicker').style.display = isHome ? 'flex' : 'none';
           footerLinks.forEach(link => {
             link.classList.toggle('active-link', link.dataset.page === pageId);
           });
           if (isHome) generateCarousel(currentStyle);
+          if (pageId === 'pageFavoritos') generateFavGrid();
           document.getElementById('pageContainer').scrollTop = 0;
         }, 350);
       }
@@ -2322,7 +2878,14 @@
       }
 
       // ===== EVENTOS =====
-      footerLinks.forEach(link => link.addEventListener('click', e => { e.preventDefault(); navigateTo(link.dataset.page); }));
+      footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const pageId = this.dataset.page;
+          if (pageId) navigateTo(pageId);
+        });
+      });
+
       backButtons.forEach(btn => btn.addEventListener('click', () => navigateTo('pageHome')));
       homeBtn.addEventListener('click', () => navigateTo('pageHome'));
       searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); handleSearch(); } });
@@ -2336,6 +2899,7 @@
       generateTendencias();
       generateGaleria();
       generateCarousel('velvet bob');
+      generateFavGrid();
       updateFavUI();
       console.log('📦 HAIRBOX · Catálogo · Pronto!');
     })();
