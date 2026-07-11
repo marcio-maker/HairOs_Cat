@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>HairBox · Catálogo</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@200;300;400;500;600;700&display=swap');
@@ -79,7 +79,7 @@
       background: var(--bg-primary);
       display: flex;
       flex-direction: column;
-      padding: 8px 10px 4px 10px;
+      padding: 16px 16px 8px 16px;
       position: relative;
       transition: background var(--transition-smooth);
       overflow: hidden;
@@ -88,20 +88,27 @@
         radial-gradient(ellipse at 80% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 60%);
     }
 
-    /* HEADER - CÁPSULA */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 16px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
+      padding: 4px 0 12px 0;
+      border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
+      position: relative;
       min-height: 44px;
-      margin-bottom: 4px;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.3;
+      border-radius: 2px;
     }
 
     .header-brand {
@@ -117,7 +124,7 @@
 
     .header-brand .brand-main {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 700;
       font-style: italic;
       letter-spacing: 0.04em;
@@ -131,34 +138,34 @@
     }
 
     .header-brand .brand-sub {
-      font-size: 0.4rem;
+      font-size: 0.45rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--text-muted);
       font-weight: 300;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .hamburger {
       background: transparent;
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      width: 32px;
-      height: 32px;
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      padding: 7px;
+      padding: 10px;
       position: relative;
       flex-shrink: 0;
     }
@@ -169,7 +176,7 @@
     }
 
     .hamburger .bar {
-      width: 14px;
+      width: 18px;
       height: 1.5px;
       background: var(--text-secondary);
       border-radius: 2px;
@@ -177,12 +184,12 @@
     }
 
     .hamburger .bar:nth-child(2) {
-      width: 11px;
+      width: 14px;
       align-self: flex-end;
     }
 
     .hamburger .bar:nth-child(3) {
-      width: 8px;
+      width: 10px;
       align-self: flex-end;
     }
 
@@ -192,14 +199,14 @@
 
     .hamburger .badge-count {
       position: absolute;
-      top: -2px;
-      right: -2px;
+      top: -3px;
+      right: -3px;
       background: #ff4757;
       color: #fff;
-      font-size: 0.4rem;
+      font-size: 0.45rem;
       font-weight: 600;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -215,21 +222,14 @@
       transform: scale(1);
     }
 
-    /* FILTROS - CÁPSULA */
     .filter-bar {
       display: flex;
-      gap: 2px;
-      padding: 4px 8px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
+      gap: 3px;
+      padding: 8px 0 6px 0;
       flex-shrink: 0;
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      margin-bottom: 4px;
     }
 
     .filter-bar::-webkit-scrollbar {
@@ -239,8 +239,8 @@
     .filter-btn {
       background: transparent;
       border: none;
-      padding: 4px 12px;
-      font-size: 0.5rem;
+      padding: 6px 12px;
+      font-size: 0.55rem;
       font-weight: 400;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -250,7 +250,7 @@
       white-space: nowrap;
       font-family: 'Inter', sans-serif;
       border-radius: var(--radius-pill);
-      min-height: 26px;
+      min-height: 30px;
     }
 
     .filter-btn:hover {
@@ -263,23 +263,17 @@
       background: var(--gold-glow);
     }
 
-    /* CHIPS - CÁPSULA */
     .chip-carousel-wrapper {
-      padding: 2px 8px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
+      padding: 2px 0 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
-      margin-bottom: 4px;
     }
 
     .chip-carousel {
       display: flex;
-      gap: 5px;
+      gap: 6px;
       overflow-x: auto;
-      padding: 2px 0 3px 0;
+      padding: 2px 0 4px 0;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
@@ -292,10 +286,10 @@
 
     .chip {
       flex: 0 0 auto;
-      background: transparent;
-      padding: 4px 14px;
+      background: var(--bg-card);
+      padding: 5px 16px;
       border-radius: var(--radius-pill);
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       font-weight: 300;
       color: var(--text-secondary);
       border: 1px solid var(--border-subtle);
@@ -305,7 +299,7 @@
       white-space: nowrap;
       font-family: 'Inter', sans-serif;
       letter-spacing: 0.02em;
-      min-height: 26px;
+      min-height: 30px;
       display: flex;
       align-items: center;
     }
@@ -325,45 +319,43 @@
       transform: translateY(-1px);
     }
 
-    /* BUSCA */
     .search-wrapper {
-      margin: 4px 0 6px 0;
+      margin: 8px 0 10px 0;
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: var(--bg-secondary);
       border-radius: var(--radius-pill);
       padding: 2px 2px 2px 16px;
       border: 1px solid var(--border-subtle);
       transition: all var(--transition-smooth);
       flex-shrink: 0;
-      min-height: 34px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      min-height: 38px;
     }
 
     .search-wrapper:focus-within {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px var(--gold-glow);
+      box-shadow: 0 0 0 3px var(--gold-glow), 0 2px 16px rgba(0, 0, 0, 0.06);
     }
 
     .search-wrapper input {
       flex: 1;
       border: none;
       background: transparent;
-      padding: 6px 6px 6px 0;
-      font-size: 0.65rem;
+      padding: 8px 8px 8px 0;
+      font-size: 0.7rem;
       color: var(--text-primary);
       outline: none;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       width: 100%;
-      min-height: 28px;
+      min-height: 34px;
     }
 
     .search-wrapper input::placeholder {
       color: var(--text-muted);
       font-weight: 200;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       font-style: italic;
       letter-spacing: 0.02em;
     }
@@ -372,10 +364,10 @@
       background: var(--gold);
       border: none;
       border-radius: var(--radius-pill);
-      padding: 6px 16px;
+      padding: 8px 18px;
       color: #0a0808;
       font-weight: 500;
-      font-size: 0.5rem;
+      font-size: 0.55rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
       white-space: nowrap;
@@ -384,8 +376,8 @@
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 4px;
-      min-height: 28px;
+      gap: 5px;
+      min-height: 34px;
     }
 
     .search-wrapper button:hover {
@@ -394,28 +386,27 @@
     }
 
     .search-wrapper button svg {
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       fill: currentColor;
     }
 
     .search-feedback {
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-style: italic;
       animation: fadeIn 0.3s ease;
     }
 
-    /* CARROSSEL */
     .unified-carousel-wrapper {
       flex: 1;
       min-height: 0;
       border-radius: var(--radius-card);
       overflow: hidden;
       position: relative;
-      margin: 0;
+      margin: 0 0 2px 0;
       padding: 0;
     }
 
@@ -423,7 +414,7 @@
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding: 2px 2px 5px 2px;
+      padding: 2px 2px 6px 2px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
@@ -437,7 +428,7 @@
     }
 
     .carousel-item {
-      flex: 0 0 80%;
+      flex: 0 0 72%;
       min-width: 180px;
       border-radius: var(--radius-card);
       overflow: hidden;
@@ -449,7 +440,7 @@
       position: relative;
       aspect-ratio: 9/12;
       height: auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
     }
 
     .carousel-item:last-child {
@@ -459,12 +450,12 @@
     .carousel-item:hover {
       border-color: var(--border-gold);
       transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
     }
 
     .carousel-item.active-item {
       border-color: var(--gold);
-      box-shadow: 0 4px 30px rgba(201, 169, 110, 0.08), 0 8px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 30px rgba(201, 169, 110, 0.08), 0 2px 20px rgba(0, 0, 0, 0.2);
     }
 
     .carousel-item .img-container {
@@ -558,7 +549,7 @@
 
     .item-overlay h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       font-style: italic;
       color: #ffffff;
@@ -567,7 +558,7 @@
     }
 
     .item-overlay .item-sub {
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       color: rgba(201, 169, 110, 0.5);
       font-weight: 300;
       letter-spacing: 0.15em;
@@ -579,9 +570,9 @@
       display: inline-block;
       background: rgba(201, 169, 110, 0.12);
       backdrop-filter: blur(6px);
-      padding: 3px 14px;
+      padding: 3px 12px;
       border-radius: var(--radius-pill);
-      font-size: 0.45rem;
+      font-size: 0.4rem;
       font-weight: 400;
       color: var(--gold-light);
       border: 1px solid rgba(201, 169, 110, 0.04);
@@ -589,12 +580,11 @@
       margin-top: 4px;
       letter-spacing: 0.08em;
       text-transform: lowercase;
-      min-height: 24px;
+      min-height: 22px;
       display: flex;
       align-items: center;
     }
 
-    /* INDICADORES */
     .carousel-indicators {
       display: flex;
       justify-content: center;
@@ -620,14 +610,14 @@
       opacity: 1;
     }
 
-    /* FOOTER - CÁPSULA INSTAGRAM */
     .footer-minimal {
       margin-top: 2px;
-      padding: 4px 0 2px 0;
+      padding: 6px 0 2px 0;
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       flex-shrink: 0;
     }
 
@@ -664,10 +654,10 @@
       text-transform: uppercase;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: var(--radius-pill);
       white-space: nowrap;
-      min-height: 28px;
+      min-height: 24px;
       display: flex;
       align-items: center;
       background: transparent;
@@ -680,14 +670,14 @@
 
     .footer-links a.active-link {
       color: var(--gold);
-      font-weight: 500;
+      font-weight: 400;
       background: var(--gold-glow);
       border: 1px solid var(--border-gold);
     }
 
     .footer-copy {
       color: var(--text-muted);
-      font-size: 0.32rem;
+      font-size: 0.35rem;
       letter-spacing: 0.12em;
       text-align: center;
       opacity: 0.25;
@@ -705,7 +695,6 @@
       color: var(--gold);
     }
 
-    /* MENU OVERLAY */
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -737,9 +726,9 @@
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-radius: 16px;
-      padding: 18px 16px;
+      padding: 20px 18px;
       width: 100%;
-      max-width: 280px;
+      max-width: 300px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border-subtle);
       animation: slideMenu 0.25s cubic-bezier(0.23, 1, 0.32, 1);
@@ -765,15 +754,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .menu-header span {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-primary);
     }
 
@@ -781,7 +770,7 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       padding: 4px;
       transition: all var(--transition-smooth);
@@ -795,13 +784,13 @@
     .menu-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-radius: 8px;
+      gap: 12px;
+      padding: 10px 8px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all var(--transition-smooth);
       color: var(--text-secondary);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 300;
       letter-spacing: 0.03em;
       border: none;
@@ -809,7 +798,7 @@
       width: 100%;
       font-family: 'Inter', sans-serif;
       text-align: left;
-      min-height: 36px;
+      min-height: 40px;
     }
 
     .menu-item:hover {
@@ -819,8 +808,8 @@
     }
 
     .menu-item .icon {
-      font-size: 0.9rem;
-      width: 26px;
+      font-size: 1rem;
+      width: 28px;
       text-align: center;
     }
 
@@ -828,11 +817,11 @@
       margin-left: auto;
       background: var(--gold);
       color: #0a0808;
-      font-size: 0.45rem;
+      font-size: 0.5rem;
       font-weight: 500;
-      padding: 1px 9px;
+      padding: 1px 10px;
       border-radius: 20px;
-      min-width: 22px;
+      min-width: 24px;
       text-align: center;
     }
 
@@ -844,17 +833,17 @@
     .menu-divider {
       height: 1px;
       background: var(--border-subtle);
-      margin: 5px 0;
+      margin: 6px 0;
     }
 
     .menu-theme {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 6px;
-      border-radius: 8px;
+      padding: 10px 8px;
+      border-radius: 10px;
       color: var(--text-secondary);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 300;
       letter-spacing: 0.03em;
     }
@@ -864,12 +853,12 @@
       border: none;
       border-radius: 16px;
       padding: 2px 8px;
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
       color: var(--text-secondary);
-      min-height: 26px;
-      min-width: 44px;
+      min-height: 28px;
+      min-width: 48px;
     }
 
     .menu-theme .theme-switch:hover {
@@ -877,7 +866,6 @@
       color: var(--gold);
     }
 
-    /* PÁGINAS */
     .page-container {
       flex: 1;
       overflow: hidden;
@@ -895,11 +883,11 @@
 
     .page.active-page {
       display: flex;
-      animation: fadeIn 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -907,23 +895,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 3px 0 6px 0;
+      padding: 4px 0 8px 0;
       flex-shrink: 0;
     }
 
     .page-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 600;
       font-style: italic;
       color: var(--text-primary);
       letter-spacing: 0.01em;
-    }
-
-    .page-header-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
     }
 
     .back-home {
@@ -934,13 +916,12 @@
       font-weight: 300;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
-      min-height: 26px;
+      min-height: 28px;
       display: flex;
       align-items: center;
-      background: transparent;
     }
 
     .back-home:hover {
@@ -949,298 +930,18 @@
       transform: translateX(-3px);
     }
 
-    .clear-favs-btn {
-      color: #ff4757;
-      font-size: 0.4rem;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 71, 87, 0.2);
-      min-height: 26px;
-      display: flex;
-      align-items: center;
-      background: transparent;
-    }
-
-    .clear-favs-btn:hover {
-      background: rgba(255, 71, 87, 0.1);
-      border-color: #ff4757;
-    }
-
     .page-scroll {
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
       scrollbar-width: none;
-      padding: 0;
+      padding: 0 0 4px 0;
     }
 
     .page-scroll::-webkit-scrollbar {
       display: none;
     }
 
-    /* PÁGINA DE DETALHES */
-    .detail-page {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-      padding: 0;
-    }
-
-    .detail-page.active-page {
-      display: flex;
-      animation: fadeIn 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .detail-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 3px 0 6px 0;
-      flex-shrink: 0;
-    }
-
-    .detail-header .back-home {
-      font-size: 0.5rem;
-      padding: 3px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
-      min-height: 26px;
-      display: flex;
-      align-items: center;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      background: transparent;
-    }
-
-    .detail-header .back-home:hover {
-      color: var(--gold);
-      border-color: var(--border-gold);
-    }
-
-    .detail-header .share-btn {
-      color: var(--gold);
-      font-size: 0.5rem;
-      padding: 3px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-gold);
-      min-height: 26px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      background: transparent;
-    }
-
-    .detail-header .share-btn:hover {
-      background: var(--gold-glow);
-    }
-
-    .detail-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0 0 10px 0;
-    }
-
-    .detail-image {
-      width: 100%;
-      aspect-ratio: 9/12;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-subtle);
-      position: relative;
-      cursor: pointer;
-    }
-
-    .detail-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .detail-image .image-counter {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 4px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 0.5rem;
-      color: rgba(255, 255, 255, 0.7);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      pointer-events: none;
-    }
-
-    .detail-image .image-counter span {
-      color: var(--gold-light);
-      font-weight: 500;
-    }
-
-    .detail-image:hover .image-counter {
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    .detail-info {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .detail-info .detail-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--text-primary);
-    }
-
-    .detail-info .detail-badge {
-      display: inline-block;
-      background: rgba(201, 169, 110, 0.12);
-      padding: 2px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 0.5rem;
-      color: var(--gold-light);
-      border: 1px solid rgba(201, 169, 110, 0.08);
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      align-self: flex-start;
-      min-height: 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    .detail-info .detail-desc {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-top: 4px;
-    }
-
-    .detail-info .detail-meta {
-      display: flex;
-      gap: 16px;
-      padding: 8px 0;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      margin: 4px 0;
-    }
-
-    .detail-info .detail-meta span {
-      font-size: 0.5rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .detail-info .detail-meta span strong {
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .detail-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .detail-actions button {
-      flex: 1;
-      padding: 10px;
-      border-radius: var(--radius-pill);
-      border: none;
-      font-size: 0.6rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      font-family: 'Inter', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      min-height: 40px;
-    }
-
-    .detail-actions .fav-detail-btn {
-      background: var(--gold);
-      color: #0a0808;
-      flex: 1;
-    }
-
-    .detail-actions .fav-detail-btn:hover {
-      background: var(--gold-light);
-      transform: scale(1.02);
-    }
-
-    .detail-actions .fav-detail-btn.favorited {
-      background: rgba(255, 71, 87, 0.15);
-      color: #ff4757;
-      border: 1px solid rgba(255, 71, 87, 0.2);
-    }
-
-    .detail-actions .share-detail-btn {
-      background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid var(--border-subtle);
-      flex: 0.5;
-      font-size: 0.8rem;
-    }
-
-    .detail-actions .share-detail-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* ORDENAÇÃO */
-    .sort-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 0 6px 0;
-      flex-shrink: 0;
-    }
-
-    .sort-wrapper label {
-      font-size: 0.45rem;
-      color: var(--text-muted);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .sort-wrapper select {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      color: var(--text-secondary);
-      font-size: 0.5rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      cursor: pointer;
-      min-height: 28px;
-    }
-
-    .sort-wrapper select:focus {
-      border-color: var(--gold);
-    }
-
-    .sort-wrapper select option {
-      background: var(--bg-card);
-      color: var(--text-primary);
-    }
-
-    /* GRID */
     .grid-cortes {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1283,12 +984,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 10px 6px 5px 6px;
+      padding: 12px 8px 6px 8px;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
     }
 
     .grid-item .grid-overlay .grid-title {
-      font-size: 0.48rem;
+      font-size: 0.45rem;
       font-weight: 400;
       color: #fff;
       display: block;
@@ -1299,8 +1000,8 @@
 
     .grid-item .grid-fav {
       position: absolute;
-      top: 6px;
-      right: 6px;
+      top: 8px;
+      right: 8px;
       background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(6px);
       border: none;
@@ -1322,8 +1023,8 @@
 
     .grid-item .grid-fav-remove {
       position: absolute;
-      top: 6px;
-      right: 6px;
+      top: 8px;
+      right: 8px;
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.04);
@@ -1347,7 +1048,7 @@
     .empty-state {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 25px 16px;
+      padding: 30px 16px;
       color: var(--text-muted);
       font-size: 0.75rem;
       font-weight: 300;
@@ -1357,23 +1058,22 @@
     .empty-state .heart-big {
       font-size: 2rem;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       opacity: 0.2;
     }
 
-    /* TENDÊNCIAS */
     .tendencias-list {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .tendencia-item {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       background: var(--bg-card);
       border-radius: 10px;
-      padding: 7px 11px;
+      padding: 8px 12px;
       align-items: center;
       cursor: pointer;
       transition: all var(--transition-smooth);
@@ -1416,7 +1116,7 @@
     }
 
     .tendencia-item .tendencia-info p {
-      font-size: 0.48rem;
+      font-size: 0.45rem;
       color: var(--text-secondary);
       font-weight: 300;
     }
@@ -1424,11 +1124,11 @@
     .tendencia-item .tendencia-info .tendencia-tag {
       display: inline-block;
       background: rgba(201, 169, 110, 0.06);
-      padding: 1px 9px;
+      padding: 1px 10px;
       border-radius: var(--radius-pill);
-      font-size: 0.38rem;
+      font-size: 0.35rem;
       color: var(--gold);
-      margin-top: 1px;
+      margin-top: 2px;
       letter-spacing: 0.08em;
       text-transform: lowercase;
       min-height: 20px;
@@ -1436,7 +1136,6 @@
       align-items: center;
     }
 
-    /* GALERIA */
     .galeria-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1478,19 +1177,18 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 8px 6px 4px 6px;
+      padding: 10px 8px 6px 8px;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
     }
 
     .galeria-item .galeria-overlay span {
-      font-size: 0.48rem;
+      font-size: 0.45rem;
       color: #fff;
       font-weight: 300;
       font-family: 'Playfair Display', serif;
       font-style: italic;
     }
 
-    /* FAVORITOS */
     .fav-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1498,12 +1196,11 @@
       padding: 4px 0;
     }
 
-    /* SOBRE */
     .sobre-content {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      padding: 0;
+      gap: 10px;
+      padding: 0 0 4px 0;
     }
 
     .sobre-content p {
@@ -1516,7 +1213,7 @@
     .sobre-content .sobre-card {
       background: var(--bg-card);
       border-radius: 10px;
-      padding: 12px 14px;
+      padding: 14px;
       border: 1px solid var(--border-subtle);
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     }
@@ -1526,7 +1223,7 @@
       font-style: italic;
       color: var(--text-primary);
       font-size: 0.75rem;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
 
     .sobre-content .sobre-card p {
@@ -1543,7 +1240,7 @@
     .sobre-stats .stat {
       background: var(--bg-card);
       border-radius: 10px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       border: 1px solid var(--border-subtle);
       transition: all var(--transition-smooth);
@@ -1570,12 +1267,11 @@
       text-transform: uppercase;
     }
 
-    /* CONTATO */
     .contato-content {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      padding: 0;
+      gap: 10px;
+      padding: 0 0 4px 0;
     }
 
     .contato-content p {
@@ -1588,7 +1284,7 @@
     .contato-form {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 8px;
     }
 
     .contato-form input,
@@ -1596,7 +1292,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       color: var(--text-primary);
       font-size: 0.7rem;
       outline: none;
@@ -1604,7 +1300,7 @@
       width: 100%;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      min-height: 38px;
+      min-height: 40px;
     }
 
     .contato-form input:focus,
@@ -1619,7 +1315,7 @@
     }
 
     .contato-form textarea {
-      min-height: 70px;
+      min-height: 80px;
       resize: vertical;
     }
 
@@ -1627,7 +1323,7 @@
       background: var(--gold);
       border: none;
       border-radius: 10px;
-      padding: 10px;
+      padding: 12px;
       color: #0a0808;
       font-size: 0.7rem;
       font-weight: 500;
@@ -1636,7 +1332,7 @@
       font-family: 'Inter', sans-serif;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      min-height: 38px;
+      min-height: 40px;
     }
 
     .contato-form button:hover {
@@ -1647,8 +1343,8 @@
     .contato-social {
       display: flex;
       justify-content: center;
-      gap: 18px;
-      padding: 5px 0;
+      gap: 20px;
+      padding: 6px 0;
     }
 
     .contato-social a {
@@ -1663,7 +1359,6 @@
       transform: scale(1.1);
     }
 
-    /* MODAL - ORIGINAL COM 3 IMAGENS */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -1677,12 +1372,12 @@
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 20px 16px;
+      padding: 24px 16px;
     }
 
     .modal-overlay.active {
       display: flex;
-      animation: curtainOpen 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      animation: curtainOpen 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     @keyframes curtainOpen {
@@ -1693,14 +1388,14 @@
     .modal-content {
       position: relative;
       width: auto;
-      height: min(76vh, 600px);
+      height: min(76vh, 620px);
       aspect-ratio: 9 / 16;
       max-width: 90vw;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
       background: var(--bg-card);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-gold);
-      animation: slideModal 0.35s cubic-bezier(0.23, 1, 0.32, 1) 0.05s both;
+      animation: slideModal 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.05s both;
     }
 
     @keyframes slideModal {
@@ -1735,7 +1430,7 @@
 
     .modal-close {
       position: absolute;
-      top: 16px;
+      top: 18px;
       right: 10px;
       background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(10px);
@@ -1947,7 +1642,6 @@
       font-weight: 300;
     }
 
-    /* SCROLLBAR */
     ::-webkit-scrollbar {
       width: 2px;
       height: 2px;
@@ -1962,79 +1656,71 @@
       border-radius: 4px;
     }
 
-    /* RESPONSIVIDADE */
-    @media (max-height: 700px) {
-      .app { padding: 6px 8px 3px 8px; }
-      .header { padding: 3px 14px; min-height: 38px; }
-      .header-brand .brand-main { font-size: 1.1rem; }
+    @media (max-height: 640px) {
+      .app { padding: 10px 12px 4px 12px; }
+      .header { padding: 2px 0 8px 0; min-height: 36px; }
+      .header-brand .brand-main { font-size: 1.2rem; }
       .header-brand .brand-sub { font-size: 0.35rem; }
-      .hamburger { width: 28px; height: 28px; padding: 6px; }
-      .hamburger .bar { width: 12px; }
-      .hamburger .bar:nth-child(2) { width: 9px; }
-      .hamburger .bar:nth-child(3) { width: 7px; }
-      .filter-bar { padding: 3px 6px; }
-      .filter-btn { font-size: 0.45rem; padding: 3px 10px; min-height: 24px; }
-      .chip-carousel-wrapper { padding: 2px 6px; }
-      .chip { font-size: 0.5rem; padding: 3px 12px; min-height: 24px; }
-      .search-wrapper { margin: 3px 0 4px 0; min-height: 30px; }
-      .search-wrapper input { font-size: 0.6rem; padding: 5px 5px 5px 0; min-height: 24px; }
+      .hamburger { width: 32px; height: 32px; padding: 8px; }
+      .hamburger .bar { width: 14px; height: 1.5px; }
+      .hamburger .bar:nth-child(2) { width: 11px; }
+      .hamburger .bar:nth-child(3) { width: 8px; }
+      .filter-bar { padding: 4px 0 4px 0; }
+      .filter-btn { font-size: 0.45rem; padding: 4px 10px; min-height: 24px; }
+      .chip-carousel-wrapper { padding: 2px 0 6px 0; }
+      .chip { font-size: 0.5rem; padding: 4px 12px; min-height: 24px; }
+      .search-wrapper { margin: 4px 0 6px 0; min-height: 30px; }
+      .search-wrapper input { font-size: 0.6rem; padding: 6px 6px 6px 0; min-height: 28px; }
       .search-wrapper input::placeholder { font-size: 0.55rem; }
-      .search-wrapper button { padding: 5px 14px; font-size: 0.45rem; min-height: 24px; }
-      .search-wrapper button svg { width: 9px; height: 9px; }
-      .carousel-item { flex: 0 0 75%; min-width: 150px; aspect-ratio: 9/12; }
+      .search-wrapper button { padding: 6px 14px; font-size: 0.45rem; min-height: 28px; }
+      .search-wrapper button svg { width: 10px; height: 10px; }
+      .carousel-item { flex: 0 0 65%; min-width: 140px; aspect-ratio: 9/12; }
       .item-overlay { padding: 20px 10px 10px 10px; }
-      .item-overlay h3 { font-size: 0.9rem; }
-      .item-overlay .item-badge { font-size: 0.38rem; padding: 2px 11px; min-height: 20px; }
-      .item-overlay .item-sub { font-size: 0.4rem; }
+      .item-overlay h3 { font-size: 0.8rem; }
+      .item-overlay .item-badge { font-size: 0.35rem; padding: 2px 10px; min-height: 18px; }
+      .item-overlay .item-sub { font-size: 0.35rem; }
       .carousel-item .favorite-btn { width: 28px; height: 28px; font-size: 0.7rem; top: 8px; right: 8px; }
       .carousel-indicators { padding: 2px 0 0 0; gap: 6px; }
       .carousel-indicators .dot { width: 3px; height: 3px; }
       .carousel-indicators .dot.active-dot { width: 16px; }
-      .footer-links { padding: 3px 4px; max-width: 280px; }
-      .footer-links a { font-size: 0.4rem; padding: 3px 10px; min-height: 24px; }
+      .footer-links a { font-size: 0.4rem; padding: 2px 8px; min-height: 20px; }
       .footer-copy { font-size: 0.3rem; }
       .modal-content { height: min(70vh, 480px); }
       .modal-title { font-size: 0.95rem; }
-      .modal-desc { font-size: 0.5rem; }
+      .modal-desc { font-size: 0.55rem; }
       .modal-fav-btn .fav-icon { width: 34px; height: 34px; font-size: 0.9rem; }
-      .detail-info .detail-title { font-size: 1.1rem; }
     }
 
-    @media (max-height: 600px) {
-      .carousel-item { flex: 0 0 65%; min-width: 120px; aspect-ratio: 9/11; }
-      .header-brand .brand-main { font-size: 0.95rem; }
-      .filter-btn { font-size: 0.4rem; padding: 2px 8px; }
-      .chip { font-size: 0.45rem; padding: 2px 10px; }
-      .item-overlay h3 { font-size: 0.75rem; }
-      .detail-info .detail-title { font-size: 0.95rem; }
+    @media (max-height: 560px) {
+      .carousel-item { flex: 0 0 55%; min-width: 120px; aspect-ratio: 9/11; }
+      .header-brand .brand-main { font-size: 1rem; }
+      .filter-btn { font-size: 0.4rem; padding: 3px 8px; }
+      .chip { font-size: 0.45rem; padding: 3px 10px; }
     }
 
     @media (max-width: 360px) {
-      .app { padding: 6px 6px 3px 6px; }
-      .header-brand .brand-main { font-size: 1rem; }
-      .carousel-item { flex: 0 0 72%; min-width: 120px; aspect-ratio: 9/12; }
-      .item-overlay h3 { font-size: 0.8rem; }
-      .filter-btn { font-size: 0.4rem; padding: 2px 7px; }
-      .chip { font-size: 0.45rem; padding: 3px 10px; }
-      .footer-links { max-width: 240px; }
-      .footer-links a { font-size: 0.35rem; padding: 2px 8px; }
+      .app { padding: 12px 10px 4px 10px; }
+      .header-brand .brand-main { font-size: 1.2rem; }
+      .carousel-item { flex: 0 0 65%; min-width: 130px; aspect-ratio: 9/12; }
+      .item-overlay h3 { font-size: 0.75rem; }
+      .filter-btn { font-size: 0.45rem; padding: 4px 8px; }
+      .chip { font-size: 0.5rem; padding: 4px 10px; }
     }
 
     @media (min-width: 500px) {
-      .carousel-item { flex: 0 0 55%; min-width: 220px; }
+      .carousel-item { flex: 0 0 55%; min-width: 240px; }
     }
 
     @media (min-width: 768px) {
-      .app { max-width: 600px; padding: 16px 20px 10px 20px; }
-      .header-brand .brand-main { font-size: 1.8rem; }
-      .carousel-item { flex: 0 0 48%; min-width: 280px; }
+      .app { max-width: 600px; padding: 24px 24px 12px 24px; }
+      .header-brand .brand-main { font-size: 2rem; }
+      .carousel-item { flex: 0 0 45%; min-width: 280px; }
     }
   </style>
 </head>
 <body>
   <div class="app">
 
-    <!-- HEADER -->
     <header class="header">
       <div class="header-brand" id="homeBtn">
         <span class="brand-main">hairbox<span>.</span></span>
@@ -2050,7 +1736,6 @@
       </div>
     </header>
 
-    <!-- MENU -->
     <div class="menu-overlay" id="menuOverlay">
       <div class="menu-panel">
         <div class="menu-header">
@@ -2073,11 +1758,10 @@
           <button class="theme-switch" id="menuThemeToggle">dark</button>
         </div>
         <div class="menu-divider"></div>
-        <div style="padding: 6px 6px 0 6px; font-size: 0.4rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.3;">hairbox · são paulo</div>
+        <div style="padding: 8px 8px 0 8px; font-size: 0.4rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.3;">hairbox · são paulo</div>
       </div>
     </div>
 
-    <!-- FILTROS -->
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active-filter" data-filter="all">todos</button>
       <button class="filter-btn" data-filter="curto">curto</button>
@@ -2089,12 +1773,10 @@
       <button class="filter-btn" data-filter="romantico">romântico</button>
     </div>
 
-    <!-- CHIPS -->
     <div class="chip-carousel-wrapper" id="chipWrapper">
       <div class="chip-carousel" id="chipCarousel"></div>
     </div>
 
-    <!-- BUSCA -->
     <div class="search-wrapper" id="searchWrapper">
       <input type="text" id="searchInput" placeholder="buscar estilo..." aria-label="Buscar cortes">
       <button id="searchButton">
@@ -2103,10 +1785,8 @@
       </button>
     </div>
 
-    <!-- CONTAINER DE PÁGINAS -->
     <div class="page-container" id="pageContainer">
 
-      <!-- HOME -->
       <div class="page active-page" id="pageHome">
         <div class="unified-carousel-wrapper">
           <div class="unified-carousel" id="unifiedCarousel"></div>
@@ -2114,37 +1794,6 @@
         <div class="carousel-indicators" id="indicators"></div>
       </div>
 
-      <!-- PÁGINA DE DETALHES -->
-      <div class="detail-page" id="pageDetail">
-        <div class="detail-header">
-          <button class="back-home" id="detailBack">← voltar</button>
-          <button class="share-btn" id="detailShare">↗ compartilhar</button>
-        </div>
-        <div class="detail-content" id="detailContent">
-          <div class="detail-image" id="detailImage">
-            <img src="" alt="" id="detailImg">
-            <div class="image-counter">
-              📷 <span id="detailImageCount">3</span> imagens
-            </div>
-          </div>
-          <div class="detail-info">
-            <span class="detail-badge" id="detailBadge">tendência</span>
-            <h1 class="detail-title" id="detailTitle">Velvet Bob</h1>
-            <p class="detail-desc" id="detailDesc">Descrição do corte</p>
-            <div class="detail-meta">
-              <span><strong id="detailSize">médio</strong> · tamanho</span>
-              <span><strong id="detailStyle">clássico</strong> · estilo</span>
-              <span><strong id="detailFavCount">0</strong> ♥ favoritos</span>
-            </div>
-            <div class="detail-actions">
-              <button class="fav-detail-btn" id="detailFavBtn">♥ favoritar</button>
-              <button class="share-detail-btn" id="detailShareBtn">↗</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TENDÊNCIAS -->
       <div class="page" id="pageTendencias">
         <div class="page-header">
           <h2>tendências</h2>
@@ -2155,7 +1804,6 @@
         </div>
       </div>
 
-      <!-- GALERIA -->
       <div class="page" id="pageGaleria">
         <div class="page-header">
           <h2>galeria</h2>
@@ -2166,29 +1814,16 @@
         </div>
       </div>
 
-      <!-- FAVORITOS -->
       <div class="page" id="pageFavoritos">
         <div class="page-header">
           <h2>♥ favoritos</h2>
-          <div class="page-header-actions">
-            <button class="clear-favs-btn" id="clearFavsBtn">✕ limpar todos</button>
-            <span class="back-home" id="backHomeFav">← voltar</span>
-          </div>
-        </div>
-        <div class="sort-wrapper">
-          <label for="sortFavs">ordenar:</label>
-          <select id="sortFavs">
-            <option value="recent">mais recentes</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-          </select>
+          <span class="back-home" id="backHomeFav">← voltar</span>
         </div>
         <div class="page-scroll">
           <div class="fav-grid" id="favGrid"></div>
         </div>
       </div>
 
-      <!-- SOBRE -->
       <div class="page" id="pageSobre">
         <div class="page-header">
           <h2>sobre</h2>
@@ -2208,7 +1843,6 @@
         </div>
       </div>
 
-      <!-- CONTATO -->
       <div class="page" id="pageContato">
         <div class="page-header">
           <h2>contato</h2>
@@ -2233,7 +1867,6 @@
 
     </div>
 
-    <!-- FOOTER -->
     <div class="footer-minimal">
       <div class="footer-links" id="footerLinks">
         <a class="active-link" data-page="pageHome">home</a>
@@ -2248,7 +1881,6 @@
 
   </div>
 
-  <!-- MODAL - ORIGINAL COM 3 IMAGENS -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
       <div class="modal-indicators" id="modalIndicators"></div>
@@ -2274,13 +1906,10 @@
 
   <script>
     (function() {
-      // ============================================================
-      // DADOS - CADA ESTILO TEM 3 IMAGENS NO GALLERY
-      // ============================================================
       const styleData = {
         'velvet bob': {
           title: 'Velvet Bob',
-          desc: 'Clássico moderno com camadas suaves que emolduram o rosto. Perfeito para quem busca elegância e movimento.',
+          desc: 'Clássico moderno com camadas suaves que emolduram o rosto.',
           badge: 'tendência',
           size: 'medio',
           style: 'classico',
@@ -2293,7 +1922,7 @@
         },
         'pixie cut': {
           title: 'Pixie Cut',
-          desc: 'Corte curto e prático que valoriza os traços faciais. Moderno e cheio de personalidade.',
+          desc: 'Corte curto e prático que valoriza os traços faciais.',
           badge: 'ousado',
           size: 'curto',
           style: 'moderno',
@@ -2306,7 +1935,7 @@
         },
         'wolf cut': {
           title: 'Wolf Cut',
-          desc: 'Camadas intensas e movimento selvagem. Atitude moderna com um toque de rebeldia.',
+          desc: 'Camadas intensas e movimento selvagem. Atitude moderna.',
           badge: 'selvagem',
           size: 'medio',
           style: 'moderno',
@@ -2319,7 +1948,7 @@
         },
         'side cut': {
           title: 'Side Cut',
-          desc: 'Rasurado de um lado com contraste marcante. Estilo ousado e cheio de atitude.',
+          desc: 'Rasurado de um lado com contraste marcante. Estilo ousado.',
           badge: 'radical',
           size: 'curto',
           style: 'alternativo',
@@ -2332,7 +1961,7 @@
         },
         'short bob': {
           title: 'Short Bob',
-          desc: 'Bob curto na altura do queixo. Linhas retas e elegância minimalista.',
+          desc: 'Bob curto na altura do queixo. Linhas retas e elegância.',
           badge: 'clássico',
           size: 'curto',
           style: 'classico',
@@ -2345,7 +1974,7 @@
         },
         'kitty cut': {
           title: 'Kitty Cut',
-          desc: 'Camadas suaves e franja lateral. Estilo doce e moderno com um toque feminino.',
+          desc: 'Camadas suaves e franja lateral. Estilo doce e moderno.',
           badge: 'doce',
           size: 'medio',
           style: 'romantico',
@@ -2358,7 +1987,7 @@
         },
         'nirvana cut': {
           title: 'Nirvana Cut',
-          desc: 'Grunge com desconexão e textura. Atitude rock para quem não segue regras.',
+          desc: 'Grunge com desconexão e textura. Atitude rock.',
           badge: 'grunge',
           size: 'medio',
           style: 'alternativo',
@@ -2371,7 +2000,7 @@
         },
         'long bob': {
           title: 'Long Bob',
-          desc: 'Bob alongado entre o queixo e os ombros. Versátil e atemporal.',
+          desc: 'Bob alongado entre o queixo e os ombros. Versátil.',
           badge: 'elegante',
           size: 'longo',
           style: 'classico',
@@ -2384,7 +2013,7 @@
         },
         'butterfly cut': {
           title: 'Butterfly Cut',
-          desc: 'Camadas leves que criam movimento, como asas de borboleta. Leveza e fluidez.',
+          desc: 'Camadas leves que criam movimento, como asas de borboleta.',
           badge: 'leve',
           size: 'longo',
           style: 'romantico',
@@ -2397,7 +2026,7 @@
         },
         'blunt cut': {
           title: 'Blunt Cut',
-          desc: 'Corte reto e marcante, sem camadas. Visual moderno e impactante.',
+          desc: 'Corte reto e marcante, sem camadas. Visual moderno.',
           badge: 'reto',
           size: 'medio',
           style: 'moderno',
@@ -2410,7 +2039,7 @@
         },
         'octopus cut': {
           title: 'Octopus Cut',
-          desc: 'Camadas curtas no topo e longas nas pontas. Volume e movimento em camadas.',
+          desc: 'Camadas curtas no topo e longas nas pontas. Volume.',
           badge: 'volumoso',
           size: 'longo',
           style: 'alternativo',
@@ -2423,7 +2052,7 @@
         },
         'shaggy hair': {
           title: 'Shaggy Hair',
-          desc: 'Visual despojado com muitas camadas e textura. Estilo anos 70 repaginado.',
+          desc: 'Visual despojado com muitas camadas e textura.',
           badge: 'despojado',
           size: 'medio',
           style: 'alternativo',
@@ -2436,7 +2065,7 @@
         },
         'curtain bangs': {
           title: 'Curtain Bangs',
-          desc: 'Franja cortina que abre no meio, emoldurando o rosto. Retrô e moderno ao mesmo tempo.',
+          desc: 'Franja cortina que abre no meio, emoldurando o rosto.',
           badge: 'retrô',
           size: 'longo',
           style: 'romantico',
@@ -2449,9 +2078,6 @@
         }
       };
 
-      // ============================================================
-      // FAVORITOS
-      // ============================================================
       let favorites = JSON.parse(localStorage.getItem('hairbox_favorites') || '[]');
 
       function toggleFavorite(key) {
@@ -2464,8 +2090,6 @@
       }
 
       function isFavorite(key) { return favorites.includes(key); }
-
-      function getFavCount() { return favorites.length; }
 
       function updateFavUI() {
         const count = favorites.length;
@@ -2485,7 +2109,6 @@
           favCount.style.color = 'var(--text-muted)';
         }
         document.getElementById('favCountStat').textContent = count;
-        document.getElementById('detailFavCount').textContent = count;
         if (document.getElementById('pageFavoritos').classList.contains('active-page')) {
           generateFavGrid();
         }
@@ -2495,7 +2118,7 @@
         const fav = isFavorite(key);
         document.querySelectorAll(`[data-fav-key="${key}"]`).forEach(el => {
           el.classList.toggle('favorited', fav);
-          if (el.tagName === 'BUTTON' && !el.classList.contains('fav-detail-btn')) {
+          if (el.tagName === 'BUTTON') {
             el.textContent = fav ? '♥' : '♡';
           }
         });
@@ -2505,17 +2128,42 @@
           modalBtn.querySelector('.fav-icon').textContent = fav ? '♥' : '♡';
           modalBtn.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
         }
-        const detailBtn = document.getElementById('detailFavBtn');
-        if (detailBtn.dataset.favKey === key) {
-          detailBtn.classList.toggle('favorited', fav);
-          detailBtn.textContent = fav ? '♥ favoritado' : '♥ favoritar';
-        }
         updateFavUI();
       }
 
-      // ============================================================
-      // DOM REFS
-      // ============================================================
+      function generateFavGrid() {
+        const grid = document.getElementById('favGrid');
+        grid.innerHTML = '';
+        if (favorites.length === 0) {
+          grid.innerHTML = `<div class="empty-state"><span class="heart-big">♡</span>Toque no ♥ de um estilo para salvá-lo!</div>`;
+          return;
+        }
+        favorites.forEach(key => {
+          const data = styleData[key];
+          if (!data) return;
+          const item = document.createElement('div');
+          item.className = 'grid-item';
+          item.innerHTML = `
+            <button class="grid-fav-remove" data-fav-key="${key}">✕</button>
+            <img src="${data.img}" alt="${data.title}" loading="lazy">
+            <div class="grid-overlay"><span class="grid-title">${data.title}</span></div>
+          `;
+          item.querySelector('.grid-fav-remove').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleFavorite(this.dataset.favKey);
+            updateAllFavButtons(this.dataset.favKey);
+            if (document.getElementById('pageFavoritos').classList.contains('active-page')) {
+              generateFavGrid();
+            }
+          });
+          item.addEventListener('click', function(e) {
+            if (e.target.closest('.grid-fav-remove')) return;
+            openModal(key);
+          });
+          grid.appendChild(item);
+        });
+      }
+
       const searchInput = document.getElementById('searchInput');
       const searchButton = document.getElementById('searchButton');
       const unifiedCarousel = document.getElementById('unifiedCarousel');
@@ -2529,7 +2177,7 @@
         sobre: document.getElementById('pageSobre'),
         contato: document.getElementById('pageContato')
       };
-      const backButtons = document.querySelectorAll('.back-home:not(#detailBack)');
+      const backButtons = document.querySelectorAll('.back-home');
       const homeBtn = document.getElementById('homeBtn');
       const chipWrapper = document.getElementById('chipWrapper');
       const searchWrapper = document.getElementById('searchWrapper');
@@ -2549,127 +2197,14 @@
       const menuOverlay = document.getElementById('menuOverlay');
       const menuClose = document.getElementById('menuClose');
       const menuFavs = document.getElementById('menuFavs');
-      const clearFavsBtn = document.getElementById('clearFavsBtn');
-      const sortFavs = document.getElementById('sortFavs');
 
-      // ============================================================
-      // PÁGINA DE DETALHES
-      // ============================================================
-      const detailPage = document.getElementById('pageDetail');
-      const detailBack = document.getElementById('detailBack');
-      const detailShare = document.getElementById('detailShare');
-      const detailImg = document.getElementById('detailImg');
-      const detailTitle = document.getElementById('detailTitle');
-      const detailBadgeEl = document.getElementById('detailBadge');
-      const detailDesc = document.getElementById('detailDesc');
-      const detailSize = document.getElementById('detailSize');
-      const detailStyle = document.getElementById('detailStyle');
-      const detailFavCount = document.getElementById('detailFavCount');
-      const detailFavBtn = document.getElementById('detailFavBtn');
-      const detailShareBtn = document.getElementById('detailShareBtn');
-      const detailImage = document.getElementById('detailImage');
-      const detailImageCount = document.getElementById('detailImageCount');
-      let currentDetailKey = null;
+      let currentStyle = 'velvet bob';
+      let currentFilter = 'all';
+      let carouselItems = [];
+      let modalCurrentKey = null;
+      let modalCurrentIndex = 0;
+      let modalImages = [];
 
-      function openDetail(key) {
-        const data = styleData[key];
-        if (!data) return;
-        currentDetailKey = key;
-        detailImg.src = data.img;
-        detailImg.alt = data.title;
-        detailTitle.textContent = data.title;
-        detailBadgeEl.textContent = data.badge;
-        detailDesc.textContent = data.desc;
-        const sizeMap = { curto: 'curto', medio: 'médio', longo: 'longo' };
-        detailSize.textContent = sizeMap[data.size] || data.size;
-        const styleMap = { classico: 'clássico', moderno: 'moderno', alternativo: 'alternativo', romantico: 'romântico' };
-        detailStyle.textContent = styleMap[data.style] || data.style;
-        const fav = isFavorite(key);
-        detailFavBtn.dataset.favKey = key;
-        detailFavBtn.classList.toggle('favorited', fav);
-        detailFavBtn.textContent = fav ? '♥ favoritado' : '♥ favoritar';
-        detailFavCount.textContent = getFavCount();
-
-        // Atualizar contador de imagens
-        const imgCount = data.gallery ? data.gallery.length : 1;
-        detailImageCount.textContent = imgCount;
-
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-        detailPage.classList.add('active-page');
-        chipWrapper.style.display = 'none';
-        searchWrapper.style.display = 'none';
-        document.querySelector('.filter-bar').style.display = 'none';
-      }
-
-      function closeDetail() {
-        detailPage.classList.remove('active-page');
-        navigateTo('pageHome');
-      }
-
-      detailBack.addEventListener('click', closeDetail);
-
-      // ABRIR MODAL AO CLICAR NA IMAGEM DA PÁGINA DE DETALHES
-      detailImage.addEventListener('click', function() {
-        if (currentDetailKey) {
-          openModal(currentDetailKey);
-        }
-      });
-
-      detailShare.addEventListener('click', function() {
-        if (currentDetailKey) {
-          const data = styleData[currentDetailKey];
-          if (navigator.share) {
-            navigator.share({
-              title: `${data.title} - HairBox`,
-              text: `Confira o corte ${data.title} no HairBox! ${data.desc}`,
-              url: window.location.href
-            }).catch(() => {});
-          } else {
-            const text = `${data.title} - ${data.desc}`;
-            navigator.clipboard.writeText(text).then(() => {
-              alert('📋 Link copiado! Compartilhe com seus amigos.');
-            }).catch(() => {
-              alert('📋 Copie o link: ' + window.location.href);
-            });
-          }
-        }
-      });
-
-      detailFavBtn.addEventListener('click', function() {
-        const key = this.dataset.favKey;
-        if (key) {
-          toggleFavorite(key);
-          updateAllFavButtons(key);
-          const fav = isFavorite(key);
-          this.classList.toggle('favorited', fav);
-          this.textContent = fav ? '♥ favoritado' : '♥ favoritar';
-          detailFavCount.textContent = getFavCount();
-        }
-      });
-
-      detailShareBtn.addEventListener('click', function() {
-        if (currentDetailKey) {
-          const data = styleData[currentDetailKey];
-          if (navigator.share) {
-            navigator.share({
-              title: `${data.title} - HairBox`,
-              text: `Confira o corte ${data.title} no HairBox! ${data.desc}`,
-              url: window.location.href
-            }).catch(() => {});
-          } else {
-            const text = `${data.title} - ${data.desc}`;
-            navigator.clipboard.writeText(text).then(() => {
-              alert('📋 Link copiado! Compartilhe com seus amigos.');
-            }).catch(() => {
-              alert('📋 Copie o link: ' + window.location.href);
-            });
-          }
-        }
-      });
-
-      // ============================================================
-      // TEMA
-      // ============================================================
       let currentTheme = localStorage.getItem('hairbox_theme') || 'dark';
       const themeToggle = document.getElementById('menuThemeToggle');
 
@@ -2682,9 +2217,6 @@
       applyTheme(currentTheme);
       themeToggle.addEventListener('click', () => { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); closeMenu(); });
 
-      // ============================================================
-      // MENU
-      // ============================================================
       function openMenu() { menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
       function closeMenu() { menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
       hamburgerBtn.addEventListener('click', openMenu);
@@ -2695,32 +2227,6 @@
       });
       menuFavs.addEventListener('click', function() { navigateTo('pageFavoritos'); closeMenu(); });
 
-      // ============================================================
-      // LIMPAR FAVORITOS
-      // ============================================================
-      clearFavsBtn.addEventListener('click', function() {
-        if (favorites.length === 0) return;
-        if (confirm('Tem certeza que deseja remover todos os favoritos?')) {
-          favorites = [];
-          localStorage.setItem('hairbox_favorites', JSON.stringify(favorites));
-          updateFavUI();
-          generateFavGrid();
-          updateAllFavButtons();
-        }
-      });
-
-      // ============================================================
-      // ORDENAÇÃO
-      // ============================================================
-      sortFavs.addEventListener('change', function() {
-        if (document.getElementById('pageFavoritos').classList.contains('active-page')) {
-          generateFavGrid();
-        }
-      });
-
-      // ============================================================
-      // CHIPS
-      // ============================================================
       function generateChips() {
         chipCarousel.innerHTML = '';
         const keys = getFilteredKeys();
@@ -2746,9 +2252,6 @@
         });
       }
 
-      // ============================================================
-      // FILTROS
-      // ============================================================
       function getFilteredKeys() {
         let keys = Object.keys(styleData);
         if (currentFilter !== 'all') {
@@ -2761,7 +2264,6 @@
         return keys;
       }
 
-      let currentFilter = 'all';
       filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
           filterBtns.forEach(b => b.classList.remove('active-filter'));
@@ -2778,12 +2280,6 @@
           }
         });
       });
-
-      // ============================================================
-      // CARROSSEL
-      // ============================================================
-      let currentStyle = 'velvet bob';
-      let carouselItems = [];
 
       function generateCarousel(activeStyle) {
         let keys = getFilteredKeys();
@@ -2824,7 +2320,7 @@
           });
           item.addEventListener('click', function(e) {
             if (e.target.closest('.favorite-btn')) return;
-            openDetail(this.dataset.style);
+            openModal(this.dataset.style);
           });
           unifiedCarousel.appendChild(item);
           carouselItems.push(item);
@@ -2865,9 +2361,6 @@
         Array.from(indicators.children).forEach((dot, i) => dot.classList.toggle('active-dot', i === active));
       });
 
-      // ============================================================
-      // TENDÊNCIAS
-      // ============================================================
       function generateTendencias() {
         const list = document.getElementById('tendenciasList');
         list.innerHTML = '';
@@ -2894,9 +2387,6 @@
         });
       }
 
-      // ============================================================
-      // GALERIA
-      // ============================================================
       function generateGaleria() {
         const grid = document.getElementById('galeriaGrid');
         grid.innerHTML = '';
@@ -2906,62 +2396,10 @@
           const item = document.createElement('div');
           item.className = 'galeria-item';
           item.innerHTML = `<img src="${data.img}" alt="${data.title}" loading="lazy"><div class="galeria-overlay"><span>${data.title}</span></div>`;
-          item.addEventListener('click', () => openDetail(key));
+          item.addEventListener('click', () => openModal(key));
           grid.appendChild(item);
         });
       }
-
-      // ============================================================
-      // FAVORITOS GRID
-      // ============================================================
-      function generateFavGrid() {
-        const grid = document.getElementById('favGrid');
-        grid.innerHTML = '';
-        if (favorites.length === 0) {
-          grid.innerHTML = `<div class="empty-state"><span class="heart-big">♡</span>Toque no ♥ de um estilo para salvá-lo!</div>`;
-          return;
-        }
-        let sortedFavs = [...favorites];
-        const sortOption = document.getElementById('sortFavs').value;
-        if (sortOption === 'az') {
-          sortedFavs.sort((a, b) => styleData[a].title.localeCompare(styleData[b].title));
-        } else if (sortOption === 'za') {
-          sortedFavs.sort((a, b) => styleData[b].title.localeCompare(styleData[a].title));
-        }
-
-        sortedFavs.forEach(key => {
-          const data = styleData[key];
-          if (!data) return;
-          const item = document.createElement('div');
-          item.className = 'grid-item';
-          item.innerHTML = `
-            <button class="grid-fav-remove" data-fav-key="${key}">✕</button>
-            <img src="${data.img}" alt="${data.title}" loading="lazy">
-            <div class="grid-overlay"><span class="grid-title">${data.title}</span></div>
-          `;
-          item.querySelector('.grid-fav-remove').addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleFavorite(this.dataset.favKey);
-            updateAllFavButtons(this.dataset.favKey);
-            if (document.getElementById('pageFavoritos').classList.contains('active-page')) {
-              generateFavGrid();
-            }
-          });
-          item.addEventListener('click', function(e) {
-            if (e.target.closest('.grid-fav-remove')) return;
-            openDetail(this.dataset.style || key);
-          });
-          item.dataset.style = key;
-          grid.appendChild(item);
-        });
-      }
-
-      // ============================================================
-      // MODAL - ORIGINAL COM 3 IMAGENS
-      // ============================================================
-      let modalCurrentKey = null;
-      let modalCurrentIndex = 0;
-      let modalImages = [];
 
       function openModal(key) {
         const data = styleData[key];
@@ -3056,9 +2494,6 @@
         if (e.key === 'ArrowRight') goToModalImage(modalCurrentIndex + 1);
       });
 
-      // ============================================================
-      // BUSCA
-      // ============================================================
       function updateContent(term) {
         const clean = term.trim().toLowerCase();
         let found = null;
@@ -3102,13 +2537,7 @@
         if (window.innerWidth < 600) searchInput.blur();
       }
 
-      // ============================================================
-      // NAVEGAÇÃO
-      // ============================================================
       function navigateTo(pageId) {
-        if (detailPage.classList.contains('active-page')) {
-          detailPage.classList.remove('active-page');
-        }
         const current = document.querySelector('.page.active-page');
         if (current && current.id !== pageId) {
           current.style.animation = 'none';
@@ -3130,9 +2559,6 @@
         }, 250);
       }
 
-      // ============================================================
-      // EVENTOS
-      // ============================================================
       footerLinks.forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -3166,24 +2592,15 @@
         this.reset();
       });
 
-      // ============================================================
-      // INICIALIZAÇÃO
-      // ============================================================
       generateChips();
       generateTendencias();
       generateGaleria();
       generateCarousel('velvet bob');
       generateFavGrid();
       updateFavUI();
-      console.log('📦 HAIRBOX · Catálogo · Fase 1 Completa!');
-      console.log('✅ Modal com 3 imagens preservado e funcionando!');
-      console.log('✅ Clique na imagem da página de detalhes para abrir o modal.');
-      console.log('✅ Novas funcionalidades:');
-      console.log('  • Página de detalhes do corte');
-      console.log('  • Ordenação de favoritos');
-      console.log('  • Limpar todos os favoritos');
-      console.log('  • Compartilhar estilo');
-      console.log('  • Footer em cápsula Instagram');
+      console.log('📦 HAIRBOX · Catálogo · Versão Original!');
+      console.log('✅ Footer em cápsula Instagram');
+      console.log('✅ Modal com 3 imagens funcionando');
     })();
   </script>
 </body>
