@@ -325,7 +325,7 @@
       transform: translateY(-1px);
     }
 
-    /* BUSCA - PILL COM BLUR */
+    /* BUSCA */
     .search-wrapper {
       margin: 4px 0 6px 0;
       display: flex;
@@ -594,7 +594,7 @@
       align-items: center;
     }
 
-    /* CAROUSEL INDICATORS */
+    /* INDICADORES */
     .carousel-indicators {
       display: flex;
       justify-content: center;
@@ -983,7 +983,7 @@
       display: none;
     }
 
-    /* PÁGINA DE DETALHES - NOVA */
+    /* PÁGINA DE DETALHES */
     .detail-page {
       display: none;
       flex-direction: column;
@@ -1054,12 +1054,41 @@
       overflow: hidden;
       margin-bottom: 12px;
       border: 1px solid var(--border-subtle);
+      position: relative;
+      cursor: pointer;
     }
 
     .detail-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .detail-image .image-counter {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+    }
+
+    .detail-image .image-counter span {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .detail-image:hover .image-counter {
+      background: rgba(0, 0, 0, 0.8);
     }
 
     .detail-info {
@@ -1634,7 +1663,7 @@
       transform: scale(1.1);
     }
 
-    /* MODAL - ORIGINAL MANTIDO COM 3 IMAGENS */
+    /* MODAL - ORIGINAL COM 3 IMAGENS */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -2085,7 +2114,7 @@
         <div class="carousel-indicators" id="indicators"></div>
       </div>
 
-      <!-- PÁGINA DE DETALHES (NOVA) -->
+      <!-- PÁGINA DE DETALHES -->
       <div class="detail-page" id="pageDetail">
         <div class="detail-header">
           <button class="back-home" id="detailBack">← voltar</button>
@@ -2094,6 +2123,9 @@
         <div class="detail-content" id="detailContent">
           <div class="detail-image" id="detailImage">
             <img src="" alt="" id="detailImg">
+            <div class="image-counter">
+              📷 <span id="detailImageCount">3</span> imagens
+            </div>
           </div>
           <div class="detail-info">
             <span class="detail-badge" id="detailBadge">tendência</span>
@@ -2535,6 +2567,8 @@
       const detailFavCount = document.getElementById('detailFavCount');
       const detailFavBtn = document.getElementById('detailFavBtn');
       const detailShareBtn = document.getElementById('detailShareBtn');
+      const detailImage = document.getElementById('detailImage');
+      const detailImageCount = document.getElementById('detailImageCount');
       let currentDetailKey = null;
 
       function openDetail(key) {
@@ -2556,6 +2590,10 @@
         detailFavBtn.textContent = fav ? '♥ favoritado' : '♥ favoritar';
         detailFavCount.textContent = getFavCount();
 
+        // Atualizar contador de imagens
+        const imgCount = data.gallery ? data.gallery.length : 1;
+        detailImageCount.textContent = imgCount;
+
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
         detailPage.classList.add('active-page');
         chipWrapper.style.display = 'none';
@@ -2569,6 +2607,13 @@
       }
 
       detailBack.addEventListener('click', closeDetail);
+
+      // ABRIR MODAL AO CLICAR NA IMAGEM DA PÁGINA DE DETALHES
+      detailImage.addEventListener('click', function() {
+        if (currentDetailKey) {
+          openModal(currentDetailKey);
+        }
+      });
 
       detailShare.addEventListener('click', function() {
         if (currentDetailKey) {
@@ -2912,7 +2957,7 @@
       }
 
       // ============================================================
-      // MODAL - ORIGINAL COM 3 IMAGENS (MANTIDO)
+      // MODAL - ORIGINAL COM 3 IMAGENS
       // ============================================================
       let modalCurrentKey = null;
       let modalCurrentIndex = 0;
@@ -3131,7 +3176,8 @@
       generateFavGrid();
       updateFavUI();
       console.log('📦 HAIRBOX · Catálogo · Fase 1 Completa!');
-      console.log('✅ Modal com 3 imagens preservado!');
+      console.log('✅ Modal com 3 imagens preservado e funcionando!');
+      console.log('✅ Clique na imagem da página de detalhes para abrir o modal.');
       console.log('✅ Novas funcionalidades:');
       console.log('  • Página de detalhes do corte');
       console.log('  • Ordenação de favoritos');
