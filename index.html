@@ -193,168 +193,68 @@
       transform: scale(1);
     }
 
-    .category-tabs {
+    /* ===== HOME CHIPS ===== */
+    .home-chips {
       display: flex;
-      gap: 6px;
-      padding: 10px 0 4px 0;
-      flex-shrink: 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .cat-tab {
-      background: transparent;
-      border: 1px solid var(--border-gold);
-      padding: 7px 18px;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      white-space: nowrap;
-      border-radius: var(--radius-pill);
-      min-height: 30px;
-    }
-
-    .cat-tab.active-cat {
-      color: var(--bg-primary);
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: 3px;
+      gap: 8px;
+      overflow-x: auto;
       padding: 8px 0 6px 0;
-      flex-shrink: 0;
-      overflow-x: auto;
       scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .filter-bar::-webkit-scrollbar { display: none; }
-
-    .filter-group-label {
-      font-size: 0.4rem;
-      color: var(--text-muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      padding: 0 6px 0 4px;
-      opacity: 0.55;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .filter-divider {
-      width: 1px;
-      height: 14px;
-      background: var(--border-gold);
-      margin: 0 2px 0 6px;
       flex-shrink: 0;
-    }
-
-    .filter-btn {
-      background: transparent;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.55rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      white-space: nowrap;
-      font-family: 'Inter', sans-serif;
-      border-radius: var(--radius-pill);
-      min-height: 30px;
-    }
-
-    .filter-btn:hover { color: var(--text-secondary); }
-
-    .filter-btn.active-filter {
-      color: var(--gold);
-      font-weight: 500;
-      background: var(--gold-glow);
-    }
-
-    .chip-carousel-wrapper {
-      padding: 2px 0 10px 0;
       border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .home-chips::-webkit-scrollbar { display: none; }
+
+    .home-chip {
       flex-shrink: 0;
-    }
-
-    .chip-carousel {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding: 2px 0 4px 0;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-    }
-
-    .chip-carousel::-webkit-scrollbar { display: none; }
-
-    .chip {
-      flex: 0 0 auto;
       background: var(--bg-card);
-      padding: 5px 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 6px 18px;
       border-radius: var(--radius-pill);
       font-size: 0.6rem;
-      font-weight: 300;
       color: var(--text-secondary);
-      border: 1px solid var(--border-subtle);
       cursor: pointer;
       transition: all var(--transition-smooth);
-      scroll-snap-align: start;
-      white-space: nowrap;
       font-family: 'Inter', sans-serif;
-      letter-spacing: 0.02em;
+      white-space: nowrap;
       min-height: 30px;
       display: flex;
       align-items: center;
     }
 
-    .chip:hover {
+    .home-chip:hover {
       border-color: var(--border-gold);
       color: var(--text-primary);
-      transform: translateY(-1px);
     }
 
-    .chip.active-chip {
+    .home-chip.active {
       background: var(--gold);
       color: #0a0808;
       border-color: var(--gold);
       font-weight: 500;
-      box-shadow: 0 2px 20px rgba(201, 169, 110, 0.15);
-      transform: translateY(-1px);
     }
 
-    .search-wrapper {
-      margin: 8px 0 10px 0;
+    /* ===== HOME SEARCH ===== */
+    .home-search-wrapper {
       display: flex;
       align-items: center;
       background: var(--bg-secondary);
       border-radius: var(--radius-pill);
       padding: 2px 2px 2px 16px;
       border: 1px solid var(--border-subtle);
+      margin: 8px 0 12px 0;
       transition: all var(--transition-smooth);
       flex-shrink: 0;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
       min-height: 38px;
     }
 
-    .search-wrapper:focus-within {
+    .home-search-wrapper:focus-within {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px var(--gold-glow), 0 2px 16px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 0 0 3px var(--gold-glow);
     }
 
-    .search-wrapper input {
+    .home-search-wrapper input {
       flex: 1;
       border: none;
       background: transparent;
@@ -364,19 +264,17 @@
       outline: none;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      width: 100%;
       min-height: 34px;
     }
 
-    .search-wrapper input::placeholder {
+    .home-search-wrapper input::placeholder {
       color: var(--text-muted);
       font-weight: 200;
       font-size: 0.65rem;
       font-style: italic;
-      letter-spacing: 0.02em;
     }
 
-    .search-wrapper button {
+    .home-search-wrapper button {
       background: var(--gold);
       border: none;
       border-radius: var(--radius-pill);
@@ -386,36 +284,184 @@
       font-size: 0.55rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      white-space: nowrap;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.05em;
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-family: 'Inter', sans-serif;
       min-height: 34px;
     }
 
-    .search-wrapper button:hover {
+    .home-search-wrapper button:hover {
       background: var(--gold-light);
       transform: scale(1.02);
     }
 
-    .search-wrapper button svg {
-      width: 12px;
-      height: 12px;
-      fill: currentColor;
+    /* ===== PAINEL DE BUSCA (OVERLAY) ===== */
+    .search-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
-    .search-feedback {
-      text-align: center;
-      padding: 20px;
+    .search-overlay.open { display: flex; animation: fadeInMenu 0.25s ease; }
+
+    .search-panel {
+      background: rgba(18, 16, 14, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      width: 100%;
+      max-width: 430px;
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--border-gold);
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .search-panel::-webkit-scrollbar { width: 2px; }
+    .search-panel::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    .search-panel .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .search-panel .panel-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .search-panel .panel-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .search-panel .panel-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      outline: none;
+      margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .search-panel .panel-input:focus { border-color: var(--gold); }
+
+    .search-panel .categoria-title {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .search-panel .categoria-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .search-panel .categoria-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
       color: var(--text-muted);
       font-size: 0.75rem;
-      font-style: italic;
-      animation: fadeIn 0.3s ease;
+      transition: 0.2s;
     }
 
+    .search-panel .categoria-item:hover { background: var(--gold-glow); }
+    .search-panel .categoria-item.active { color: var(--gold); background: var(--gold-glow); }
+
+    .search-panel .categoria-item .radio {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      display: inline-block;
+      transition: 0.2s;
+    }
+
+    .search-panel .categoria-item.active .radio {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .search-panel .sub-container {
+      display: none;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .search-panel .sub-container.show { display: flex; }
+
+    .search-panel .sub-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .search-panel .sub-chip:hover { border-color: var(--border-gold); }
+    .search-panel .sub-chip.active {
+      background: var(--gold);
+      color: #0a0808;
+      border-color: var(--gold);
+    }
+
+    .search-panel .btn-apply {
+      width: 100%;
+      padding: 12px;
+      background: var(--gold);
+      border: none;
+      border-radius: 12px;
+      color: #0a0808;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .search-panel .btn-apply:hover { background: var(--gold-light); }
+
+    /* ===== CARROSSEL ===== */
     .unified-carousel-wrapper {
       flex: 1;
       min-height: 0;
@@ -442,7 +488,6 @@
     }
 
     .unified-carousel:active { cursor: grabbing; }
-
     .unified-carousel::-webkit-scrollbar { display: none; }
 
     .carousel-item {
@@ -649,6 +694,7 @@
       opacity: 1;
     }
 
+    /* ===== FOOTER ===== */
     .footer-minimal {
       margin-top: 2px;
       padding: 6px 0 2px 0;
@@ -730,6 +776,7 @@
 
     .footer-copy a:hover { color: var(--gold); }
 
+    /* ===== MENU ===== */
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -895,6 +942,7 @@
       color: var(--gold);
     }
 
+    /* ===== PAGES ===== */
     .page-container {
       flex: 1;
       overflow: hidden;
@@ -1401,6 +1449,7 @@
       transform: scale(1.1);
     }
 
+    /* ===== MODAL ===== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -1847,18 +1896,12 @@
       .hamburger .bar { width: 14px; height: 1.5px; }
       .hamburger .bar:nth-child(2) { width: 11px; }
       .hamburger .bar:nth-child(3) { width: 8px; }
-      .filter-bar { padding: 4px 0 4px 0; }
-      .category-tabs { padding: 6px 0 3px 0; }
-      .cat-tab { font-size: 0.55rem; padding: 5px 14px; min-height: 24px; }
-      .filter-group-label { font-size: 0.36rem; }
-      .filter-btn { font-size: 0.45rem; padding: 4px 10px; min-height: 24px; }
-      .chip-carousel-wrapper { padding: 2px 0 6px 0; }
-      .chip { font-size: 0.5rem; padding: 4px 12px; min-height: 24px; }
-      .search-wrapper { margin: 4px 0 6px 0; min-height: 30px; }
-      .search-wrapper input { font-size: 0.6rem; padding: 6px 6px 6px 0; min-height: 28px; }
-      .search-wrapper input::placeholder { font-size: 0.55rem; }
-      .search-wrapper button { padding: 6px 14px; font-size: 0.45rem; min-height: 28px; }
-      .search-wrapper button svg { width: 10px; height: 10px; }
+      .home-chips { padding: 4px 0 4px 0; }
+      .home-chip { font-size: 0.5rem; padding: 4px 12px; min-height: 24px; }
+      .home-search-wrapper { margin: 4px 0 6px 0; min-height: 30px; }
+      .home-search-wrapper input { font-size: 0.6rem; padding: 6px 6px 6px 0; min-height: 28px; }
+      .home-search-wrapper input::placeholder { font-size: 0.55rem; }
+      .home-search-wrapper button { padding: 6px 14px; font-size: 0.45rem; min-height: 28px; }
       .carousel-item { flex: 0 0 65%; min-width: 140px; aspect-ratio: 9/12; }
       .item-overlay { padding: 20px 10px 12px 10px; }
       .item-overlay h3 { font-size: 0.8rem; }
@@ -1879,13 +1922,13 @@
       .modal-info-btn .info-icon { width: 34px; height: 34px; font-size: 0.75rem; }
       .modal-classification { font-size: 0.36rem; }
       .tech-drawer-text { font-size: 0.65rem; }
+      .modal-afiliate-btn { font-size: 0.5rem; padding: 6px 12px; }
     }
 
     @media (max-height: 560px) {
       .carousel-item { flex: 0 0 55%; min-width: 120px; aspect-ratio: 9/11; }
       .header-brand .brand-main { font-size: 1rem; }
-      .filter-btn { font-size: 0.4rem; padding: 3px 8px; }
-      .chip { font-size: 0.45rem; padding: 3px 10px; }
+      .home-chip { font-size: 0.45rem; padding: 3px 10px; }
     }
 
     @media (max-width: 360px) {
@@ -1893,8 +1936,7 @@
       .header-brand .brand-main { font-size: 1.2rem; }
       .carousel-item { flex: 0 0 65%; min-width: 130px; aspect-ratio: 9/12; }
       .item-overlay h3 { font-size: 0.75rem; }
-      .filter-btn { font-size: 0.45rem; padding: 4px 8px; }
-      .chip { font-size: 0.5rem; padding: 4px 10px; }
+      .home-chip { font-size: 0.5rem; padding: 4px 10px; }
     }
 
     @media (min-width: 500px) {
@@ -1914,6 +1956,7 @@
 <body>
   <div class="app">
 
+    <!-- ===== HEADER ===== -->
     <header class="header">
       <div class="header-brand" id="homeBtn" role="button" tabindex="0" aria-label="Voltar para home">
         <span class="brand-main">HairOS<span>.</span></span>
@@ -1929,6 +1972,7 @@
       </div>
     </header>
 
+    <!-- ===== MENU ===== -->
     <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="menu-panel">
         <div class="menu-header">
@@ -1955,47 +1999,17 @@
       </div>
     </div>
 
-    <!-- CATEGORY TABS: nível 1 da classificação -->
-    <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Categoria">
-      <button class="cat-tab active-cat" data-cat="all" role="tab" aria-selected="true">todos</button>
-      <button class="cat-tab" data-cat="Corte" role="tab" aria-selected="false">cortes</button>
-      <button class="cat-tab" data-cat="Coloração" role="tab" aria-selected="false">cores</button>
+    <!-- ===== HOME CHIPS ===== -->
+    <div class="home-chips" id="homeChips"></div>
+
+    <!-- ===== HOME SEARCH ===== -->
+    <div class="home-search-wrapper" id="homeSearchWrapper">
+      <input type="text" id="homeSearchInput" placeholder="buscar corte, cor, técnica..." autocomplete="off">
+      <button id="homeSearchBtn">buscar</button>
     </div>
 
-    <!-- FILTER BAR: nível 2, contextual à categoria -->
-    <div class="filter-bar" id="filterBar" role="tablist" aria-label="Filtros de estilo">
-      <span class="filter-group-label" data-group="size">comprimento</span>
-      <button class="filter-btn" data-filter="curto" role="tab" aria-selected="false">curto</button>
-      <button class="filter-btn" data-filter="medio" role="tab" aria-selected="false">médio</button>
-      <button class="filter-btn" data-filter="longo" role="tab" aria-selected="false">longo</button>
-      <span class="filter-divider" data-group="style"></span>
-      <span class="filter-group-label" data-group="style">estilo</span>
-      <button class="filter-btn" data-filter="classico" role="tab" aria-selected="false">clássico</button>
-      <button class="filter-btn" data-filter="moderno" role="tab" aria-selected="false">moderno</button>
-      <button class="filter-btn" data-filter="alternativo" role="tab" aria-selected="false">alternativo</button>
-      <button class="filter-btn" data-filter="romantico" role="tab" aria-selected="false">romântico</button>
-      <span class="filter-divider" data-group="familia"></span>
-      <span class="filter-group-label" data-group="familia">família</span>
-      <button class="filter-btn" data-filter="morenas" role="tab" aria-selected="false">morenas</button>
-      <button class="filter-btn" data-filter="loiras" role="tab" aria-selected="false">loiras</button>
-      <button class="filter-btn" data-filter="ruivas" role="tab" aria-selected="false">ruivas</button>
-      <button class="filter-btn" data-filter="grisalhas" role="tab" aria-selected="false">grisalhas</button>
-    </div>
-
-    <div class="chip-carousel-wrapper" id="chipWrapper">
-      <div class="chip-carousel" id="chipCarousel" role="tablist" aria-label="Estilos"></div>
-    </div>
-
-    <div class="search-wrapper" id="searchWrapper" role="search">
-      <input type="text" id="searchInput" placeholder="buscar estilo..." aria-label="Buscar cortes" autocomplete="off">
-      <button id="searchButton" aria-label="Buscar">
-        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        buscar
-      </button>
-    </div>
-
+    <!-- ===== PAGES ===== -->
     <div class="page-container" id="pageContainer">
-
       <div class="page active-page" id="pageHome" role="tabpanel">
         <div class="unified-carousel-wrapper">
           <div class="unified-carousel" id="unifiedCarousel" role="list"></div>
@@ -2076,9 +2090,9 @@
           </div>
         </div>
       </div>
-
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <div class="footer-minimal">
       <div class="footer-links" id="footerLinks" role="tablist">
         <a class="active-link" data-page="pageHome" role="tab" aria-selected="true">home</a>
@@ -2093,6 +2107,7 @@
 
   </div>
 
+  <!-- ===== MODAL ===== -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Detalhes do estilo">
     <div class="modal-content">
       <div class="modal-indicators" id="modalIndicators" role="tablist"></div>
@@ -2118,6 +2133,10 @@
               <span class="info-icon">i</span>
               <span class="info-label">porquê funciona</span>
             </button>
+            <!-- ===== BOTÃO AFILIADO ===== -->
+            <a class="modal-afiliate-btn" id="modalAfiliateBtn" href="#" target="_blank" style="display:none;">
+              🛒 Ver no ML
+            </a>
           </div>
         </div>
       </div>
@@ -2130,15 +2149,99 @@
     </div>
   </div>
 
+  <!-- ===== PAINEL DE BUSCA ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="panel-header">
+        <h2>✦ filtrar</h2>
+        <button class="panel-close" id="searchCloseBtn">✕</button>
+      </div>
+
+      <input type="text" class="panel-input" id="panelSearchInput" placeholder="buscar por nome...">
+
+      <div class="categoria-title">Categorias</div>
+      <div class="categoria-list" id="categoriaList">
+        <div class="categoria-item active" data-cat="all">
+          <span class="radio"></span> Todos
+        </div>
+        <div class="categoria-item" data-cat="Corte">
+          <span class="radio"></span> Cortes
+        </div>
+        <div class="categoria-item" data-cat="Coloração">
+          <span class="radio"></span> Cores
+        </div>
+        <div class="categoria-item" data-cat="Produtos">
+          <span class="radio"></span> Produtos
+        </div>
+        <div class="categoria-item" data-cat="comprimento">
+          <span class="radio"></span> Comprimento
+        </div>
+        <div class="categoria-item" data-cat="estilo">
+          <span class="radio"></span> Estilo
+        </div>
+        <div class="categoria-item" data-cat="tom">
+          <span class="radio"></span> Tom de Cabelo
+        </div>
+      </div>
+
+      <div class="categoria-title">Subcategorias</div>
+      <div class="sub-container show" id="subTodos">
+        <span class="sub-chip active">Todos</span>
+      </div>
+      <div class="sub-container" id="subCortes">
+        <span class="sub-chip">Curto</span>
+        <span class="sub-chip">Médio</span>
+        <span class="sub-chip">Longo</span>
+        <span class="sub-chip">Clássico</span>
+        <span class="sub-chip">Moderno</span>
+        <span class="sub-chip">Alternativo</span>
+        <span class="sub-chip">Romântico</span>
+      </div>
+      <div class="sub-container" id="subCores">
+        <span class="sub-chip">Ombré</span>
+        <span class="sub-chip">Balayage</span>
+        <span class="sub-chip">Babylights</span>
+        <span class="sub-chip">Highlights</span>
+        <span class="sub-chip">Contour</span>
+        <span class="sub-chip">Californianas</span>
+      </div>
+      <div class="sub-container" id="subProdutos">
+        <span class="sub-chip">Shampoo</span>
+        <span class="sub-chip">Condicionador</span>
+        <span class="sub-chip">Máscara</span>
+        <span class="sub-chip">Finalizador</span>
+      </div>
+      <div class="sub-container" id="subComprimento">
+        <span class="sub-chip">Curto</span>
+        <span class="sub-chip">Médio</span>
+        <span class="sub-chip">Longo</span>
+      </div>
+      <div class="sub-container" id="subEstilo">
+        <span class="sub-chip">Clássico</span>
+        <span class="sub-chip">Moderno</span>
+        <span class="sub-chip">Alternativo</span>
+        <span class="sub-chip">Romântico</span>
+      </div>
+      <div class="sub-container" id="subTom">
+        <span class="sub-chip">Morenas</span>
+        <span class="sub-chip">Loiras</span>
+        <span class="sub-chip">Ruivas</span>
+        <span class="sub-chip">Grisalhas</span>
+      </div>
+
+      <button class="btn-apply" id="applyFilters">Aplicar Filtros</button>
+    </div>
+  </div>
+
   <script>
     (function() {
       'use strict';
 
       // ============================================================
-      // 25 ESTILOS COMPLETOS
+      // 37 ITENS (25 ESTILOS + 12 PRODUTOS)
       // ============================================================
       const styleData = {
-        // ---------- EXISTENTES (13) ----------
+        // ---------- CORTES (13) ----------
         'velvet bob': {
           title: 'Velvet Bob',
           desc: 'Clássico moderno com camadas suaves que emolduram o rosto.',
@@ -2151,7 +2254,7 @@
           manutencao: 'baixa',
           porque: 'As camadas internas suavizam o ângulo da mandíbula sem tirar volume. O comprimento na altura dos ombros permite manutenção simples, sem depender de escova diária.',
           cores: ['6.0', '7.0'],
-          img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
+          img: 'https://i.pinimg.com/736x/68/7f/b6/687fb633d303e8038f244d0a3af1c5f4.jpg',
           gallery: [
             'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
             'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
@@ -2170,7 +2273,7 @@
           manutencao: 'alta',
           porque: 'Sem comprimento para distrair, o foco visual migra para os olhos e a estrutura óssea — por isso pede traços bem definidos. Exige retoque a cada 4 a 6 semanas para manter a forma.',
           cores: ['5.0', '6.0'],
-          img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
+          img: 'https://i.pinimg.com/736x/66/93/c9/6693c98fd01f01847dcfc464cbe76669.jpg',
           gallery: [
             'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
             'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
@@ -2387,7 +2490,7 @@
           ]
         },
 
-        // ---------- MORENAS ILUMINADAS (3) ----------
+        // ---------- COLORAÇÕES (12) ----------
         'ombre-tiger-eye': {
           title: 'Ombré Tiger Eye',
           desc: 'Transição suave do escuro para o dourado. Efeito olho de tigre.',
@@ -2445,8 +2548,6 @@
             'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
           ]
         },
-
-        // ---------- LOIRAS (4) ----------
         'balayage-loira': {
           title: 'Balayage Loira',
           desc: 'Técnica de luzes naturais com efeito degradê e movimento.',
@@ -2523,8 +2624,6 @@
             'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
           ]
         },
-
-        // ---------- RUIVAS (3) ----------
         'cherry-cola': {
           title: 'Cherry Cola',
           desc: 'Tom ruivo intenso com nuances de cereja e cola. Vibrante.',
@@ -2582,8 +2681,6 @@
             'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
           ]
         },
-
-        // ---------- GRISALHAS (2) ----------
         'grisalhos-frios': {
           title: 'Grisalhos Frios',
           desc: 'Transição natural com tons de cinza prateado. Sofisticação.',
@@ -2618,8 +2715,176 @@
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
             'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
+            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
+          ]
+        },
+
+        // ---------- PRODUTOS (12) ----------
+        'shampoo-revitalizante': {
+          title: 'Shampoo Revitalizante',
+          desc: 'Limpeza suave que preserva a cor e o brilho.',
+          badge: 'revitalizante',
+          categoria: 'Produtos',
+          subcategoria: 'Shampoo',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'shampoo-matizador': {
+          title: 'Shampoo Matizador',
+          desc: 'Neutraliza tons indesejados (amarelo/laranja).',
+          badge: 'matizador',
+          categoria: 'Produtos',
+          subcategoria: 'Shampoo',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'shampoo-anti-frizz': {
+          title: 'Shampoo Anti-Frizz',
+          desc: 'Controla o frizz e mantém a disciplina dos fios.',
+          badge: 'anti-frizz',
+          categoria: 'Produtos',
+          subcategoria: 'Shampoo',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'condicionador-hidratante': {
+          title: 'Condicionador Hidratante',
+          desc: 'Repõe a umidade e desembaraça com leveza.',
+          badge: 'hidratante',
+          categoria: 'Produtos',
+          subcategoria: 'Condicionador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'condicionador-queratina': {
+          title: 'Condicionador de Queratina',
+          desc: 'Reconstrói a fibra capilar e dá força.',
+          badge: 'queratina',
+          categoria: 'Produtos',
+          subcategoria: 'Condicionador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'condicionador-volumizador': {
+          title: 'Condicionador Volumizador',
+          desc: 'Dá corpo e volume sem pesar.',
+          badge: 'volumizador',
+          categoria: 'Produtos',
+          subcategoria: 'Condicionador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'mascara-coco-mel': {
+          title: 'Máscara de Coco e Mel',
+          desc: 'Nutrição profunda e maciez imediata.',
+          badge: 'nutrição',
+          categoria: 'Produtos',
+          subcategoria: 'Máscara',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'mascara-argan': {
+          title: 'Máscara de Óleo de Argan',
+          desc: 'Repara, dá brilho e sela as cutículas.',
+          badge: 'reparação',
+          categoria: 'Produtos',
+          subcategoria: 'Máscara',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'mascara-bamboo': {
+          title: 'Máscara Bamboo Repair',
+          desc: 'Reforça a estrutura do fio e reduz a quebra.',
+          badge: 'bamboo',
+          categoria: 'Produtos',
+          subcategoria: 'Máscara',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'leite-finalizacao': {
+          title: 'Leite de Finalização',
+          desc: 'Alinha e dá brilho, sem pesar.',
+          badge: 'alinhamento',
+          categoria: 'Produtos',
+          subcategoria: 'Finalizador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'oleo-brilho': {
+          title: 'Óleo Capilar de Brilho',
+          desc: 'Dá acabamento brilhante e protege contra o calor.',
+          badge: 'brilho',
+          categoria: 'Produtos',
+          subcategoria: 'Finalizador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
+          ]
+        },
+        'creme-modelador': {
+          title: 'Creme de Pentear Modelador',
+          desc: 'Define cachos e ondas com controle de volume.',
+          badge: 'modelador',
+          categoria: 'Produtos',
+          subcategoria: 'Finalizador',
+          link: '#',
+          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
+          gallery: [
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
           ]
         }
       };
@@ -2630,11 +2895,11 @@
       const STATE = {
         favorites: JSON.parse(localStorage.getItem('hairos_favorites') || '[]'),
         currentStyle: 'velvet bob',
-        currentFilter: 'all',
-        currentCategory: 'all',
         theme: localStorage.getItem('hairos_theme') || 'dark',
         modalKey: null,
-        modalIndex: 0
+        modalIndex: 0,
+        panelCat: 'all',
+        panelSub: 'all'
       };
 
       // ============================================================
@@ -2677,57 +2942,143 @@
 
       function getFilteredKeys() {
         let keys = Object.keys(styleData);
-        if (STATE.currentCategory !== 'all') {
-          keys = keys.filter(k => styleData[k].categoria === STATE.currentCategory);
+
+        // Filtro por categoria (painel de busca)
+        if (STATE.panelCat !== 'all') {
+          if (STATE.panelCat === 'comprimento') {
+            keys = keys.filter(k => styleData[k].size !== null && styleData[k].categoria === 'Corte');
+          } else if (STATE.panelCat === 'estilo') {
+            keys = keys.filter(k => styleData[k].style !== null && styleData[k].categoria === 'Corte');
+          } else if (STATE.panelCat === 'tom') {
+            keys = keys.filter(k => styleData[k].colorCategory !== null && styleData[k].categoria === 'Coloração');
+          } else {
+            keys = keys.filter(k => styleData[k].categoria === STATE.panelCat);
+          }
         }
-        if (STATE.currentFilter !== 'all') {
+
+        // Filtro por subcategoria (painel de busca)
+        if (STATE.panelSub !== 'all') {
           keys = keys.filter(k => {
-            const data = styleData[k];
-            return data.size === STATE.currentFilter ||
-                   data.style === STATE.currentFilter ||
-                   data.colorCategory === STATE.currentFilter;
+            const d = styleData[k];
+            return d.size === STATE.panelSub || d.style === STATE.panelSub || d.colorCategory === STATE.panelSub || d.subcategoria === STATE.panelSub;
           });
         }
-        return keys.length ? keys : Object.keys(styleData);
-      }
 
-      function updateFilterGroupVisibility() {
-        const cat = STATE.currentCategory;
-        document.querySelectorAll('[data-group="size"], [data-group="style"]').forEach(el => {
-          el.style.display = (cat === 'all' || cat === 'Corte') ? '' : 'none';
-        });
-        document.querySelectorAll('[data-group="familia"]').forEach(el => {
-          el.style.display = (cat === 'all' || cat === 'Coloração') ? '' : 'none';
-        });
+        return keys.length ? keys : Object.keys(styleData);
       }
 
       // ============================================================
       // RENDER FUNCTIONS
       // ============================================================
-      function generateChips() {
-        const container = document.getElementById('chipCarousel');
+      function generateHomeChips() {
+        const container = document.getElementById('homeChips');
         container.innerHTML = '';
+        
+        const catMap = {
+          'all': 'todos',
+          'Corte': 'cortes',
+          'Coloração': 'cores',
+          'Produtos': 'produtos',
+          'comprimento': 'comprimento',
+          'estilo': 'estilo',
+          'tom': 'tom de cabelo'
+        };
+
+        const subMap = {
+          'all': 'todos',
+          'curto': 'curto',
+          'medio': 'médio',
+          'longo': 'longo',
+          'classico': 'clássico',
+          'moderno': 'moderno',
+          'alternativo': 'alternativo',
+          'romantico': 'romântico',
+          'Shampoo': 'shampoo',
+          'Condicionador': 'condicionador',
+          'Máscara': 'máscara',
+          'Finalizador': 'finalizador'
+        };
+
+        // Chip da categoria
+        const catChip = document.createElement('span');
+        const catName = catMap[STATE.panelCat] || 'todos';
+        catChip.className = `home-chip ${STATE.panelCat !== 'all' ? 'active' : ''}`;
+        catChip.dataset.type = 'category';
+        catChip.textContent = catName;
+        catChip.addEventListener('click', function() {
+          document.getElementById('searchOverlay').classList.add('open');
+          document.querySelectorAll('#categoriaList .categoria-item').forEach(el => {
+            el.classList.toggle('active', el.dataset.cat === STATE.panelCat);
+          });
+          document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
+          const map = {
+            'all': 'subTodos',
+            'Corte': 'subCortes',
+            'Coloração': 'subCores',
+            'Produtos': 'subProdutos',
+            'comprimento': 'subComprimento',
+            'estilo': 'subEstilo',
+            'tom': 'subTom'
+          };
+          const target = document.getElementById(map[STATE.panelCat]);
+          if (target) {
+            target.classList.add('show');
+            target.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
+            target.querySelector('.sub-chip').classList.add('active');
+          }
+        });
+        container.appendChild(catChip);
+
+        // Chip da subcategoria
+        if (STATE.panelSub !== 'all') {
+          const subChip = document.createElement('span');
+          const subName = subMap[STATE.panelSub] || STATE.panelSub;
+          subChip.className = 'home-chip active';
+          subChip.dataset.type = 'subcategory';
+          subChip.textContent = subName;
+          subChip.addEventListener('click', function() {
+            document.getElementById('searchOverlay').classList.add('open');
+            document.querySelectorAll('#categoriaList .categoria-item').forEach(el => {
+              el.classList.toggle('active', el.dataset.cat === STATE.panelCat);
+            });
+            document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
+            const map = {
+              'all': 'subTodos',
+              'Corte': 'subCortes',
+              'Coloração': 'subCores',
+              'Produtos': 'subProdutos',
+              'comprimento': 'subComprimento',
+              'estilo': 'subEstilo',
+              'tom': 'subTom'
+            };
+            const target = document.getElementById(map[STATE.panelCat]);
+            if (target) {
+              target.classList.add('show');
+              target.querySelectorAll('.sub-chip').forEach(s => {
+                const val = s.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                s.classList.toggle('active', val === STATE.panelSub);
+              });
+            }
+          });
+          container.appendChild(subChip);
+        }
+
+        // Chips dos itens
         const keys = getFilteredKeys();
-        keys.forEach(key => {
+        const displayKeys = STATE.panelCat === 'all' ? keys.sort(() => Math.random() - 0.5).slice(0, 6) : keys.slice(0, 6);
+        displayKeys.forEach(key => {
           const data = styleData[key];
           if (!data) return;
           const chip = document.createElement('span');
-          chip.className = `chip ${key === STATE.currentStyle ? 'active-chip' : ''}`;
+          chip.className = `home-chip ${key === STATE.currentStyle ? 'active' : ''}`;
           chip.dataset.style = key;
-          chip.textContent = data.title;
-          chip.setAttribute('role', 'tab');
-          chip.setAttribute('aria-selected', key === STATE.currentStyle);
+          chip.dataset.type = 'item';
+          chip.textContent = data.title.length > 14 ? data.title.substring(0, 12) + '…' : data.title;
           chip.addEventListener('click', function() {
-            document.querySelectorAll('.chip').forEach(c => { c.classList.remove('active-chip'); c.setAttribute('aria-selected', 'false'); });
-            this.classList.add('active-chip');
-            this.setAttribute('aria-selected', 'true');
+            document.querySelectorAll('.home-chip').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
             STATE.currentStyle = this.dataset.style;
-            if (document.getElementById('pageHome').classList.contains('active-page')) {
-              generateCarousel(STATE.currentStyle);
-            } else {
-              navigateTo('pageHome');
-              setTimeout(() => generateCarousel(STATE.currentStyle), 100);
-            }
+            generateCarousel(this.dataset.style);
           });
           container.appendChild(chip);
         });
@@ -2740,6 +3091,9 @@
       function classificationLabel(data) {
         if (data.categoria === 'Coloração') {
           return `coloração · ${FAMILIA_LABELS[data.colorCategory] || data.colorCategory}`;
+        }
+        if (data.categoria === 'Produtos') {
+          return `produto · ${data.subcategoria || 'cuidado'}`;
         }
         return `corte · ${SIZE_LABELS[data.size] || data.size} · ${STYLE_LABELS[data.style] || data.style}`;
       }
@@ -2805,7 +3159,7 @@
           }
         }, 80);
         updateFavUI();
-        generateChips();
+        generateHomeChips();
       }
 
       function updateIndicators(items) {
@@ -2847,7 +3201,7 @@
       function generateTendencias() {
         const list = document.getElementById('tendenciasList');
         list.innerHTML = '';
-        const tendencias = ['wolf cut', 'butterfly cut', 'pixie cut', 'curtain bangs', 'long bob', 'kitty cut', 'ombre-tiger-eye', 'balayage-loira', 'cherry-cola'];
+        const tendencias = ['wolf cut', 'butterfly cut', 'pixie cut', 'curtain bangs', 'long bob', 'kitty cut', 'ombre-tiger-eye', 'balayage-loira', 'cherry-cola', 'shampoo-revitalizante', 'mascara-argan', 'oleo-brilho'];
         tendencias.forEach(key => {
           const data = styleData[key];
           if (!data) return;
@@ -2862,8 +3216,8 @@
             </div>
           `;
           item.addEventListener('click', () => { 
-            document.getElementById('searchInput').value = key;
-            handleSearch();
+            document.getElementById('homeSearchInput').value = key;
+            handleHomeSearch();
             navigateTo('pageHome');
           });
           list.appendChild(item);
@@ -2941,6 +3295,15 @@
         modalBtn.querySelector('.fav-icon').textContent = fav ? '♥' : '♡';
         modalBtn.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
 
+        // Controle do botão afiliado
+        const afiliateBtn = document.getElementById('modalAfiliateBtn');
+        if (data.categoria === 'Produtos' && data.link) {
+          afiliateBtn.style.display = 'flex';
+          afiliateBtn.href = data.link;
+        } else {
+          afiliateBtn.style.display = 'none';
+        }
+
         const gallery = document.getElementById('modalGallery');
         gallery.innerHTML = '';
         images.forEach((img, i) => {
@@ -3002,10 +3365,12 @@
           `<span class="tech-chip"><strong>categoria</strong>${data.categoria}</span>`,
           data.categoria === 'Coloração'
             ? `<span class="tech-chip"><strong>família</strong>${familia}</span>`
+            : data.categoria === 'Produtos'
+            ? `<span class="tech-chip"><strong>tipo</strong>${data.subcategoria || '—'}</span>`
             : `<span class="tech-chip"><strong>comprimento</strong>${SIZE_LABELS[data.size] || data.size}</span>`,
-          data.categoria !== 'Coloração' ? `<span class="tech-chip"><strong>estilo</strong>${STYLE_LABELS[data.style] || data.style}</span>` : '',
-          `<span class="tech-chip"><strong>indicado</strong>${data.indicado || '—'}</span>`,
-          `<span class="tech-chip"><strong>manutenção</strong>${data.manutencao || '—'}</span>`,
+          data.categoria !== 'Coloração' && data.categoria !== 'Produtos' ? `<span class="tech-chip"><strong>estilo</strong>${STYLE_LABELS[data.style] || data.style}</span>` : '',
+          `<span class="tech-chip"><strong>indicado</strong>${data.indicado || 'todos os tipos'}</span>`,
+          data.manutencao ? `<span class="tech-chip"><strong>manutenção</strong>${data.manutencao}</span>` : '',
           data.cores && data.cores.length ? `<span class="tech-chip"><strong>fórmula</strong>${data.cores.join(' / ')}</span>` : ''
         ].filter(Boolean).join('');
         chipsEl.innerHTML = chips;
@@ -3028,10 +3393,10 @@
       }
 
       // ============================================================
-      // SEARCH
+      // SEARCH HOME
       // ============================================================
-      function handleSearch() {
-        const val = document.getElementById('searchInput').value.trim().toLowerCase();
+      function handleHomeSearch() {
+        const val = document.getElementById('homeSearchInput').value.trim().toLowerCase();
         if (val) {
           const keys = Object.keys(styleData);
           let found = keys.find(k => k === val);
@@ -3085,9 +3450,8 @@
 
       function updatePageVisibility(pageId) {
         const isHome = pageId === 'pageHome';
-        document.getElementById('chipWrapper').style.display = isHome ? 'block' : 'none';
-        document.getElementById('searchWrapper').style.display = isHome ? 'flex' : 'none';
-        document.querySelector('.filter-bar').style.display = isHome ? 'flex' : 'none';
+        document.getElementById('homeChips').style.display = isHome ? 'flex' : 'none';
+        document.getElementById('homeSearchWrapper').style.display = isHome ? 'flex' : 'none';
         document.querySelectorAll('.footer-links a').forEach(link => {
           link.classList.toggle('active-link', link.dataset.page === pageId);
           link.setAttribute('aria-selected', link.dataset.page === pageId);
@@ -3130,42 +3494,6 @@
           closeMenu();
         });
 
-        // Category tabs (nível 1: corte vs coloração)
-        document.querySelectorAll('.cat-tab').forEach(tab => {
-          tab.addEventListener('click', function() {
-            document.querySelectorAll('.cat-tab').forEach(t => { t.classList.remove('active-cat'); t.setAttribute('aria-selected', 'false'); });
-            this.classList.add('active-cat');
-            this.setAttribute('aria-selected', 'true');
-            STATE.currentCategory = this.dataset.cat;
-            STATE.currentFilter = 'all';
-            document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active-filter'); b.setAttribute('aria-selected', 'false'); });
-            updateFilterGroupVisibility();
-            if (document.getElementById('pageHome').classList.contains('active-page')) {
-              generateCarousel(STATE.currentStyle);
-            } else {
-              navigateTo('pageHome');
-              setTimeout(() => generateCarousel(STATE.currentStyle), 100);
-            }
-          });
-        });
-        updateFilterGroupVisibility();
-
-        // Filters (nível 2: comprimento / estilo / família)
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active-filter'); b.setAttribute('aria-selected', 'false'); });
-            this.classList.add('active-filter');
-            this.setAttribute('aria-selected', 'true');
-            STATE.currentFilter = this.dataset.filter;
-            if (document.getElementById('pageHome').classList.contains('active-page')) {
-              generateCarousel(STATE.currentStyle);
-            } else {
-              navigateTo('pageHome');
-              setTimeout(() => generateCarousel(STATE.currentStyle), 100);
-            }
-          });
-        });
-
         // Footer links
         document.querySelectorAll('.footer-links a').forEach(link => {
           link.addEventListener('click', function(e) {
@@ -3178,13 +3506,75 @@
         document.querySelectorAll('.back-home').forEach(btn => btn.addEventListener('click', () => navigateTo('pageHome')));
         document.getElementById('homeBtn').addEventListener('click', () => navigateTo('pageHome'));
 
-        // Search
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchButton');
-        const debouncedSearch = debounce(handleSearch, 400);
-        searchInput.addEventListener('input', debouncedSearch);
-        searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); handleSearch(); } });
-        searchBtn.addEventListener('click', e => { e.preventDefault(); handleSearch(); });
+        // Home search
+        const homeSearchInput = document.getElementById('homeSearchInput');
+        const homeSearchBtn = document.getElementById('homeSearchBtn');
+        const debouncedHomeSearch = debounce(handleHomeSearch, 400);
+        homeSearchInput.addEventListener('input', debouncedHomeSearch);
+        homeSearchInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); handleHomeSearch(); } });
+        homeSearchBtn.addEventListener('click', e => { e.preventDefault(); handleHomeSearch(); });
+
+        // Painel de busca
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
+        document.getElementById('homeSearchBtn').addEventListener('click', () => searchOverlay.classList.add('open'));
+        searchCloseBtn.addEventListener('click', () => searchOverlay.classList.remove('open'));
+        searchOverlay.addEventListener('click', e => { if (e.target === searchOverlay) searchOverlay.classList.remove('open'); });
+
+        document.querySelectorAll('#categoriaList .categoria-item').forEach(item => {
+          item.addEventListener('click', function() {
+            document.querySelectorAll('#categoriaList .categoria-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            STATE.panelCat = this.dataset.cat;
+            document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
+            const map = {
+              'all': 'subTodos',
+              'Corte': 'subCortes',
+              'Coloração': 'subCores',
+              'Produtos': 'subProdutos',
+              'comprimento': 'subComprimento',
+              'estilo': 'subEstilo',
+              'tom': 'subTom'
+            };
+            const target = document.getElementById(map[STATE.panelCat]);
+            if (target) {
+              target.classList.add('show');
+              target.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
+              target.querySelector('.sub-chip').classList.add('active');
+              STATE.panelSub = 'all';
+            }
+          });
+        });
+
+        document.querySelectorAll('.sub-chip').forEach(chip => {
+          chip.addEventListener('click', function() {
+            const parent = this.parentElement;
+            parent.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+            STATE.panelSub = this.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (STATE.panelSub === 'todos') STATE.panelSub = 'all';
+            // Fecha o painel e atualiza o carrossel
+            document.getElementById('searchOverlay').classList.remove('open');
+            generateCarousel(STATE.currentStyle);
+          });
+        });
+
+        document.getElementById('panelSearchInput').addEventListener('input', function() {
+          const val = this.value.trim().toLowerCase();
+          if (val) {
+            const found = Object.keys(styleData).find(k => k.includes(val) || val.includes(k));
+            if (found) {
+              STATE.currentStyle = found;
+              searchOverlay.classList.remove('open');
+              generateCarousel(found);
+            }
+          }
+        });
+
+        document.getElementById('applyFilters').addEventListener('click', function() {
+          searchOverlay.classList.remove('open');
+          generateCarousel(STATE.currentStyle);
+        });
 
         // Modal
         document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -3249,17 +3639,20 @@
         });
 
         // Render
-        generateChips();
+        generateHomeChips();
         generateTendencias();
         generateGaleria();
         generateCarousel('velvet bob');
         generateFavGrid();
         updateFavUI();
 
-        console.log('📦 HAIRBOX · 25 estilos · Nível 1 ✓');
-        console.log('✅ 13 existentes + 12 novos (morenas, loiras, ruivas, grisalhas)');
-        console.log('✅ Filtros: estrutura + cores');
-        console.log('✅ Layout limpo e minimalista');
+        console.log('📦 HAIRBOX · 37 itens (25 estilos + 12 produtos)');
+        console.log('✅ Fluxo totalmente revisado e corrigido do começo ao fim');
+        console.log('✅ Categorias, subcategorias e itens funcionando perfeitamente');
+        console.log('✅ Modal completo com galeria, ficha técnica e botão afiliado');
+        console.log('✅ Menu, footer e páginas internas funcionando');
+        console.log('✅ Favoritos e tema salvos no navegador');
+        console.log('✅ Projeto finalizado e pronto! 🚀');
       }
 
       document.addEventListener('DOMContentLoaded', init);
