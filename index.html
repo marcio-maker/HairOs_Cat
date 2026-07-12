@@ -1674,7 +1674,7 @@
 
     <header class="header">
       <div class="header-brand" id="homeBtn" role="button" tabindex="0" aria-label="Voltar para home">
-        <span class="brand-main">hairbox<span>.</span></span>
+        <span class="brand-main">HairOS<span>.</span></span>
         <span class="brand-sub">· catálogo ·</span>
       </div>
       <div class="header-actions">
@@ -1709,7 +1709,7 @@
           <button class="theme-switch" id="menuThemeToggle" aria-label="Alternar tema">dark</button>
         </div>
         <div class="menu-divider"></div>
-        <div style="padding: 8px 8px 0 8px; font-size: 0.4rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.3;">hairbox · são paulo</div>
+        <div style="padding: 8px 8px 0 8px; font-size: 0.4rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.3;">HairOS · são paulo</div>
       </div>
     </div>
 
@@ -1787,7 +1787,7 @@
         </div>
         <div class="page-scroll">
           <div class="sobre-content">
-            <p><strong style="color:var(--text-primary);font-family:'Playfair Display',serif;font-style:italic;">hairbox</strong> é uma curadoria de estilos capilares — um catálogo vivo que reúne tendências, clássicos e inspirações.</p>
+            <p><strong style="color:var(--text-primary);font-family:'Playfair Display',serif;font-style:italic;">HairOS</strong> é uma curadoria de estilos capilares — um catálogo vivo que reúne tendências, clássicos e inspirações.</p>
             <div class="sobre-card"><h4>origem</h4><p>Nascida da estética atemporal da Vogue Paris dos anos 1960.</p></div>
             <div class="sobre-card"><h4>missão</h4><p>Inspirar e revelar os estilos mais atuais.</p></div>
             <div class="sobre-stats">
@@ -1806,7 +1806,7 @@
         </div>
         <div class="page-scroll">
           <div class="contato-content">
-            <p>Envie uma mensagem para a equipe hairbox.</p>
+            <p>Envie uma mensagem para a equipe HairOS.</p>
             <form class="contato-form" id="contatoForm" novalidate>
               <input type="text" id="contatoNome" placeholder="seu nome" required aria-required="true">
               <input type="email" id="contatoEmail" placeholder="seu e-mail" required aria-required="true">
@@ -1819,7 +1819,7 @@
               <a href="#" aria-label="Facebook">📘</a>
               <a href="#" aria-label="WhatsApp">📱</a>
             </div>
-            <p style="text-align:center;font-size:0.5rem;color:var(--text-muted);letter-spacing:0.05em;">contato@hairbox.com</p>
+            <p style="text-align:center;font-size:0.5rem;color:var(--text-muted);letter-spacing:0.05em;">contato@hairos.com</p>
           </div>
         </div>
       </div>
@@ -1835,7 +1835,7 @@
         <a data-page="pageSobre" role="tab" aria-selected="false">sobre</a>
         <a data-page="pageContato" role="tab" aria-selected="false">contato</a>
       </div>
-      <div class="footer-copy">© 2026 <a href="#">hairbox</a> · são paulo</div>
+      <div class="footer-copy">© 2026 <a href="#">HairOS</a> · são paulo</div>
     </div>
 
   </div>
@@ -2236,10 +2236,10 @@
       // STATE
       // ============================================================
       const STATE = {
-        favorites: JSON.parse(localStorage.getItem('hairbox_favorites') || '[]'),
+        favorites: JSON.parse(localStorage.getItem('hairos_favorites') || '[]'),
         currentStyle: 'velvet bob',
         currentFilter: 'all',
-        theme: localStorage.getItem('hairbox_theme') || 'dark',
+        theme: localStorage.getItem('hairos_theme') || 'dark',
         modalKey: null,
         modalIndex: 0
       };
@@ -2252,7 +2252,7 @@
       function toggleFavorite(key) {
         const idx = STATE.favorites.indexOf(key);
         idx > -1 ? STATE.favorites.splice(idx, 1) : STATE.favorites.push(key);
-        localStorage.setItem('hairbox_favorites', JSON.stringify(STATE.favorites));
+        localStorage.setItem('hairos_favorites', JSON.stringify(STATE.favorites));
         updateFavUI();
         updateAllFavButtons(key);
         return isFavorite(key);
@@ -2636,7 +2636,7 @@
       function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         document.getElementById('menuThemeToggle').textContent = theme === 'dark' ? '🌙 dark' : '☀️ light';
-        localStorage.setItem('hairbox_theme', theme);
+        localStorage.setItem('hairos_theme', theme);
         STATE.theme = theme;
       }
 
