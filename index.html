@@ -24,10 +24,9 @@
       --border-subtle: rgba(201, 169, 110, 0.06);
       --border-gold: rgba(201, 169, 110, 0.15);
       --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.4);
-      --shadow-glow: 0 0 80px rgba(201, 169, 110, 0.02);
-      --transition-smooth: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
       --radius-card: 14px;
       --radius-pill: 100px;
+      --transition-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     [data-theme="light"] {
@@ -66,417 +65,399 @@
       background: var(--bg-primary);
       display: flex;
       flex-direction: column;
-      padding: 16px 16px 8px 16px;
+      padding: 8px 10px 4px 10px;
       position: relative;
       transition: background var(--transition-smooth);
       overflow: hidden;
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 60%);
     }
 
+    /* ===== HEADER ===== */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 0 12px 0;
+      padding: 2px 0 6px 0;
       border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
-      position: relative;
-      min-height: 44px;
+      min-height: 32px;
     }
-
-    .header::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background: var(--gold);
-      opacity: 0.3;
-      border-radius: 2px;
-    }
-
-    .header-brand {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .header-brand:hover { transform: scale(1.02); }
-
+    .header-brand { cursor: pointer; }
     .header-brand .brand-main {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       font-weight: 700;
       font-style: italic;
-      letter-spacing: 0.04em;
       color: var(--text-primary);
-      transition: color var(--transition-smooth);
       line-height: 1;
     }
-
     .header-brand .brand-main span { color: var(--gold); }
-
     .header-brand .brand-sub {
-      font-size: 0.45rem;
-      letter-spacing: 0.35em;
+      font-size: 0.3rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text-muted);
       font-weight: 300;
-      margin-top: 2px;
     }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .header-actions { display: flex; align-items: center; gap: 4px; }
 
     .hamburger {
       background: transparent;
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      width: 40px;
-      height: 40px;
+      border-radius: 6px;
+      width: 30px;
+      height: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 2.5px;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      padding: 10px;
+      padding: 6px;
       position: relative;
       flex-shrink: 0;
     }
-
-    .hamburger:hover {
-      border-color: var(--gold);
-      background: var(--gold-glow);
-    }
-
+    .hamburger:hover { border-color: var(--gold); background: var(--gold-glow); }
     .hamburger .bar {
-      width: 18px;
+      width: 13px;
       height: 1.5px;
       background: var(--text-secondary);
       border-radius: 2px;
       transition: all var(--transition-smooth);
     }
-
-    .hamburger .bar:nth-child(2) { width: 14px; align-self: flex-end; }
-    .hamburger .bar:nth-child(3) { width: 10px; align-self: flex-end; }
+    .hamburger .bar:nth-child(2) { width: 9px; align-self: flex-end; }
+    .hamburger .bar:nth-child(3) { width: 6px; align-self: flex-end; }
     .hamburger:hover .bar { background: var(--gold); }
 
     .hamburger .badge-count {
       position: absolute;
-      top: -3px;
-      right: -3px;
+      top: -2px;
+      right: -2px;
       background: #ff4757;
       color: #fff;
-      font-size: 0.45rem;
+      font-size: 0.3rem;
       font-weight: 600;
-      width: 18px;
-      height: 18px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Inter', sans-serif;
       opacity: 0;
       transform: scale(0.5);
       transition: all var(--transition-smooth);
     }
+    .hamburger .badge-count.show { opacity: 1; transform: scale(1); }
 
-    .hamburger .badge-count.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* ===== HOME CHIPS ===== */
-    .home-chips {
+    /* ===== CATEGORY TABS ===== */
+    .category-tabs {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 8px 0 6px 0;
-      scrollbar-width: none;
+      gap: 3px;
+      padding: 3px 0 4px 0;
       flex-shrink: 0;
       border-bottom: 1px solid var(--border-subtle);
     }
-
-    .home-chips::-webkit-scrollbar { display: none; }
-
-    .home-chip {
-      flex-shrink: 0;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 18px;
-      border-radius: var(--radius-pill);
-      font-size: 0.6rem;
+    .cat-tab {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      padding: 4px 10px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       color: var(--text-secondary);
       cursor: pointer;
       transition: all var(--transition-smooth);
-      font-family: 'Inter', sans-serif;
       white-space: nowrap;
-      min-height: 30px;
-      display: flex;
-      align-items: center;
-    }
-
-    .home-chip:hover {
-      border-color: var(--border-gold);
-      color: var(--text-primary);
-    }
-
-    .home-chip.active {
-      background: var(--gold);
-      color: #0a0808;
-      border-color: var(--gold);
-      font-weight: 500;
-    }
-
-    /* ===== HOME SEARCH ===== */
-    .home-search-wrapper {
-      display: flex;
-      align-items: center;
-      background: var(--bg-secondary);
       border-radius: var(--radius-pill);
-      padding: 2px 2px 2px 16px;
-      border: 1px solid var(--border-subtle);
-      margin: 8px 0 12px 0;
-      transition: all var(--transition-smooth);
+      min-height: 22px;
+      position: relative;
+    }
+    .cat-tab .count {
+      font-size: 0.3rem;
+      color: var(--text-muted);
+      font-style: normal;
+      font-weight: 300;
+      margin-left: 2px;
+    }
+    .cat-tab.active-cat {
+      color: var(--bg-primary);
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .cat-tab.active-cat .count { color: var(--bg-primary); opacity: 0.7; }
+
+    /* ===== BUSCADOR ===== */
+    .search-clean-wrapper {
+      position: relative;
+      margin: 4px 0 6px 0;
       flex-shrink: 0;
-      min-height: 38px;
+      z-index: 50;
     }
 
-    .home-search-wrapper:focus-within {
+    .search-clean-input {
+      width: 100%;
+      padding: 6px 65px 6px 12px;
+      font-size: 0.6rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 30px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .search-clean-input:focus {
       border-color: var(--gold);
       box-shadow: 0 0 0 3px var(--gold-glow);
     }
-
-    .home-search-wrapper input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 8px 8px 8px 0;
-      font-size: 0.7rem;
-      color: var(--text-primary);
-      outline: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      min-height: 34px;
-    }
-
-    .home-search-wrapper input::placeholder {
+    .search-clean-input::placeholder {
       color: var(--text-muted);
       font-weight: 200;
-      font-size: 0.65rem;
-      font-style: italic;
+      font-size: 0.5rem;
+      letter-spacing: 0.04em;
+      opacity: 0.6;
     }
 
-    .home-search-wrapper button {
+    .search-btn-wrapper {
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .search-btn-wrapper button {
       background: var(--gold);
       border: none;
       border-radius: var(--radius-pill);
-      padding: 8px 18px;
+      padding: 3px 8px;
       color: #0a0808;
       font-weight: 500;
-      font-size: 0.55rem;
+      font-size: 0.4rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      text-transform: uppercase;
       font-family: 'Inter', sans-serif;
-      min-height: 34px;
-    }
-
-    .home-search-wrapper button:hover {
-      background: var(--gold-light);
-      transform: scale(1.02);
-    }
-
-    /* ===== PAINEL DE BUSCA (OVERLAY) ===== */
-    .search-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 1000;
-      justify-content: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
       align-items: center;
-      padding: 20px;
+      gap: 3px;
+      min-height: 22px;
+      white-space: nowrap;
     }
+    .search-btn-wrapper button:hover { background: var(--gold-light); transform: scale(1.02); }
+    .search-btn-wrapper button svg { width: 9px; height: 9px; fill: currentColor; }
 
-    .search-overlay.open { display: flex; animation: fadeInMenu 0.25s ease; }
-
-    .search-panel {
-      background: rgba(18, 16, 14, 0.96);
+    /* ===== DROPDOWN ===== */
+    .search-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 0;
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 6px 8px 8px 8px;
+      max-height: 280px;
+      overflow-y: auto;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+      z-index: 100;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      width: 100%;
-      max-width: 430px;
-      border-radius: 24px;
-      padding: 24px;
-      border: 1px solid var(--border-gold);
-      max-height: 90vh;
-      overflow-y: auto;
-      animation: slideUp 0.3s ease;
     }
+    .search-dropdown.open { display: block; animation: fadeDrop 0.2s ease; }
+    @keyframes fadeDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .search-dropdown::-webkit-scrollbar { width: 3px; }
+    .search-dropdown::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
 
-    @keyframes slideUp {
-      from { transform: translateY(40px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .search-panel::-webkit-scrollbar { width: 2px; }
-    .search-panel::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-
-    .search-panel .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .search-panel .panel-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--gold);
-    }
-
-    .search-panel .panel-close {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .search-panel .panel-input {
-      width: 100%;
-      padding: 12px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      color: var(--text-primary);
-      font-size: 0.8rem;
-      outline: none;
-      margin-bottom: 20px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .search-panel .panel-input:focus { border-color: var(--gold); }
-
-    .search-panel .categoria-title {
-      font-size: 0.6rem;
+    .drop-group { margin-bottom: 5px; }
+    .drop-group:last-child { margin-bottom: 0; }
+    .drop-label {
+      display: block;
+      font-size: 0.28rem;
+      font-weight: 600;
       text-transform: uppercase;
       color: var(--text-muted);
       letter-spacing: 0.1em;
-      margin-bottom: 8px;
+      margin-bottom: 2px;
+      opacity: 0.5;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 2px;
     }
-
-    .search-panel .categoria-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 16px;
-    }
-
-    .search-panel .categoria-item {
+    .drop-options { display: flex; flex-wrap: wrap; gap: 2px; }
+    .drop-option {
+      background: var(--bg-card);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      font-size: 0.4rem;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      min-height: 20px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
+      gap: 2px;
+    }
+    .drop-option:hover { border-color: var(--gold); color: var(--text-primary); background: var(--gold-glow); transform: translateY(-1px); }
+    .drop-option .tag {
+      font-size: 0.25rem;
       color: var(--text-muted);
-      font-size: 0.75rem;
-      transition: 0.2s;
+      opacity: 0.5;
+      font-weight: 400;
     }
-
-    .search-panel .categoria-item:hover { background: var(--gold-glow); }
-    .search-panel .categoria-item.active { color: var(--gold); background: var(--gold-glow); }
-
-    .search-panel .categoria-item .radio {
-      width: 16px;
-      height: 16px;
-      border: 2px solid var(--text-muted);
-      border-radius: 50%;
-      display: inline-block;
-      transition: 0.2s;
-    }
-
-    .search-panel .categoria-item.active .radio {
-      border-color: var(--gold);
-      background: var(--gold);
-    }
-
-    .search-panel .sub-container {
-      display: none;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-
-    .search-panel .sub-container.show { display: flex; }
-
-    .search-panel .sub-chip {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 16px;
-      border-radius: var(--radius-pill);
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .search-panel .sub-chip:hover { border-color: var(--border-gold); }
-    .search-panel .sub-chip.active {
-      background: var(--gold);
-      color: #0a0808;
-      border-color: var(--gold);
-    }
-
-    .search-panel .btn-apply {
+    .drop-clear {
+      display: block;
       width: 100%;
-      padding: 12px;
-      background: var(--gold);
-      border: none;
-      border-radius: 12px;
-      color: #0a0808;
-      font-weight: 600;
-      font-size: 0.8rem;
+      text-align: center;
+      padding: 3px 0 1px 0;
+      margin-top: 4px;
+      border-top: 1px solid var(--border-subtle);
+      color: #ff4757;
+      font-size: 0.35rem;
       cursor: pointer;
-      transition: 0.3s;
-      text-transform: uppercase;
+      transition: all 0.2s ease;
+      background: transparent;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
       font-family: 'Inter', sans-serif;
+      letter-spacing: 0.06em;
     }
+    .drop-clear:hover { opacity: 0.7; background: rgba(255, 71, 87, 0.04); border-radius: 0 0 12px 12px; }
 
-    .search-panel .btn-apply:hover { background: var(--gold-light); }
+    /* ===== CHIPS ===== */
+    .chip-carousel-wrapper {
+      padding: 2px 0 4px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+    .chip-carousel {
+      display: flex;
+      gap: 3px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .chip-carousel::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto;
+      background: var(--bg-card);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 0.4rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      scroll-snap-align: start;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+      min-height: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .chip:hover { border-color: var(--border-gold); color: var(--text-primary); transform: translateY(-1px); }
+    .chip.active-chip { background: var(--gold); color: #0a0808; border-color: var(--gold); font-weight: 500; }
 
-    /* ===== CARROSSEL ===== */
+    /* ===== PAGES ===== */
+    .page-container {
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .page {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      padding: 0;
+      animation: fadePage 0.35s ease;
+    }
+    .page.active-page { display: flex; }
+    @keyframes fadePage { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0 8px 0;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .page-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+    }
+    .page-header .page-count {
+      font-size: 0.4rem;
+      color: var(--text-muted);
+      font-style: normal;
+      font-weight: 300;
+    }
+    .back-home {
+      color: var(--text-muted);
+      font-size: 0.45rem;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+    }
+    .back-home:hover { color: var(--gold); border-color: var(--border-gold); transform: translateX(-3px); }
+
+    .page-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      padding: 6px 0 4px 0;
+    }
+    .page-scroll::-webkit-scrollbar { display: none; }
+
+    /* ===== HOME CARROSSEL ===== */
     .unified-carousel-wrapper {
       flex: 1;
       min-height: 0;
       border-radius: var(--radius-card);
       overflow: hidden;
       position: relative;
-      margin: 0 0 2px 0;
-      padding: 0;
+      margin: 3px 0 2px 0;
     }
-
     .unified-carousel {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
-      padding: 2px 2px 6px 2px;
+      padding: 2px 2px 4px 2px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
@@ -486,13 +467,12 @@
       touch-action: pan-x;
       cursor: grab;
     }
-
     .unified-carousel:active { cursor: grabbing; }
     .unified-carousel::-webkit-scrollbar { display: none; }
 
     .carousel-item {
-      flex: 0 0 72%;
-      min-width: 180px;
+      flex: 0 0 65%;
+      min-width: 140px;
       border-radius: var(--radius-card);
       overflow: hidden;
       background: var(--bg-card);
@@ -502,22 +482,10 @@
       scroll-snap-align: start;
       position: relative;
       aspect-ratio: 9/12;
-      height: auto;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
     }
-
-    .carousel-item:last-child { margin-right: 2px; }
-
-    .carousel-item:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .carousel-item.active-item {
-      border-color: var(--gold);
-      box-shadow: 0 4px 30px rgba(201, 169, 110, 0.08), 0 2px 20px rgba(0, 0, 0, 0.2);
-    }
+    .carousel-item:hover { border-color: var(--border-gold); transform: translateY(-2px) scale(1.01); }
+    .carousel-item.active-item { border-color: var(--gold); }
 
     .carousel-item .img-container {
       width: 100%;
@@ -525,75 +493,63 @@
       overflow: hidden;
       position: relative;
     }
-
     .carousel-item .img-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       filter: grayscale(100%) sepia(30%) contrast(1.1);
-      transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 0.6s ease;
     }
-
-    .carousel-item.active-item .img-container img,
-    .carousel-item:hover .img-container img {
-      filter: grayscale(0%) sepia(0%) contrast(1);
-      transform: scale(1.02);
-    }
-
+    .carousel-item:hover .img-container img { filter: grayscale(0%) sepia(0%) contrast(1); transform: scale(1.02); }
     .carousel-item .img-container::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
       pointer-events: none;
-      transition: all var(--transition-smooth);
-      opacity: 0.5;
-    }
-
-    .carousel-item:hover .img-container::after,
-    .carousel-item.active-item .img-container::after {
-      opacity: 0.15;
     }
 
     .carousel-item .favorite-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      top: 6px;
+      right: 6px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.04);
       border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      font-size: 0.85rem;
+      width: 24px;
+      height: 24px;
+      font-size: 0.6rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255,255,255,0.3);
       z-index: 10;
     }
+    .carousel-item .favorite-btn:hover { transform: scale(1.1); background: rgba(0,0,0,0.6); }
+    .carousel-item .favorite-btn.favorited { color: #ff4757; background: rgba(255,71,87,0.15); border-color: rgba(255,71,87,0.15); }
 
-    .carousel-item .favorite-btn:hover {
-      transform: scale(1.1);
-      background: rgba(0, 0, 0, 0.6);
-      color: rgba(255, 255, 255, 0.7);
+    /* === TAGS DESTACADAS NO CARD === */
+    .item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin-bottom: 2px;
     }
-
-    .carousel-item .favorite-btn.favorited {
-      color: #ff4757;
-      background: rgba(255, 71, 87, 0.15);
-      border-color: rgba(255, 71, 87, 0.15);
-      animation: heart-pop 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    @keyframes heart-pop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+    .item-tag {
+      font-size: 0.18rem;
+      background: rgba(201,169,110,0.2);
+      border: 1px solid rgba(201,169,110,0.15);
+      padding: 0 4px;
+      border-radius: 8px;
+      color: var(--gold-light);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      backdrop-filter: blur(4px);
     }
 
     .item-overlay {
@@ -601,440 +557,198 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 30px 14px 16px 14px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.2) 55%, transparent 100%);
+      padding: 18px 8px 8px 8px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 1px;
+      z-index: 5;
     }
-
     .item-overlay h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 700;
       font-style: italic;
-      color: #ffffff;
+      color: #fff;
       line-height: 1.1;
-      letter-spacing: 0.01em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
-
     .item-overlay .item-sub {
-      font-size: 0.45rem;
-      color: rgba(201, 169, 110, 0.6);
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
+      font-size: 0.28rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      background: rgba(0,0,0,0.3);
+      padding: 0 6px;
+      border-radius: 8px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      width: fit-content;
     }
-
-    .item-overlay .item-colors {
-      display: flex;
-      gap: 4px;
-      margin: 3px 0 2px 0;
-      flex-wrap: wrap;
-      min-height: 20px;
-    }
-
-    .item-overlay .color-chip {
-      background: rgba(201, 169, 110, 0.15);
-      border: 1px solid rgba(201, 169, 110, 0.12);
-      padding: 1px 8px;
-      border-radius: 10px;
-      font-size: 0.4rem;
-      font-weight: 500;
-      color: var(--gold-light);
-      font-family: 'Inter', monospace;
-      letter-spacing: 0.04em;
-      min-height: 18px;
-      display: inline-flex;
-      align-items: center;
-    }
-
     .item-overlay .item-badge {
       display: inline-block;
-      background: rgba(201, 169, 110, 0.2);
-      backdrop-filter: blur(6px);
-      padding: 3px 12px;
+      background: rgba(201,169,110,0.2);
+      padding: 1px 6px;
       border-radius: var(--radius-pill);
-      font-size: 0.4rem;
-      font-weight: 400;
+      font-size: 0.28rem;
       color: var(--gold-light);
-      border: 1px solid rgba(201, 169, 110, 0.1);
+      border: 1px solid rgba(201,169,110,0.1);
       align-self: flex-start;
-      margin-top: 4px;
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      min-height: 22px;
+      margin-top: 1px;
+      min-height: 14px;
       display: flex;
       align-items: center;
+    }
+
+    .info-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      color: var(--gold-light);
+      font-size: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      z-index: 10;
+    }
+    .info-btn:hover {
+      background: var(--gold);
+      color: #0a0808;
+      transform: scale(1.1);
     }
 
     .carousel-indicators {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      padding: 4px 0 2px 0;
+      gap: 4px;
+      padding: 2px 0 2px 0;
       flex-shrink: 0;
     }
-
     .carousel-indicators .dot {
-      width: 4px;
-      height: 4px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
       background: var(--text-muted);
       transition: all var(--transition-smooth);
       opacity: 0.15;
       cursor: pointer;
     }
+    .carousel-indicators .dot.active-dot { background: var(--gold); width: 14px; border-radius: 2px; opacity: 1; }
 
-    .carousel-indicators .dot.active-dot {
-      background: var(--gold);
-      width: 20px;
-      border-radius: 2px;
-      opacity: 1;
+    /* ===== TENDÊNCIAS ===== */
+    .tendencias-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
     }
-
-    /* ===== FOOTER ===== */
-    .footer-minimal {
-      margin-top: 2px;
-      padding: 6px 0 2px 0;
-      border-top: 1px solid var(--border-subtle);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      gap: 2px;
-      width: 100%;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: var(--radius-pill);
-      padding: 4px 6px;
-      border: 1px solid var(--border-subtle);
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    .footer-links::-webkit-scrollbar { display: none; }
-
-    .footer-links a {
-      color: var(--text-muted);
-      font-size: 0.45rem;
-      text-decoration: none;
-      transition: all var(--transition-smooth);
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      padding: 3px 10px;
-      border-radius: var(--radius-pill);
-      white-space: nowrap;
-      min-height: 24px;
-      display: flex;
-      align-items: center;
-      background: transparent;
-    }
-
-    .footer-links a:hover {
-      color: var(--gold);
-      background: var(--gold-glow);
-    }
-
-    .footer-links a.active-link {
-      color: var(--gold);
-      font-weight: 400;
-      background: var(--gold-glow);
-      border: 1px solid var(--border-gold);
-    }
-
-    .footer-copy {
-      color: var(--text-muted);
-      font-size: 0.35rem;
-      letter-spacing: 0.12em;
-      text-align: center;
-      opacity: 0.25;
-      font-weight: 200;
-      text-transform: uppercase;
-    }
-
-    .footer-copy a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-copy a:hover { color: var(--gold); }
-
-    /* ===== MENU ===== */
-    .menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 100;
-      display: none;
-      justify-content: flex-end;
-      align-items: flex-start;
-      padding: 16px;
-    }
-
-    .menu-overlay.active {
-      display: flex;
-      animation: fadeInMenu 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    @keyframes fadeInMenu {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .menu-panel {
-      background: rgba(18, 16, 14, 0.92);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-radius: 16px;
-      padding: 20px 18px;
-      width: 100%;
-      max-width: 300px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-subtle);
-      animation: slideMenu 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-      max-height: 85vh;
-      overflow-y: auto;
-    }
-
-    @keyframes slideMenu {
-      from { transform: translateX(20px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .menu-panel::-webkit-scrollbar { width: 2px; }
-    .menu-panel::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-
-    .menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 12px;
-    }
-
-    .menu-header span {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.8rem;
-      color: var(--text-primary);
-    }
-
-    .menu-close {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 4px;
-      transition: all var(--transition-smooth);
-    }
-
-    .menu-close:hover {
-      color: var(--text-primary);
-      transform: rotate(90deg);
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 8px;
+    .tendencia-card {
+      background: var(--bg-card);
       border-radius: 10px;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      border: none;
-      background: transparent;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-      text-align: left;
-      min-height: 40px;
-    }
-
-    .menu-item:hover {
-      background: var(--gold-glow);
-      color: var(--text-primary);
-      transform: translateX(4px);
-    }
-
-    .menu-item .icon {
-      font-size: 1rem;
-      width: 28px;
-      text-align: center;
-    }
-
-    .menu-item .item-count {
-      margin-left: auto;
-      background: var(--gold);
-      color: #0a0808;
-      font-size: 0.5rem;
-      font-weight: 500;
-      padding: 1px 10px;
-      border-radius: 20px;
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .menu-item .item-count.empty {
-      background: var(--border-subtle);
-      color: var(--text-muted);
-    }
-
-    .menu-divider {
-      height: 1px;
-      background: var(--border-subtle);
-      margin: 6px 0;
-    }
-
-    .menu-theme {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 8px;
-      border-radius: 10px;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
-
-    .menu-theme .theme-switch {
-      background: var(--border-subtle);
-      border: none;
-      border-radius: 16px;
-      padding: 2px 8px;
-      font-size: 0.6rem;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      color: var(--text-secondary);
-      min-height: 28px;
-      min-width: 48px;
-    }
-
-    .menu-theme .theme-switch:hover {
-      background: var(--gold-glow);
-      color: var(--gold);
-    }
-
-    /* ===== PAGES ===== */
-    .page-container {
-      flex: 1;
       overflow: hidden;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .page {
-      display: none;
-      flex-direction: column;
-      height: 100%;
-      padding: 0;
-    }
-
-    .page.active-page {
-      display: flex;
-      animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .page.exit-page {
-      animation: fadeOut 0.25s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(8px); }
-    }
-
-    .page-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 0 8px 0;
-      flex-shrink: 0;
-    }
-
-    .page-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--text-primary);
-      letter-spacing: 0.01em;
-    }
-
-    .back-home {
-      color: var(--text-muted);
-      font-size: 0.5rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
       border: 1px solid var(--border-subtle);
-      min-height: 28px;
-      display: flex;
-      align-items: center;
-      background: transparent;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-
-    .back-home:hover {
+    .tendencia-card:hover { border-color: var(--border-gold); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .tendencia-card .tendencia-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+    .tendencia-card .tendencia-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(70%) sepia(20%);
+      transition: filter 0.5s ease;
+    }
+    .tendencia-card:hover .tendencia-img img { filter: grayscale(0%) sepia(0%); }
+    .tendencia-card .tendencia-info {
+      padding: 6px 8px;
+    }
+    .tendencia-card .tendencia-info h4 {
+      font-size: 0.55rem;
+      color: var(--text-primary);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+    .tendencia-card .tendencia-info .tendencia-tag {
+      font-size: 0.3rem;
       color: var(--gold);
-      border-color: var(--border-gold);
-      transform: translateX(-3px);
+      background: var(--gold-glow);
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-top: 2px;
+    }
+    .tendencia-card .tendencia-colors {
+      font-size: 0.25rem;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    .page-scroll {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: none;
-      padding: 0 0 4px 0;
-    }
-
-    .page-scroll::-webkit-scrollbar { display: none; }
-
-    .grid-cortes {
+    /* ===== GALERIA ===== */
+    .galeria-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 4px 0;
+      gap: 5px;
+    }
+    .galeria-item {
+      aspect-ratio: 1/1.2;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    .galeria-item:hover { border-color: var(--border-gold); transform: scale(1.02); }
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%) sepia(25%);
+      transition: filter 0.5s ease;
+    }
+    .galeria-item:hover img { filter: grayscale(0%) sepia(0%); }
+    .galeria-item .galeria-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 6px 4px 6px;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+    }
+    .galeria-item .galeria-overlay span {
+      font-size: 0.35rem;
+      color: #fff;
+      font-weight: 300;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+    .galeria-item .galeria-colors {
+      font-size: 0.2rem;
+      color: var(--gold-light);
+      opacity: 0.7;
     }
 
-    .grid-item {
+    /* ===== FAVORITOS ===== */
+    .fav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .fav-item {
       aspect-ratio: 9/12;
       border-radius: 10px;
       overflow: hidden;
@@ -1043,78 +757,45 @@
       transition: all var(--transition-smooth);
       border: 1px solid var(--border-subtle);
       position: relative;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
     }
-
-    .grid-item:hover {
-      border-color: var(--border-gold);
-      transform: scale(1.02) translateY(-2px);
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .grid-item img {
+    .fav-item:hover { border-color: var(--border-gold); transform: translateY(-2px); }
+    .fav-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(80%) sepia(20%) contrast(1.1);
-      transition: filter 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      filter: grayscale(80%) sepia(20%);
+      transition: filter 0.5s ease;
     }
-
-    .grid-item:hover img {
-      filter: grayscale(0%) sepia(0%) contrast(1);
-    }
-
-    .grid-item .grid-overlay {
+    .fav-item:hover img { filter: grayscale(0%) sepia(0%); }
+    .fav-item .fav-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 12px 8px 6px 8px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+      padding: 10px 6px 6px 6px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
     }
-
-    .grid-item .grid-overlay .grid-title {
-      font-size: 0.45rem;
-      font-weight: 400;
+    .fav-item .fav-overlay span {
+      font-size: 0.4rem;
       color: #fff;
-      display: block;
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      letter-spacing: 0.01em;
     }
-
-    .grid-item .grid-fav {
+    .fav-item .fav-colors {
+      font-size: 0.25rem;
+      color: var(--gold-light);
+      opacity: 0.7;
+    }
+    .fav-item .fav-remove {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(6px);
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.5);
       border: none;
       border-radius: 50%;
-      width: 26px;
-      height: 26px;
-      font-size: 0.6rem;
-      cursor: pointer;
-      color: rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition-smooth);
-    }
-
-    .grid-item .grid-fav.favorited { color: #ff4757; }
-
-    .grid-item .grid-fav-remove {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 50%;
-      width: 26px;
-      height: 26px;
-      font-size: 0.5rem;
+      width: 20px;
+      height: 20px;
+      font-size: 0.4rem;
       cursor: pointer;
       color: #ff4757;
       display: flex;
@@ -1122,428 +803,358 @@
       justify-content: center;
       transition: all var(--transition-smooth);
     }
-
-    .grid-item .grid-fav-remove:hover {
-      transform: scale(1.1);
-      background: rgba(255, 71, 87, 0.2);
-    }
-
+    .fav-item .fav-remove:hover { transform: scale(1.1); background: rgba(255,71,87,0.2); }
     .empty-state {
       grid-column: 1 / -1;
       text-align: center;
       padding: 30px 16px;
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 300;
       font-style: italic;
     }
-
     .empty-state .heart-big {
-      font-size: 2rem;
+      font-size: 1.8rem;
       display: block;
       margin-bottom: 8px;
       opacity: 0.2;
     }
 
-    .tendencias-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .tendencia-item {
-      display: flex;
-      gap: 12px;
-      background: var(--bg-card);
-      border-radius: 10px;
-      padding: 8px 12px;
-      align-items: center;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
-
-    .tendencia-item:hover {
-      border-color: var(--border-gold);
-      transform: translateX(4px);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .tendencia-item .tendencia-img {
-      width: 48px;
-      height: 58px;
-      border-radius: 6px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .tendencia-item .tendencia-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(60%) sepia(20%);
-      transition: filter 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .tendencia-item:hover .tendencia-img img {
-      filter: grayscale(0%) sepia(0%);
-    }
-
-    .tendencia-item .tendencia-info h4 {
-      font-size: 0.65rem;
-      color: var(--text-primary);
-      font-weight: 400;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
-    .tendencia-item .tendencia-info p {
-      font-size: 0.45rem;
-      color: var(--text-secondary);
-      font-weight: 300;
-    }
-
-    .tendencia-item .tendencia-info .tendencia-tag {
-      display: inline-block;
-      background: rgba(201, 169, 110, 0.06);
-      padding: 1px 10px;
-      border-radius: var(--radius-pill);
-      font-size: 0.35rem;
-      color: var(--gold);
-      margin-top: 2px;
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      min-height: 20px;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-
-    .galeria-item {
-      aspect-ratio: 9/10;
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--bg-card);
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      border: 1px solid var(--border-subtle);
-      position: relative;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
-
-    .galeria-item:hover {
-      border-color: var(--border-gold);
-      transform: scale(1.02) translateY(-2px);
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .galeria-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(70%) sepia(25%);
-      transition: filter 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .galeria-item:hover img {
-      filter: grayscale(0%) sepia(0%);
-    }
-
-    .galeria-item .galeria-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 10px 8px 6px 8px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
-    }
-
-    .galeria-item .galeria-overlay span {
-      font-size: 0.45rem;
-      color: #fff;
-      font-weight: 300;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
-    .fav-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 4px 0;
-    }
-
+    /* ===== SOBRE ===== */
     .sobre-content {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       padding: 0 0 4px 0;
     }
-
     .sobre-content p {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       color: var(--text-secondary);
       line-height: 1.7;
       font-weight: 300;
     }
-
-    .sobre-content .sobre-card {
+    .sobre-card {
       background: var(--bg-card);
       border-radius: 10px;
-      padding: 14px;
+      padding: 12px 14px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-
-    .sobre-content .sobre-card h4 {
+    .sobre-card h4 {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       color: var(--text-primary);
-      font-size: 0.75rem;
-      margin-bottom: 4px;
+      font-size: 0.65rem;
+      margin-bottom: 3px;
     }
-
-    .sobre-content .sobre-card p {
-      font-size: 0.6rem;
+    .sobre-card p {
+      font-size: 0.5rem;
       color: var(--text-secondary);
     }
-
     .sobre-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 6px;
     }
-
     .sobre-stats .stat {
       background: var(--bg-card);
       border-radius: 10px;
-      padding: 12px;
+      padding: 10px;
       text-align: center;
       border: 1px solid var(--border-subtle);
       transition: all var(--transition-smooth);
     }
-
-    .sobre-stats .stat:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-2px);
-    }
-
+    .sobre-stats .stat:hover { border-color: var(--border-gold); transform: translateY(-2px); }
     .sobre-stats .stat .number {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--gold);
       display: block;
       font-family: 'Playfair Display', serif;
     }
-
     .sobre-stats .stat .label {
-      font-size: 0.45rem;
+      font-size: 0.35rem;
       color: var(--text-secondary);
       font-weight: 300;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
+    /* ===== CONTATO ===== */
     .contato-content {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       padding: 0 0 4px 0;
     }
-
     .contato-content p {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       color: var(--text-secondary);
       font-weight: 300;
       line-height: 1.7;
     }
-
     .contato-form {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-
     .contato-form input,
     .contato-form textarea {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 12px 14px;
+      border-radius: 8px;
+      padding: 8px 12px;
       color: var(--text-primary);
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       outline: none;
       transition: all var(--transition-smooth);
       width: 100%;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      min-height: 40px;
+      min-height: 34px;
     }
-
     .contato-form input:focus,
     .contato-form textarea:focus {
       border-color: var(--gold);
       box-shadow: 0 0 0 3px var(--gold-glow);
     }
-
     .contato-form input.error,
-    .contato-form textarea.error {
-      border-color: #ff4757;
-      animation: shake 0.3s ease;
-    }
-
+    .contato-form textarea.error { border-color: #ff4757; animation: shake 0.3s ease; }
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
       75% { transform: translateX(5px); }
     }
-
-    .contato-form textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
+    .contato-form textarea { min-height: 60px; resize: vertical; }
     .contato-form button {
       background: var(--gold);
       border: none;
-      border-radius: 10px;
-      padding: 12px;
+      border-radius: 8px;
+      padding: 8px;
       color: #0a0808;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 500;
       cursor: pointer;
       transition: all var(--transition-smooth);
       font-family: 'Inter', sans-serif;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      min-height: 40px;
+      min-height: 34px;
     }
-
-    .contato-form button:hover {
-      background: var(--gold-light);
-      transform: scale(1.02);
-    }
-
+    .contato-form button:hover { background: var(--gold-light); transform: scale(1.02); }
     .contato-social {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 6px 0;
+      gap: 16px;
+      padding: 4px 0;
     }
-
     .contato-social a {
       color: var(--text-muted);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-decoration: none;
       transition: all var(--transition-smooth);
     }
+    .contato-social a:hover { color: var(--gold); transform: scale(1.1); }
 
-    .contato-social a:hover {
-      color: var(--gold);
-      transform: scale(1.1);
+    /* ===== FOOTER ===== */
+    .footer-minimal {
+      margin-top: 2px;
+      padding: 2px 0 2px 0;
+      border-top: 1px solid var(--border-subtle);
+      flex-shrink: 0;
     }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-pill);
+      padding: 2px 4px;
+      border: 1px solid var(--border-subtle);
+      max-width: 380px;
+      margin: 0 auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .footer-links::-webkit-scrollbar { display: none; }
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.3rem;
+      text-decoration: none;
+      transition: all var(--transition-smooth);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 2px 5px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      min-height: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-links a:hover { color: var(--gold); background: var(--gold-glow); }
+    .footer-links a.active-link { color: var(--gold); background: var(--gold-glow); border: 1px solid var(--border-gold); }
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.25rem;
+      letter-spacing: 0.12em;
+      text-align: center;
+      opacity: 0.25;
+      font-weight: 200;
+      text-transform: uppercase;
+      padding-top: 1px;
+    }
+
+    /* ===== MENU ===== */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      display: none;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 12px;
+    }
+    .menu-overlay.active { display: flex; animation: fadeInMenu 0.25s ease; }
+    @keyframes fadeInMenu { from { opacity: 0; } to { opacity: 1; } }
+    .menu-panel {
+      background: rgba(18,16,14,0.92);
+      backdrop-filter: blur(24px);
+      border-radius: 12px;
+      padding: 14px 12px;
+      width: 100%;
+      max-width: 240px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-subtle);
+      animation: slideMenu 0.25s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    @keyframes slideMenu { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .menu-panel::-webkit-scrollbar { width: 2px; }
+    .menu-panel::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 8px;
+    }
+    .menu-header span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.65rem; color: var(--text-primary); }
+    .menu-close { background: transparent; border: none; color: var(--text-muted); font-size: 1rem; cursor: pointer; padding: 4px; transition: all var(--transition-smooth); }
+    .menu-close:hover { color: var(--text-primary); transform: rotate(90deg); }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      color: var(--text-secondary);
+      font-size: 0.55rem;
+      font-weight: 300;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      min-height: 28px;
+    }
+    .menu-item:hover { background: var(--gold-glow); color: var(--text-primary); transform: translateX(4px); }
+    .menu-item .icon { font-size: 0.75rem; width: 20px; text-align: center; }
+    .menu-item .item-count {
+      margin-left: auto;
+      background: var(--gold);
+      color: #0a0808;
+      font-size: 0.4rem;
+      font-weight: 500;
+      padding: 0 6px;
+      border-radius: 20px;
+      min-width: 18px;
+      text-align: center;
+    }
+    .menu-item .item-count.empty { background: var(--border-subtle); color: var(--text-muted); }
+    .menu-divider { height: 1px; background: var(--border-subtle); margin: 4px 0; }
+    .menu-theme {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 4px;
+      color: var(--text-secondary);
+      font-size: 0.55rem;
+      font-weight: 300;
+    }
+    .menu-theme .theme-switch {
+      background: var(--border-subtle);
+      border: none;
+      border-radius: 12px;
+      padding: 2px 6px;
+      font-size: 0.45rem;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      color: var(--text-secondary);
+      min-height: 20px;
+      min-width: 38px;
+    }
+    .menu-theme .theme-switch:hover { background: var(--gold-glow); color: var(--gold); }
 
     /* ===== MODAL ===== */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.92);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.92);
       backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
       z-index: 1000;
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 24px 16px;
+      padding: 16px;
     }
-
-    .modal-overlay.active {
-      display: flex;
-      animation: curtainOpen 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    @keyframes curtainOpen {
-      0% { opacity: 0; transform: scale(0.94); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+    .modal-overlay.active { display: flex; animation: curtainOpen 0.35s ease; }
+    @keyframes curtainOpen { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
     .modal-content {
       position: relative;
       width: auto;
-      height: min(76vh, 620px);
-      aspect-ratio: 9 / 16;
+      height: min(65vh, 480px);
+      aspect-ratio: 9/16;
       max-width: 90vw;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
       background: var(--bg-card);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-gold);
-      animation: slideModal 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.05s both;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--border-gold);
+      animation: slideModal 0.35s ease 0.05s both;
     }
-
-    @keyframes slideModal {
-      from { transform: translateY(16px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .modal-indicators {
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      right: 12px;
-      display: flex;
-      gap: 4px;
-      z-index: 20;
-      padding: 0;
-    }
-
-    .modal-indicators .m-dot {
-      flex: 1;
-      height: 3px;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.2);
-      transition: background var(--transition-smooth);
-      cursor: pointer;
-    }
-
-    .modal-indicators .m-dot.active-m-dot,
-    .modal-indicators .m-dot.filled-m-dot {
-      background: var(--gold);
-    }
+    @keyframes slideModal { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     .modal-close {
       position: absolute;
-      top: 18px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.35);
+      top: 10px;
+      right: 8px;
+      background: rgba(0,0,0,0.35);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255,255,255,0.04);
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      font-size: 0.85rem;
+      width: 26px;
+      height: 26px;
+      font-size: 0.7rem;
       cursor: pointer;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.6);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all var(--transition-smooth);
       z-index: 21;
     }
-
-    .modal-close:hover {
-      background: rgba(0, 0, 0, 0.5);
-      transform: rotate(90deg);
-      color: #fff;
-    }
+    .modal-close:hover { background: rgba(0,0,0,0.5); transform: rotate(90deg); color: #fff; }
 
     .modal-gallery-wrapper {
       width: 100%;
@@ -1551,7 +1162,6 @@
       overflow: hidden;
       position: relative;
     }
-
     .modal-gallery {
       display: flex;
       gap: 0;
@@ -1564,9 +1174,7 @@
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
     }
-
     .modal-gallery::-webkit-scrollbar { display: none; }
-
     .modal-gallery img {
       flex: 0 0 100%;
       width: 100%;
@@ -1577,25 +1185,22 @@
       display: block;
       background: #0a0808;
       filter: grayscale(100%) sepia(20%) contrast(1.1);
-      transition: filter 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: filter 0.5s ease;
     }
-
-    .modal-gallery img.active-modal-img {
-      filter: grayscale(0%) sepia(0%) contrast(1);
-    }
+    .modal-gallery img.active-modal-img { filter: grayscale(0%) sepia(0%) contrast(1); }
 
     .modal-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0,0,0,0.25);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255,255,255,0.04);
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      color: rgba(255, 255, 255, 0.35);
-      font-size: 1.1rem;
+      width: 24px;
+      height: 24px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.8rem;
       cursor: pointer;
       transition: all var(--transition-smooth);
       display: flex;
@@ -1604,11 +1209,10 @@
       z-index: 15;
       opacity: 0;
     }
-
     .modal-content:hover .modal-nav { opacity: 1; }
-    .modal-nav:hover { background: rgba(0, 0, 0, 0.45); color: #fff; }
-    .modal-nav.prev { left: 8px; }
-    .modal-nav.next { right: 8px; }
+    .modal-nav:hover { background: rgba(0,0,0,0.45); color: #fff; }
+    .modal-nav.prev { left: 4px; }
+    .modal-nav.next { right: 4px; }
 
     .modal-info-overlay {
       position: absolute;
@@ -1619,58 +1223,90 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 12px;
-      padding: 36px 14px 16px 16px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.4) 45%, transparent 100%);
+      gap: 8px;
+      padding: 24px 10px 12px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 45%, transparent 100%);
     }
-
-    .modal-text-block {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .modal-badge {
-      align-self: flex-start;
-      background: rgba(201, 169, 110, 0.2);
-      backdrop-filter: blur(6px);
-      color: var(--gold-light);
-      padding: 2px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 0.45rem;
-      font-weight: 400;
-      border: 1px solid rgba(201, 169, 110, 0.1);
-      letter-spacing: 0.1em;
-      text-transform: lowercase;
-      white-space: nowrap;
-      margin-bottom: 2px;
-      min-height: 24px;
-      display: flex;
-      align-items: center;
-    }
-
+    .modal-text-block { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
     .modal-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 700;
       font-style: italic;
       color: #fff;
-      letter-spacing: 0.01em;
       line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
-
+    .modal-classification {
+      font-size: 0.4rem;
+      color: var(--gold-light);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.3);
+      padding: 2px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(201,169,110,0.1);
+      width: fit-content;
+    }
     .modal-desc {
-      font-size: 0.6rem;
-      color: rgba(240, 235, 228, 0.7);
+      font-size: 0.5rem;
+      color: rgba(240,235,228,0.7);
       font-weight: 300;
-      line-height: 1.4;
-      font-style: italic;
+      line-height: 1.3;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin: 1px 0;
+    }
+    .modal-tag {
+      font-size: 0.25rem;
+      background: rgba(201,169,110,0.15);
+      border: 1px solid rgba(201,169,110,0.08);
+      padding: 0 5px;
+      border-radius: 8px;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+    .modal-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin: 2px 0;
+    }
+    .modal-details span {
+      font-size: 0.3rem;
+      color: rgba(240,235,228,0.6);
+      background: rgba(0,0,0,0.3);
+      padding: 1px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(201,169,110,0.06);
+      backdrop-filter: blur(4px);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+    .modal-badge {
+      align-self: flex-start;
+      background: rgba(201,169,110,0.2);
+      backdrop-filter: blur(6px);
+      color: var(--gold-light);
+      padding: 1px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 0.35rem;
+      border: 1px solid rgba(201,169,110,0.1);
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      min-height: 18px;
+      display: flex;
+      align-items: center;
     }
 
     .modal-fav-btn {
@@ -1680,356 +1316,217 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 1px;
       cursor: pointer;
       color: #fff;
       transition: all var(--transition-smooth);
     }
-
     .modal-fav-btn:hover { transform: scale(1.05); }
-
     .modal-fav-btn .fav-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-      transition: all var(--transition-smooth);
-    }
-
-    .modal-fav-btn:hover .fav-icon {
-      transform: scale(1.06);
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-fav-btn.favorited .fav-icon {
-      color: #ff4757;
-      background: rgba(255, 71, 87, 0.15);
-      border-color: rgba(255, 71, 87, 0.15);
-    }
-
-    .modal-fav-btn .fav-label {
-      font-size: 0.35rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 300;
-    }
-
-    .modal-classification {
-      font-size: 0.4rem;
-      color: rgba(201, 169, 110, 0.75);
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .modal-colors {
-      display: flex;
-      gap: 4px;
-      margin: 2px 0 1px 0;
-      flex-wrap: wrap;
-      min-height: 22px;
-    }
-
-    .modal-colors .color-chip-modal {
-      background: rgba(201, 169, 110, 0.2);
-      border: 1px solid rgba(201, 169, 110, 0.15);
-      padding: 2px 10px;
-      border-radius: 10px;
-      font-size: 0.5rem;
-      font-weight: 600;
-      color: var(--gold);
-      font-family: 'Inter', monospace;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(4px);
-      min-height: 20px;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .modal-actions {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .modal-info-btn {
-      background: none;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      color: #fff;
-      transition: all var(--transition-smooth);
-    }
-
-    .modal-info-btn .info-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-style: italic;
-      font-family: 'Playfair Display', serif;
-      color: var(--gold-light);
-      transition: all var(--transition-smooth);
-    }
-
-    .modal-info-btn:hover .info-icon,
-    .modal-info-btn.info-active .info-icon {
-      transform: scale(1.06);
-      background: var(--gold);
-      color: var(--bg-primary);
-    }
-
-    .modal-info-btn .info-label {
-      font-size: 0.32rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 300;
-      text-align: center;
-      max-width: 46px;
-      line-height: 1.2;
-    }
-
-    .tech-drawer {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 20;
-      max-height: 78%;
-      overflow-y: auto;
-      background: linear-gradient(180deg, rgba(10, 8, 8, 0.98) 0%, var(--bg-primary) 40%);
-      border-top: 1px solid var(--border-gold);
-      border-radius: 18px 18px 0 0;
-      padding: 10px 18px 22px 18px;
-      transform: translateY(100%);
-      transition: transform var(--transition-smooth);
-    }
-
-    .tech-drawer.tech-drawer-open { transform: translateY(0); }
-
-    .tech-drawer-handle {
       width: 32px;
-      height: 3px;
-      border-radius: 4px;
-      background: var(--border-gold);
-      margin: 2px auto 14px auto;
-    }
-
-    .tech-drawer-chips {
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.06);
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      transition: all var(--transition-smooth);
     }
+    .modal-fav-btn.favorited .fav-icon { color: #ff4757; background: rgba(255,71,87,0.15); border-color: rgba(255,71,87,0.15); }
+    .modal-fav-btn .fav-label { font-size: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 300; }
 
-    .tech-chip {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.42rem;
-      letter-spacing: 0.06em;
-      color: var(--gold-light);
-      background: var(--gold-glow);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-pill);
-      padding: 5px 12px;
-      white-space: nowrap;
-    }
-
-    .tech-chip strong {
-      color: var(--gold);
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-right: 4px;
-    }
-
-    .tech-drawer-text {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.72rem;
-      line-height: 1.6;
-      color: var(--text-primary);
-    }
-
-    .tech-drawer-text::before {
-      content: '"porquê funciona" — ';
-      color: var(--gold);
-      font-weight: 600;
-      font-style: normal;
-      font-size: 0.4rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    ::-webkit-scrollbar { width: 2px; height: 2px; }
-    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-
-    /* Responsividade */
+    /* ===== RESPONSIVO ===== */
     @media (max-height: 640px) {
-      .app { padding: 10px 12px 4px 12px; }
-      .header { padding: 2px 0 8px 0; min-height: 36px; }
-      .header-brand .brand-main { font-size: 1.2rem; }
-      .header-brand .brand-sub { font-size: 0.35rem; }
-      .hamburger { width: 32px; height: 32px; padding: 8px; }
-      .hamburger .bar { width: 14px; height: 1.5px; }
-      .hamburger .bar:nth-child(2) { width: 11px; }
-      .hamburger .bar:nth-child(3) { width: 8px; }
-      .home-chips { padding: 4px 0 4px 0; }
-      .home-chip { font-size: 0.5rem; padding: 4px 12px; min-height: 24px; }
-      .home-search-wrapper { margin: 4px 0 6px 0; min-height: 30px; }
-      .home-search-wrapper input { font-size: 0.6rem; padding: 6px 6px 6px 0; min-height: 28px; }
-      .home-search-wrapper input::placeholder { font-size: 0.55rem; }
-      .home-search-wrapper button { padding: 6px 14px; font-size: 0.45rem; min-height: 28px; }
-      .carousel-item { flex: 0 0 65%; min-width: 140px; aspect-ratio: 9/12; }
-      .item-overlay { padding: 20px 10px 12px 10px; }
-      .item-overlay h3 { font-size: 0.8rem; }
-      .item-overlay .item-badge { font-size: 0.35rem; padding: 2px 10px; min-height: 18px; }
-      .item-overlay .item-sub { font-size: 0.35rem; }
-      .item-overlay .color-chip { font-size: 0.35rem; padding: 1px 6px; min-height: 14px; }
-      .carousel-item .favorite-btn { width: 28px; height: 28px; font-size: 0.7rem; top: 8px; right: 8px; }
-      .carousel-indicators { padding: 2px 0 0 0; gap: 6px; }
-      .carousel-indicators .dot { width: 3px; height: 3px; }
-      .carousel-indicators .dot.active-dot { width: 16px; }
-      .footer-links a { font-size: 0.4rem; padding: 2px 8px; min-height: 20px; }
-      .footer-copy { font-size: 0.3rem; }
-      .modal-content { height: min(70vh, 480px); }
-      .modal-title { font-size: 0.95rem; }
-      .modal-desc { font-size: 0.55rem; }
-      .modal-colors .color-chip-modal { font-size: 0.4rem; padding: 1px 8px; min-height: 16px; }
-      .modal-fav-btn .fav-icon { width: 34px; height: 34px; font-size: 0.9rem; }
-      .modal-info-btn .info-icon { width: 34px; height: 34px; font-size: 0.75rem; }
-      .modal-classification { font-size: 0.36rem; }
-      .tech-drawer-text { font-size: 0.65rem; }
-      .modal-afiliate-btn { font-size: 0.5rem; padding: 6px 12px; }
-    }
-
-    @media (max-height: 560px) {
-      .carousel-item { flex: 0 0 55%; min-width: 120px; aspect-ratio: 9/11; }
-      .header-brand .brand-main { font-size: 1rem; }
-      .home-chip { font-size: 0.45rem; padding: 3px 10px; }
+      .app { padding: 6px 8px 2px 8px; }
+      .header { min-height: 28px; padding: 1px 0 4px 0; }
+      .header-brand .brand-main { font-size: 0.95rem; }
+      .cat-tab { font-size: 0.45rem; padding: 3px 8px; min-height: 18px; }
+      .search-clean-input { font-size: 0.5rem; padding: 4px 55px 4px 10px; min-height: 26px; }
+      .search-btn-wrapper button { font-size: 0.35rem; padding: 2px 6px; min-height: 18px; }
+      .chip { font-size: 0.35rem; padding: 1px 6px; min-height: 16px; }
+      .carousel-item { flex: 0 0 58%; min-width: 120px; }
+      .item-overlay h3 { font-size: 0.6rem; }
+      .item-tag { font-size: 0.16rem; }
+      .tendencias-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+      .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+      .fav-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+      .footer-links a { font-size: 0.25rem; padding: 1px 4px; min-height: 14px; }
+      .modal-content { height: min(60vh, 380px); }
+      .modal-title { font-size: 0.75rem; }
+      .modal-desc { font-size: 0.45rem; }
     }
 
     @media (max-width: 360px) {
-      .app { padding: 12px 10px 4px 10px; }
-      .header-brand .brand-main { font-size: 1.2rem; }
-      .carousel-item { flex: 0 0 65%; min-width: 130px; aspect-ratio: 9/12; }
-      .item-overlay h3 { font-size: 0.75rem; }
-      .home-chip { font-size: 0.5rem; padding: 4px 10px; }
-    }
-
-    @media (min-width: 500px) {
-      .carousel-item { flex: 0 0 55%; min-width: 240px; }
-      .galeria-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (min-width: 768px) {
-      .app { max-width: 600px; padding: 24px 24px 12px 24px; }
-      .header-brand .brand-main { font-size: 2rem; }
-      .carousel-item { flex: 0 0 45%; min-width: 280px; }
-      .galeria-grid { grid-template-columns: repeat(4, 1fr); }
-      .fav-grid { grid-template-columns: repeat(4, 1fr); }
+      .carousel-item { flex: 0 0 55%; min-width: 110px; }
+      .drop-option { font-size: 0.35rem; padding: 1px 5px; min-height: 16px; }
     }
   </style>
 </head>
 <body>
   <div class="app">
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <header class="header">
-      <div class="header-brand" id="homeBtn" role="button" tabindex="0" aria-label="Voltar para home">
+      <div class="header-brand" id="homeBtn">
         <span class="brand-main">HairOS<span>.</span></span>
         <span class="brand-sub">· catálogo ·</span>
       </div>
       <div class="header-actions">
-        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="badge-count" id="menuBadge" aria-label="Favoritos">0</span>
+        <button class="hamburger" id="hamburgerBtn">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="badge-count" id="menuBadge">0</span>
         </button>
       </div>
     </header>
 
-    <!-- ===== MENU ===== -->
-    <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menu">
+    <!-- MENU -->
+    <div class="menu-overlay" id="menuOverlay">
       <div class="menu-panel">
         <div class="menu-header">
           <span>✦ menu</span>
-          <button class="menu-close" id="menuClose" aria-label="Fechar menu">✕</button>
+          <button class="menu-close" id="menuClose">✕</button>
         </div>
-        <button class="menu-item" id="menuFavs">
-          <span class="icon">♥</span> favoritos
-          <span class="item-count empty" id="menuFavCount">0</span>
-        </button>
+        <button class="menu-item" id="menuHome"><span class="icon">✧</span> home</button>
+        <button class="menu-item" id="menuTendencias"><span class="icon">✦</span> tendências</button>
+        <button class="menu-item" id="menuGaleria"><span class="icon">◈</span> galeria</button>
+        <button class="menu-item" id="menuFavs"><span class="icon">♥</span> favoritos <span class="item-count empty" id="menuFavCount">0</span></button>
         <div class="menu-divider"></div>
-        <button class="menu-item" data-page="pageHome"><span class="icon">✧</span> home</button>
-        <button class="menu-item" data-page="pageTendencias"><span class="icon">✦</span> tendências</button>
-        <button class="menu-item" data-page="pageGaleria"><span class="icon">◈</span> galeria</button>
-        <button class="menu-item" data-page="pageSobre"><span class="icon">◎</span> sobre</button>
-        <button class="menu-item" data-page="pageContato"><span class="icon">✉</span> contato</button>
+        <button class="menu-item" id="menuSobre"><span class="icon">◎</span> sobre</button>
+        <button class="menu-item" id="menuContato"><span class="icon">✉</span> contato</button>
         <div class="menu-divider"></div>
         <div class="menu-theme">
           <span>🌙 tema</span>
-          <button class="theme-switch" id="menuThemeToggle" aria-label="Alternar tema">dark</button>
+          <button class="theme-switch" id="menuThemeToggle">dark</button>
         </div>
-        <div class="menu-divider"></div>
-        <div style="padding: 8px 8px 0 8px; font-size: 0.4rem; color: var(--text-muted); letter-spacing: 0.08em; text-align: center; opacity: 0.3;">HairOS · são paulo</div>
       </div>
     </div>
 
-    <!-- ===== HOME CHIPS ===== -->
-    <div class="home-chips" id="homeChips"></div>
-
-    <!-- ===== HOME SEARCH ===== -->
-    <div class="home-search-wrapper" id="homeSearchWrapper">
-      <input type="text" id="homeSearchInput" placeholder="buscar corte, cor, técnica..." autocomplete="off">
-      <button id="homeSearchBtn">buscar</button>
+    <!-- CATEGORY TABS -->
+    <div class="category-tabs" id="categoryTabs">
+      <button class="cat-tab active-cat" data-cat="all">todos <span class="count">(37)</span></button>
+      <button class="cat-tab" data-cat="Corte">cortes <span class="count">(13)</span></button>
+      <button class="cat-tab" data-cat="Coloração">cores <span class="count">(12)</span></button>
+      <button class="cat-tab" data-cat="Produto">produtos <span class="count">(12)</span></button>
     </div>
 
-    <!-- ===== PAGES ===== -->
+    <!-- BUSCADOR -->
+    <div class="search-clean-wrapper" id="searchWrapper">
+      <input type="text" class="search-clean-input" id="searchInput" placeholder="🔍 buscar estilo, corte, cor..." autocomplete="off">
+      <div class="search-btn-wrapper">
+        <button id="searchButton">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          buscar
+        </button>
+      </div>
+
+      <div class="search-dropdown" id="searchDropdown">
+        <div class="drop-group">
+          <span class="drop-label">📂 Categoria</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="all">Todos</span>
+            <span class="drop-option" data-valor="Corte">Cortes <span class="tag">13</span></span>
+            <span class="drop-option" data-valor="Coloração">Colorações <span class="tag">12</span></span>
+            <span class="drop-option" data-valor="Produto">Produtos <span class="tag">12</span></span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">📏 Comprimento</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="curto">Curto</span>
+            <span class="drop-option" data-valor="medio">Médio</span>
+            <span class="drop-option" data-valor="longo">Longo</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">🎭 Estilo</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="classico">Clássico</span>
+            <span class="drop-option" data-valor="moderno">Moderno</span>
+            <span class="drop-option" data-valor="alternativo">Alternativo</span>
+            <span class="drop-option" data-valor="romantico">Romântico</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">🎨 Família de Cor</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="morenas">Morenas</span>
+            <span class="drop-option" data-valor="loiras">Loiras</span>
+            <span class="drop-option" data-valor="ruivas">Ruivas</span>
+            <span class="drop-option" data-valor="grisalhas">Grisalhas</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">🛠️ Manutenção</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="baixa">Baixa</span>
+            <span class="drop-option" data-valor="media">Média</span>
+            <span class="drop-option" data-valor="alta">Alta</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">👤 Tipo de Rosto</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="Oval">Oval</span>
+            <span class="drop-option" data-valor="Redondo">Redondo</span>
+            <span class="drop-option" data-valor="Quadrado">Quadrado</span>
+            <span class="drop-option" data-valor="Alongado">Alongado</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">✨ Textura</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="Liso">Liso</span>
+            <span class="drop-option" data-valor="Ondulado">Ondulado</span>
+            <span class="drop-option" data-valor="Cacheado">Cacheado</span>
+          </div>
+        </div>
+        <div class="drop-group">
+          <span class="drop-label">📊 Volume</span>
+          <div class="drop-options">
+            <span class="drop-option" data-valor="Baixo">Baixo</span>
+            <span class="drop-option" data-valor="Médio">Médio</span>
+            <span class="drop-option" data-valor="Alto">Alto</span>
+          </div>
+        </div>
+        <button class="drop-clear" id="dropClear">✕ Limpar filtro</button>
+      </div>
+    </div>
+
+    <!-- CHIPS -->
+    <div class="chip-carousel-wrapper" id="chipWrapper">
+      <div class="chip-carousel" id="chipCarousel"></div>
+    </div>
+
+    <!-- PAGES -->
     <div class="page-container" id="pageContainer">
-      <div class="page active-page" id="pageHome" role="tabpanel">
+
+      <!-- HOME -->
+      <div class="page active-page" id="pageHome">
         <div class="unified-carousel-wrapper">
-          <div class="unified-carousel" id="unifiedCarousel" role="list"></div>
+          <div class="unified-carousel" id="unifiedCarousel"></div>
         </div>
-        <div class="carousel-indicators" id="indicators" role="tablist" aria-label="Indicadores do carrossel"></div>
+        <div class="carousel-indicators" id="indicators"></div>
       </div>
 
-      <div class="page" id="pageTendencias" role="tabpanel">
+      <!-- TENDÊNCIAS -->
+      <div class="page" id="pageTendencias">
         <div class="page-header">
-          <h2>tendências</h2>
+          <h2>✦ tendências <span class="page-count">(9 destaques)</span></h2>
           <button class="back-home" id="backHome2">← voltar</button>
         </div>
         <div class="page-scroll">
-          <div class="tendencias-list" id="tendenciasList"></div>
+          <div class="tendencias-grid" id="tendenciasGrid"></div>
         </div>
       </div>
 
-      <div class="page" id="pageGaleria" role="tabpanel">
+      <!-- GALERIA -->
+      <div class="page" id="pageGaleria">
         <div class="page-header">
-          <h2>galeria</h2>
+          <h2>◈ galeria <span class="page-count">(todos os estilos)</span></h2>
           <button class="back-home" id="backHome3">← voltar</button>
         </div>
         <div class="page-scroll">
@@ -2037,9 +1534,10 @@
         </div>
       </div>
 
-      <div class="page" id="pageFavoritos" role="tabpanel">
+      <!-- FAVORITOS -->
+      <div class="page" id="pageFavoritos">
         <div class="page-header">
-          <h2>♥ favoritos</h2>
+          <h2>♥ favoritos <span class="page-count" id="favCountHeader">(0)</span></h2>
           <button class="back-home" id="backHomeFav">← voltar</button>
         </div>
         <div class="page-scroll">
@@ -2047,18 +1545,25 @@
         </div>
       </div>
 
-      <div class="page" id="pageSobre" role="tabpanel">
+      <!-- SOBRE -->
+      <div class="page" id="pageSobre">
         <div class="page-header">
-          <h2>sobre</h2>
+          <h2>◎ sobre</h2>
           <button class="back-home" id="backHome4">← voltar</button>
         </div>
         <div class="page-scroll">
           <div class="sobre-content">
             <p><strong style="color:var(--text-primary);font-family:'Playfair Display',serif;font-style:italic;">HairOS</strong> é uma curadoria de estilos capilares — um catálogo vivo que reúne tendências, clássicos e inspirações.</p>
-            <div class="sobre-card"><h4>origem</h4><p>Nascida da estética atemporal da Vogue Paris dos anos 1960.</p></div>
-            <div class="sobre-card"><h4>missão</h4><p>Inspirar e revelar os estilos mais atuais.</p></div>
+            <div class="sobre-card">
+              <h4>origem</h4>
+              <p>Nascida da estética atemporal da Vogue Paris dos anos 1960, a HairOS reúne 37 estilos entre cortes, colorações e produtos.</p>
+            </div>
+            <div class="sobre-card">
+              <h4>missão</h4>
+              <p>Inspirar e revelar os estilos mais atuais através de uma curadoria visual e técnica.</p>
+            </div>
             <div class="sobre-stats">
-              <div class="stat"><span class="number">25</span><span class="label">estilos</span></div>
+              <div class="stat"><span class="number">37</span><span class="label">estilos</span></div>
               <div class="stat"><span class="number">4.8</span><span class="label">★ avaliação</span></div>
               <div class="stat"><span class="number" id="favCountStat">0</span><span class="label">♥ favoritos</span></div>
             </div>
@@ -2066,18 +1571,19 @@
         </div>
       </div>
 
-      <div class="page" id="pageContato" role="tabpanel">
+      <!-- CONTATO -->
+      <div class="page" id="pageContato">
         <div class="page-header">
-          <h2>contato</h2>
+          <h2>✉ contato</h2>
           <button class="back-home" id="backHome5">← voltar</button>
         </div>
         <div class="page-scroll">
           <div class="contato-content">
-            <p>Envie uma mensagem para a equipe HairOS.</p>
+            <p>Envie uma mensagem para a equipe HairOS. Respondemos em até 24h.</p>
             <form class="contato-form" id="contatoForm" novalidate>
-              <input type="text" id="contatoNome" placeholder="seu nome" required aria-required="true">
-              <input type="email" id="contatoEmail" placeholder="seu e-mail" required aria-required="true">
-              <textarea id="contatoMensagem" placeholder="sua mensagem..." required aria-required="true"></textarea>
+              <input type="text" id="contatoNome" placeholder="seu nome" required>
+              <input type="email" id="contatoEmail" placeholder="seu e-mail" required>
+              <textarea id="contatoMensagem" placeholder="sua mensagem..." required></textarea>
               <button type="submit">enviar</button>
             </form>
             <div class="contato-social">
@@ -2086,150 +1592,51 @@
               <a href="#" aria-label="Facebook">📘</a>
               <a href="#" aria-label="WhatsApp">📱</a>
             </div>
-            <p style="text-align:center;font-size:0.5rem;color:var(--text-muted);letter-spacing:0.05em;">contato@hairos.com</p>
+            <p style="text-align:center;font-size:0.45rem;color:var(--text-muted);letter-spacing:0.05em;">contato@hairos.com</p>
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <div class="footer-minimal">
-      <div class="footer-links" id="footerLinks" role="tablist">
-        <a class="active-link" data-page="pageHome" role="tab" aria-selected="true">home</a>
-        <a data-page="pageTendencias" role="tab" aria-selected="false">tendências</a>
-        <a data-page="pageGaleria" role="tab" aria-selected="false">galeria</a>
-        <a data-page="pageFavoritos" role="tab" aria-selected="false">♥ fav</a>
-        <a data-page="pageSobre" role="tab" aria-selected="false">sobre</a>
-        <a data-page="pageContato" role="tab" aria-selected="false">contato</a>
+      <div class="footer-links" id="footerLinks">
+        <a class="active-link" data-page="pageHome">home</a>
+        <a data-page="pageTendencias">tendências</a>
+        <a data-page="pageGaleria">galeria</a>
+        <a data-page="pageFavoritos">♥ fav</a>
+        <a data-page="pageSobre">sobre</a>
+        <a data-page="pageContato">contato</a>
       </div>
-      <div class="footer-copy">© 2026 <a href="#">HairOS</a> · são paulo</div>
+      <div class="footer-copy">© 2026 HairOS · 37 estilos</div>
     </div>
 
   </div>
 
-  <!-- ===== MODAL ===== -->
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Detalhes do estilo">
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
-      <div class="modal-indicators" id="modalIndicators" role="tablist"></div>
-      <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+      <button class="modal-close" id="modalClose">✕</button>
       <div class="modal-gallery-wrapper">
         <div class="modal-gallery" id="modalGallery"></div>
-        <button class="modal-nav prev" id="modalPrev" aria-label="Anterior">‹</button>
-        <button class="modal-nav next" id="modalNext" aria-label="Próximo">›</button>
+        <button class="modal-nav prev" id="modalPrev">‹</button>
+        <button class="modal-nav next" id="modalNext">›</button>
         <div class="modal-info-overlay">
           <div class="modal-text-block">
-            <span class="modal-classification" id="modalClassification">corte · médio · clássico</span>
-            <div class="modal-colors" id="modalColors"></div>
-            <span class="modal-badge" id="modalBadge">tendência</span>
+            <span class="modal-classification" id="modalClassification">corte · médio</span>
             <span class="modal-title" id="modalTitle">Velvet Bob</span>
-            <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves que emolduram o rosto.</span>
+            <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves.</span>
+            <div class="modal-tags" id="modalTags"></div>
+            <div class="modal-details" id="modalDetails"></div>
+            <span class="modal-badge" id="modalBadge">tendência</span>
           </div>
-          <div class="modal-actions">
-            <button class="modal-fav-btn" id="modalFavBtn" aria-label="Favoritar">
-              <span class="fav-icon">♡</span>
-              <span class="fav-label">favoritar</span>
-            </button>
-            <button class="modal-info-btn" id="modalInfoBtn" aria-label="Ver ficha técnica" aria-expanded="false">
-              <span class="info-icon">i</span>
-              <span class="info-label">porquê funciona</span>
-            </button>
-            <!-- ===== BOTÃO AFILIADO ===== -->
-            <a class="modal-afiliate-btn" id="modalAfiliateBtn" href="#" target="_blank" style="display:none;">
-              🛒 Ver no ML
-            </a>
-          </div>
+          <button class="modal-fav-btn" id="modalFavBtn">
+            <span class="fav-icon">♡</span>
+            <span class="fav-label">favoritar</span>
+          </button>
         </div>
       </div>
-
-      <div class="tech-drawer" id="techDrawer" role="region" aria-label="Ficha técnica">
-        <div class="tech-drawer-handle" id="techDrawerHandle"></div>
-        <div class="tech-drawer-chips" id="techDrawerChips"></div>
-        <p class="tech-drawer-text" id="techDrawerText"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== PAINEL DE BUSCA ===== -->
-  <div class="search-overlay" id="searchOverlay">
-    <div class="search-panel">
-      <div class="panel-header">
-        <h2>✦ filtrar</h2>
-        <button class="panel-close" id="searchCloseBtn">✕</button>
-      </div>
-
-      <input type="text" class="panel-input" id="panelSearchInput" placeholder="buscar por nome...">
-
-      <div class="categoria-title">Categorias</div>
-      <div class="categoria-list" id="categoriaList">
-        <div class="categoria-item active" data-cat="all">
-          <span class="radio"></span> Todos
-        </div>
-        <div class="categoria-item" data-cat="Corte">
-          <span class="radio"></span> Cortes
-        </div>
-        <div class="categoria-item" data-cat="Coloração">
-          <span class="radio"></span> Cores
-        </div>
-        <div class="categoria-item" data-cat="Produtos">
-          <span class="radio"></span> Produtos
-        </div>
-        <div class="categoria-item" data-cat="comprimento">
-          <span class="radio"></span> Comprimento
-        </div>
-        <div class="categoria-item" data-cat="estilo">
-          <span class="radio"></span> Estilo
-        </div>
-        <div class="categoria-item" data-cat="tom">
-          <span class="radio"></span> Tom de Cabelo
-        </div>
-      </div>
-
-      <div class="categoria-title">Subcategorias</div>
-      <div class="sub-container show" id="subTodos">
-        <span class="sub-chip active">Todos</span>
-      </div>
-      <div class="sub-container" id="subCortes">
-        <span class="sub-chip">Curto</span>
-        <span class="sub-chip">Médio</span>
-        <span class="sub-chip">Longo</span>
-        <span class="sub-chip">Clássico</span>
-        <span class="sub-chip">Moderno</span>
-        <span class="sub-chip">Alternativo</span>
-        <span class="sub-chip">Romântico</span>
-      </div>
-      <div class="sub-container" id="subCores">
-        <span class="sub-chip">Ombré</span>
-        <span class="sub-chip">Balayage</span>
-        <span class="sub-chip">Babylights</span>
-        <span class="sub-chip">Highlights</span>
-        <span class="sub-chip">Contour</span>
-        <span class="sub-chip">Californianas</span>
-      </div>
-      <div class="sub-container" id="subProdutos">
-        <span class="sub-chip">Shampoo</span>
-        <span class="sub-chip">Condicionador</span>
-        <span class="sub-chip">Máscara</span>
-        <span class="sub-chip">Finalizador</span>
-      </div>
-      <div class="sub-container" id="subComprimento">
-        <span class="sub-chip">Curto</span>
-        <span class="sub-chip">Médio</span>
-        <span class="sub-chip">Longo</span>
-      </div>
-      <div class="sub-container" id="subEstilo">
-        <span class="sub-chip">Clássico</span>
-        <span class="sub-chip">Moderno</span>
-        <span class="sub-chip">Alternativo</span>
-        <span class="sub-chip">Romântico</span>
-      </div>
-      <div class="sub-container" id="subTom">
-        <span class="sub-chip">Morenas</span>
-        <span class="sub-chip">Loiras</span>
-        <span class="sub-chip">Ruivas</span>
-        <span class="sub-chip">Grisalhas</span>
-      </div>
-
-      <button class="btn-apply" id="applyFilters">Aplicar Filtros</button>
     </div>
   </div>
 
@@ -2238,654 +1645,670 @@
       'use strict';
 
       // ============================================================
-      // 37 ITENS (25 ESTILOS + 12 PRODUTOS)
+      // CONFIGURAÇÃO DE TAMANHOS DAS IMAGENS
+      // ============================================================
+      const IMAGE_SIZES = {
+        carousel: 'w=400&h=600',
+        tendencias: 'w=300&h=400',
+        galeria: 'w=200&h=250',
+        favoritos: 'w=300&h=400',
+        modal: 'w=800&h=1067'
+      };
+
+      // ============================================================
+      // 37 CARDS COMPLETOS COM TAGS E CORES
       // ============================================================
       const styleData = {
-        // ---------- CORTES (13) ----------
-        'velvet bob': {
+        // ===== 13 CORTES =====
+        'velvet-bob': {
           title: 'Velvet Bob',
           desc: 'Clássico moderno com camadas suaves que emolduram o rosto.',
           badge: 'tendência',
+          categoria: 'Corte',
           size: 'medio',
           style: 'classico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais e quadrados',
+          colorFamily: 'morenas',
           manutencao: 'baixa',
-          porque: 'As camadas internas suavizam o ângulo da mandíbula sem tirar volume. O comprimento na altura dos ombros permite manutenção simples, sem depender de escova diária.',
+          rosto: 'Oval, Quadrado',
+          textura: 'Liso, Ondulado',
+          volume: 'Médio',
           cores: ['6.0', '7.0'],
-          img: 'https://i.pinimg.com/736x/68/7f/b6/687fb633d303e8038f244d0a3af1c5f4.jpg',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          tags: ['corte', 'médio', 'clássico'],
+          img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'pixie cut': {
+        'pixie-cut': {
           title: 'Pixie Cut',
           desc: 'Corte curto e prático que valoriza os traços faciais.',
           badge: 'ousado',
+          categoria: 'Corte',
           size: 'curto',
           style: 'moderno',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais e alongados',
+          colorFamily: 'loiras',
           manutencao: 'alta',
-          porque: 'Sem comprimento para distrair, o foco visual migra para os olhos e a estrutura óssea — por isso pede traços bem definidos. Exige retoque a cada 4 a 6 semanas para manter a forma.',
+          rosto: 'Oval, Alongado',
+          textura: 'Liso, Ondulado',
+          volume: 'Baixo',
           cores: ['5.0', '6.0'],
-          img: 'https://i.pinimg.com/736x/66/93/c9/6693c98fd01f01847dcfc464cbe76669.jpg',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          tags: ['corte', 'curto', 'moderno'],
+          img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
-        'wolf cut': {
+        'wolf-cut': {
           title: 'Wolf Cut',
           desc: 'Camadas intensas e movimento selvagem. Atitude moderna.',
           badge: 'selvagem',
+          categoria: 'Corte',
           size: 'medio',
           style: 'moderno',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos redondos, fios com volume natural',
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'As camadas curtas no topo criam textura que afina visualmente o contorno do rosto redondo. Funciona melhor em fios com ondulação natural, que sustentam o movimento sem esforço.',
+          rosto: 'Redondo',
+          textura: 'Ondulado, Cacheado',
+          volume: 'Alto',
           cores: ['7.0', '8.0'],
+          tags: ['corte', 'médio', 'moderno'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'side cut': {
+        'side-cut': {
           title: 'Side Cut',
           desc: 'Rasurado de um lado com contraste marcante. Estilo ousado.',
           badge: 'radical',
+          categoria: 'Corte',
           size: 'curto',
           style: 'alternativo',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais, fios grossos',
+          colorFamily: 'morenas',
           manutencao: 'alta',
-          porque: 'O rapado lateral expõe a linha do crânio, por isso pede fios mais grossos para que o contraste com o comprimento oposto tenha definição. Requer raspagem de manutenção a cada 2 a 3 semanas.',
+          rosto: 'Oval',
+          textura: 'Liso, Ondulado',
+          volume: 'Baixo',
           cores: ['5.0', '6.1', '7.1'],
+          tags: ['corte', 'curto', 'alternativo'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'short bob': {
+        'short-bob': {
           title: 'Short Bob',
           desc: 'Bob curto na altura do queixo. Linhas retas e elegância.',
           badge: 'clássico',
+          categoria: 'Corte',
           size: 'curto',
           style: 'classico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais e quadrados',
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'O corte reto na altura do queixo cria uma linha horizontal que estrutura o rosto. Fios lisos ou levemente ondulados sustentam melhor o acabamento geométrico.',
+          rosto: 'Oval, Quadrado',
+          textura: 'Liso',
+          volume: 'Médio',
           cores: ['6.0', '7.0'],
+          tags: ['corte', 'curto', 'clássico'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
-        'kitty cut': {
+        'kitty-cut': {
           title: 'Kitty Cut',
           desc: 'Camadas suaves e franja lateral. Estilo doce e moderno.',
           badge: 'doce',
+          categoria: 'Corte',
           size: 'medio',
           style: 'romantico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais, fios finos a médios',
+          colorFamily: 'loiras',
           manutencao: 'baixa',
-          porque: 'A franja lateral suaviza a testa e as camadas leves dão movimento sem exigir escova estruturada — ideal para quem busca praticidade com delicadeza no dia a dia.',
+          rosto: 'Oval',
+          textura: 'Liso, Ondulado',
+          volume: 'Médio',
           cores: ['7.0', '7.3'],
+          tags: ['corte', 'médio', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'nirvana cut': {
+        'nirvana-cut': {
           title: 'Nirvana Cut',
           desc: 'Grunge com desconexão e textura. Atitude rock.',
           badge: 'grunge',
+          categoria: 'Corte',
           size: 'medio',
           style: 'alternativo',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos ovais e alongados, fios com textura natural',
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'A desconexão entre camadas cria contraste de comprimento que quebra a uniformidade do fio liso. Funciona melhor em cabelos que já têm alguma textura natural.',
+          rosto: 'Oval, Alongado',
+          textura: 'Ondulado, Cacheado',
+          volume: 'Médio',
           cores: ['5.0', '6.0', '7.4'],
+          tags: ['corte', 'médio', 'alternativo'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'long bob': {
+        'long-bob': {
           title: 'Long Bob',
           desc: 'Bob alongado entre o queixo e os ombros. Versátil.',
           badge: 'elegante',
+          categoria: 'Corte',
           size: 'longo',
           style: 'classico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'todos os formatos de rosto',
+          colorFamily: 'loiras',
           manutencao: 'baixa',
-          porque: 'Por ficar entre o queixo e os ombros, é o comprimento mais versátil da categoria bob — alonga levemente o rosto redondo e mantém a estrutura em rostos ovais, com manutenção simples.',
+          rosto: 'Todos',
+          textura: 'Liso, Ondulado',
+          volume: 'Médio',
           cores: ['7.0', '8.0'],
+          tags: ['corte', 'longo', 'clássico'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
-        'butterfly cut': {
+        'butterfly-cut': {
           title: 'Butterfly Cut',
           desc: 'Camadas leves que criam movimento, como asas de borboleta.',
           badge: 'leve',
+          categoria: 'Corte',
           size: 'longo',
           style: 'romantico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'rostos redondos e quadrados',
+          colorFamily: 'loiras',
           manutencao: 'média',
-          porque: 'Camadas em ângulo ascendente ao redor do rosto criam movimento e afinam o contorno — especialmente eficazes para reduzir volume nas laterais sem perder comprimento.',
+          rosto: 'Redondo, Quadrado',
+          textura: 'Ondulado, Cacheado',
+          volume: 'Alto',
           cores: ['7.0', '7.3', '8.0'],
+          tags: ['corte', 'longo', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'blunt cut': {
+        'blunt-cut': {
           title: 'Blunt Cut',
           desc: 'Corte reto e marcante, sem camadas. Visual moderno.',
           badge: 'reto',
+          categoria: 'Corte',
           size: 'medio',
           style: 'moderno',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'fios lisos e saudáveis, rostos ovais e alongados',
+          colorFamily: 'morenas',
           manutencao: 'baixa',
-          porque: 'A ausência de camadas concentra a densidade nas pontas, o que exige fios saudáveis — o corte reto evidencia qualquer irregularidade na saúde capilar.',
+          rosto: 'Oval, Alongado',
+          textura: 'Liso',
+          volume: 'Médio',
           cores: ['6.0', '7.0', '8.0'],
+          tags: ['corte', 'médio', 'moderno'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
-        'octopus cut': {
+        'octopus-cut': {
           title: 'Octopus Cut',
           desc: 'Camadas curtas no topo e longas nas pontas. Volume.',
           badge: 'volumoso',
+          categoria: 'Corte',
           size: 'longo',
           style: 'alternativo',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'fios finos que precisam de volume',
+          colorFamily: 'ruivas',
           manutencao: 'média',
-          porque: 'Camadas curtas concentradas no topo criam volume na raiz enquanto o comprimento é preservado nas pontas — resolve o "murchamento" comum em cortes muito uniformes.',
+          rosto: 'Oval',
+          textura: 'Ondulado, Cacheado',
+          volume: 'Alto',
           cores: ['5.0', '6.34', '7.4'],
+          tags: ['corte', 'longo', 'alternativo'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'shaggy hair': {
+        'shaggy-hair': {
           title: 'Shaggy Hair',
           desc: 'Visual despojado com muitas camadas e textura.',
           badge: 'despojado',
+          categoria: 'Corte',
           size: 'medio',
           style: 'alternativo',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'fios ondulados ou cacheados',
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'Múltiplas camadas soltas dependem de uma textura natural para não parecer desalinhado. Em fios lisos, costuma precisar de finalização com babyliss para reproduzir o movimento.',
+          rosto: 'Redondo',
+          textura: 'Ondulado, Cacheado',
+          volume: 'Alto',
           cores: ['6.0', '7.3', '8.0'],
+          tags: ['corte', 'médio', 'alternativo'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
-        'curtain bangs': {
+        'curtain-bangs': {
           title: 'Curtain Bangs',
           desc: 'Franja cortina que abre no meio, emoldurando o rosto.',
           badge: 'retrô',
+          categoria: 'Corte',
           size: 'longo',
           style: 'romantico',
-          colorCategory: null,
-          categoria: 'Corte',
-          indicado: 'testas largas, rostos redondos e quadrados',
+          colorFamily: 'loiras',
           manutencao: 'média',
-          porque: 'A franja central dividida ao meio quebra visualmente a largura da testa e suaviza ângulos, mas pede escova ou babyliss regular para manter a abertura nas pontas.',
+          rosto: 'Redondo, Quadrado',
+          textura: 'Liso, Ondulado',
+          volume: 'Médio',
           cores: ['7.0', '7.3', '8.1'],
+          tags: ['corte', 'longo', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
 
-        // ---------- COLORAÇÕES (12) ----------
+        // ===== 12 COLORAÇÕES =====
         'ombre-tiger-eye': {
           title: 'Ombré Tiger Eye',
           desc: 'Transição suave do escuro para o dourado. Efeito olho de tigre.',
           badge: 'ombré',
-          size: 'longo',
-          style: 'moderno',
-          colorCategory: 'morenas',
           categoria: 'Coloração',
-          indicado: 'subtom quente',
+          size: null,
+          style: null,
+          colorFamily: 'morenas',
           manutencao: 'baixa',
-          porque: 'A transição gradual do escuro para o dourado nasce sem marcação de raiz, o que espaça o retoque para 3 a 4 meses. A técnica harmoniza melhor em subtom quente.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['5.0', '7.3', '8.0'],
+          tags: ['coloração', 'morenas', 'ombré'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'babylights-morena': {
           title: 'Babylights Morena',
-          desc: 'Luzes finíssimas que imitam o efeito natural do sol nos cabelos.',
+          desc: 'Luzes finíssimas que imitam o efeito natural do sol.',
           badge: 'babylights',
-          size: 'medio',
-          style: 'classico',
-          colorCategory: 'morenas',
           categoria: 'Coloração',
-          indicado: 'todos os subtons',
+          size: null,
+          style: null,
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'Mechas finíssimas aplicadas fio a fio imitam o clareamento solar natural. Por serem sutis, o retoque de raiz pode ser espaçado a cada 3 meses sem comprometer o efeito.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['6.0', '7.0', '8.0'],
+          tags: ['coloração', 'morenas', 'babylights'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
         'contour-highlights': {
           title: 'Contour Highlights',
           desc: 'Luzes estratégicas que valorizam o formato do rosto.',
           badge: 'contour',
-          size: 'medio',
-          style: 'moderno',
-          colorCategory: 'morenas',
           categoria: 'Coloração',
-          indicado: 'subtom neutro a quente',
+          size: null,
+          style: null,
+          colorFamily: 'morenas',
           manutencao: 'média',
-          porque: 'As luzes são posicionadas estrategicamente ao redor do rosto — testa, têmporas e queixo — em uma técnica de colorimetria aplicada, e não apenas mechas soltas.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['5.0', '7.3', '8.0'],
+          tags: ['coloração', 'morenas', 'contour'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'balayage-loira': {
           title: 'Balayage Loira',
           desc: 'Técnica de luzes naturais com efeito degradê e movimento.',
           badge: 'balayage',
-          size: 'longo',
-          style: 'moderno',
-          colorCategory: 'loiras',
           categoria: 'Coloração',
-          indicado: 'subtom quente a neutro',
+          size: null,
+          style: null,
+          colorFamily: 'loiras',
           manutencao: 'baixa',
-          porque: 'A técnica pintada à mão livre, sem papel alumínio, cria uma transição orgânica que cresce sem marcação abrupta de raiz — ideal para espaçar as visitas ao salão.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['7.0', '8.0', '7.3'],
+          tags: ['coloração', 'loiras', 'balayage'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
         'californianas': {
           title: 'Californianas',
-          desc: 'Luzes que criam um efeito de sol californiano, com contraste suave.',
+          desc: 'Luzes que criam um efeito de sol californiano.',
           badge: 'californianas',
-          size: 'longo',
-          style: 'romantico',
-          colorCategory: 'loiras',
           categoria: 'Coloração',
-          indicado: 'subtom quente, fios morenos claros a médios',
+          size: null,
+          style: null,
+          colorFamily: 'loiras',
           manutencao: 'baixa',
-          porque: 'Mechas claras concentradas nas pontas e no contorno do rosto recriam o clareamento natural do sol, com a raiz preservada — resultado suave que dispensa retoque frequente.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['7.0', '8.0', '8.1'],
+          tags: ['coloração', 'loiras', 'californianas'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'mechas-contour': {
           title: 'Mechas Contour',
           desc: 'Luzes que contornam o rosto, iluminando e valorizando.',
           badge: 'contour',
-          size: 'medio',
-          style: 'moderno',
-          colorCategory: 'loiras',
           categoria: 'Coloração',
-          indicado: 'rostos ovais e redondos, subtom quente',
+          size: null,
+          style: null,
+          colorFamily: 'loiras',
           manutencao: 'média',
-          porque: 'Luzes concentradas nas linhas do rosto — moldura, mandíbula, têmporas — usam a colorimetria para reduzir o volume aparente em áreas específicas.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['8.0', '8.1', '10.12'],
+          tags: ['coloração', 'loiras', 'contour'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
         'highlights-loira': {
           title: 'Highlights Loira',
           desc: 'Luzes suaves que adicionam dimensão e brilho ao cabelo loiro.',
           badge: 'highlights',
-          size: 'medio',
-          style: 'classico',
-          colorCategory: 'loiras',
           categoria: 'Coloração',
-          indicado: 'subtom frio a neutro',
+          size: null,
+          style: null,
+          colorFamily: 'loiras',
           manutencao: 'alta',
-          porque: 'Mechas tradicionais com papel alumínio distribuídas por toda a cabeça criam contraste uniforme, mas exigem retoque de raiz a cada 6 a 8 semanas.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['7.0', '8.0', '7.3'],
+          tags: ['coloração', 'loiras', 'highlights'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'cherry-cola': {
           title: 'Cherry Cola',
           desc: 'Tom ruivo intenso com nuances de cereja e cola. Vibrante.',
           badge: 'cherry',
-          size: 'medio',
-          style: 'moderno',
-          colorCategory: 'ruivas',
           categoria: 'Coloração',
-          indicado: 'subtom frio a neutro, pele clara a média',
+          size: null,
+          style: null,
+          colorFamily: 'ruivas',
           manutencao: 'alta',
-          porque: 'Pigmentos vermelhos são os que mais desbotam com lavagem e sol. A intensidade do cherry cola exige shampoo sem sulfato e reaplicação de cor a cada 4 a 5 semanas.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['5.0', '6.34', '7.4'],
+          tags: ['coloração', 'ruivas', 'cherry'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
         'cowgirl-copper': {
           title: 'Cowgirl Copper',
           desc: 'Tom cobre intenso com inspiração western. Moderno e ousado.',
           badge: 'copper',
-          size: 'longo',
-          style: 'alternativo',
-          colorCategory: 'ruivas',
           categoria: 'Coloração',
-          indicado: 'subtom quente, pele média a morena',
+          size: null,
+          style: null,
+          colorFamily: 'ruivas',
           manutencao: 'alta',
-          porque: 'O cobre é um dos tons mais instáveis em colorimetria — desbota rápido em cabelos porosos, por isso pede matização e reforço de cor a cada mês.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['6.0', '7.4', '7.3'],
+          tags: ['coloração', 'ruivas', 'copper'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'ruivo-doce-leite': {
           title: 'Ruivo Doce de Leite',
-          desc: 'Tom ruivo com nuances carameladas e suaves. Doce e sofisticado.',
+          desc: 'Tom ruivo com nuances carameladas e suaves. Sofisticado.',
           badge: 'doce leite',
-          size: 'medio',
-          style: 'romantico',
-          colorCategory: 'ruivas',
           categoria: 'Coloração',
-          indicado: 'subtom quente, pele clara a média',
+          size: null,
+          style: null,
+          colorFamily: 'ruivas',
           manutencao: 'média',
-          porque: 'O tom caramelado nasce da mistura de pigmentos ruivos com dourados, o que suaviza o contraste com a raiz e permite um crescimento menos perceptível que ruivos puros.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['6.34', '7.3', '7.0'],
+          tags: ['coloração', 'ruivas', 'doce leite'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
         'grisalhos-frios': {
           title: 'Grisalhos Frios',
           desc: 'Transição natural com tons de cinza prateado. Sofisticação.',
           badge: 'frios',
-          size: 'medio',
-          style: 'moderno',
-          colorCategory: 'grisalhas',
           categoria: 'Coloração',
-          indicado: 'subtom frio, fios brancos ou grisalhos',
+          size: null,
+          style: null,
+          colorFamily: 'grisalhas',
           manutencao: 'média',
-          porque: 'A matização com base violeta neutraliza o amarelamento natural do fio branco, mantendo o efeito "prateado" — requer shampoo matizador quinzenal.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['7.1', '8.1', '10.12'],
+          tags: ['coloração', 'grisalhas', 'frios'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face']
         },
         'grisalhos-quentes': {
           title: 'Grisalhos Quentes',
           desc: 'Transição com tons de cinza mais quentes e acinzentados.',
           badge: 'quentes',
-          size: 'curto',
-          style: 'classico',
-          colorCategory: 'grisalhas',
           categoria: 'Coloração',
-          indicado: 'subtom quente, em transição capilar',
+          size: null,
+          style: null,
+          colorFamily: 'grisalhas',
           manutencao: 'média',
-          porque: 'Mechas com base dourada suavizam a transição entre o cabelo pigmentado e o grisalho nascente, tornando o processo de "des-tintura" menos abrupto visualmente.',
+          rosto: null,
+          textura: null,
+          volume: null,
           cores: ['7.1', '7.3', '8.1'],
+          tags: ['coloração', 'grisalhas', 'quentes'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
-          gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=800&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=400&fit=crop&crop=face'
-          ]
+          gallery: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face']
         },
 
-        // ---------- PRODUTOS (12) ----------
-        'shampoo-revitalizante': {
-          title: 'Shampoo Revitalizante',
-          desc: 'Limpeza suave que preserva a cor e o brilho.',
-          badge: 'revitalizante',
-          categoria: 'Produtos',
-          subcategoria: 'Shampoo',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        // ===== 12 PRODUTOS =====
+        'shampoo-oleo-argao': {
+          title: 'Shampoo Óleo de Argan',
+          desc: 'Shampoo nutritivo com óleo de argan para fios secos.',
+          badge: 'nutritivo',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Médio, Alto',
+          cores: [],
+          tags: ['produto', 'shampoo', 'nutrição'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'shampoo-matizador': {
-          title: 'Shampoo Matizador',
-          desc: 'Neutraliza tons indesejados (amarelo/laranja).',
-          badge: 'matizador',
-          categoria: 'Produtos',
-          subcategoria: 'Shampoo',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'condicionador-reparador': {
+          title: 'Condicionador Reparador',
+          desc: 'Condicionador com queratina para reparar pontas danificadas.',
+          badge: 'reparador',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Médio',
+          cores: [],
+          tags: ['produto', 'condicionador', 'reparação'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'shampoo-anti-frizz': {
-          title: 'Shampoo Anti-Frizz',
-          desc: 'Controla o frizz e mantém a disciplina dos fios.',
-          badge: 'anti-frizz',
-          categoria: 'Produtos',
-          subcategoria: 'Shampoo',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
-        },
-        'condicionador-hidratante': {
-          title: 'Condicionador Hidratante',
-          desc: 'Repõe a umidade e desembaraça com leveza.',
+        'mascara-capilar-umbium': {
+          title: 'Máscara Capilar Umbiúm',
+          desc: 'Máscara hidratante com umbiúm para cabelos crespos.',
           badge: 'hidratante',
-          categoria: 'Produtos',
-          subcategoria: 'Condicionador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Cacheado, Crespo',
+          volume: 'Alto',
+          cores: [],
+          tags: ['produto', 'máscara', 'hidratação'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'condicionador-queratina': {
-          title: 'Condicionador de Queratina',
-          desc: 'Reconstrói a fibra capilar e dá força.',
-          badge: 'queratina',
-          categoria: 'Produtos',
-          subcategoria: 'Condicionador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'serum-brilho-definicao': {
+          title: 'Sérum Brilho e Definição',
+          desc: 'Sérum que define cachos e dá brilho intenso.',
+          badge: 'definidor',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Cacheado, Crespo',
+          volume: 'Médio, Alto',
+          cores: [],
+          tags: ['produto', 'sérum', 'definição'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'condicionador-volumizador': {
-          title: 'Condicionador Volumizador',
-          desc: 'Dá corpo e volume sem pesar.',
-          badge: 'volumizador',
-          categoria: 'Produtos',
-          subcategoria: 'Condicionador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'oleo-finalizador-cacau': {
+          title: 'Óleo Finalizador de Cacau',
+          desc: 'Óleo leve com cacau para finalização e brilho.',
+          badge: 'finalizador',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Médio',
+          cores: [],
+          tags: ['produto', 'óleo', 'finalização'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'mascara-coco-mel': {
-          title: 'Máscara de Coco e Mel',
-          desc: 'Nutrição profunda e maciez imediata.',
-          badge: 'nutrição',
-          categoria: 'Produtos',
-          subcategoria: 'Máscara',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'spray-protetor-termico': {
+          title: 'Spray Protetor Térmico',
+          desc: 'Protege os fios contra o calor de secadores e chapinhas.',
+          badge: 'proteção',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado',
+          volume: 'Baixo, Médio',
+          cores: [],
+          tags: ['produto', 'spray', 'proteção'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'mascara-argan': {
-          title: 'Máscara de Óleo de Argan',
-          desc: 'Repara, dá brilho e sela as cutículas.',
-          badge: 'reparação',
-          categoria: 'Produtos',
-          subcategoria: 'Máscara',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'gel-fixacao-ultra': {
+          title: 'Gel Fixação Ultra',
+          desc: 'Gel de fixação forte para penteados duradouros.',
+          badge: 'fixação',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Baixo, Médio',
+          cores: [],
+          tags: ['produto', 'gel', 'fixação'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'mascara-bamboo': {
-          title: 'Máscara Bamboo Repair',
-          desc: 'Reforça a estrutura do fio e reduz a quebra.',
-          badge: 'bamboo',
-          categoria: 'Produtos',
-          subcategoria: 'Máscara',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'tonico-capilar-crescimento': {
+          title: 'Tônico Capilar Crescimento',
+          desc: 'Tônico estimulante para crescimento saudável dos fios.',
+          badge: 'crescimento',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Baixo, Médio',
+          cores: [],
+          tags: ['produto', 'tônico', 'crescimento'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'leite-finalizacao': {
-          title: 'Leite de Finalização',
-          desc: 'Alinha e dá brilho, sem pesar.',
-          badge: 'alinhamento',
-          categoria: 'Produtos',
-          subcategoria: 'Finalizador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'shampoo-antifrizz': {
+          title: 'Shampoo Antifrizz',
+          desc: 'Shampoo para controle de frizz e umidade.',
+          badge: 'antifrizz',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Ondulado, Cacheado, Crespo',
+          volume: 'Médio, Alto',
+          cores: [],
+          tags: ['produto', 'shampoo', 'antifrizz'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'oleo-brilho': {
-          title: 'Óleo Capilar de Brilho',
-          desc: 'Dá acabamento brilhante e protege contra o calor.',
-          badge: 'brilho',
-          categoria: 'Produtos',
-          subcategoria: 'Finalizador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+        'condicionador-volume': {
+          title: 'Condicionador Volume',
+          desc: 'Condicionador que adiciona volume e leveza aos fios.',
+          badge: 'volume',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado',
+          volume: 'Alto',
+          cores: [],
+          tags: ['produto', 'condicionador', 'volume'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         },
-        'creme-modelador': {
-          title: 'Creme de Pentear Modelador',
-          desc: 'Define cachos e ondas com controle de volume.',
+        'creme-para-pentear': {
+          title: 'Creme para Pentear',
+          desc: 'Creme leve que desembaraça e hidrata os fios.',
+          badge: 'desembaraçador',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado',
+          volume: 'Médio',
+          cores: [],
+          tags: ['produto', 'creme', 'desembaraço'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
+        },
+        'mousse-modelador': {
+          title: 'Mousse Modelador',
+          desc: 'Mousse que modela e dá textura aos fios.',
           badge: 'modelador',
-          categoria: 'Produtos',
-          subcategoria: 'Finalizador',
-          link: '#',
-          img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=600&fit=crop',
-          gallery: [
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=800&fit=crop',
-            'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop'
-          ]
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Ondulado, Cacheado',
+          volume: 'Alto',
+          cores: [],
+          tags: ['produto', 'mousse', 'modelagem'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
+        },
+        'spray-brilho-intenso': {
+          title: 'Spray Brilho Intenso',
+          desc: 'Spray que dá brilho instantâneo e efeito espelho.',
+          badge: 'brilho',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: null,
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado',
+          volume: 'Baixo, Médio',
+          cores: [],
+          tags: ['produto', 'spray', 'brilho'],
+          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          gallery: ['https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center']
         }
       };
 
@@ -2894,12 +2317,13 @@
       // ============================================================
       const STATE = {
         favorites: JSON.parse(localStorage.getItem('hairos_favorites') || '[]'),
-        currentStyle: 'velvet bob',
+        currentStyle: 'velvet-bob',
+        currentFilter: 'all',
+        currentCategory: 'all',
         theme: localStorage.getItem('hairos_theme') || 'dark',
         modalKey: null,
         modalIndex: 0,
-        panelCat: 'all',
-        panelSub: 'all'
+        dropdownOpen: false
       };
 
       // ============================================================
@@ -2920,8 +2344,10 @@
         const count = STATE.favorites.length;
         document.getElementById('menuBadge').textContent = count;
         document.getElementById('menuFavCount').textContent = count;
+        document.getElementById('favCountHeader').textContent = `(${count})`;
         document.getElementById('favCountStat').textContent = count;
-        count > 0 ? document.getElementById('menuBadge').classList.add('show') : document.getElementById('menuBadge').classList.remove('show');
+        document.getElementById('menuBadge').classList.toggle('show', count > 0);
+        document.getElementById('menuFavCount').classList.toggle('empty', count === 0);
         if (document.getElementById('pageFavoritos').classList.contains('active-page')) generateFavGrid();
       }
 
@@ -2942,176 +2368,90 @@
 
       function getFilteredKeys() {
         let keys = Object.keys(styleData);
-
-        // Filtro por categoria (painel de busca)
-        if (STATE.panelCat !== 'all') {
-          if (STATE.panelCat === 'comprimento') {
-            keys = keys.filter(k => styleData[k].size !== null && styleData[k].categoria === 'Corte');
-          } else if (STATE.panelCat === 'estilo') {
-            keys = keys.filter(k => styleData[k].style !== null && styleData[k].categoria === 'Corte');
-          } else if (STATE.panelCat === 'tom') {
-            keys = keys.filter(k => styleData[k].colorCategory !== null && styleData[k].categoria === 'Coloração');
-          } else {
-            keys = keys.filter(k => styleData[k].categoria === STATE.panelCat);
-          }
+        if (STATE.currentCategory !== 'all') {
+          keys = keys.filter(k => styleData[k].categoria === STATE.currentCategory);
         }
-
-        // Filtro por subcategoria (painel de busca)
-        if (STATE.panelSub !== 'all') {
+        if (STATE.currentFilter && STATE.currentFilter !== 'all') {
+          const filter = STATE.currentFilter;
           keys = keys.filter(k => {
-            const d = styleData[k];
-            return d.size === STATE.panelSub || d.style === STATE.panelSub || d.colorCategory === STATE.panelSub || d.subcategoria === STATE.panelSub;
+            const data = styleData[k];
+            return data.size === filter ||
+                   data.style === filter ||
+                   data.colorFamily === filter ||
+                   data.manutencao === filter ||
+                   (data.textura && data.textura.split(', ').includes(filter)) ||
+                   (data.volume && data.volume.split(', ').includes(filter)) ||
+                   (data.rosto && data.rosto.split(', ').includes(filter)) ||
+                   data.tags.includes(filter);
           });
         }
-
         return keys.length ? keys : Object.keys(styleData);
       }
 
+      function getColorLabel(data) {
+        if (!data.cores || data.cores.length === 0) return '';
+        return data.cores.join(' | ');
+      }
+
+      function renderTags(data) {
+        const tags = data.tags || [];
+        return tags.map(t => `<span class="item-tag">${t}</span>`).join('');
+      }
+
+      function renderModalTags(data) {
+        const tags = data.tags || [];
+        return tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+      }
+
+      function renderModalDetails(data) {
+        const details = [];
+        if (data.size) details.push(`✧ Comprimento: ${data.size}`);
+        if (data.style) details.push(`✧ Estilo: ${data.style}`);
+        if (data.manutencao) details.push(`✧ Manutenção: ${data.manutencao}`);
+        if (data.rosto) details.push(`✧ Rosto: ${data.rosto}`);
+        if (data.textura) details.push(`✧ Textura: ${data.textura}`);
+        if (data.volume) details.push(`✧ Volume: ${data.volume}`);
+        if (data.colorFamily) details.push(`✧ Família: ${data.colorFamily}`);
+        return details.map(d => `<span>${d}</span>`).join('');
+      }
+
+      function classificationLabel(data) {
+        const parts = [data.categoria];
+        if (data.size) parts.push(data.size);
+        if (data.style) parts.push(data.style);
+        if (data.colorFamily) parts.push(data.colorFamily);
+        return parts.join(' · ');
+      }
+
       // ============================================================
-      // RENDER FUNCTIONS
+      // RENDER
       // ============================================================
-      function generateHomeChips() {
-        const container = document.getElementById('homeChips');
+      function generateChips() {
+        const container = document.getElementById('chipCarousel');
         container.innerHTML = '';
-        
-        const catMap = {
-          'all': 'todos',
-          'Corte': 'cortes',
-          'Coloração': 'cores',
-          'Produtos': 'produtos',
-          'comprimento': 'comprimento',
-          'estilo': 'estilo',
-          'tom': 'tom de cabelo'
-        };
-
-        const subMap = {
-          'all': 'todos',
-          'curto': 'curto',
-          'medio': 'médio',
-          'longo': 'longo',
-          'classico': 'clássico',
-          'moderno': 'moderno',
-          'alternativo': 'alternativo',
-          'romantico': 'romântico',
-          'Shampoo': 'shampoo',
-          'Condicionador': 'condicionador',
-          'Máscara': 'máscara',
-          'Finalizador': 'finalizador'
-        };
-
-        // Chip da categoria
-        const catChip = document.createElement('span');
-        const catName = catMap[STATE.panelCat] || 'todos';
-        catChip.className = `home-chip ${STATE.panelCat !== 'all' ? 'active' : ''}`;
-        catChip.dataset.type = 'category';
-        catChip.textContent = catName;
-        catChip.addEventListener('click', function() {
-          document.getElementById('searchOverlay').classList.add('open');
-          document.querySelectorAll('#categoriaList .categoria-item').forEach(el => {
-            el.classList.toggle('active', el.dataset.cat === STATE.panelCat);
-          });
-          document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
-          const map = {
-            'all': 'subTodos',
-            'Corte': 'subCortes',
-            'Coloração': 'subCores',
-            'Produtos': 'subProdutos',
-            'comprimento': 'subComprimento',
-            'estilo': 'subEstilo',
-            'tom': 'subTom'
-          };
-          const target = document.getElementById(map[STATE.panelCat]);
-          if (target) {
-            target.classList.add('show');
-            target.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
-            target.querySelector('.sub-chip').classList.add('active');
-          }
-        });
-        container.appendChild(catChip);
-
-        // Chip da subcategoria
-        if (STATE.panelSub !== 'all') {
-          const subChip = document.createElement('span');
-          const subName = subMap[STATE.panelSub] || STATE.panelSub;
-          subChip.className = 'home-chip active';
-          subChip.dataset.type = 'subcategory';
-          subChip.textContent = subName;
-          subChip.addEventListener('click', function() {
-            document.getElementById('searchOverlay').classList.add('open');
-            document.querySelectorAll('#categoriaList .categoria-item').forEach(el => {
-              el.classList.toggle('active', el.dataset.cat === STATE.panelCat);
-            });
-            document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
-            const map = {
-              'all': 'subTodos',
-              'Corte': 'subCortes',
-              'Coloração': 'subCores',
-              'Produtos': 'subProdutos',
-              'comprimento': 'subComprimento',
-              'estilo': 'subEstilo',
-              'tom': 'subTom'
-            };
-            const target = document.getElementById(map[STATE.panelCat]);
-            if (target) {
-              target.classList.add('show');
-              target.querySelectorAll('.sub-chip').forEach(s => {
-                const val = s.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                s.classList.toggle('active', val === STATE.panelSub);
-              });
-            }
-          });
-          container.appendChild(subChip);
-        }
-
-        // Chips dos itens
         const keys = getFilteredKeys();
-        const displayKeys = STATE.panelCat === 'all' ? keys.sort(() => Math.random() - 0.5).slice(0, 6) : keys.slice(0, 6);
-        displayKeys.forEach(key => {
+        keys.forEach(key => {
           const data = styleData[key];
           if (!data) return;
           const chip = document.createElement('span');
-          chip.className = `home-chip ${key === STATE.currentStyle ? 'active' : ''}`;
+          chip.className = `chip ${key === STATE.currentStyle ? 'active-chip' : ''}`;
           chip.dataset.style = key;
-          chip.dataset.type = 'item';
-          chip.textContent = data.title.length > 14 ? data.title.substring(0, 12) + '…' : data.title;
+          chip.textContent = data.title;
           chip.addEventListener('click', function() {
-            document.querySelectorAll('.home-chip').forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active-chip'));
+            this.classList.add('active-chip');
             STATE.currentStyle = this.dataset.style;
-            generateCarousel(this.dataset.style);
+            navigateTo('pageHome');
+            setTimeout(() => generateCarousel(STATE.currentStyle), 100);
           });
           container.appendChild(chip);
         });
       }
 
-      const SIZE_LABELS = { curto: 'curto', medio: 'médio', longo: 'longo' };
-      const STYLE_LABELS = { classico: 'clássico', moderno: 'moderno', alternativo: 'alternativo', romantico: 'romântico' };
-      const FAMILIA_LABELS = { morenas: 'morenas', loiras: 'loiras', ruivas: 'ruivas', grisalhas: 'grisalhas' };
-
-      function classificationLabel(data) {
-        if (data.categoria === 'Coloração') {
-          return `coloração · ${FAMILIA_LABELS[data.colorCategory] || data.colorCategory}`;
-        }
-        if (data.categoria === 'Produtos') {
-          return `produto · ${data.subcategoria || 'cuidado'}`;
-        }
-        return `corte · ${SIZE_LABELS[data.size] || data.size} · ${STYLE_LABELS[data.style] || data.style}`;
-      }
-
-      function renderChipColors(cores) {
-        if (!cores || cores.length === 0) return '';
-        return cores.map(c => `<span class="color-chip">${c}</span>`).join('');
-      }
-
-      function renderModalChipColors(cores) {
-        if (!cores || cores.length === 0) return '';
-        return cores.map(c => `<span class="color-chip-modal">${c}</span>`).join('');
-      }
-
       function generateCarousel(activeStyle) {
         let keys = getFilteredKeys();
         if (!keys.includes(activeStyle) && keys.length) activeStyle = keys[0];
-        if (!activeStyle || !keys.includes(activeStyle)) activeStyle = 'velvet bob';
+        if (!activeStyle || !keys.includes(activeStyle)) activeStyle = 'velvet-bob';
         STATE.currentStyle = activeStyle;
 
         const sorted = [activeStyle, ...keys.filter(k => k !== activeStyle)];
@@ -3123,20 +2463,20 @@
           const data = styleData[key];
           if (!data) return;
           const fav = isFavorite(key);
-          const coresHtml = renderChipColors(data.cores);
+          const colors = getColorLabel(data);
           const item = document.createElement('div');
           item.className = `carousel-item${key === activeStyle ? ' active-item' : ''}`;
           item.dataset.style = key;
-          item.setAttribute('role', 'listitem');
           item.innerHTML = `
-            <button class="favorite-btn ${fav ? 'favorited' : ''}" data-fav-key="${key}" aria-label="${fav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">${fav ? '♥' : '♡'}</button>
+            <button class="favorite-btn ${fav ? 'favorited' : ''}" data-fav-key="${key}">${fav ? '♥' : '♡'}</button>
             <div class="img-container"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
             <div class="item-overlay">
-              <span class="item-sub">${classificationLabel(data)}</span>
+              <div class="item-tags">${renderTags(data)}</div>
               <h3>${data.title}</h3>
-              <div class="item-colors">${coresHtml}</div>
+              ${colors ? `<span class="item-sub">${colors}</span>` : ''}
               <span class="item-badge">${data.badge}</span>
             </div>
+            <button class="info-btn" onclick="openModal('${key}')">ⓘ</button>
           `;
           item.querySelector('.favorite-btn').addEventListener('click', function(e) {
             e.stopPropagation();
@@ -3144,7 +2484,7 @@
             updateAllFavButtons(this.dataset.favKey);
           });
           item.addEventListener('click', function(e) {
-            if (e.target.closest('.favorite-btn')) return;
+            if (e.target.closest('.favorite-btn') || e.target.closest('.info-btn')) return;
             openModal(this.dataset.style);
           });
           container.appendChild(item);
@@ -3159,7 +2499,7 @@
           }
         }, 80);
         updateFavUI();
-        generateHomeChips();
+        generateChips();
       }
 
       function updateIndicators(items) {
@@ -3169,8 +2509,6 @@
         for (let i = 0; i < total; i++) {
           const dot = document.createElement('span');
           dot.className = `dot${i === 0 ? ' active-dot' : ''}`;
-          dot.setAttribute('role', 'tab');
-          dot.setAttribute('aria-selected', i === 0);
           dot.addEventListener('click', () => {
             if (items[i]) items[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
           });
@@ -3178,49 +2516,29 @@
         }
       }
 
-      const carouselEl = document.getElementById('unifiedCarousel');
-      carouselEl.addEventListener('scroll', function() {
-        const items = this.querySelectorAll('.carousel-item');
-        if (!items.length) return;
-        const itemWidth = items[0]?.offsetWidth || 0;
-        const gap = 10;
-        const scrollLeft = this.scrollLeft;
-        const totalWidth = (itemWidth + gap) * items.length;
-        const visibleWidth = this.offsetWidth;
-        const maxScroll = Math.max(totalWidth - visibleWidth, 1);
-        const pct = Math.min(scrollLeft / maxScroll, 1);
-        const dots = document.querySelectorAll('#indicators .dot');
-        const totalDots = dots.length;
-        const active = Math.min(Math.round(pct * (totalDots - 1)), totalDots - 1);
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active-dot', i === active);
-          dot.setAttribute('aria-selected', i === active);
-        });
-      });
-
+      // ============================================================
+      // PÁGINAS
+      // ============================================================
       function generateTendencias() {
-        const list = document.getElementById('tendenciasList');
-        list.innerHTML = '';
-        const tendencias = ['wolf cut', 'butterfly cut', 'pixie cut', 'curtain bangs', 'long bob', 'kitty cut', 'ombre-tiger-eye', 'balayage-loira', 'cherry-cola', 'shampoo-revitalizante', 'mascara-argan', 'oleo-brilho'];
+        const grid = document.getElementById('tendenciasGrid');
+        grid.innerHTML = '';
+        const tendencias = ['wolf-cut', 'butterfly-cut', 'pixie-cut', 'curtain-bangs', 'long-bob', 'kitty-cut', 'ombre-tiger-eye', 'balayage-loira', 'cherry-cola'];
         tendencias.forEach(key => {
           const data = styleData[key];
           if (!data) return;
-          const item = document.createElement('div');
-          item.className = 'tendencia-item';
-          item.innerHTML = `
+          const colors = getColorLabel(data);
+          const card = document.createElement('div');
+          card.className = 'tendencia-card';
+          card.innerHTML = `
             <div class="tendencia-img"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
             <div class="tendencia-info">
               <h4>${data.title}</h4>
-              <p>${data.desc}</p>
+              ${colors ? `<div class="tendencia-colors">${colors}</div>` : ''}
               <span class="tendencia-tag">${data.badge}</span>
             </div>
           `;
-          item.addEventListener('click', () => { 
-            document.getElementById('homeSearchInput').value = key;
-            handleHomeSearch();
-            navigateTo('pageHome');
-          });
-          list.appendChild(item);
+          card.addEventListener('click', () => { openModal(key); });
+          grid.appendChild(card);
         });
       }
 
@@ -3228,13 +2546,20 @@
         const grid = document.getElementById('galeriaGrid');
         grid.innerHTML = '';
         const keys = Object.keys(styleData);
-        const shuffled = keys.sort(() => Math.random() - 0.5).slice(0, 8);
+        const shuffled = keys.sort(() => Math.random() - 0.5);
         shuffled.forEach(key => {
           const data = styleData[key];
           if (!data) return;
+          const colors = getColorLabel(data);
           const item = document.createElement('div');
           item.className = 'galeria-item';
-          item.innerHTML = `<img src="${data.img}" alt="${data.title}" loading="lazy"><div class="galeria-overlay"><span>${data.title}</span></div>`;
+          item.innerHTML = `
+            <img src="${data.img}" alt="${data.title}" loading="lazy">
+            <div class="galeria-overlay">
+              <span>${data.title}</span>
+              ${colors ? `<div class="galeria-colors">${colors}</div>` : ''}
+            </div>
+          `;
           item.addEventListener('click', () => openModal(key));
           grid.appendChild(item);
         });
@@ -3250,27 +2575,52 @@
         STATE.favorites.forEach(key => {
           const data = styleData[key];
           if (!data) return;
+          const colors = getColorLabel(data);
           const item = document.createElement('div');
-          item.className = 'grid-item';
+          item.className = 'fav-item';
           item.innerHTML = `
-            <button class="grid-fav-remove" data-fav-key="${key}" aria-label="Remover dos favoritos">✕</button>
+            <button class="fav-remove" data-fav-key="${key}" aria-label="Remover">✕</button>
             <img src="${data.img}" alt="${data.title}" loading="lazy">
-            <div class="grid-overlay"><span class="grid-title">${data.title}</span></div>
+            <div class="fav-overlay">
+              <span>${data.title}</span>
+              ${colors ? `<div class="fav-colors">${colors}</div>` : ''}
+            </div>
           `;
-          item.querySelector('.grid-fav-remove').addEventListener('click', function(e) {
+          item.querySelector('.fav-remove').addEventListener('click', function(e) {
             e.stopPropagation();
             toggleFavorite(this.dataset.favKey);
             updateAllFavButtons(this.dataset.favKey);
-            if (document.getElementById('pageFavoritos').classList.contains('active-page')) {
-              generateFavGrid();
-            }
+            generateFavGrid();
           });
           item.addEventListener('click', function(e) {
-            if (e.target.closest('.grid-fav-remove')) return;
+            if (e.target.closest('.fav-remove')) return;
             openModal(key);
           });
           grid.appendChild(item);
         });
+      }
+
+      // ============================================================
+      // NAVEGAÇÃO
+      // ============================================================
+      function navigateTo(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active-page');
+        
+        const isHome = pageId === 'pageHome';
+        document.getElementById('categoryTabs').style.display = isHome ? 'flex' : 'none';
+        document.getElementById('searchWrapper').style.display = isHome ? 'block' : 'none';
+        document.getElementById('chipWrapper').style.display = isHome ? 'block' : 'none';
+        document.querySelector('.unified-carousel-wrapper').style.display = isHome ? 'block' : 'none';
+        document.getElementById('indicators').style.display = isHome ? 'flex' : 'none';
+        
+        document.querySelectorAll('.footer-links a').forEach(link => {
+          link.classList.toggle('active-link', link.dataset.page === pageId);
+        });
+        
+        if (pageId === 'pageFavoritos') generateFavGrid();
+        if (pageId === 'pageHome') generateCarousel(STATE.currentStyle);
       }
 
       // ============================================================
@@ -3283,26 +2633,18 @@
         STATE.modalIndex = 0;
         const images = data.gallery || [data.img];
         document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalBadge').textContent = data.badge;
         document.getElementById('modalDesc').textContent = data.desc;
         document.getElementById('modalClassification').textContent = classificationLabel(data);
-        document.getElementById('modalColors').innerHTML = renderModalChipColors(data.cores);
-        renderTechDrawer(data);
+        document.getElementById('modalBadge').textContent = data.badge;
+        document.getElementById('modalTags').innerHTML = renderModalTags(data);
+        document.getElementById('modalDetails').innerHTML = renderModalDetails(data);
+
         const fav = isFavorite(key);
         const modalBtn = document.getElementById('modalFavBtn');
         modalBtn.dataset.favKey = key;
         modalBtn.classList.toggle('favorited', fav);
         modalBtn.querySelector('.fav-icon').textContent = fav ? '♥' : '♡';
         modalBtn.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
-
-        // Controle do botão afiliado
-        const afiliateBtn = document.getElementById('modalAfiliateBtn');
-        if (data.categoria === 'Produtos' && data.link) {
-          afiliateBtn.style.display = 'flex';
-          afiliateBtn.href = data.link;
-        } else {
-          afiliateBtn.style.display = 'none';
-        }
 
         const gallery = document.getElementById('modalGallery');
         gallery.innerHTML = '';
@@ -3311,21 +2653,8 @@
           el.src = img;
           el.alt = data.title;
           el.loading = 'lazy';
-          el.draggable = false;
           if (i === 0) el.classList.add('active-modal-img');
           gallery.appendChild(el);
-        });
-
-        const indicators = document.getElementById('modalIndicators');
-        indicators.innerHTML = '';
-        images.forEach((_, i) => {
-          const dot = document.createElement('span');
-          dot.className = `m-dot${i === 0 ? ' active-m-dot' : ''}`;
-          dot.dataset.index = i;
-          dot.setAttribute('role', 'tab');
-          dot.setAttribute('aria-selected', i === 0);
-          dot.addEventListener('click', () => goToModalImage(i));
-          indicators.appendChild(dot);
         });
 
         document.getElementById('modalPrev').style.display = images.length > 1 ? 'flex' : 'none';
@@ -3333,6 +2662,11 @@
         document.getElementById('modalOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
         setTimeout(() => { gallery.scrollTo({ left: 0, behavior: 'auto' }); }, 50);
+      }
+
+      function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('active');
+        document.body.style.overflow = '';
       }
 
       function goToModalImage(index) {
@@ -3344,120 +2678,6 @@
         const imgWidth = images[0]?.offsetWidth || 0;
         document.getElementById('modalGallery').scrollTo({ left: index * imgWidth, behavior: 'smooth' });
         images.forEach((img, i) => img.classList.toggle('active-modal-img', i === index));
-        document.querySelectorAll('#modalIndicators .m-dot').forEach((dot, i) => {
-          dot.classList.toggle('active-m-dot', i === index);
-          dot.classList.toggle('filled-m-dot', i <= index);
-          dot.setAttribute('aria-selected', i === index);
-        });
-      }
-
-      function closeModal() {
-        document.getElementById('modalOverlay').classList.remove('active');
-        document.body.style.overflow = '';
-        closeTechDrawer();
-      }
-
-      function renderTechDrawer(data) {
-        const chipsEl = document.getElementById('techDrawerChips');
-        const textEl = document.getElementById('techDrawerText');
-        const familia = data.categoria === 'Coloração' ? (FAMILIA_LABELS[data.colorCategory] || data.colorCategory) : null;
-        const chips = [
-          `<span class="tech-chip"><strong>categoria</strong>${data.categoria}</span>`,
-          data.categoria === 'Coloração'
-            ? `<span class="tech-chip"><strong>família</strong>${familia}</span>`
-            : data.categoria === 'Produtos'
-            ? `<span class="tech-chip"><strong>tipo</strong>${data.subcategoria || '—'}</span>`
-            : `<span class="tech-chip"><strong>comprimento</strong>${SIZE_LABELS[data.size] || data.size}</span>`,
-          data.categoria !== 'Coloração' && data.categoria !== 'Produtos' ? `<span class="tech-chip"><strong>estilo</strong>${STYLE_LABELS[data.style] || data.style}</span>` : '',
-          `<span class="tech-chip"><strong>indicado</strong>${data.indicado || 'todos os tipos'}</span>`,
-          data.manutencao ? `<span class="tech-chip"><strong>manutenção</strong>${data.manutencao}</span>` : '',
-          data.cores && data.cores.length ? `<span class="tech-chip"><strong>fórmula</strong>${data.cores.join(' / ')}</span>` : ''
-        ].filter(Boolean).join('');
-        chipsEl.innerHTML = chips;
-        textEl.textContent = data.porque || data.desc;
-      }
-
-      function toggleTechDrawer() {
-        const drawer = document.getElementById('techDrawer');
-        const btn = document.getElementById('modalInfoBtn');
-        const isOpen = drawer.classList.toggle('tech-drawer-open');
-        btn.classList.toggle('info-active', isOpen);
-        btn.setAttribute('aria-expanded', isOpen);
-      }
-
-      function closeTechDrawer() {
-        document.getElementById('techDrawer').classList.remove('tech-drawer-open');
-        const btn = document.getElementById('modalInfoBtn');
-        btn.classList.remove('info-active');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-
-      // ============================================================
-      // SEARCH HOME
-      // ============================================================
-      function handleHomeSearch() {
-        const val = document.getElementById('homeSearchInput').value.trim().toLowerCase();
-        if (val) {
-          const keys = Object.keys(styleData);
-          let found = keys.find(k => k === val);
-          if (!found) found = keys.find(k => k.includes(val) || val.includes(k));
-          if (found) {
-            STATE.currentStyle = found;
-            if (document.getElementById('pageHome').classList.contains('active-page')) {
-              generateCarousel(STATE.currentStyle);
-            } else {
-              navigateTo('pageHome');
-              setTimeout(() => generateCarousel(STATE.currentStyle), 100);
-            }
-            return;
-          }
-          const feedback = document.createElement('div');
-          feedback.className = 'search-feedback';
-          feedback.textContent = `"${val}" não encontrado. Mostrando todos.`;
-          const wrapper = document.querySelector('.unified-carousel-wrapper');
-          const existing = wrapper.querySelector('.search-feedback');
-          if (existing) existing.remove();
-          wrapper.appendChild(feedback);
-          setTimeout(() => feedback.remove(), 2000);
-        }
-        generateCarousel(STATE.currentStyle);
-      }
-
-      const debounce = (fn, delay = 400) => {
-        let timer;
-        return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
-      };
-
-      // ============================================================
-      // NAVIGATION
-      // ============================================================
-      function navigateTo(pageId) {
-        const current = document.querySelector('.page.active-page');
-        const target = document.getElementById(pageId);
-        if (!target) return;
-        if (current && current !== target) {
-          current.classList.add('exit-page');
-          setTimeout(() => {
-            current.classList.remove('active-page', 'exit-page');
-            target.classList.add('active-page');
-            updatePageVisibility(pageId);
-          }, 250);
-        } else if (!current || current === target) {
-          target.classList.add('active-page');
-          updatePageVisibility(pageId);
-        }
-      }
-
-      function updatePageVisibility(pageId) {
-        const isHome = pageId === 'pageHome';
-        document.getElementById('homeChips').style.display = isHome ? 'flex' : 'none';
-        document.getElementById('homeSearchWrapper').style.display = isHome ? 'flex' : 'none';
-        document.querySelectorAll('.footer-links a').forEach(link => {
-          link.classList.toggle('active-link', link.dataset.page === pageId);
-          link.setAttribute('aria-selected', link.dataset.page === pageId);
-        });
-        if (isHome) generateCarousel(STATE.currentStyle);
-        if (pageId === 'pageFavoritos') generateFavGrid();
       }
 
       // ============================================================
@@ -3468,6 +2688,25 @@
         document.getElementById('menuThemeToggle').textContent = theme === 'dark' ? '🌙 dark' : '☀️ light';
         localStorage.setItem('hairos_theme', theme);
         STATE.theme = theme;
+      }
+
+      // ============================================================
+      // SEARCH
+      // ============================================================
+      function handleSearch() {
+        const val = document.getElementById('searchInput').value.trim().toLowerCase();
+        if (val) {
+          const keys = Object.keys(styleData);
+          let found = keys.find(k => k === val);
+          if (!found) found = keys.find(k => k.includes(val) || val.includes(k));
+          if (found) {
+            STATE.currentStyle = found;
+            navigateTo('pageHome');
+            setTimeout(() => generateCarousel(STATE.currentStyle), 100);
+            return;
+          }
+        }
+        generateCarousel(STATE.currentStyle);
       }
 
       // ============================================================
@@ -3485,16 +2724,31 @@
         hamburgerBtn.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
         menuOverlay.addEventListener('click', e => { if (e.target === e.currentTarget) closeMenu(); });
-        document.querySelectorAll('.menu-item[data-page]').forEach(item => {
-          item.addEventListener('click', function() { navigateTo(this.dataset.page); closeMenu(); });
-        });
+
+        document.getElementById('menuHome').addEventListener('click', function() { navigateTo('pageHome'); closeMenu(); });
+        document.getElementById('menuTendencias').addEventListener('click', function() { navigateTo('pageTendencias'); closeMenu(); });
+        document.getElementById('menuGaleria').addEventListener('click', function() { navigateTo('pageGaleria'); closeMenu(); });
         document.getElementById('menuFavs').addEventListener('click', function() { navigateTo('pageFavoritos'); closeMenu(); });
+        document.getElementById('menuSobre').addEventListener('click', function() { navigateTo('pageSobre'); closeMenu(); });
+        document.getElementById('menuContato').addEventListener('click', function() { navigateTo('pageContato'); closeMenu(); });
         document.getElementById('menuThemeToggle').addEventListener('click', () => {
           applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
           closeMenu();
         });
 
-        // Footer links
+        // Category tabs
+        document.querySelectorAll('.cat-tab').forEach(tab => {
+          tab.addEventListener('click', function() {
+            document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active-cat'));
+            this.classList.add('active-cat');
+            STATE.currentCategory = this.dataset.cat;
+            STATE.currentFilter = 'all';
+            navigateTo('pageHome');
+            setTimeout(() => generateCarousel(STATE.currentStyle), 100);
+          });
+        });
+
+        // Footer
         document.querySelectorAll('.footer-links a').forEach(link => {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -3504,82 +2758,111 @@
 
         // Back buttons
         document.querySelectorAll('.back-home').forEach(btn => btn.addEventListener('click', () => navigateTo('pageHome')));
-        document.getElementById('homeBtn').addEventListener('click', () => navigateTo('pageHome'));
-
-        // Home search
-        const homeSearchInput = document.getElementById('homeSearchInput');
-        const homeSearchBtn = document.getElementById('homeSearchBtn');
-        const debouncedHomeSearch = debounce(handleHomeSearch, 400);
-        homeSearchInput.addEventListener('input', debouncedHomeSearch);
-        homeSearchInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); handleHomeSearch(); } });
-        homeSearchBtn.addEventListener('click', e => { e.preventDefault(); handleHomeSearch(); });
-
-        // Painel de busca
-        const searchOverlay = document.getElementById('searchOverlay');
-        const searchCloseBtn = document.getElementById('searchCloseBtn');
-        document.getElementById('homeSearchBtn').addEventListener('click', () => searchOverlay.classList.add('open'));
-        searchCloseBtn.addEventListener('click', () => searchOverlay.classList.remove('open'));
-        searchOverlay.addEventListener('click', e => { if (e.target === searchOverlay) searchOverlay.classList.remove('open'); });
-
-        document.querySelectorAll('#categoriaList .categoria-item').forEach(item => {
-          item.addEventListener('click', function() {
-            document.querySelectorAll('#categoriaList .categoria-item').forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-            STATE.panelCat = this.dataset.cat;
-            document.querySelectorAll('.sub-container').forEach(s => s.classList.remove('show'));
-            const map = {
-              'all': 'subTodos',
-              'Corte': 'subCortes',
-              'Coloração': 'subCores',
-              'Produtos': 'subProdutos',
-              'comprimento': 'subComprimento',
-              'estilo': 'subEstilo',
-              'tom': 'subTom'
-            };
-            const target = document.getElementById(map[STATE.panelCat]);
-            if (target) {
-              target.classList.add('show');
-              target.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
-              target.querySelector('.sub-chip').classList.add('active');
-              STATE.panelSub = 'all';
-            }
-          });
+        document.getElementById('homeBtn').addEventListener('click', () => {
+          STATE.currentCategory = 'all';
+          STATE.currentFilter = 'all';
+          document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active-cat', t.dataset.cat === 'all'));
+          navigateTo('pageHome');
         });
 
-        document.querySelectorAll('.sub-chip').forEach(chip => {
-          chip.addEventListener('click', function() {
-            const parent = this.parentElement;
-            parent.querySelectorAll('.sub-chip').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            STATE.panelSub = this.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (STATE.panelSub === 'todos') STATE.panelSub = 'all';
-            // Fecha o painel e atualiza o carrossel
-            document.getElementById('searchOverlay').classList.remove('open');
-            generateCarousel(STATE.currentStyle);
-          });
+        // Buscador
+        const searchInput = document.getElementById('searchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const searchButton = document.getElementById('searchButton');
+        const dropOpts = document.querySelectorAll('.drop-option');
+        const dropClear = document.getElementById('dropClear');
+
+        searchInput.addEventListener('click', function(e) {
+          e.stopPropagation();
+          searchDropdown.classList.add('open');
+          STATE.dropdownOpen = true;
         });
 
-        document.getElementById('panelSearchInput').addEventListener('input', function() {
-          const val = this.value.trim().toLowerCase();
-          if (val) {
-            const found = Object.keys(styleData).find(k => k.includes(val) || val.includes(k));
-            if (found) {
-              STATE.currentStyle = found;
-              searchOverlay.classList.remove('open');
-              generateCarousel(found);
-            }
+        searchButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (STATE.dropdownOpen) {
+            searchDropdown.classList.remove('open');
+            STATE.dropdownOpen = false;
+          } else {
+            searchDropdown.classList.add('open');
+            STATE.dropdownOpen = true;
+            if (searchInput.value.trim()) handleSearch();
           }
         });
 
-        document.getElementById('applyFilters').addEventListener('click', function() {
-          searchOverlay.classList.remove('open');
-          generateCarousel(STATE.currentStyle);
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.search-clean-wrapper')) {
+            searchDropdown.classList.remove('open');
+            STATE.dropdownOpen = false;
+          }
+        });
+
+        dropOpts.forEach(opt => {
+          opt.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const valor = this.dataset.valor;
+            searchInput.value = valor;
+            searchDropdown.classList.remove('open');
+            STATE.dropdownOpen = false;
+
+            const catMap = { 'all': 'all', 'Corte': 'Corte', 'Coloração': 'Coloração', 'Produto': 'Produto' };
+            const filterMap = {
+              'curto': 'curto', 'medio': 'medio', 'longo': 'longo',
+              'classico': 'classico', 'moderno': 'moderno', 'alternativo': 'alternativo', 'romantico': 'romantico',
+              'morenas': 'morenas', 'loiras': 'loiras', 'ruivas': 'ruivas', 'grisalhas': 'grisalhas',
+              'baixa': 'baixa', 'media': 'media', 'alta': 'alta',
+              'Oval': 'Oval', 'Redondo': 'Redondo', 'Quadrado': 'Quadrado', 'Alongado': 'Alongado',
+              'Liso': 'Liso', 'Ondulado': 'Ondulado', 'Cacheado': 'Cacheado',
+              'Baixo': 'Baixo', 'Médio': 'Médio', 'Alto': 'Alto'
+            };
+
+            if (catMap[valor]) {
+              STATE.currentCategory = catMap[valor];
+              STATE.currentFilter = 'all';
+              document.querySelectorAll('.cat-tab').forEach(t => {
+                t.classList.toggle('active-cat', t.dataset.cat === STATE.currentCategory);
+              });
+            } else if (filterMap[valor]) {
+              STATE.currentCategory = 'all';
+              STATE.currentFilter = filterMap[valor];
+              document.querySelectorAll('.cat-tab').forEach(t => {
+                t.classList.toggle('active-cat', t.dataset.cat === 'all');
+              });
+            } else {
+              handleSearch();
+              return;
+            }
+
+            navigateTo('pageHome');
+            setTimeout(() => generateCarousel(STATE.currentStyle), 100);
+          });
+        });
+
+        dropClear.addEventListener('click', function(e) {
+          e.stopPropagation();
+          searchInput.value = '';
+          searchDropdown.classList.remove('open');
+          STATE.dropdownOpen = false;
+          STATE.currentCategory = 'all';
+          STATE.currentFilter = 'all';
+          document.querySelectorAll('.cat-tab').forEach(t => {
+            t.classList.toggle('active-cat', t.dataset.cat === 'all');
+          });
+          navigateTo('pageHome');
+          setTimeout(() => generateCarousel(STATE.currentStyle), 100);
+        });
+
+        let searchTimer;
+        searchInput.addEventListener('input', function() {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(handleSearch, 300);
+        });
+        searchInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') { e.preventDefault(); handleSearch(); searchDropdown.classList.remove('open'); STATE.dropdownOpen = false; }
         });
 
         // Modal
         document.getElementById('modalClose').addEventListener('click', closeModal);
-        document.getElementById('modalInfoBtn').addEventListener('click', toggleTechDrawer);
-        document.getElementById('techDrawerHandle').addEventListener('click', closeTechDrawer);
         document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
         document.getElementById('modalPrev').addEventListener('click', e => { e.stopPropagation(); goToModalImage(STATE.modalIndex - 1); });
         document.getElementById('modalNext').addEventListener('click', e => { e.stopPropagation(); goToModalImage(STATE.modalIndex + 1); });
@@ -3592,11 +2875,6 @@
           if (idx !== STATE.modalIndex && idx >= 0 && idx < images.length) {
             STATE.modalIndex = idx;
             images.forEach((img, i) => img.classList.toggle('active-modal-img', i === idx));
-            document.querySelectorAll('#modalIndicators .m-dot').forEach((dot, i) => {
-              dot.classList.toggle('active-m-dot', i === idx);
-              dot.classList.toggle('filled-m-dot', i <= idx);
-              dot.setAttribute('aria-selected', i === idx);
-            });
           }
         });
         document.getElementById('modalFavBtn').addEventListener('click', function() {
@@ -3608,8 +2886,10 @@
             this.classList.toggle('favorited', fav);
             this.querySelector('.fav-icon').textContent = fav ? '♥' : '♡';
             this.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
+            generateFavGrid();
           }
         });
+
         document.addEventListener('keydown', e => {
           if (!document.getElementById('modalOverlay').classList.contains('active')) return;
           if (e.key === 'Escape') closeModal();
@@ -3617,42 +2897,37 @@
           if (e.key === 'ArrowRight') goToModalImage(STATE.modalIndex + 1);
         });
 
-        // Contact form
+        // Contato form
         document.getElementById('contatoForm').addEventListener('submit', function(e) {
           e.preventDefault();
           const inputs = this.querySelectorAll('input, textarea');
           let valid = true;
           inputs.forEach(input => {
-            if (!input.value.trim()) {
-              input.classList.add('error');
-              valid = false;
-            } else {
-              input.classList.remove('error');
-            }
+            if (!input.value.trim()) { input.classList.add('error'); valid = false; }
+            else { input.classList.remove('error'); }
           });
-          if (!valid) {
-            alert('⚠️ Por favor, preencha todos os campos.');
-            return;
-          }
+          if (!valid) { alert('⚠️ Preencha todos os campos.'); return; }
           alert('📨 Mensagem enviada com sucesso!');
           this.reset();
         });
 
-        // Render
-        generateHomeChips();
+        // Expor openModal globalmente
+        window.openModal = openModal;
+
+        // Render inicial
         generateTendencias();
         generateGaleria();
-        generateCarousel('velvet bob');
         generateFavGrid();
+        generateCarousel('velvet-bob');
         updateFavUI();
 
-        console.log('📦 HAIRBOX · 37 itens (25 estilos + 12 produtos)');
-        console.log('✅ Fluxo totalmente revisado e corrigido do começo ao fim');
-        console.log('✅ Categorias, subcategorias e itens funcionando perfeitamente');
-        console.log('✅ Modal completo com galeria, ficha técnica e botão afiliado');
-        console.log('✅ Menu, footer e páginas internas funcionando');
-        console.log('✅ Favoritos e tema salvos no navegador');
-        console.log('✅ Projeto finalizado e pronto! 🚀');
+        console.log('📦 HAIRBOX · 37 cards com todas as páginas');
+        console.log('✅ Tags destacadas nos cards');
+        console.log('✅ Nomes em evidência');
+        console.log('✅ Números de cor visíveis');
+        console.log('✅ Ícone de informação (i)');
+        console.log('✅ Modal informativo completo');
+        console.log('✅ Tamanhos otimizados');
       }
 
       document.addEventListener('DOMContentLoaded', init);
