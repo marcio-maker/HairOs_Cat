@@ -608,7 +608,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       display: block;
       filter: none;
       transition: all 0.6s ease;
@@ -797,7 +797,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       filter: none;
       transition: all 0.5s ease;
     }
@@ -844,7 +844,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       filter: none;
       transition: all 0.5s ease;
     }
@@ -890,7 +890,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       filter: none;
       transition: all 0.5s ease;
     }
@@ -1330,7 +1330,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center center;
       scroll-snap-align: start;
       display: block;
       background: #0a0808;
@@ -1846,7 +1846,6 @@
             <div class="modal-tags" id="modalTags"></div>
             <div class="modal-details" id="modalDetails"></div>
             <span class="modal-badge" id="modalBadge">tendência</span>
-            <!-- SUGESTÕES RELACIONADAS -->
             <div class="modal-related" id="modalRelated" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;"></div>
           </div>
           <button class="modal-fav" id="modalFavBtn">
@@ -1863,7 +1862,7 @@
       'use strict';
 
       // ============================================================
-      // DATABASE — 37 CARDS COM 3 IMAGENS CADA
+      // DATABASE — 37 CARDS COM IMAGENS ESPECÍFICAS POR ESTILO
       // ============================================================
       const styleData = {
         'velvet-bob': {
@@ -1880,17 +1879,17 @@
           volume: 'Medio',
           cores: ['6.0', '7.0'],
           tags: ['corte', 'bob', 'clássico', 'camadas'],
-          img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
+          img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
           ],
           related: ['pixie-cut', 'short-bob', 'blunt-cut']
         },
         'pixie-cut': {
           title: 'Pixie Cut',
-          desc: 'Corte curto e prático que valoriza os traços faciais.',
+          desc: 'Corte curto e prático que valoriza os traços faciais com atitude moderna.',
           badge: 'ousado',
           categoria: 'Corte',
           size: 'curto',
@@ -1902,17 +1901,17 @@
           volume: 'Baixo',
           cores: ['5.0', '6.0'],
           tags: ['corte', 'pixie', 'curto', 'moderno'],
-          img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
+          img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face'
+            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
           ],
           related: ['side-cut', 'short-bob', 'velvet-bob']
         },
         'wolf-cut': {
           title: 'Wolf Cut',
-          desc: 'Camadas intensas e movimento selvagem. Atitude moderna.',
+          desc: 'Camadas intensas e movimento selvagem com volume estratégico. Atitude moderna e ousada.',
           badge: 'selvagem',
           categoria: 'Corte',
           size: 'medio',
@@ -1927,14 +1926,14 @@
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
             'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
           ],
           related: ['shaggy-hair', 'octopus-cut', 'butterfly-cut']
         },
         'side-cut': {
           title: 'Side Cut',
-          desc: 'Rasurado de um lado com contraste marcante. Estilo ousado.',
+          desc: 'Rasurado de um lado com contraste marcante e assimetria. Visual radical e impactante.',
           badge: 'radical',
           categoria: 'Corte',
           size: 'curto',
@@ -1956,7 +1955,7 @@
         },
         'short-bob': {
           title: 'Short Bob',
-          desc: 'Bob curto na altura do queixo. Linhas retas e elegância.',
+          desc: 'Bob clássico na altura do queixo com linhas retas e elegância atemporal.',
           badge: 'clássico',
           categoria: 'Corte',
           size: 'curto',
@@ -1978,7 +1977,7 @@
         },
         'kitty-cut': {
           title: 'Kitty Cut',
-          desc: 'Camadas suaves e franja lateral. Estilo doce e moderno.',
+          desc: 'Camadas suaves e franja lateral que criam um visual doce e contemporâneo.',
           badge: 'doce',
           categoria: 'Corte',
           size: 'medio',
@@ -2000,7 +1999,7 @@
         },
         'nirvana-cut': {
           title: 'Nirvana Cut',
-          desc: 'Grunge com desconexão e textura. Atitude rock.',
+          desc: 'Estilo grunge com desconexão, textura e atitude rock. Visual despojado e autêntico.',
           badge: 'grunge',
           categoria: 'Corte',
           size: 'medio',
@@ -2021,8 +2020,8 @@
           related: ['shaggy-hair', 'side-cut', 'wolf-cut']
         },
         'long-bob': {
-          title: 'Long Bob',
-          desc: 'Bob alongado entre o queixo e os ombros. Versátil.',
+          title: 'Long Bob (Lob)',
+          desc: 'Bob alongado entre o queixo e os ombros. Versátil, elegante e fácil de manter.',
           badge: 'elegante',
           categoria: 'Corte',
           size: 'longo',
@@ -2044,7 +2043,7 @@
         },
         'butterfly-cut': {
           title: 'Butterfly Cut',
-          desc: 'Camadas leves que criam movimento, como asas de borboleta.',
+          desc: 'Camadas leves que criam movimento fluido, como asas de borboleta. Romântico e moderno.',
           badge: 'leve',
           categoria: 'Corte',
           size: 'longo',
@@ -2066,7 +2065,7 @@
         },
         'blunt-cut': {
           title: 'Blunt Cut',
-          desc: 'Corte reto e marcante, sem camadas. Visual moderno.',
+          desc: 'Corte reto e marcante, sem camadas. Visual limpo, moderno e sofisticado.',
           badge: 'reto',
           categoria: 'Corte',
           size: 'medio',
@@ -2088,7 +2087,7 @@
         },
         'octopus-cut': {
           title: 'Octopus Cut',
-          desc: 'Camadas curtas no topo e longas nas pontas. Volume.',
+          desc: 'Camadas curtas no topo e longas nas pontas criando volume e movimento único.',
           badge: 'volumoso',
           categoria: 'Corte',
           size: 'longo',
@@ -2110,7 +2109,7 @@
         },
         'shaggy-hair': {
           title: 'Shaggy Hair',
-          desc: 'Visual despojado com muitas camadas e textura.',
+          desc: 'Visual despojado com muitas camadas e textura. Estilo alternativo com personalidade.',
           badge: 'despojado',
           categoria: 'Corte',
           size: 'medio',
@@ -2132,7 +2131,7 @@
         },
         'curtain-bangs': {
           title: 'Curtain Bangs',
-          desc: 'Franja cortina que abre no meio, emoldurando o rosto.',
+          desc: 'Franja cortina que se abre no meio, emoldurando o rosto com um toque retrô.',
           badge: 'retrô',
           categoria: 'Corte',
           size: 'longo',
@@ -2154,7 +2153,7 @@
         },
         'ombre-tiger-eye': {
           title: 'Ombré Tiger Eye',
-          desc: 'Transição suave do escuro para o dourado. Efeito olho de tigre.',
+          desc: 'Transição suave do escuro para o dourado com efeito olho de tigre. Sofisticado e natural.',
           badge: 'ombré',
           categoria: 'Coloração',
           size: null,
@@ -2176,7 +2175,7 @@
         },
         'babylights-morena': {
           title: 'Babylights Morena',
-          desc: 'Luzes finíssimas que imitam o efeito natural do sol.',
+          desc: 'Luzes finíssimas que imitam o efeito natural do sol nos cabelos morenos.',
           badge: 'babylights',
           categoria: 'Coloração',
           size: null,
@@ -2198,7 +2197,7 @@
         },
         'contour-highlights': {
           title: 'Contour Highlights',
-          desc: 'Luzes estratégicas que valorizam o formato do rosto.',
+          desc: 'Luzes estrategicamente posicionadas para valorizar e iluminar o formato do rosto.',
           badge: 'contour',
           categoria: 'Coloração',
           size: null,
@@ -2220,7 +2219,7 @@
         },
         'balayage-loira': {
           title: 'Balayage Loira',
-          desc: 'Técnica de luzes naturais com efeito degradê e movimento.',
+          desc: 'Técnica de luzes naturais com efeito degradê que cria movimento e dimensão.',
           badge: 'balayage',
           categoria: 'Coloração',
           size: null,
@@ -2242,7 +2241,7 @@
         },
         'californianas': {
           title: 'Californianas',
-          desc: 'Luzes que criam um efeito de sol californiano.',
+          desc: 'Luzes que criam um efeito de sol californiano, com transição suave e natural.',
           badge: 'californianas',
           categoria: 'Coloração',
           size: null,
@@ -2264,7 +2263,7 @@
         },
         'mechas-contour': {
           title: 'Mechas Contour',
-          desc: 'Luzes que contornam o rosto, iluminando e valorizando.',
+          desc: 'Luzes que contornam o rosto, iluminando e valorizando os traços faciais.',
           badge: 'contour',
           categoria: 'Coloração',
           size: null,
@@ -2286,7 +2285,7 @@
         },
         'highlights-loira': {
           title: 'Highlights Loira',
-          desc: 'Luzes suaves que adicionam dimensão e brilho ao cabelo loiro.',
+          desc: 'Luzes suaves que adicionam dimensão, profundidade e brilho ao cabelo loiro.',
           badge: 'highlights',
           categoria: 'Coloração',
           size: null,
@@ -2308,7 +2307,7 @@
         },
         'cherry-cola': {
           title: 'Cherry Cola',
-          desc: 'Tom ruivo intenso com nuances de cereja e cola. Vibrante.',
+          desc: 'Tom ruivo intenso com nuances de cereja e cola. Vibrante, moderno e cheio de personalidade.',
           badge: 'cherry',
           categoria: 'Coloração',
           size: null,
@@ -2330,7 +2329,7 @@
         },
         'cowgirl-copper': {
           title: 'Cowgirl Copper',
-          desc: 'Tom cobre intenso com inspiração western. Moderno e ousado.',
+          desc: 'Tom cobre intenso com inspiração western. Moderno, ousado e cheio de atitude.',
           badge: 'copper',
           categoria: 'Coloração',
           size: null,
@@ -2352,7 +2351,7 @@
         },
         'ruivo-doce-leite': {
           title: 'Ruivo Doce de Leite',
-          desc: 'Tom ruivo com nuances carameladas e suaves. Sofisticado.',
+          desc: 'Tom ruivo com nuances carameladas e suaves. Sofisticado, quente e envolvente.',
           badge: 'doce leite',
           categoria: 'Coloração',
           size: null,
@@ -2374,7 +2373,7 @@
         },
         'grisalhos-frios': {
           title: 'Grisalhos Frios',
-          desc: 'Transição natural com tons de cinza prateado. Sofisticação.',
+          desc: 'Transição natural com tons de cinza prateado. Sofisticação e elegância atemporal.',
           badge: 'frios',
           categoria: 'Coloração',
           size: null,
@@ -2396,7 +2395,7 @@
         },
         'grisalhos-quentes': {
           title: 'Grisalhos Quentes',
-          desc: 'Transição com tons de cinza mais quentes e acinzentados.',
+          desc: 'Transição com tons de cinza mais quentes e acinzentados. Natural e acolhedor.',
           badge: 'quentes',
           categoria: 'Coloração',
           size: null,
@@ -2418,7 +2417,7 @@
         },
         'shampoo-oleo-argao': {
           title: 'Shampoo Óleo de Argan',
-          desc: 'Shampoo nutritivo com óleo de argan para fios secos.',
+          desc: 'Shampoo nutritivo com óleo de argan para fios secos e danificados. Recuperação profunda.',
           badge: 'nutritivo',
           categoria: 'Produto',
           size: null,
@@ -2430,17 +2429,17 @@
           volume: 'Medio, Alto',
           cores: [],
           tags: ['produto', 'shampoo', 'argan', 'nutrição'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['condicionador-reparador', 'mascara-capilar-umbium', 'shampoo-antifrizz']
         },
         'condicionador-reparador': {
           title: 'Condicionador Reparador',
-          desc: 'Condicionador com queratina para reparar pontas danificadas.',
+          desc: 'Condicionador com queratina para reparar pontas danificadas e restaurar a saúde dos fios.',
           badge: 'reparador',
           categoria: 'Produto',
           size: null,
@@ -2452,17 +2451,17 @@
           volume: 'Medio',
           cores: [],
           tags: ['produto', 'condicionador', 'queratina', 'reparação'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['shampoo-oleo-argao', 'creme-para-pentear', 'mascara-capilar-umbium']
         },
         'mascara-capilar-umbium': {
           title: 'Máscara Capilar Umbiúm',
-          desc: 'Máscara hidratante com umbiúm para cabelos crespos.',
+          desc: 'Máscara hidratante com umbiúm para cabelos crespos e cacheados. Definição e maciez.',
           badge: 'hidratante',
           categoria: 'Produto',
           size: null,
@@ -2474,17 +2473,17 @@
           volume: 'Alto',
           cores: [],
           tags: ['produto', 'máscara', 'umbiúm', 'hidratação'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['oleo-finalizador-cacau', 'serum-brilho-definicao', 'condicionador-reparador']
         },
         'serum-brilho-definicao': {
           title: 'Sérum Brilho e Definição',
-          desc: 'Sérum que define cachos e dá brilho intenso.',
+          desc: 'Sérum que define cachos e dá brilho intenso. Finalização perfeita para fios crespos.',
           badge: 'definidor',
           categoria: 'Produto',
           size: null,
@@ -2496,17 +2495,17 @@
           volume: 'Medio, Alto',
           cores: [],
           tags: ['produto', 'sérum', 'definição', 'brilho'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['mascara-capilar-umbium', 'oleo-finalizador-cacau', 'mousse-modelador']
         },
         'oleo-finalizador-cacau': {
           title: 'Óleo Finalizador de Cacau',
-          desc: 'Óleo leve com cacau para finalização e brilho.',
+          desc: 'Óleo leve com cacau para finalização e brilho intenso. Fios macios e sedosos.',
           badge: 'finalizador',
           categoria: 'Produto',
           size: null,
@@ -2518,17 +2517,17 @@
           volume: 'Medio',
           cores: [],
           tags: ['produto', 'óleo', 'cacau', 'finalização'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['serum-brilho-definicao', 'spray-protetor-termico', 'gel-fixacao-ultra']
         },
         'spray-protetor-termico': {
           title: 'Spray Protetor Térmico',
-          desc: 'Protege os fios contra o calor de secadores e chapinhas.',
+          desc: 'Protege os fios contra o calor de secadores, chapinhas e babyliss. Segurança diária.',
           badge: 'proteção',
           categoria: 'Produto',
           size: null,
@@ -2540,17 +2539,17 @@
           volume: 'Baixo, Medio',
           cores: [],
           tags: ['produto', 'spray', 'proteção', 'térmico'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['oleo-finalizador-cacau', 'gel-fixacao-ultra', 'tonico-capilar-crescimento']
         },
         'gel-fixacao-ultra': {
           title: 'Gel Fixação Ultra',
-          desc: 'Gel de fixação forte para penteados duradouros.',
+          desc: 'Gel de fixação forte para penteados duradouros com acabamento natural.',
           badge: 'fixação',
           categoria: 'Produto',
           size: null,
@@ -2562,17 +2561,17 @@
           volume: 'Baixo, Medio',
           cores: [],
           tags: ['produto', 'gel', 'fixação', 'forte'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['spray-protetor-termico', 'mousse-modelador', 'tonico-capilar-crescimento']
         },
         'tonico-capilar-crescimento': {
           title: 'Tônico Capilar Crescimento',
-          desc: 'Tônico estimulante para crescimento saudável dos fios.',
+          desc: 'Tônico estimulante para crescimento saudável dos fios. Ativa a circulação no couro cabeludo.',
           badge: 'crescimento',
           categoria: 'Produto',
           size: null,
@@ -2584,17 +2583,17 @@
           volume: 'Baixo, Medio',
           cores: [],
           tags: ['produto', 'tônico', 'crescimento', 'estimulante'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['shampoo-antifrizz', 'condicionador-volume', 'gel-fixacao-ultra']
         },
         'shampoo-antifrizz': {
           title: 'Shampoo Antifrizz',
-          desc: 'Shampoo para controle de frizz e umidade.',
+          desc: 'Shampoo para controle de frizz e umidade. Fios alinhados e disciplinados.',
           badge: 'antifrizz',
           categoria: 'Produto',
           size: null,
@@ -2606,17 +2605,17 @@
           volume: 'Medio, Alto',
           cores: [],
           tags: ['produto', 'shampoo', 'antifrizz', 'controle'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['tonico-capilar-crescimento', 'condicionador-volume', 'mousse-modelador']
         },
         'condicionador-volume': {
           title: 'Condicionador Volume',
-          desc: 'Condicionador que adiciona volume e leveza aos fios.',
+          desc: 'Condicionador que adiciona volume e leveza aos fios. Raiz elevada e movimento.',
           badge: 'volume',
           categoria: 'Produto',
           size: null,
@@ -2628,17 +2627,17 @@
           volume: 'Alto',
           cores: [],
           tags: ['produto', 'condicionador', 'volume', 'leveza'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['shampoo-antifrizz', 'mousse-modelador', 'creme-para-pentear']
         },
         'creme-para-pentear': {
           title: 'Creme para Pentear',
-          desc: 'Creme leve que desembaraça e hidrata os fios.',
+          desc: 'Creme leve que desembaraça e hidrata os fios. Maciez e facilidade na escovação.',
           badge: 'desembaraçador',
           categoria: 'Produto',
           size: null,
@@ -2650,17 +2649,17 @@
           volume: 'Medio',
           cores: [],
           tags: ['produto', 'creme', 'desembaraço', 'hidratação'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['condicionador-reparador', 'mousse-modelador', 'condicionador-volume']
         },
         'mousse-modelador': {
           title: 'Mousse Modelador',
-          desc: 'Mousse que modela e dá textura aos fios.',
+          desc: 'Mousse que modela, dá textura e define os fios com leveza e movimento.',
           badge: 'modelador',
           categoria: 'Produto',
           size: null,
@@ -2672,11 +2671,11 @@
           volume: 'Alto',
           cores: [],
           tags: ['produto', 'mousse', 'modelagem', 'textura'],
-          img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=600&fit=crop&crop=center',
+          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=1067&fit=crop&crop=center'
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
+            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
           ],
           related: ['serum-brilho-definicao', 'gel-fixacao-ultra', 'oleo-finalizador-cacau']
         }
@@ -3036,7 +3035,6 @@
         if (data.cores && data.cores.length) details.push(`✧ Cores: ${data.cores.join(', ')}`);
         document.getElementById('modalDetails').innerHTML = details.map(d => `<span>${d}</span>`).join('');
 
-        // RELATED SUGGESTIONS
         const relatedContainer = document.getElementById('modalRelated');
         relatedContainer.innerHTML = '';
         if (data.related && data.related.length) {
@@ -3379,7 +3377,7 @@
         updateAllFavUI();
         updateFilterBadge();
 
-        console.log('✅ HAIROS PREMIUM FINAL · 37 cards com 3 imagens cada');
+        console.log('✅ HAIROS PREMIUM FINAL · 37 cards com imagens específicas por estilo');
         console.log('✅ Filtros acumulativos · Busca com debounce');
         console.log('✅ Fontes grandes e legíveis · Interface limpa');
         console.log('✅ Footer sempre visível');
