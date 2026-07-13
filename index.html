@@ -621,7 +621,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 70%);
       pointer-events: none;
     }
 
@@ -647,83 +647,77 @@
     .carousel-card .fav-btn:hover { transform: scale(1.1); background: rgba(0,0,0,0.7); }
     .carousel-card .fav-btn.favorited { color: #ff4757; background: rgba(255,71,87,0.2); border-color: rgba(255,71,87,0.2); }
 
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-      margin-bottom: 2px;
-    }
-    .card-tag {
-      font-size: clamp(9px, 2vw, 11px);
-      background: rgba(201,169,110,0.2);
-      border: 1px solid rgba(201,169,110,0.1);
-      padding: 0 6px;
-      border-radius: 6px;
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: lowercase;
-      backdrop-filter: blur(4px);
-    }
-
     .card-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px 10px 10px 10px;
+      padding: 16px 12px 12px 12px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
       z-index: 5;
     }
-    .card-overlay h3 {
+
+    /* HIERARQUIA DO CARD: NOME → DESCRIÇÃO → NÚMERO → TAGS */
+    .card-overlay .card-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(16px, 3.4vw, 20px);
+      font-size: clamp(18px, 3.8vw, 22px);
       font-weight: 700;
       font-style: italic;
       color: #fff;
-      line-height: 1.1;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      line-height: 1.05;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      letter-spacing: 0.02em;
     }
-    .card-overlay .card-sub {
-      font-size: clamp(11px, 2.4vw, 13px);
-      color: rgba(255,255,255,0.7);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      background: rgba(0,0,0,0.3);
-      padding: 0 8px;
-      border-radius: 6px;
-      display: inline-block;
-      backdrop-filter: blur(4px);
-      width: fit-content;
+    .card-overlay .card-desc {
+      font-size: clamp(12px, 2.6vw, 14px);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      line-height: 1.3;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-    .card-overlay .card-badge {
-      display: inline-block;
-      background: rgba(201,169,110,0.2);
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      font-size: clamp(11px, 2.4vw, 13px);
+    .card-overlay .card-number {
+      font-size: clamp(10px, 2.2vw, 12px);
       color: var(--gold-light);
-      border: 1px solid rgba(201,169,110,0.1);
-      align-self: flex-start;
-      margin-top: 2px;
-      min-height: 18px;
-      display: flex;
-      align-items: center;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+      padding: 1px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid rgba(201,169,110,0.08);
     }
-    .card-overlay .card-colors {
-      font-size: clamp(9px, 2vw, 11px);
-      color: rgba(255,255,255,0.5);
+    .card-overlay .card-tags-wrap {
       display: flex;
       gap: 4px;
       flex-wrap: wrap;
+      margin-top: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
     }
-    .card-overlay .card-colors span {
-      background: rgba(0,0,0,0.2);
-      padding: 0 5px;
-      border-radius: 4px;
+    .card-overlay .card-tags-wrap::-webkit-scrollbar { display: none; }
+    .card-overlay .card-tag {
+      font-size: clamp(9px, 2vw, 11px);
+      background: rgba(201,169,110,0.15);
+      border: 1px solid rgba(201,169,110,0.08);
+      padding: 0 8px;
+      border-radius: 12px;
+      color: var(--gold-light);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
       backdrop-filter: blur(4px);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .info-btn-card {
@@ -1365,7 +1359,7 @@
 
     .modal-indicators {
       position: absolute;
-      bottom: 90px;
+      bottom: 100px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -1402,80 +1396,66 @@
       justify-content: space-between;
       gap: 10px;
       padding: 30px 14px 18px 14px;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 45%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
     }
-    .modal-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+    .modal-text { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+
+    /* HIERARQUIA DO MODAL: NOME → DESCRIÇÃO → NÚMERO → TAGS → BADGE */
     .modal-text .modal-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(20px, 4.2vw, 26px);
+      font-size: clamp(22px, 4.6vw, 28px);
       font-weight: 700;
       font-style: italic;
       color: #fff;
-      line-height: 1.1;
+      line-height: 1.05;
       text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-    }
-    .modal-text .modal-class {
-      font-size: clamp(10px, 2.2vw, 12px);
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: rgba(0,0,0,0.3);
-      padding: 2px 12px;
-      border-radius: 20px;
-      display: inline-block;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(201,169,110,0.1);
-      width: fit-content;
+      letter-spacing: 0.02em;
     }
     .modal-text .modal-desc {
-      font-size: clamp(12px, 2.6vw, 14px);
-      color: rgba(240,235,228,0.7);
+      font-size: clamp(13px, 2.8vw, 15px);
+      color: rgba(240,235,228,0.8);
       font-weight: 300;
       line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
     }
-    .modal-text .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-      margin: 3px 0;
-    }
-    .modal-text .modal-tags span {
-      font-size: clamp(9px, 2vw, 11px);
-      background: rgba(201,169,110,0.15);
-      border: 1px solid rgba(201,169,110,0.08);
-      padding: 0 7px;
-      border-radius: 6px;
+    .modal-text .modal-number {
+      font-size: clamp(11px, 2.4vw, 13px);
       color: var(--gold-light);
       font-weight: 400;
-    }
-    .modal-text .modal-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
+      letter-spacing: 0.06em;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+      padding: 2px 12px;
+      border-radius: 14px;
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid rgba(201,169,110,0.08);
       margin: 2px 0;
     }
-    .modal-text .modal-details span {
-      font-size: clamp(9px, 2vw, 11px);
-      color: rgba(240,235,228,0.6);
-      background: rgba(0,0,0,0.3);
-      padding: 1px 10px;
-      border-radius: 12px;
+    .modal-text .modal-tags-wrap {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin: 2px 0;
+    }
+    .modal-text .modal-tag {
+      font-size: clamp(10px, 2.2vw, 12px);
+      background: rgba(201,169,110,0.12);
       border: 1px solid rgba(201,169,110,0.06);
-      backdrop-filter: blur(4px);
-      font-weight: 300;
+      padding: 1px 10px;
+      border-radius: 14px;
+      color: var(--gold-light);
+      font-weight: 400;
       letter-spacing: 0.04em;
+      text-transform: lowercase;
+      backdrop-filter: blur(4px);
     }
     .modal-text .modal-badge {
       align-self: flex-start;
       background: rgba(201,169,110,0.2);
       backdrop-filter: blur(6px);
       color: var(--gold-light);
-      padding: 2px 10px;
+      padding: 2px 12px;
       border-radius: var(--radius-pill);
       font-size: clamp(10px, 2.2vw, 12px);
       border: 1px solid rgba(201,169,110,0.1);
@@ -1484,6 +1464,57 @@
       min-height: 18px;
       display: flex;
       align-items: center;
+      margin-top: 2px;
+    }
+    .modal-text .modal-details-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 2px 0;
+    }
+    .modal-text .modal-details-wrap span {
+      font-size: clamp(9px, 2vw, 11px);
+      color: rgba(240,235,228,0.5);
+      background: rgba(0,0,0,0.2);
+      padding: 1px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(201,169,110,0.04);
+      backdrop-filter: blur(4px);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+    .modal-text .modal-related-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 3px;
+    }
+    .modal-text .modal-related-wrap .related-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+    }
+    .modal-text .modal-related-wrap .related-chip {
+      font-size: 10px;
+      padding: 1px 10px;
+      min-height: 16px;
+      cursor: pointer;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.06);
+      border-radius: var(--radius-pill);
+      color: var(--text-secondary);
+      transition: all var(--transition);
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .modal-text .modal-related-wrap .related-chip:hover {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+      color: var(--gold);
     }
 
     .modal-fav {
@@ -1534,14 +1565,14 @@
       .filter-toggle-btn { font-size: 11px; padding: 2px 10px; min-height: 28px; }
       .chip { font-size: clamp(10px, 2.2vw, 12px); padding: 2px 10px; min-height: 20px; }
       .carousel-card { flex: 0 0 85vw; width: 85vw; height: 55vh; min-height: 220px; max-height: 400px; }
-      .card-overlay h3 { font-size: clamp(14px, 3vw, 16px); }
-      .card-tag { font-size: clamp(8px, 1.8vw, 10px); }
+      .card-overlay .card-title { font-size: clamp(16px, 3.4vw, 19px); }
+      .card-overlay .card-desc { font-size: clamp(11px, 2.4vw, 13px); }
       .tendencias-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
       .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
       .fav-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
       .footer-links a { font-size: clamp(8px, 1.8vw, 10px); padding: 1px 6px; min-height: 16px; }
       .modal-content { height: 90vh; width: 90vw; }
-      .modal-text .modal-title { font-size: clamp(16px, 3.4vw, 20px); }
+      .modal-text .modal-title { font-size: clamp(18px, 3.8vw, 22px); }
       .modal-indicators { bottom: 80px; }
       .footer { min-height: 40px; padding: 2px 0; }
     }
@@ -1840,13 +1871,13 @@
         <div class="modal-indicators" id="modalIndicators"></div>
         <div class="modal-info">
           <div class="modal-text">
-            <span class="modal-class" id="modalClass">corte · médio</span>
             <span class="modal-title" id="modalTitle">Velvet Bob</span>
-            <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves.</span>
-            <div class="modal-tags" id="modalTags"></div>
-            <div class="modal-details" id="modalDetails"></div>
+            <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves que emolduram o rosto.</span>
+            <span class="modal-number" id="modalNumber">6.0 · 7.0</span>
+            <div class="modal-tags-wrap" id="modalTags"></div>
             <span class="modal-badge" id="modalBadge">tendência</span>
-            <div class="modal-related" id="modalRelated" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;"></div>
+            <div class="modal-details-wrap" id="modalDetails"></div>
+            <div class="modal-related-wrap" id="modalRelated"></div>
           </div>
           <button class="modal-fav" id="modalFavBtn">
             <span class="fav-icon">♡</span>
@@ -1862,7 +1893,7 @@
       'use strict';
 
       // ============================================================
-      // DATABASE — 37 CARDS COM IMAGENS ESPECÍFICAS POR ESTILO
+      // DATABASE — 37 CARDS COM 3 IMAGENS CADA
       // ============================================================
       const styleData = {
         'velvet-bob': {
@@ -2797,9 +2828,7 @@
           if (!data) return;
           const fav = isFavorite(key);
           const colors = getColorLabel(data);
-          const tagsHtml = data.tags.slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('');
-          const colorsHtml = data.cores.length ? 
-            `<div class="card-colors">${data.cores.map(c => `<span>${c}</span>`).join('')}</div>` : '';
+          const tagsHtml = data.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
 
           const card = document.createElement('div');
           card.className = `carousel-card${key === activeKey ? ' active-card' : ''}`;
@@ -2808,11 +2837,10 @@
             <button class="fav-btn ${fav ? 'favorited' : ''}" data-fav-key="${key}">${fav ? '♥' : '♡'}</button>
             <div class="card-img"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
             <div class="card-overlay">
-              <div class="card-tags">${tagsHtml}</div>
-              <h3>${data.title}</h3>
-              ${colors ? `<span class="card-sub">${colors}</span>` : ''}
-              <span class="card-badge">${data.badge}</span>
-              ${colorsHtml}
+              <span class="card-title">${data.title}</span>
+              <span class="card-desc">${data.desc}</span>
+              ${colors ? `<span class="card-number">${colors}</span>` : ''}
+              <div class="card-tags-wrap">${tagsHtml}</div>
             </div>
             <button class="info-btn-card" data-key="${key}">ⓘ</button>
           `;
@@ -3020,35 +3048,38 @@
 
         document.getElementById('modalTitle').textContent = data.title;
         document.getElementById('modalDesc').textContent = data.desc;
-        document.getElementById('modalClass').textContent = [data.categoria, data.size, data.style].filter(Boolean).join(' · ');
         document.getElementById('modalBadge').textContent = data.badge;
 
-        const tagsHtml = (data.tags || []).map(t => `<span>${t}</span>`).join('');
+        const colors = getColorLabel(data);
+        document.getElementById('modalNumber').textContent = colors || '—';
+
+        const tagsHtml = (data.tags || []).map(t => `<span class="modal-tag">${t}</span>`).join('');
         document.getElementById('modalTags').innerHTML = tagsHtml;
 
         const details = [];
-        if (data.manutencao) details.push(`✧ Manutenção: ${data.manutencao}`);
-        if (data.rosto) details.push(`✧ Rosto: ${data.rosto}`);
-        if (data.textura) details.push(`✧ Textura: ${data.textura}`);
-        if (data.volume) details.push(`✧ Volume: ${data.volume}`);
-        if (data.colorFamily) details.push(`✧ Família: ${data.colorFamily}`);
-        if (data.cores && data.cores.length) details.push(`✧ Cores: ${data.cores.join(', ')}`);
+        if (data.categoria) details.push(`📂 ${data.categoria}`);
+        if (data.size) details.push(`📏 ${data.size}`);
+        if (data.style) details.push(`🎭 ${data.style}`);
+        if (data.colorFamily) details.push(`🎨 ${data.colorFamily}`);
+        if (data.manutencao) details.push(`🛠️ ${data.manutencao}`);
+        if (data.rosto) details.push(`👤 ${data.rosto}`);
+        if (data.textura) details.push(`✨ ${data.textura}`);
+        if (data.volume) details.push(`📊 ${data.volume}`);
         document.getElementById('modalDetails').innerHTML = details.map(d => `<span>${d}</span>`).join('');
 
         const relatedContainer = document.getElementById('modalRelated');
         relatedContainer.innerHTML = '';
         if (data.related && data.related.length) {
           const label = document.createElement('span');
-          label.textContent = '→ relacionados:';
-          label.style.cssText = 'font-size:10px;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;font-weight:300;';
+          label.className = 'related-label';
+          label.textContent = '→ relacionados';
           relatedContainer.appendChild(label);
           data.related.forEach(relKey => {
             const relData = styleData[relKey];
             if (!relData) return;
             const chip = document.createElement('span');
-            chip.className = 'chip';
+            chip.className = 'related-chip';
             chip.textContent = relData.title;
-            chip.style.cssText = 'font-size:10px;padding:1px 8px;min-height:16px;cursor:pointer;';
             chip.addEventListener('click', (e) => {
               e.stopPropagation();
               closeModal();
@@ -3377,14 +3408,11 @@
         updateAllFavUI();
         updateFilterBadge();
 
-        console.log('✅ HAIROS PREMIUM FINAL · 37 cards com imagens específicas por estilo');
-        console.log('✅ Filtros acumulativos · Busca com debounce');
-        console.log('✅ Fontes grandes e legíveis · Interface limpa');
-        console.log('✅ Footer sempre visível');
-        console.log('✅ Tema escuro/claro · Responsivo completo');
-        console.log('✅ Cards com cores, tags, badge, descrição');
-        console.log('✅ Modal com 3 imagens, detalhes e sugestões relacionadas');
-        console.log('✅ Chips interconectados com navegação suave');
+        console.log('✅ HAIROS PREMIUM · Hierarquia corrigida');
+        console.log('✅ Cards: NOME → DESCRIÇÃO → NÚMERO → TAGS (horizontal)');
+        console.log('✅ Modal: NOME → DESCRIÇÃO → NÚMERO → TAGS → BADGE → DETALHES');
+        console.log('✅ 37 cards · 37 modais · 111 imagens');
+        console.log('✅ Tudo mantido como antes, apenas reorganizado');
       }
 
       document.addEventListener('DOMContentLoaded', init);
