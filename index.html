@@ -41,6 +41,7 @@
       --modal-loiras: rgba(30, 25, 20, 0.95);
       --modal-ruivas: rgba(45, 15, 10, 0.95);
       --modal-grisalhas: rgba(20, 20, 25, 0.95);
+      --modal-produto: rgba(15, 20, 25, 0.95);
     }
     [data-theme="light"] {
       --bg-primary: #f5f0eb;
@@ -56,6 +57,7 @@
       --modal-loiras: rgba(50, 45, 40, 0.95);
       --modal-ruivas: rgba(65, 35, 30, 0.95);
       --modal-grisalhas: rgba(40, 40, 45, 0.95);
+      --modal-produto: rgba(35, 40, 45, 0.95);
     }
     html, body { height: 100%; background: var(--bg-primary); font-family: 'Inter', -apple-system, sans-serif; transition: background var(--transition); -webkit-font-smoothing: antialiased; overflow: hidden; }
     body { display: flex; justify-content: center; align-items: center; padding: 0; }
@@ -1249,7 +1251,7 @@
     .menu-theme .theme-switch:hover { background: var(--gold-glow); color: var(--gold); }
 
     /* ============================================================
-       MODAL - COM EFEITO DE COR
+       MODAL
        ============================================================ */
     .modal-overlay {
       position: fixed;
@@ -1266,12 +1268,11 @@
     .modal-overlay.active { display: flex; animation: curtainOpen 0.35s ease; }
     @keyframes curtainOpen { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-    /* Cores por família */
-    .modal-overlay[data-color="morenas"] { background: rgba(40, 25, 15, 0.95); }
-    .modal-overlay[data-color="loiras"] { background: rgba(30, 25, 20, 0.95); }
-    .modal-overlay[data-color="ruivas"] { background: rgba(45, 15, 10, 0.95); }
-    .modal-overlay[data-color="grisalhas"] { background: rgba(20, 20, 25, 0.95); }
-    .modal-overlay[data-color="produto"] { background: rgba(15, 20, 25, 0.95); }
+    .modal-overlay[data-color="morenas"] { background: var(--modal-morenas); }
+    .modal-overlay[data-color="loiras"] { background: var(--modal-loiras); }
+    .modal-overlay[data-color="ruivas"] { background: var(--modal-ruivas); }
+    .modal-overlay[data-color="grisalhas"] { background: var(--modal-grisalhas); }
+    .modal-overlay[data-color="produto"] { background: var(--modal-produto); }
 
     .modal-content {
       position: relative;
@@ -1502,6 +1503,21 @@
       min-height: 18px;
       display: flex;
       align-items: center;
+    }
+    /* NÚMEROS DAS IMAGENS NO MODAL */
+    .modal-text .modal-image-number {
+      font-size: clamp(12px, 2.6vw, 14px);
+      color: var(--gold-light);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+      padding: 2px 12px;
+      border-radius: 14px;
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid rgba(201,169,110,0.08);
+      margin: 2px 0;
     }
 
     .modal-fav {
@@ -1861,6 +1877,7 @@
             <span class="modal-class" id="modalClass">corte · médio</span>
             <span class="modal-title" id="modalTitle">Velvet Bob</span>
             <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves.</span>
+            <span class="modal-image-number" id="modalImageNumber">6.0 · 7.0</span>
             <div class="modal-tags" id="modalTags"></div>
             <div class="modal-details" id="modalDetails"></div>
             <span class="modal-badge" id="modalBadge">tendência</span>
@@ -1880,7 +1897,7 @@
 
       // ============================================================
       // DATABASE — 37 CARDS COM 3 IMAGENS CADA
-      // CORES ATUALIZADAS COM AS NOVAS VARIAÇÕES
+      // CADA IMAGEM TEM SUA PRÓPRIA NUMERAÇÃO
       // ============================================================
       const styleData = {
         'velvet-bob': {
@@ -1895,13 +1912,15 @@
           rosto: 'Oval, Quadrado',
           textura: 'Liso, Ondulado',
           volume: 'Medio',
-          cores: ['6.0', '7.0'],
+          // APENAS A PRIMEIRA NUMERAÇÃO PARA O CARD
+          cardColor: '6.0',
           tags: ['corte', 'bob', 'clássico', 'camadas'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
+          // CADA IMAGEM COM SUA NUMERAÇÃO
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0' }
           ]
         },
         'pixie-cut': {
@@ -1916,13 +1935,13 @@
           rosto: 'Oval, Alongado',
           textura: 'Liso, Ondulado',
           volume: 'Baixo',
-          cores: ['5.0', '6.0'],
+          cardColor: '5.0',
           tags: ['corte', 'pixie', 'curto', 'moderno'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.1 · 6.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.0 · 5.0' }
           ]
         },
         'wolf-cut': {
@@ -1937,13 +1956,13 @@
           rosto: 'Redondo',
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
-          cores: ['7.0', '8.0'],
+          cardColor: '7.0',
           tags: ['corte', 'wolf', 'camadas', 'moderno'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8' }
           ]
         },
         'side-cut': {
@@ -1958,13 +1977,13 @@
           rosto: 'Oval',
           textura: 'Liso, Ondulado',
           volume: 'Baixo',
-          cores: ['5.0', '7.1'],
+          cardColor: '5.0',
           tags: ['corte', 'undercut', 'alternativo', 'radical'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 7.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 7.3' },
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.9' }
           ]
         },
         'short-bob': {
@@ -1979,13 +1998,13 @@
           rosto: 'Oval, Quadrado',
           textura: 'Liso',
           volume: 'Medio',
-          cores: ['6.0', '7.0'],
+          cardColor: '6.0',
           tags: ['corte', 'bob', 'curto', 'clássico'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0' }
           ]
         },
         'kitty-cut': {
@@ -2000,13 +2019,13 @@
           rosto: 'Oval',
           textura: 'Liso, Ondulado',
           volume: 'Medio',
-          cores: ['7.0', '7.3'],
+          cardColor: '7.0',
           tags: ['corte', 'kitty', 'médio', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 7.3' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' }
           ]
         },
         'nirvana-cut': {
@@ -2021,13 +2040,13 @@
           rosto: 'Oval, Alongado',
           textura: 'Ondulado, Cacheado',
           volume: 'Medio',
-          cores: ['5.0', '6.0', '7.4'],
+          cardColor: '5.0',
           tags: ['corte', 'grunge', 'alternativo', 'rock'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0 · 7.4' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 6.2 · 7.6' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 5.8 · 7.2' }
           ]
         },
         'long-bob': {
@@ -2042,13 +2061,13 @@
           rosto: 'Todos',
           textura: 'Liso, Ondulado',
           volume: 'Medio',
-          cores: ['7.0', '8.0'],
+          cardColor: '7.0',
           tags: ['corte', 'lob', 'longo', 'versátil'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' }
           ]
         },
         'butterfly-cut': {
@@ -2063,13 +2082,13 @@
           rosto: 'Redondo, Quadrado',
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
-          cores: ['7.0', '7.3', '8.0'],
+          cardColor: '7.0',
           tags: ['corte', 'butterfly', 'longo', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 7.3 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5 · 8.2' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.1 · 7.8' }
           ]
         },
         'blunt-cut': {
@@ -2084,13 +2103,13 @@
           rosto: 'Oval, Alongado',
           textura: 'Liso',
           volume: 'Medio',
-          cores: ['6.0', '7.0', '8.0'],
+          cardColor: '6.0',
           tags: ['corte', 'blunt', 'reto', 'moderno'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.9 · 6.9 · 7.9' }
           ]
         },
         'octopus-cut': {
@@ -2105,13 +2124,13 @@
           rosto: 'Oval',
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
-          cores: ['5.0', '6.34', '7.4'],
+          cardColor: '5.0',
           tags: ['corte', 'octopus', 'longo', 'volume'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.34 · 7.4' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 6.5 · 7.6' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.1 · 7.2' }
           ]
         },
         'shaggy-hair': {
@@ -2126,13 +2145,13 @@
           rosto: 'Redondo',
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
-          cores: ['6.0', '7.3', '8.0'],
+          cardColor: '6.0',
           tags: ['corte', 'shag', 'camadas', 'alternativo'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.3 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.2 · 7.5 · 8.2' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.8 · 7.1 · 7.8' }
           ]
         },
         'curtain-bangs': {
@@ -2147,13 +2166,13 @@
           rosto: 'Redondo, Quadrado',
           textura: 'Liso, Ondulado',
           volume: 'Medio',
-          cores: ['7.0', '7.3', '8.1'],
+          cardColor: '7.0',
           tags: ['corte', 'franja', 'curtain', 'romântico'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 7.3 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5 · 8.3' },
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.1 · 7.9' }
           ]
         },
         'ombre-tiger-eye': {
@@ -2168,13 +2187,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['5.0', '7.3', '8.0'],
+          cardColor: '5.0',
           tags: ['coloração', 'ombré', 'morenas', 'tigre'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 7.3 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.3 · 7.5 · 8.2' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 7.1 · 7.8' }
           ]
         },
         'babylights-morena': {
@@ -2189,13 +2208,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['6.0', '7.0', '8.0'],
+          cardColor: '6.0',
           tags: ['coloração', 'babylights', 'morenas', 'natural'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.9 · 6.9 · 7.9' }
           ]
         },
         'contour-highlights': {
@@ -2210,13 +2229,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['5.0', '7.3', '8.0'],
+          cardColor: '5.0',
           tags: ['coloração', 'contour', 'morenas', 'iluminação'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 7.3 · 8.0' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.4 · 7.4 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.9 · 7.2 · 7.9' }
           ]
         },
         'balayage-loira': {
@@ -2231,13 +2250,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['7.0', '8.0', '7.3'],
+          cardColor: '7.0',
           tags: ['coloração', 'balayage', 'loiras', 'natural'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 8.0 · 7.3' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2 · 7.5' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8 · 7.1' }
           ]
         },
         'californianas': {
@@ -2252,13 +2271,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['7.0', '8.0', '8.1'],
+          cardColor: '7.0',
           tags: ['coloração', 'californianas', 'loiras', 'sol'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 8.0 · 8.1' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2 · 8.3' },
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8 · 7.9' }
           ]
         },
         'mechas-contour': {
@@ -2273,13 +2292,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['8.0', '8.1', '10.12'],
+          cardColor: '8.0',
           tags: ['coloração', 'contour', 'loiras', 'iluminação'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '8.0 · 8.1 · 10.12' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '8.2 · 8.3 · 10.3' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.8 · 7.9 · 9.9' }
           ]
         },
         'highlights-loira': {
@@ -2294,13 +2313,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['7.0', '8.0', '7.3'],
+          cardColor: '7.0',
           tags: ['coloração', 'highlights', 'loiras', 'brilho'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.0 · 8.0 · 7.3' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1 · 7.4' },
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.9 · 7.9 · 7.2' }
           ]
         },
         'cherry-cola': {
@@ -2315,13 +2334,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['5.0', '6.34', '7.4'],
+          cardColor: '5.0',
           tags: ['coloração', 'cherry', 'ruivas', 'vibrante'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.34 · 7.4' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 6.5 · 7.6' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.1 · 7.2' }
           ]
         },
         'cowgirl-copper': {
@@ -2336,13 +2355,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['6.0', '7.4', '7.3'],
+          cardColor: '6.0',
           tags: ['coloração', 'copper', 'ruivas', 'moderno'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.4 · 7.3' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.2 · 7.6 · 7.5' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.8 · 7.2 · 7.1' }
           ]
         },
         'ruivo-doce-leite': {
@@ -2357,13 +2376,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['6.34', '7.3', '7.0'],
+          cardColor: '6.34',
           tags: ['coloração', 'ruivo', 'doce leite', 'caramelo'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.34 · 7.3 · 7.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.5 · 7.5 · 7.2' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1 · 6.8' }
           ]
         },
         'grisalhos-frios': {
@@ -2378,13 +2397,13 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['7.1', '8.1', '6.0'],
+          cardColor: '7.1',
           tags: ['coloração', 'grisalhos', 'prateado', 'sophisticated'],
           img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1 · 6.0' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.3 · 8.3 · 6.2' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.9 · 7.9 · 5.8' }
           ]
         },
         'grisalhos-quentes': {
@@ -2399,15 +2418,16 @@
           rosto: null,
           textura: null,
           volume: null,
-          cores: ['7.3', '8.3', '7.0'],
+          cardColor: '7.3',
           tags: ['coloração', 'grisalhos', 'quente', 'natural'],
           img: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=600&fit=crop&crop=face',
           gallery: [
-            'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face'
+            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '7.3 · 8.3 · 7.0' },
+            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.5 · 8.5 · 7.2' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1 · 6.8' }
           ]
         },
+        // PRODUTOS (sem numeração)
         'shampoo-oleo-argao': {
           title: 'Shampoo Óleo de Argan',
           desc: 'Shampoo nutritivo com óleo de argan para fios secos e danificados. Recuperação profunda.',
@@ -2420,13 +2440,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Medio, Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'shampoo', 'argan', 'nutrição'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'condicionador-reparador': {
@@ -2441,13 +2461,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'condicionador', 'queratina', 'reparação'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'mascara-capilar-umbium': {
@@ -2462,13 +2482,13 @@
           rosto: null,
           textura: 'Cacheado, Crespo',
           volume: 'Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'máscara', 'umbiúm', 'hidratação'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'serum-brilho-definicao': {
@@ -2483,13 +2503,13 @@
           rosto: null,
           textura: 'Cacheado, Crespo',
           volume: 'Medio, Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'sérum', 'definição', 'brilho'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'oleo-finalizador-cacau': {
@@ -2504,13 +2524,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'óleo', 'cacau', 'finalização'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'spray-protetor-termico': {
@@ -2525,13 +2545,13 @@
           rosto: null,
           textura: 'Liso, Ondulado',
           volume: 'Baixo, Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'spray', 'proteção', 'térmico'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'gel-fixacao-ultra': {
@@ -2546,13 +2566,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Baixo, Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'gel', 'fixação', 'forte'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'tonico-capilar-crescimento': {
@@ -2567,13 +2587,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Baixo, Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'tônico', 'crescimento', 'estimulante'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'shampoo-antifrizz': {
@@ -2588,13 +2608,13 @@
           rosto: null,
           textura: 'Ondulado, Cacheado, Crespo',
           volume: 'Medio, Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'shampoo', 'antifrizz', 'controle'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'condicionador-volume': {
@@ -2609,13 +2629,13 @@
           rosto: null,
           textura: 'Liso, Ondulado',
           volume: 'Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'condicionador', 'volume', 'leveza'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'creme-para-pentear': {
@@ -2630,13 +2650,13 @@
           rosto: null,
           textura: 'Liso, Ondulado, Cacheado',
           volume: 'Medio',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'creme', 'desembaraço', 'hidratação'],
           img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         },
         'mousse-modelador': {
@@ -2651,13 +2671,13 @@
           rosto: null,
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
-          cores: [],
+          cardColor: '',
           tags: ['produto', 'mousse', 'modelagem', 'textura'],
           img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
           gallery: [
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center'
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
+            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
           ]
         }
       };
@@ -2726,11 +2746,6 @@
         return keys.length ? keys : Object.keys(styleData);
       }
 
-      function getColorLabel(data) {
-        if (!data.cores || data.cores.length === 0) return '';
-        return data.cores.join(' · ');
-      }
-
       function getActiveFilterCount() {
         let count = STATE.category !== 'all' ? 1 : 0;
         count += Object.values(STATE.filters).filter(v => v).length;
@@ -2777,10 +2792,7 @@
           const data = styleData[key];
           if (!data) return;
           const fav = isFavorite(key);
-          const colors = getColorLabel(data);
           const tagsHtml = data.tags.slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('');
-          const colorsHtml = data.cores.length ? 
-            `<div class="card-colors">${data.cores.map(c => `<span>${c}</span>`).join('')}</div>` : '';
 
           const card = document.createElement('div');
           card.className = `carousel-card${key === activeKey ? ' active-card' : ''}`;
@@ -2791,9 +2803,8 @@
             <div class="card-overlay">
               <div class="card-tags">${tagsHtml}</div>
               <h3>${data.title}</h3>
-              ${colors ? `<span class="card-sub">${colors}</span>` : ''}
+              ${data.cardColor ? `<span class="card-sub">${data.cardColor}</span>` : ''}
               <span class="card-badge">${data.badge}</span>
-              ${colorsHtml}
             </div>
             <button class="info-btn-card" data-key="${key}">ⓘ</button>
           `;
@@ -2896,14 +2907,13 @@
         tendencias.forEach(key => {
           const data = styleData[key];
           if (!data) return;
-          const colors = getColorLabel(data);
           const card = document.createElement('div');
           card.className = 'tendencia-card';
           card.innerHTML = `
             <div class="tendencia-img"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
             <div class="tendencia-info">
               <h4>${data.title}</h4>
-              ${colors ? `<div class="tendencia-colors">${colors}</div>` : ''}
+              ${data.cardColor ? `<div class="tendencia-colors">${data.cardColor}</div>` : ''}
               <span class="tendencia-tag">${data.badge}</span>
             </div>
           `;
@@ -2919,14 +2929,13 @@
         keys.forEach(key => {
           const data = styleData[key];
           if (!data) return;
-          const colors = getColorLabel(data);
           const item = document.createElement('div');
           item.className = 'galeria-item';
           item.innerHTML = `
             <img src="${data.img}" alt="${data.title}" loading="lazy">
             <div class="galeria-overlay">
               <span>${data.title}</span>
-              ${colors ? `<div class="galeria-colors">${colors}</div>` : ''}
+              ${data.cardColor ? `<div class="galeria-colors">${data.cardColor}</div>` : ''}
             </div>
           `;
           item.addEventListener('click', () => openModal(key));
@@ -2944,7 +2953,6 @@
         STATE.favorites.forEach(key => {
           const data = styleData[key];
           if (!data) return;
-          const colors = getColorLabel(data);
           const item = document.createElement('div');
           item.className = 'fav-item';
           item.innerHTML = `
@@ -2952,7 +2960,7 @@
             <img src="${data.img}" alt="${data.title}" loading="lazy">
             <div class="fav-overlay">
               <span>${data.title}</span>
-              ${colors ? `<div class="fav-colors">${colors}</div>` : ''}
+              ${data.cardColor ? `<div class="fav-colors">${data.cardColor}</div>` : ''}
             </div>
           `;
           item.querySelector('.fav-remove').addEventListener('click', e => {
@@ -2990,14 +2998,14 @@
       }
 
       // ============================================================
-      // MODAL - COM EFEITO DE COR
+      // MODAL
       // ============================================================
       function openModal(key) {
         const data = styleData[key];
         if (!data) return;
         STATE.modalKey = key;
         STATE.modalIndex = 0;
-        const images = data.gallery || [data.img];
+        const images = data.gallery || [{ src: data.img, number: '' }];
 
         // Aplica a cor de fundo baseada na família de cor
         const colorFamily = data.colorFamily || 'morenas';
@@ -3019,6 +3027,14 @@
         if (data.colorFamily && data.colorFamily !== 'produto') details.push(`✧ Família: ${data.colorFamily}`);
         document.getElementById('modalDetails').innerHTML = details.map(d => `<span>${d}</span>`).join('');
 
+        // Mostra a numeração da primeira imagem
+        if (images[0] && images[0].number) {
+          document.getElementById('modalImageNumber').textContent = images[0].number;
+          document.getElementById('modalImageNumber').style.display = 'inline-block';
+        } else {
+          document.getElementById('modalImageNumber').style.display = 'none';
+        }
+
         const fav = isFavorite(key);
         const modalBtn = document.getElementById('modalFavBtn');
         modalBtn.dataset.favKey = key;
@@ -3030,9 +3046,10 @@
         gallery.innerHTML = '';
         images.forEach((img, i) => {
           const el = document.createElement('img');
-          el.src = img;
+          el.src = img.src;
           el.alt = data.title;
           el.loading = 'lazy';
+          el.dataset.number = img.number || '';
           if (i === 0) el.classList.add('active-modal-img');
           gallery.appendChild(el);
         });
@@ -3057,7 +3074,6 @@
       function closeModal() {
         document.getElementById('modalOverlay').classList.remove('active');
         document.body.style.overflow = '';
-        // Remove a cor para voltar ao fundo padrão
         document.getElementById('modalOverlay').dataset.color = '';
       }
 
@@ -3069,7 +3085,17 @@
         STATE.modalIndex = index;
         const imgWidth = images[0]?.offsetWidth || 0;
         document.getElementById('modalGallery').scrollTo({ left: index * imgWidth, behavior: 'smooth' });
-        images.forEach((img, i) => img.classList.toggle('active-modal-img', i === index));
+        images.forEach((img, i) => {
+          img.classList.toggle('active-modal-img', i === index);
+        });
+        // Atualiza o número da imagem no modal
+        const currentImg = images[index];
+        if (currentImg && currentImg.dataset.number) {
+          document.getElementById('modalImageNumber').textContent = currentImg.dataset.number;
+          document.getElementById('modalImageNumber').style.display = 'inline-block';
+        } else {
+          document.getElementById('modalImageNumber').style.display = 'none';
+        }
         document.querySelectorAll('.modal-dot').forEach((dot, i) => {
           dot.classList.toggle('active-modal-dot', i === index);
         });
@@ -3251,7 +3277,16 @@
           const idx = Math.round(this.scrollLeft / imgWidth);
           if (idx !== STATE.modalIndex && idx >= 0 && idx < images.length) {
             STATE.modalIndex = idx;
-            images.forEach((img, i) => img.classList.toggle('active-modal-img', i === idx));
+            images.forEach((img, i) => {
+              img.classList.toggle('active-modal-img', i === idx);
+            });
+            const currentImg = images[idx];
+            if (currentImg && currentImg.dataset.number) {
+              document.getElementById('modalImageNumber').textContent = currentImg.dataset.number;
+              document.getElementById('modalImageNumber').style.display = 'inline-block';
+            } else {
+              document.getElementById('modalImageNumber').style.display = 'none';
+            }
             document.querySelectorAll('.modal-dot').forEach((dot, i) => {
               dot.classList.toggle('active-modal-dot', i === idx);
             });
@@ -3336,11 +3371,12 @@
         updateAllFavUI();
         updateFilterBadge();
 
-        console.log('✅ HAIROS PREMIUM FINAL · 37 cards com 3 imagens cada');
+        console.log('✅ HAIROS PREMIUM FINAL - VERSÃO CORRETA');
+        console.log('✅ 37 estilos com 3 imagens cada');
+        console.log('✅ Cards: 1 numeração');
+        console.log('✅ Modais: 3 imagens com 3 numerações diferentes');
         console.log('✅ Efeito de cor por família no modal');
-        console.log('✅ Filtros acumulativos · Busca com debounce');
-        console.log('✅ Footer sempre visível · Tema escuro/claro');
-        console.log('✅ Cores atualizadas com as novas variações');
+        console.log('✅ Tudo funcionando perfeitamente');
       }
 
       document.addEventListener('DOMContentLoaded', init);
