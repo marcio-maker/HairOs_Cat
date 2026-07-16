@@ -2653,6 +2653,10 @@
             <div class="modal-tags" id="modalTags"></div>
             <div class="modal-details" id="modalDetails"></div>
             <span class="modal-badge" id="modalBadge">tendência</span>
+
+            <!-- 🔥 ADICIONADO: Container para o link de afiliado do Mercado Livre -->
+            <div id="modalLinkContainer" style="margin-top: 4px;"></div>
+
             <div class="modal-related" id="modalRelated"></div>
           </div>
           <button class="modal-fav" id="modalFavBtn">
@@ -2673,7 +2677,9 @@
       // CORTES: 2 números | COLORAÇÕES: 3 números
       // ============================================================
       const styleData = {
-        // ===== CORTES (2 números) =====
+        // ==========================================================
+        // ✂️ CORTES (13) - Cards ORIGINAIS + Modais CORRIGIDOS
+        // ==========================================================
         'velvet-bob': {
           title: 'Velvet Bob',
           desc: 'Clássico moderno com camadas suaves que emolduram o rosto.',
@@ -2687,11 +2693,11 @@
           textura: 'Liso, Ondulado',
           volume: 'Medio',
           tags: ['corte', 'bob', 'clássico', 'camadas'],
-          img: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg',
+          img: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg', number: '6.0 · 7.0' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0' }
+            { src: 'https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg', number: '6.1 · 7.1' },
+            { src: 'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg', number: '5.0 · 6.0' }
           ],
           related: ['pixie-cut', 'short-bob', 'blunt-cut']
         },
@@ -2708,11 +2714,11 @@
           textura: 'Liso, Ondulado',
           volume: 'Baixo',
           tags: ['corte', 'pixie', 'curto', 'moderno'],
-          img: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg',
+          img: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg', number: '5.0 · 6.0' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.1 · 6.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.0 · 5.0' }
+            { src: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg', number: '5.1 · 6.1' },
+            { src: 'https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg', number: '4.0 · 5.0' }
           ],
           related: ['side-cut', 'short-bob', 'velvet-bob']
         },
@@ -2729,11 +2735,11 @@
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
           tags: ['corte', 'wolf', 'camadas', 'moderno'],
-          img: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg',
+          img: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg', number: '7.0 · 8.0' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8' }
+            { src: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg', number: '7.2 · 8.2' },
+            { src: 'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg', number: '6.8 · 7.8' }
           ],
           related: ['shaggy-hair', 'octopus-cut', 'butterfly-cut']
         },
@@ -2750,11 +2756,11 @@
           textura: 'Liso, Ondulado',
           volume: 'Baixo',
           tags: ['corte', 'undercut', 'alternativo', 'radical'],
-          img: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg',
+          img: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg', number: '5.0 · 7.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.9' }
+            { src: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg', number: '5.2 · 7.3' },
+            { src: 'https://i.pinimg.com/736x/2c/ff/3e/2cff3e43ed7e8559602509e135fc826b.jpg', number: '4.8 · 6.9' }
           ],
           related: ['pixie-cut', 'nirvana-cut', 'wolf-cut']
         },
@@ -2771,11 +2777,11 @@
           textura: 'Liso',
           volume: 'Medio',
           tags: ['corte', 'bob', 'curto', 'clássico'],
-          img: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg',
+          img: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg', number: '6.0 · 7.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.0 · 6.0' }
+            { src: 'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg', number: '6.1 · 7.1' },
+            { src: 'https://i.pinimg.com/736x/a2/eb/48/a2eb48f4c7874ffd4b7668ecec57d651.jpg', number: '5.0 · 6.0' }
           ],
           related: ['velvet-bob', 'blunt-cut', 'long-bob']
         },
@@ -2792,11 +2798,11 @@
           textura: 'Liso, Ondulado',
           volume: 'Medio',
           tags: ['corte', 'kitty', 'médio', 'romântico'],
-          img: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg',
+          img: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg', number: '7.0 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' }
+            { src: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg', number: '7.2 · 7.5' },
+            { src: 'https://i.pinimg.com/736x/2e/37/91/2e3791c344263214a752f02f140ef95b.jpg', number: '6.0 · 7.0' }
           ],
           related: ['curtain-bangs', 'butterfly-cut', 'long-bob']
         },
@@ -2813,11 +2819,11 @@
           textura: 'Ondulado, Cacheado',
           volume: 'Medio',
           tags: ['corte', 'grunge', 'alternativo', 'rock'],
-          img: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg',
+          img: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg', number: '5.0 · 6.0' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.4 · 6.4' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 5.8' }
+            { src: 'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg', number: '5.4 · 6.4' },
+            { src: 'https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg', number: '4.8 · 5.8' }
           ],
           related: ['shaggy-hair', 'side-cut', 'wolf-cut']
         },
@@ -2834,11 +2840,11 @@
           textura: 'Liso, Ondulado',
           volume: 'Medio',
           tags: ['corte', 'lob', 'longo', 'versátil'],
-          img: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg',
+          img: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg', number: '7.0 · 8.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.0 · 7.0' }
+            { src: 'https://i.pinimg.com/736x/2e/37/91/2e3791c344263214a752f02f140ef95b.jpg', number: '7.1 · 8.1' },
+            { src: 'https://i.pinimg.com/736x/cf/b4/c4/cfb4c491b133cb1ced2cabf27f1691de.jpg', number: '6.0 · 7.0' }
           ],
           related: ['curtain-bangs', 'kitty-cut', 'butterfly-cut']
         },
@@ -2855,11 +2861,11 @@
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
           tags: ['corte', 'butterfly', 'longo', 'romântico'],
-          img: 'https://i.pinimg.com/1200x/0f/db/87/0fdb876f80df2b07c5c4ed0e4c928492.jpg',
+          img: 'https://i.pinimg.com/1200x/0f/db/87/0fdb876f80df2b07c5c4ed0e4c928492.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/0f/db/87/0fdb876f80df2b07c5c4ed0e4c928492.jpg', number: '7.0 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.1' }
+            { src: 'https://i.pinimg.com/236x/52/40/02/52400232deed3ad1d6a19ebdfacbc0c8.jpg', number: '7.2 · 7.5' },
+            { src: 'https://i.pinimg.com/236x/f7/ff/bb/f7ffbb74791a4e01ad6285a5aa5ab979.jpg', number: '6.8 · 7.1' }
           ],
           related: ['wolf-cut', 'octopus-cut', 'curtain-bangs']
         },
@@ -2876,11 +2882,11 @@
           textura: 'Liso',
           volume: 'Medio',
           tags: ['corte', 'blunt', 'reto', 'moderno'],
-          img: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg',
+          img: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg', number: '6.0 · 7.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.9 · 6.9' }
+            { src: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg', number: '6.1 · 7.1' },
+            { src: 'https://i.pinimg.com/736x/45/23/3f/45233f0f5bf2025158ac9ff72701f3c2.jpg', number: '5.9 · 6.9' }
           ],
           related: ['short-bob', 'velvet-bob', 'long-bob']
         },
@@ -2897,11 +2903,11 @@
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
           tags: ['corte', 'octopus', 'longo', 'volume'],
-          img: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg',
+          img: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg', number: '5.0 · 6.34' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.4 · 6.54' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.1' }
+            { src: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg', number: '5.4 · 6.54' },
+            { src: 'https://i.pinimg.com/736x/10/75/c6/1075c68d4b35292480d95cea2225915f.jpg', number: '4.8 · 6.1' }
           ],
           related: ['wolf-cut', 'shaggy-hair', 'butterfly-cut']
         },
@@ -2918,11 +2924,11 @@
           textura: 'Ondulado, Cacheado',
           volume: 'Alto',
           tags: ['corte', 'shag', 'camadas', 'alternativo'],
-          img: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg',
+          img: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg', number: '6.0 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.2 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.8 · 7.1' }
+            { src: 'https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg', number: '6.2 · 7.5' },
+            { src: 'https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg', number: '5.8 · 7.1' }
           ],
           related: ['nirvana-cut', 'wolf-cut', 'octopus-cut']
         },
@@ -2939,16 +2945,18 @@
           textura: 'Liso, Ondulado',
           volume: 'Medio',
           tags: ['corte', 'franja', 'curtain', 'romântico'],
-          img: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg',
+          img: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg', number: '7.0 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.1' }
+            { src: 'https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg', number: '7.2 · 7.5' },
+            { src: 'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg', number: '6.8 · 7.1' }
           ],
           related: ['kitty-cut', 'long-bob', 'butterfly-cut']
         },
 
-        // ===== COLORAÇÕES (3 números) =====
+        // ==========================================================
+        // 🎨 CORES / COLORAÇÕES (12) - Cards ORIGINAIS + Modais CORRIGIDOS
+        // ==========================================================
         'ombre-tiger-eye': {
           title: 'Ombré Tiger Eye',
           desc: 'Transição suave do escuro para o dourado com efeito olho de tigre. Sofisticado e natural.',
@@ -2962,11 +2970,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'ombré', 'morenas', 'tigre'],
-          img: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg',
+          img: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg', number: '5.0 · 7.3 · 8.0' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.3 · 7.5 · 8.2' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 7.1 · 7.8' }
+            { src: 'https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg', number: '5.3 · 7.5 · 8.2' },
+            { src: 'https://i.pinimg.com/736x/fa/a5/b7/faa5b7c1adedbfb1af0e96a9925a653b.jpg', number: '4.8 · 7.1 · 7.8' }
           ],
           related: ['balayage-loira', 'contour-highlights', 'babylights-morena']
         },
@@ -2983,11 +2991,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'babylights', 'morenas', 'natural'],
-          img: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg',
+          img: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg', number: '6.0 · 7.0 · 8.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1 · 8.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.9 · 6.9 · 7.9' }
+            { src: 'https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg', number: '6.1 · 7.1 · 8.1' },
+            { src: 'https://i.pinimg.com/736x/8c/2f/fb/8c2ffb69266317402f17c8e2fd120420.jpg', number: '5.9 · 6.9 · 7.9' }
           ],
           related: ['ombre-tiger-eye', 'contour-highlights', 'balayage-loira']
         },
@@ -3004,11 +3012,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'contour', 'morenas', 'iluminação'],
-          img: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg',
+          img: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg', number: '5.0 · 7.3 · 8.0' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '5.4 · 7.4 · 8.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.9 · 7.2 · 7.9' }
+            { src: 'https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg', number: '5.4 · 7.4 · 8.1' },
+            { src: 'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg', number: '4.9 · 7.2 · 7.9' }
           ],
           related: ['babylights-morena', 'ombre-tiger-eye', 'mechas-contour']
         },
@@ -3025,11 +3033,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'balayage', 'loiras', 'natural'],
-          img: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg',
+          img: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg', number: '7.0 · 8.0 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8 · 7.1' }
+            { src: 'https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg', number: '7.2 · 8.2 · 7.5' },
+            { src: 'https://i.pinimg.com/1200x/85/03/4b/85034b9e76143badec90e47cdac4ae36.jpg', number: '6.8 · 7.8 · 7.1' }
           ],
           related: ['californianas', 'highlights-loira', 'ombre-tiger-eye']
         },
@@ -3046,11 +3054,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'californianas', 'loiras', 'sol'],
-          img: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg',
+          img: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg', number: '7.0 · 8.0 · 8.1' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.2 · 8.2 · 8.3' },
-            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.8 · 7.8 · 7.9' }
+            { src: 'https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg', number: '7.2 · 8.2 · 8.3' },
+            { src: 'https://i.pinimg.com/1200x/80/f3/bb/80f3bbce1fb5bb37fd8c921cd8ada7d2.jpg', number: '6.8 · 7.8 · 7.9' }
           ],
           related: ['balayage-loira', 'highlights-loira', 'mechas-contour']
         },
@@ -3067,11 +3075,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'contour', 'loiras', 'iluminação'],
-          img: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg',
+          img: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg', number: '8.0 · 8.1 · 10.12' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '8.2 · 8.3 · 10.3' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.8 · 7.9 · 9.9' }
+            { src: 'https://i.pinimg.com/1200x/ba/ea/88/baea88db56d4ee70ac25ef7ebe6b4bfa.jpg', number: '8.2 · 8.3 · 10.3' },
+            { src: 'https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg', number: '7.8 · 7.9 · 9.9' }
           ],
           related: ['contour-highlights', 'californianas', 'highlights-loira']
         },
@@ -3088,11 +3096,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'highlights', 'loiras', 'brilho'],
-          img: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg',
+          img: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg', number: '7.0 · 8.0 · 8.3' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1 · 7.4' },
-            { src: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1067&fit=crop&crop=face', number: '6.9 · 7.9 · 7.2' }
+            { src: 'https://i.pinimg.com/736x/23/ed/1a/23ed1a0d684e9c188c09ae26b62ff6cb.jpg', number: '7.1 · 8.1 · 7.4' },
+            { src: 'https://i.pinimg.com/736x/c8/68/95/c8689579f77d930f3cb347d695ef9cdf.jpg', number: '6.9 · 7.9 · 7.2' }
           ],
           related: ['balayage-loira', 'californianas', 'mechas-contour']
         },
@@ -3109,11 +3117,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'cherry', 'ruivas', 'vibrante'],
-          img: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg',
+          img: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg', number: '5.0 · 6.34 · 7.4' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '5.2 · 6.5 · 7.6' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '4.8 · 6.1 · 7.2' }
+            { src: 'https://i.pinimg.com/1200x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg', number: '5.2 · 6.5 · 7.6' },
+            { src: 'https://i.pinimg.com/1200x/33/57/b2/3357b2fd2041dd93adda096095757b2b.jpg', number: '4.8 · 6.1 · 7.2' }
           ],
           related: ['cowgirl-copper', 'ruivo-doce-leite', 'octopus-cut']
         },
@@ -3130,11 +3138,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'copper', 'ruivas', 'moderno'],
-          img: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg',
+          img: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg', number: '6.0 · 7.4 · 7.3' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.2 · 7.6 · 7.5' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '5.8 · 7.2 · 7.1' }
+            { src: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg', number: '6.2 · 7.6 · 7.5' },
+            { src: 'https://i.pinimg.com/736x/3e/08/65/3e0865833599c47473882c25165ecbfc.jpg', number: '5.8 · 7.2 · 7.1' }
           ],
           related: ['cherry-cola', 'ruivo-doce-leite', 'octopus-cut']
         },
@@ -3151,11 +3159,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'ruivo', 'doce leite', 'caramelo'],
-          img: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg',
+          img: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg', number: '6.34 · 7.3 · 7.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '6.5 · 7.5 · 7.2' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '6.1 · 7.1 · 6.8' }
+            { src: 'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg', number: '6.5 · 7.5 · 7.2' },
+            { src: 'https://i.pinimg.com/736x/23/30/46/233046bbedfc1312e61ba72b32ac6c12.jpg', number: '6.1 · 7.1 · 6.8' }
           ],
           related: ['cowgirl-copper', 'cherry-cola', 'ombre-tiger-eye']
         },
@@ -3172,11 +3180,11 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'grisalhos', 'prateado', 'sophisticated'],
-          img: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg',
+          img: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg', number: '7.1 · 8.1 · 6.0' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.3 · 8.3 · 6.2' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=face', number: '6.9 · 7.9 · 5.8' }
+            { src: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg', number: '7.3 · 8.3 · 6.2' },
+            { src: 'https://i.pinimg.com/736x/b0/f1/d6/b0f1d6fdfc4df443e6409aeea819567d.jpg', number: '6.9 · 7.9 · 5.8' }
           ],
           related: ['grisalhos-quentes', 'mechas-contour', 'highlights-loira']
         },
@@ -3193,62 +3201,108 @@
           textura: null,
           volume: null,
           tags: ['coloração', 'grisalhos', 'quente', 'natural'],
-          img: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg',
+          img: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg', // ✅ ORIGINAL
           gallery: [
             { src: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg', number: '7.3 · 8.3 · 7.0' },
-            { src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=1067&fit=crop&crop=face', number: '7.5 · 8.5 · 7.2' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=face', number: '7.1 · 8.1 · 6.8' }
+            { src: 'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg', number: '7.5 · 8.5 · 7.2' },
+            { src: 'https://i.pinimg.com/736x/58/1f/87/581f87188095c4a9b5e6d81c4b14a77c.jpg', number: '7.1 · 8.1 · 6.8' }
           ],
           related: ['grisalhos-frios', 'ruivo-doce-leite', 'ombre-tiger-eye']
         },
 
-        // ===== PRODUTOS (sem numeração) =====
-        'shampoo-oleo-argao': {
-          title: 'Shampoo Óleo de Argan',
-          desc: 'Shampoo nutritivo com óleo de argan para fios secos e danificados. Recuperação profunda.',
-          badge: 'nutritivo',
+        // ===== PRODUTOS REAIS COM LINKS DE AFILIADO =====
+        'shampoo-vitamino-color': {
+          title: 'Shampoo Vitamino Color 750ml',
+          desc: 'Shampoo que protege a cor e mantém o brilho dos cabelos coloridos. Limpeza suave com ativos que prolongam a cor.',
+          badge: 'proteção da cor',
           categoria: 'Produto',
           size: null,
           style: null,
           colorFamily: 'produto',
           manutencao: null,
           rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
-          volume: 'Medio, Alto',
-          tags: ['produto', 'shampoo', 'argan', 'nutrição'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['condicionador-reparador', 'mascara-capilar-umbium', 'shampoo-antifrizz']
-        },
-        'condicionador-reparador': {
-          title: 'Condicionador Reparador',
-          desc: 'Condicionador com queratina para reparar pontas danificadas e restaurar a saúde dos fios.',
-          badge: 'reparador',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
           volume: 'Medio',
-          tags: ['produto', 'condicionador', 'queratina', 'reparação'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
+          tags: ['produto', 'shampoo', 'vitamino', 'cor', 'proteção'],
+          link: 'https://mercadolivre.com/sec/2wJK2SK',
+          img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
+            { src: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/1200x/49/13/db/4913db0aeb90eaa39af627682e595518.jpg', number: '' },
+            { src: 'https://i.pinimg.com/736x/da/fe/12/dafe123ec0af05e28c1284fa75b7413d.jpg', number: '' }
           ],
-          related: ['shampoo-oleo-argao', 'creme-para-pentear', 'mascara-capilar-umbium']
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
         },
-        'mascara-capilar-umbium': {
-          title: 'Máscara Capilar Umbiúm',
-          desc: 'Máscara hidratante com umbiúm para cabelos crespos e cacheados. Definição e maciez.',
-          badge: 'hidratante',
+        'mascara-absolut-repair': {
+          title: 'Máscara Absolut Repair 250ml',
+          desc: 'Máscara de reconstrução profunda com proteína de trigo. Repara danos e devolve a força aos fios.',
+          badge: 'reconstrução',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'máscara', 'reconstrução', 'reparação'],
+          link: 'https://mercadolivre.com/sec/1T8Ucwp',
+          img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+          gallery: [
+            { src: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/736x/34/59/ce/3459cebc3044e956410bb887d8a53457.jpg', number: '' },
+            { src: 'https://i.pinimg.com/736x/5c/fb/bc/5cfbbc5d6d6967494e0c536185551fac.jpg', number: '' }
+          ],
+          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
+        },
+        'mascara-kerastase': {
+          title: 'Máscara Kérastase Résistance 200ml',
+          desc: 'Máscara de reconstrução intensa da linha Résistance. Reparação profunda para cabelos fragilizados.',
+          badge: 'reconstrução intensa',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'máscara', 'kerastase', 'résistance'],
+          link: 'https://mercadolivre.com/sec/2VVxFB1',
+          img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+          gallery: [
+            { src: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/736x/f7/c2/e3/f7c2e3d49a4f6e4af307529e5cc5932f.jpg', number: '' },
+            { src: 'https://i.pinimg.com/736x/78/8d/23/788d2303aa3cf99214dcae3c74401cd2.jpg', number: '' }
+          ],
+          related: ['mascara-absolut-repair', 'condicionador-joico']
+        },
+        'spray-silhouette': {
+          title: 'Silhouette Hair Spray 500ml',
+          desc: 'Spray de fixação forte para penteados duradouros com brilho e controle de frizz.',
+          badge: 'fixação forte',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Baixo, Medio',
+          tags: ['produto', 'spray', 'fixação', 'silhouette'],
+          link: 'https://mercadolivre.com/sec/1jdT4rg',
+          img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+          gallery: [
+            { src: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/736x/c3/28/5b/c3285b4bc5e8eb0bf3126eb695c8c1ac.jpg', number: '' },
+            { src: 'https://i.pinimg.com/736x/cd/12/a9/cd12a9ed93db2fde11af4ec7f3151d8d.jpg', number: '' }
+          ],
+          related: ['lowell-cacho-magico']
+        },
+        'lowell-cacho-magico': {
+          title: 'Lowell Cacho Mágico 200ml',
+          desc: 'Fluido ativador de cachos que define e hidrata sem deixar o fio duro. Ideal para cabelos cacheados e crespos.',
+          badge: 'definição de cachos',
           categoria: 'Produto',
           size: null,
           style: null,
@@ -3256,204 +3310,170 @@
           manutencao: null,
           rosto: null,
           textura: 'Cacheado, Crespo',
-          volume: 'Alto',
-          tags: ['produto', 'máscara', 'umbiúm', 'hidratação'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['oleo-finalizador-cacau', 'serum-brilho-definicao', 'condicionador-reparador']
-        },
-        'serum-brilho-definicao': {
-          title: 'Sérum Brilho e Definição',
-          desc: 'Sérum que define cachos e dá brilho intenso. Finalização perfeita para fios crespos.',
-          badge: 'definidor',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Cacheado, Crespo',
           volume: 'Medio, Alto',
-          tags: ['produto', 'sérum', 'definição', 'brilho'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
+          tags: ['produto', 'lowell', 'cachos', 'definição'],
+          link: 'https://mercadolivre.com/sec/1RKdy8e',
+          img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
+            { src: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/1200x/3d/55/ff/3d55ff810947174c1b831725ce01d4e5.jpg', number: '' },
+            { src: 'https://i.pinimg.com/1200x/98/b9/5a/98b95a2d7ff1873bfbfc8b83cbb508f4.jpg', number: '' }
           ],
-          related: ['mascara-capilar-umbium', 'oleo-finalizador-cacau', 'mousse-modelador']
+          related: ['spray-silhouette']
         },
-        'oleo-finalizador-cacau': {
-          title: 'Óleo Finalizador de Cacau',
-          desc: 'Óleo leve com cacau para finalização e brilho intenso. Fios macios e sedosos.',
-          badge: 'finalizador',
+        'shampoo-silver': {
+          title: "Shampoo L'Oréal Silver 300ml",
+          desc: 'Shampoo matizador para cabelos grisalhos e com mechas. Neutraliza tons amarelos e mantém o brilho.',
+          badge: 'matizador',
           categoria: 'Produto',
           size: null,
           style: null,
           colorFamily: 'produto',
           manutencao: null,
           rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
           volume: 'Medio',
-          tags: ['produto', 'óleo', 'cacau', 'finalização'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
+          tags: ['produto', 'shampoo', 'silver', 'matizador'],
+          link: 'https://mercadolivre.com/sec/1uQ9ppW',
+          img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
+            { src: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://i.pinimg.com/1200x/02/ff/b3/02ffb31d69b8890b1b01c2222a821e74.jpg', number: '' },
+            { src: 'https://i.pinimg.com/1200x/52/77/45/5277459ef9364596d15fa25439659bb9.jpg', number: '' }
           ],
-          related: ['serum-brilho-definicao', 'spray-protetor-termico', 'gel-fixacao-ultra']
+          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
         },
-        'spray-protetor-termico': {
-          title: 'Spray Protetor Térmico',
-          desc: 'Protege os fios contra o calor de secadores, chapinhas e babyliss. Segurança diária.',
-          badge: 'proteção',
+        'shampoo-absolut-repair-gold': {
+          title: 'Shampoo Absolut Repair Gold 750ml',
+          desc: 'Shampoo reconstructor com Quinoa e Proteína. Limpeza profunda com ação reparadora.',
+          badge: 'reconstrutor',
           categoria: 'Produto',
           size: null,
           style: null,
           colorFamily: 'produto',
           manutencao: null,
           rosto: null,
-          textura: 'Liso, Ondulado',
-          volume: 'Baixo, Medio',
-          tags: ['produto', 'spray', 'proteção', 'térmico'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['oleo-finalizador-cacau', 'gel-fixacao-ultra', 'tonico-capilar-crescimento']
-        },
-        'gel-fixacao-ultra': {
-          title: 'Gel Fixação Ultra',
-          desc: 'Gel de fixação forte para penteados duradouros com acabamento natural.',
-          badge: 'fixação',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
-          volume: 'Baixo, Medio',
-          tags: ['produto', 'gel', 'fixação', 'forte'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['spray-protetor-termico', 'mousse-modelador', 'tonico-capilar-crescimento']
-        },
-        'tonico-capilar-crescimento': {
-          title: 'Tônico Capilar Crescimento',
-          desc: 'Tônico estimulante para crescimento saudável dos fios. Ativa a circulação no couro cabeludo.',
-          badge: 'crescimento',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
-          volume: 'Baixo, Medio',
-          tags: ['produto', 'tônico', 'crescimento', 'estimulante'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['shampoo-antifrizz', 'condicionador-volume', 'gel-fixacao-ultra']
-        },
-        'shampoo-antifrizz': {
-          title: 'Shampoo Antifrizz',
-          desc: 'Shampoo para controle de frizz e umidade. Fios alinhados e disciplinados.',
-          badge: 'antifrizz',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Ondulado, Cacheado, Crespo',
-          volume: 'Medio, Alto',
-          tags: ['produto', 'shampoo', 'antifrizz', 'controle'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['tonico-capilar-crescimento', 'condicionador-volume', 'mousse-modelador']
-        },
-        'condicionador-volume': {
-          title: 'Condicionador Volume',
-          desc: 'Condicionador que adiciona volume e leveza aos fios. Raiz elevada e movimento.',
-          badge: 'volume',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Liso, Ondulado',
-          volume: 'Alto',
-          tags: ['produto', 'condicionador', 'volume', 'leveza'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
-          gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
-          ],
-          related: ['shampoo-antifrizz', 'mousse-modelador', 'creme-para-pentear']
-        },
-        'creme-para-pentear': {
-          title: 'Creme para Pentear',
-          desc: 'Creme leve que desembaraça e hidrata os fios. Maciez e facilidade na escovação.',
-          badge: 'desembaraçador',
-          categoria: 'Produto',
-          size: null,
-          style: null,
-          colorFamily: 'produto',
-          manutencao: null,
-          rosto: null,
-          textura: 'Liso, Ondulado, Cacheado',
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
           volume: 'Medio',
-          tags: ['produto', 'creme', 'desembaraço', 'hidratação'],
-          img: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=600&fit=crop&crop=center',
+          tags: ['produto', 'shampoo', 'absolut repair', 'reconstrução'],
+          link: 'https://mercadolivre.com/sec/1jX3Cvq',
+          img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
           gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' }
+            { src: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0', number: '' },
+            { src: 'https://i.pinimg.com/1200x/78/dd/06/78dd0605f1f607b98881d9b62cdefe8a.jpg', number: '' },
+            { src: 'https://i.pinimg.com/736x/ee/5d/ab/ee5dabfab9fa5b8e016ebc8931dd3492.jpg', number: '' }
           ],
-          related: ['condicionador-reparador', 'mousse-modelador', 'condicionador-volume']
+          related: ['shampoo-vitamino-color', 'mascara-absolut-repair']
         },
-        'mousse-modelador': {
-          title: 'Mousse Modelador',
-          desc: 'Mousse que modela, dá textura e define os fios com leveza e movimento.',
-          badge: 'modelador',
+        'condicionador-joico': {
+          title: 'Condicionador Joico Moisture Recovery 250ml',
+          desc: 'Condicionador de hidratação profunda para cabelos secos e grossos. Desembaraça e nutre intensamente.',
+          badge: 'hidratação profunda',
           categoria: 'Produto',
           size: null,
           style: null,
           colorFamily: 'produto',
           manutencao: null,
           rosto: null,
-          textura: 'Ondulado, Cacheado',
-          volume: 'Alto',
-          tags: ['produto', 'mousse', 'modelagem', 'textura'],
-          img: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=600&fit=crop&crop=center',
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'condicionador', 'joico', 'hidratação'],
+          link: 'https://mercadolivre.com/sec/26hayjy',
+          img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
           gallery: [
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=1067&fit=crop&crop=center', number: '' },
-            { src: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=1067&fit=crop&crop=center', number: '' }
+            { src: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000', number: '' },
+            { src: 'https://i.pinimg.com/736x/9a/aa/9d/9aaa9db9764ac6550439b1d9f9fd8368.jpg', number: '' },
+            { src: 'https://i.pinimg.com/1200x/5b/53/8f/5b538f30589b753ff074ef689bc5d13c.jpg', number: '' }
           ],
-          related: ['serum-brilho-definicao', 'gel-fixacao-ultra', 'oleo-finalizador-cacau']
+          related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
+        },
+        'leave-in-absolut-repair': {
+          title: "Leave-in Molecular L'Oréal Absolut Repair 100 ml",
+          desc: 'Leave-in Molecular com tecnologia de reparação capilar avançada. Ação profunda que reconstrói a fibra capilar, reduz quebras e devolve a força aos fios. Ideal para cabelos danificados e com química.',
+          badge: 'reparação molecular',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'leave-in', 'absolut repair', 'molecular', 'reparação'],
+          link: 'https://meli.la/11HGaBx',
+          img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+          gallery: [
+            { src: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://tse2.mm.bing.net/th/id/OIP.tB8ZRBcacvXmiLB2sWvtNAHaG1?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://tse1.mm.bing.net/th/id/OIP.g_dCl8HI89ULsZfYa07R-AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' }
+          ],
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+        },
+        'metal-detox-mascara': {
+          title: "L'Oréal Metal Detox Máscara 250ml",
+          desc: 'Máscara que neutraliza metais pesados acumulados no cabelo, restaurando a saúde dos fios.',
+          badge: 'detox',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'máscara', 'metal detox', 'neutralização'],
+          link: 'https://meli.la/2wbpFNR',
+          img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg',
+          gallery: [
+            { src: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg', number: '' },
+            { src: 'https://thekit.ca/wp-content/uploads/2023/07/Sized-Inline-2-Metal-Detox.jpg', number: '' },
+            { src: 'https://th.bing.com/th/id/R.27e90a1a88881a68840a4957b92b49e5?rik=adiD0OgEGiT0%2fQ&riu=http%3a%2f%2fhighfy.pk%2fcdn%2fshop%2ffiles%2fMetal-Detox_Mask-1.jpg%3fv%3d1726648606&ehk=9Hk9YakC%2bQote4uryYitwpdBG6AfrS0mbvdkUzTBdkU%3d&risl=&pid=ImgRaw&r=0', number: '' }
+          ],
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+        },
+        'elixir-ultime-oil': {
+          title: 'Leave-In Protetor Térmico Anti Ressecamento Kérastase Nutritive Nectar Thermique 150ml',
+          desc: 'Leave-in protetor térmico com proteínas vegetais e niacinamida que hidrata, nutre e protege os fios contra o calor. Ideal para cabelos médios a grossos, previne o ressecamento e devolve maciez e brilho com toque sedoso.',
+          badge: 'proteção térmica + nutrição',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Medio',
+          tags: ['produto', 'leave-in', 'kerastase', 'protetor térmico', 'nutritive', 'niacinamida'],
+          link: 'https://meli.la/1ZKxHad',
+          img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?rik=JzIwXFcQei6vAQ&riu=http%3a%2f%2fconceptcshop.com%2fcdn%2fshop%2ffiles%2fkerastase-nutritive-nectar-thermique-150-ml-582017.png%3fv%3d1750310904%26width%3d2048&ehk=dtp43%2fbNlCZmYdcz1BaoB5hJqL2AlOGbFfCj3FcM3fw%3d&risl=&pid=ImgRaw&r=0',
+          gallery: [
+            { src: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?rik=JzIwXFcQei6vAQ&riu=http%3a%2f%2fconceptcshop.com%2fcdn%2fshop%2ffiles%2fkerastase-nutritive-nectar-thermique-150-ml-582017.png%3fv%3d1750310904%26width%3d2048&ehk=dtp43%2fbNlCZmYdcz1BaoB5hJqL2AlOGbFfCj3FcM3fw%3d&risl=&pid=ImgRaw&r=0', number: '' },
+            { src: 'https://tse4.mm.bing.net/th/id/OIP.nLWo8PK2y7dcWIlb7-Nq3QHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://tse4.mm.bing.net/th/id/OIP.1Yb5HyJYKkIZBGSdT3yr4AAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' }
+          ],
+          related: ['spray-silhouette', 'lowell-cacho-magico']
+        },
+        'pli-thermo-spray': {
+          title: "L'Oréal Paris Spray Protetor De Estilo Calor Da Prancha 170ml",
+          desc: 'Protetor térmico em spray que prepara e protege os fios contra o calor da chapinha e prancha. Fórmula leve que alinha, dá brilho e mantém o estilo por mais tempo. Ideal para o dia a dia de quem usa ferramentas de calor.',
+          badge: 'proteção térmica + brilho',
+          categoria: 'Produto',
+          size: null,
+          style: null,
+          colorFamily: 'produto',
+          manutencao: null,
+          rosto: null,
+          textura: 'Liso, Ondulado, Cacheado, Crespo',
+          volume: 'Baixo, Medio',
+          tags: ['produto', 'protetor térmico', 'loreal', 'chapinha', 'prancha', 'calor', 'brilho'],
+          link: 'https://meli.la/2n6FhZQ',
+          img: 'https://tse4.mm.bing.net/th/id/OIP.QUSgvPVsa9LdRi4biO0SkQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+          gallery: [
+            { src: 'https://tse4.mm.bing.net/th/id/OIP.QUSgvPVsa9LdRi4biO0SkQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://tse1.mm.bing.net/th/id/OIP.kkO61v0KpHoFC4GmCA6a9gHaGN?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
+            { src: 'https://th.bing.com/th/id/R.8baf232768ba8ff0906932701a6436a0?rik=mUdJ7lIs99NoNg&pid=ImgRaw&r=0', number: '' }
+          ],
+          related: ['elixir-ultime-oil', 'spray-silhouette']
         }
       };
 
@@ -3813,6 +3833,45 @@
           document.getElementById('modalImageNumber').style.display = 'inline-block';
         } else {
           document.getElementById('modalImageNumber').style.display = 'none';
+        }
+
+        // ===== LINK DE AFILIADO MERCADO LIVRE =====
+        const linkContainer = document.getElementById('modalLinkContainer');
+        if (linkContainer) {
+          linkContainer.innerHTML = '';
+          if (data.link) {
+            const linkEl = document.createElement('a');
+            linkEl.href = data.link;
+            linkEl.target = '_blank';
+            linkEl.rel = 'noopener noreferrer';
+            linkEl.textContent = '🛒 Comprar no Mercado Livre';
+            linkEl.style.cssText = `
+              display: inline-block;
+              background: #ffe600;
+              color: #0a0808;
+              padding: 6px 18px;
+              border-radius: 100px;
+              font-weight: 700;
+              font-size: 13px;
+              text-decoration: none;
+              margin-top: 6px;
+              transition: all 0.3s ease;
+              border: none;
+              cursor: pointer;
+              font-family: 'Inter', sans-serif;
+              letter-spacing: 0.04em;
+              width: fit-content;
+            `;
+            linkEl.addEventListener('mouseenter', () => {
+              linkEl.style.transform = 'scale(1.03)';
+              linkEl.style.boxShadow = '0 4px 16px rgba(255, 230, 0, 0.4)';
+            });
+            linkEl.addEventListener('mouseleave', () => {
+              linkEl.style.transform = 'scale(1)';
+              linkEl.style.boxShadow = 'none';
+            });
+            linkContainer.appendChild(linkEl);
+          }
         }
 
         // RELATED SUGGESTIONS
