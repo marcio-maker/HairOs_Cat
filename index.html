@@ -4570,6 +4570,11 @@
         applyTheme(STATE.theme);
         initSplash();
 
+        // === BOTÃO DE TEMA DO HEADER ===
+        document.getElementById('themeToggle').addEventListener('click', function() {
+          applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
+        });
+
         // MENU
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const menuOverlay = document.getElementById('menuOverlay');
