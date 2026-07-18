@@ -13,8 +13,8 @@
     rel="stylesheet">
   <style>
     /* ============================================================
-       VARIÁVEIS & RESET
-       ============================================================ */
+           TODAS AS VARIÁVEIS E RESET (mantido igual)
+           ============================================================ */
     * {
       margin: 0;
       padding: 0;
@@ -34,6 +34,7 @@
       --gold-dark: #a8894e;
       --gold-glow: rgba(201, 169, 110, 0.12);
       --gold-glow-strong: rgba(201, 169, 110, 0.25);
+      --gold-dim: rgba(201, 169, 110, 0.08);
       --border-subtle: rgba(201, 169, 110, 0.06);
       --border-gold: rgba(201, 169, 110, 0.15);
       --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.4);
@@ -49,6 +50,9 @@
       --modal-ruivas: rgba(45, 15, 10, 0.95);
       --modal-grisalhas: rgba(20, 20, 25, 0.95);
       --modal-produto: rgba(15, 20, 25, 0.95);
+      --glass-bg: rgba(10, 8, 8, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.03);
+      --glass-blur: 32px;
     }
 
     [data-theme="light"] {
@@ -66,6 +70,8 @@
       --modal-ruivas: rgba(65, 35, 30, 0.95);
       --modal-grisalhas: rgba(40, 40, 45, 0.95);
       --modal-produto: rgba(35, 40, 45, 0.95);
+      --glass-bg: rgba(255, 255, 255, 0.3);
+      --glass-border: rgba(0, 0, 0, 0.04);
     }
 
     html,
@@ -86,8 +92,8 @@
     }
 
     /* ============================================================
-       SPLASH
-       ============================================================ */
+           SPLASH, TOAST, HEADER, CATEGORIES (mantido igual)
+           ============================================================ */
     .splash {
       position: fixed;
       inset: 0;
@@ -107,7 +113,7 @@
 
     .splash .splash-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 42px;
       font-weight: 700;
       font-style: italic;
       color: var(--text-primary);
@@ -138,7 +144,7 @@
     }
 
     .splash .splash-bar {
-      width: 140px;
+      width: 180px;
       height: 2px;
       background: rgba(201, 169, 110, 0.08);
       border-radius: 10px;
@@ -148,7 +154,7 @@
 
     .splash .splash-bar-fill {
       height: 100%;
-      background: var(--gold);
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
       border-radius: 10px;
       width: 0%;
       transition: width 0.3s ease;
@@ -172,18 +178,17 @@
     }
 
     @keyframes pulseLogo {
+
       0%,
       100% {
         opacity: 1;
       }
+
       50% {
         opacity: 0.5;
       }
     }
 
-    /* ============================================================
-       APP CONTAINER
-       ============================================================ */
     .app {
       width: 100%;
       max-width: 430px;
@@ -218,27 +223,6 @@
       }
     }
 
-    /* ============================================================
-       RESULTADOS COUNT
-       ============================================================ */
-    .results-count {
-      font-size: 10px;
-      color: var(--text-muted);
-      padding: 2px 0 4px 0;
-      opacity: 0.3;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      flex-shrink: 0;
-    }
-
-    .results-count .count-number {
-      color: var(--gold);
-      opacity: 0.8;
-    }
-
-    /* ============================================================
-       TOAST
-       ============================================================ */
     .toast {
       position: fixed;
       bottom: 90px;
@@ -272,104 +256,7 @@
       margin-right: 8px;
     }
 
-    /* ============================================================
-       CAROUSEL LOADING
-       ============================================================ */
-    .carousel-track.loading {
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
-    }
-
-    /* ============================================================
-       FAV BUTTON PULSE
-       ============================================================ */
-    .fav-btn.pulse {
-      animation: pulseFav 0.4s ease;
-    }
-
-    @keyframes pulseFav {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.35);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* ============================================================
-       MODAL IMAGE LOADING
-       ============================================================ */
-    .modal-gallery img {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      scroll-snap-align: start;
-      display: block;
-      background: var(--bg-card);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .modal-gallery img.loaded {
-      opacity: 1;
-      animation: revealColor 0.8s ease forwards;
-    }
-
-    @keyframes revealColor {
-      0% {
-        filter: grayscale(100%) contrast(1.2) brightness(1.1);
-      }
-      100% {
-        filter: grayscale(0%) contrast(1) brightness(1);
-      }
-    }
-
-    /* ============================================================
-       SHIMMER EFFECT (esqueleto)
-       ============================================================ */
-    .carousel-card .card-img {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-card);
-    }
-
-    .carousel-card .card-img .shimmer {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg,
-          transparent 0%,
-          rgba(201, 169, 110, 0.05) 50%,
-          transparent 100%);
-      animation: shimmer 1.8s infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .carousel-card .card-img img.loaded+.shimmer {
-      display: none;
-    }
-
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-    /* ============================================================
-       TODO O RESTO DO SEU CSS AQUI (mantido igual)
-       ============================================================ */
-
-    /* ============================================================
-       HEADER
-       ============================================================ */
+    /* HEADER */
     .header {
       display: flex;
       justify-content: space-between;
@@ -429,6 +316,7 @@
       color: var(--text-muted);
       padding: 0;
       flex-shrink: 0;
+      position: relative;
     }
 
     .header-btn:hover {
@@ -497,9 +385,7 @@
       align-self: flex-end;
     }
 
-    /* ============================================================
-       CATEGORY TABS
-       ============================================================ */
+    /* CATEGORY TABS */
     .category-tabs {
       display: flex;
       gap: 4px;
@@ -552,9 +438,7 @@
       opacity: 0.7;
     }
 
-    /* ============================================================
-       SEARCH & FILTERS
-       ============================================================ */
+    /* SEARCH & FILTERS */
     .search-filter-wrapper {
       position: relative;
       margin: 4px 0 6px 0;
@@ -718,6 +602,7 @@
         opacity: 0;
         transform: translateY(-6px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -881,9 +766,22 @@
       opacity: 1;
     }
 
-    /* ============================================================
-       CHIP CAROUSEL
-       ============================================================ */
+    .results-count {
+      font-size: 10px;
+      color: var(--text-muted);
+      padding: 2px 0 4px 0;
+      opacity: 0.3;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .results-count .count-number {
+      color: var(--gold);
+      opacity: 0.8;
+    }
+
+    /* CHIP CAROUSEL */
     .chip-wrapper {
       padding: 4px 0 6px 0;
       border-bottom: 1px solid var(--border-subtle);
@@ -938,9 +836,7 @@
       font-weight: 500;
     }
 
-    /* ============================================================
-       PAGES
-       ============================================================ */
+    /* PAGES */
     .page-container {
       flex: 1;
       overflow: hidden;
@@ -1029,9 +925,7 @@
       display: none;
     }
 
-    /* ============================================================
-       CARROSSEL
-       ============================================================ */
+    /* CARROSSEL */
     .carousel-wrapper {
       flex: 1;
       min-height: 0;
@@ -1067,6 +961,10 @@
       display: none;
     }
 
+    .carousel-track.loading {
+      opacity: 0.6;
+    }
+
     .carousel-card {
       flex: 0 0 85vw;
       width: 85vw;
@@ -1079,7 +977,7 @@
       background: var(--bg-card);
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--glass-border);
       scroll-snap-align: start;
       position: relative;
       aspect-ratio: 9/12;
@@ -1091,15 +989,19 @@
     .carousel-card:nth-child(1) {
       animation-delay: 0.05s;
     }
+
     .carousel-card:nth-child(2) {
       animation-delay: 0.10s;
     }
+
     .carousel-card:nth-child(3) {
       animation-delay: 0.15s;
     }
+
     .carousel-card:nth-child(4) {
       animation-delay: 0.20s;
     }
+
     .carousel-card:nth-child(5) {
       animation-delay: 0.25s;
     }
@@ -1109,6 +1011,7 @@
         opacity: 0;
         transform: translateY(8px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -1116,7 +1019,7 @@
     }
 
     .carousel-card:hover {
-      border-color: var(--border-gold);
+      border-color: var(--gold-dim);
       transform: translateY(-2px) scale(1.01);
     }
 
@@ -1162,23 +1065,118 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 55%);
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          rgba(0, 0, 0, 0.2) 50%,
+          rgba(0, 0, 0, 0.7) 80%,
+          rgba(0, 0, 0, 0.85) 100%);
       pointer-events: none;
       transition: opacity 0.6s ease;
       z-index: 2;
     }
 
     .carousel-card:hover .card-img::after {
-      opacity: 0.8;
+      opacity: 0.9;
+    }
+
+    .carousel-card .card-img .shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(201, 169, 110, 0.05) 50%,
+          transparent 100%);
+      animation: shimmer 1.8s infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .carousel-card .card-img img.loaded+.shimmer {
+      display: none;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 5;
+    }
+
+    .card-overlay .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 2px;
+    }
+
+    .card-overlay .card-tag {
+      font-size: clamp(9px, 2vw, 11px);
+      background: rgba(201, 169, 110, 0.15);
+      border: 1px solid rgba(201, 169, 110, 0.06);
+      padding: 0 8px;
+      border-radius: 6px;
+      color: var(--gold-light);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 3.4vw, 20px);
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-overlay .card-sub {
+      font-size: clamp(11px, 2.4vw, 13px);
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+    }
+
+    .card-overlay .card-badge {
+      display: inline-block;
+      background: rgba(201, 169, 110, 0.12);
+      padding: 2px 10px;
+      border-radius: var(--radius-pill);
+      font-size: clamp(10px, 2.2vw, 12px);
+      color: var(--gold-light);
+      border: 1px solid rgba(201, 169, 110, 0.06);
+      align-self: flex-start;
+      margin-top: 2px;
+      min-height: 18px;
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(4px);
     }
 
     .carousel-card .fav-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
       border-radius: 50%;
       width: 30px;
       height: 30px;
@@ -1187,7 +1185,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.2);
       z-index: 10;
       padding: 0;
     }
@@ -1201,134 +1199,31 @@
 
     .carousel-card .fav-btn:hover {
       transform: scale(1.1);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .carousel-card .fav-btn.favorited {
       color: #ff4757;
-      background: rgba(255, 71, 87, 0.2);
-      border-color: rgba(255, 71, 87, 0.2);
+      background: rgba(255, 71, 87, 0.15);
+      border-color: rgba(255, 71, 87, 0.1);
     }
 
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-      margin-bottom: 2px;
+    .carousel-card .fav-btn.pulse {
+      animation: pulseFav 0.4s ease;
     }
 
-    .card-tag {
-      font-size: clamp(9px, 2vw, 11px);
-      background: rgba(201, 169, 110, 0.2);
-      border: 1px solid rgba(201, 169, 110, 0.1);
-      padding: 0 6px;
-      border-radius: 6px;
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: lowercase;
-      backdrop-filter: blur(4px);
-    }
+    @keyframes pulseFav {
+      0% {
+        transform: scale(1);
+      }
 
-    .card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px 10px 10px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      z-index: 5;
-    }
+      50% {
+        transform: scale(1.35);
+      }
 
-    .card-overlay h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(16px, 3.4vw, 20px);
-      font-weight: 700;
-      font-style: italic;
-      color: #fff;
-      line-height: 1.1;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .card-overlay .card-sub {
-      font-size: clamp(11px, 2.4vw, 13px);
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 0 8px;
-      border-radius: 6px;
-      display: inline-block;
-      backdrop-filter: blur(4px);
-      width: fit-content;
-    }
-
-    .card-overlay .card-badge {
-      display: inline-block;
-      background: rgba(201, 169, 110, 0.2);
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      font-size: clamp(11px, 2.4vw, 13px);
-      color: var(--gold-light);
-      border: 1px solid rgba(201, 169, 110, 0.1);
-      align-self: flex-start;
-      margin-top: 2px;
-      min-height: 18px;
-      display: flex;
-      align-items: center;
-    }
-
-    .card-overlay .card-colors {
-      font-size: clamp(9px, 2vw, 11px);
-      color: rgba(255, 255, 255, 0.5);
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-
-    .card-overlay .card-colors span {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 0 5px;
-      border-radius: 4px;
-      backdrop-filter: blur(4px);
-    }
-
-    .info-btn-card {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(201, 169, 110, 0.15);
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      color: var(--gold-light);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      z-index: 10;
-      padding: 0;
-    }
-
-    .info-btn-card:hover {
-      background: var(--gold);
-      color: #0a0808;
-      transform: scale(1.1);
-    }
-
-    .info-btn-card svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
+      100% {
+        transform: scale(1);
+      }
     }
 
     .carousel-indicators {
@@ -1340,8 +1235,8 @@
     }
 
     .carousel-indicators .dot {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: var(--text-muted);
       transition: all var(--transition);
@@ -1351,14 +1246,12 @@
 
     .carousel-indicators .dot.active-dot {
       background: var(--gold);
-      width: 20px;
-      border-radius: 3px;
+      width: 18px;
+      border-radius: 2px;
       opacity: 1;
     }
 
-    /* ============================================================
-       PÁGINAS SECUNDÁRIAS
-       ============================================================ */
+    /* PÁGINAS SECUNDÁRIAS */
     .tendencias-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1712,9 +1605,11 @@
       100% {
         transform: translateX(0);
       }
+
       25% {
         transform: translateX(-4px);
       }
+
       75% {
         transform: translateX(4px);
       }
@@ -1773,9 +1668,7 @@
       fill: currentColor;
     }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
+    /* FOOTER */
     .footer {
       flex-shrink: 0;
       padding: 4px 0 2px 0;
@@ -1850,9 +1743,7 @@
       padding-top: 2px;
     }
 
-    /* ============================================================
-       MENU LATERAL
-       ============================================================ */
+    /* MENU LATERAL */
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -1877,6 +1768,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -1901,6 +1793,7 @@
         transform: translateX(20px);
         opacity: 0;
       }
+
       to {
         transform: translateX(0);
         opacity: 1;
@@ -2040,34 +1933,32 @@
     }
 
     /* ============================================================
-       MODAL
-       ============================================================ */
+           MODAL - DESIGN PREMIUM
+           ============================================================ */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(24px);
+      backdrop-filter: blur(48px);
+      -webkit-backdrop-filter: blur(48px);
       z-index: 1000;
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 10px;
-      transition: background 0.6s ease;
+      padding: 8px;
     }
 
     .modal-overlay.active {
       display: flex;
-      animation: curtainOpen 0.35s ease;
+      animation: curtainOpen 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     @keyframes curtainOpen {
       from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
+
       to {
         opacity: 1;
         transform: scale(1);
@@ -2077,93 +1968,45 @@
     .modal-overlay[data-color="morenas"] {
       background: var(--modal-morenas);
     }
+
     .modal-overlay[data-color="loiras"] {
       background: var(--modal-loiras);
     }
+
     .modal-overlay[data-color="ruivas"] {
       background: var(--modal-ruivas);
     }
+
     .modal-overlay[data-color="grisalhas"] {
       background: var(--modal-grisalhas);
     }
+
     .modal-overlay[data-color="produto"] {
       background: var(--modal-produto);
     }
 
     .modal-content {
-      position: relative;
-      width: 90vw;
-      height: 90vh;
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      height: 92vh;
+      max-height: 800px;
+      background: var(--bg-secondary);
+      border-radius: 20px;
       overflow: hidden;
-      background: var(--bg-card);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-gold), -8px 0 30px rgba(201, 169, 110, 0.12), 8px 0 30px rgba(201, 169, 110, 0.04);
-      animation: slideModal 0.35s ease 0.05s both;
-    }
-
-    .modal-content::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -2px;
-      width: 50px;
-      height: 100%;
-      background: linear-gradient(to left, rgba(201, 169, 110, 0.06), transparent);
-      pointer-events: none;
-      z-index: 5;
-      border-radius: 0 16px 16px 0;
-    }
-
-    @keyframes slideModal {
-      from {
-        transform: translateY(16px) scale(0.98);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 18px;
-      cursor: pointer;
-      color: rgba(255, 255, 255, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-      z-index: 21;
-      padding: 0;
-    }
-
-    .modal-close:hover {
-      background: rgba(0, 0, 0, 0.8);
-      transform: rotate(90deg);
-      color: #fff;
+      position: relative;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
     }
 
     .modal-gallery-wrap {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      position: relative;
     }
 
     .modal-gallery {
       display: flex;
-      gap: 0;
       overflow-x: auto;
       overflow-y: hidden;
       scroll-snap-type: x mandatory;
@@ -2171,7 +2014,6 @@
       height: 100%;
       width: 100%;
       scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
     }
 
     .modal-gallery::-webkit-scrollbar {
@@ -2183,7 +2025,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 20%;
       scroll-snap-align: start;
       display: block;
       background: var(--bg-card);
@@ -2200,331 +2042,702 @@
       0% {
         filter: grayscale(100%) contrast(1.2) brightness(1.1);
       }
+
       100% {
         filter: grayscale(0%) contrast(1) brightness(1);
       }
     }
 
+    .modal-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          transparent 45%,
+          rgba(0, 0, 0, 0.3) 65%,
+          rgba(0, 0, 0, 0.6) 80%,
+          rgba(0, 0, 0, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    /* TOP BAR */
+    .modal-topbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .modal-topbar>* {
+      pointer-events: auto;
+    }
+
+    .modal-topbar .btn-close {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 200;
+      color: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-topbar .btn-close:hover {
+      color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .modal-topbar .btn-fav {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 200;
+      color: rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-topbar .btn-fav:hover {
+      color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .modal-topbar .btn-fav.active {
+      color: #ff4757;
+      background: rgba(255, 71, 87, 0.1);
+      border-color: rgba(255, 71, 87, 0.1);
+    }
+
+    /* INDICADORES */
+    .modal-indicators {
+      position: absolute;
+      bottom: 105px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 10;
+      padding: 4px 12px;
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .modal-indicators .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .modal-indicators .dot.active {
+      background: #fff;
+      width: 18px;
+      border-radius: 2px;
+    }
+
+    /* NAVEGAÇÃO */
     .modal-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 20px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.02);
+      font-size: 22px;
+      font-weight: 200;
       cursor: pointer;
-      transition: all var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 15;
-      opacity: 0;
-      padding: 0;
-    }
-
-    .modal-content:hover .modal-nav {
-      opacity: 1;
+      padding: 30px 14px;
+      transition: color 0.4s ease;
+      z-index: 10;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
     }
 
     .modal-nav:hover {
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      transform: translateY(-50%) scale(1.05);
+      color: rgba(255, 255, 255, 0.15);
     }
 
     .modal-nav.prev {
-      left: 10px;
+      left: 2px;
     }
 
     .modal-nav.next {
-      right: 10px;
+      right: 2px;
     }
 
-    .modal-indicators {
+    /* ASSINATURA */
+    .modal-signature {
       position: absolute;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 15;
-      padding: 4px 10px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      bottom: 110px;
+      right: 18px;
+      z-index: 5;
+      font-size: 7px;
+      font-weight: 200;
+      color: rgba(255, 255, 255, 0.03);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      pointer-events: none;
+      text-align: right;
+      line-height: 1.6;
     }
 
-    .modal-indicators .modal-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: all var(--transition);
-      cursor: pointer;
+    .modal-signature .gold {
+      color: var(--gold);
+      opacity: 0.2;
     }
 
-    .modal-indicators .modal-dot.active-modal-dot {
-      background: var(--gold);
-      width: 24px;
-      border-radius: 3px;
-    }
-
-    .modal-info {
+    /* GLASS CONTAINER */
+    .modal-glass {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 15;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 30px 14px 18px 14px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 45%, transparent 100%);
-    }
-
-    .modal-text {
+      z-index: 5;
+      max-height: 68%;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      flex: 1;
-      min-width: 0;
+      padding: 0 16px 14px;
     }
 
-    .modal-text .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(20px, 4.2vw, 26px);
-      font-weight: 700;
-      font-style: italic;
-      color: #fff;
-      line-height: 1.1;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-    }
-
-    .modal-text .modal-class {
-      font-size: clamp(10px, 2.2vw, 12px);
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2px 12px;
-      border-radius: 20px;
-      display: inline-block;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(201, 169, 110, 0.1);
-      width: fit-content;
-    }
-
-    .modal-text .modal-desc {
-      font-size: clamp(12px, 2.6vw, 14px);
-      color: rgba(240, 235, 228, 0.7);
-      font-weight: 300;
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+    /* PANEL */
+    .modal-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-card);
       overflow: hidden;
-    }
-
-    .modal-text .modal-image-number {
-      font-size: clamp(12px, 2.6vw, 14px);
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(4px);
-      padding: 2px 12px;
-      border-radius: 14px;
-      display: inline-block;
-      width: fit-content;
-      border: 1px solid rgba(201, 169, 110, 0.08);
-      margin: 2px 0;
-    }
-
-    .modal-text .modal-tags {
       display: flex;
+      flex-direction: column;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      max-height: 64px;
+    }
+
+    .modal-panel.expanded {
+      max-height: 85vh;
+    }
+
+    .modal-panel .handle {
+      width: 28px;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.04);
+      margin: 6px auto 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .modal-panel .handle:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-panel .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .modal-panel .header .name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-panel .header .category {
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .modal-panel .header .toggle {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 200;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      transition: color 0.2s, transform 0.4s ease;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-panel .header .toggle:hover {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-panel .header .toggle.expanded {
+      transform: rotate(180deg);
+    }
+
+    .modal-panel .body {
+      overflow-y: auto;
+      padding: 0 16px 12px;
+      flex: 1;
+      min-height: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.1s;
+    }
+
+    .modal-panel.expanded .body {
+      opacity: 1;
+    }
+
+    .modal-panel .body::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    .modal-panel .body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 4px;
+    }
+
+    .modal-panel .body .section {
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .modal-panel .body .section:nth-child(1) {
+      animation-delay: 0.04s;
+    }
+
+    .modal-panel .body .section:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .modal-panel .body .section:nth-child(3) {
+      animation-delay: 0.12s;
+    }
+
+    .modal-panel .body .section:nth-child(4) {
+      animation-delay: 0.16s;
+    }
+
+    .modal-panel .body .section:nth-child(5) {
+      animation-delay: 0.20s;
+    }
+
+    .modal-panel .body .section:nth-child(6) {
+      animation-delay: 0.24s;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-panel .body .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-panel .body .section-label {
+      font-size: 7px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .modal-panel .body .desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-panel .body .badge-row {
+      display: flex;
+      gap: 6px;
       flex-wrap: wrap;
-      gap: 3px;
-      margin: 3px 0;
+      margin-bottom: 6px;
     }
 
-    .modal-text .modal-tags span {
-      font-size: clamp(9px, 2vw, 11px);
-      background: rgba(201, 169, 110, 0.15);
-      border: 1px solid rgba(201, 169, 110, 0.08);
-      padding: 0 7px;
-      border-radius: 6px;
-      color: var(--gold-light);
+    .modal-panel .body .badge {
+      font-size: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 2px 12px;
+      border-radius: 100px;
       font-weight: 400;
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      color: var(--text-muted);
     }
 
-    .modal-text .modal-details {
+    .modal-panel .body .badge.trend {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    .modal-panel .body .rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .modal-panel .body .rating .stars {
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .modal-panel .body .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
-      margin: 2px 0;
     }
 
-    .modal-text .modal-details span {
-      font-size: clamp(9px, 2vw, 11px);
-      color: rgba(240, 235, 228, 0.6);
-      background: rgba(0, 0, 0, 0.3);
-      padding: 1px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(201, 169, 110, 0.06);
-      backdrop-filter: blur(4px);
+    .modal-panel .body .tags span {
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      padding: 2px 12px;
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-panel .body .tags span.highlight {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    .modal-panel .body .spec-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .modal-panel .body .spec-chip {
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      padding: 3px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-panel .body .color-swatch {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 2px 0;
+    }
+
+    .modal-panel .body .color-swatch .swatch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--text-secondary);
       font-weight: 300;
       letter-spacing: 0.04em;
     }
 
-    .modal-text .modal-badge {
-      align-self: flex-start;
-      background: rgba(201, 169, 110, 0.2);
-      backdrop-filter: blur(6px);
-      color: var(--gold-light);
-      padding: 2px 10px;
-      border-radius: var(--radius-pill);
-      font-size: clamp(10px, 2.2vw, 12px);
-      border: 1px solid rgba(201, 169, 110, 0.1);
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      min-height: 18px;
+    .modal-panel .body .color-swatch .swatch .circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+    }
+
+    .modal-panel .body .color-swatch .swatch .circle.c1 {
+      background: #8B6B4A;
+    }
+
+    .modal-panel .body .color-swatch .swatch .circle.c2 {
+      background: #A8855A;
+    }
+
+    .modal-panel .body .color-swatch .swatch .circle.c3 {
+      background: #C49A6C;
+    }
+
+    /* PRODUTOS - COM LINKS REAIS */
+    .modal-panel .body .product-scroll {
       display: flex;
-      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 0 6px;
+      scrollbar-width: none;
     }
 
-    .modal-text .modal-related {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 4px;
-      align-items: center;
+    .modal-panel .body .product-scroll::-webkit-scrollbar {
+      display: none;
     }
 
-    .modal-text .modal-related .related-label {
-      font-size: 10px;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
-
-    .modal-text .modal-related .related-chip {
-      font-size: 10px;
-      padding: 1px 10px;
-      min-height: 16px;
+    .modal-panel .body .product-item {
+      flex: 0 0 96px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 8px;
+      text-align: center;
       cursor: pointer;
-      background: rgba(201, 169, 110, 0.08);
-      border: 1px solid rgba(201, 169, 110, 0.06);
-      border-radius: var(--radius-pill);
-      color: var(--text-secondary);
-      transition: all var(--transition);
-      white-space: nowrap;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
-    .modal-text .modal-related .related-chip:hover {
-      background: var(--gold-glow);
-      border-color: var(--gold);
+    .modal-panel .body .product-item:hover {
+      border-color: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .modal-panel .body .product-item img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--bg-card);
+    }
+
+    .modal-panel .body .product-item .name {
+      font-size: 8px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+    }
+
+    .modal-panel .body .product-item .price {
+      display: none;
+      /* Esconde o preço */
+    }
+
+    .modal-panel .body .related-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 0 6px;
+      scrollbar-width: none;
+    }
+
+    .modal-panel .body .related-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .modal-panel .body .related-card {
+      flex: 0 0 116px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-panel .body .related-card:hover {
+      border-color: rgba(255, 255, 255, 0.04);
+      transform: translateY(-3px);
+    }
+
+    .modal-panel .body .related-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    .modal-panel .body .related-card .info {
+      padding: 8px 10px 10px;
+    }
+
+    .modal-panel .body .related-card .info .name {
+      font-size: 10px;
+      color: var(--text-primary);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-panel .body .related-card .info .sub {
+      font-size: 8px;
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+
+    .modal-panel .body .link-container {
+      margin-top: 4px;
+    }
+
+    .modal-panel .body .link-container .modal-link {
+      display: inline-block;
+      background: #ffe600;
+      color: #0a0808;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      margin-top: 6px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.04em;
+      width: fit-content;
+    }
+
+    .modal-panel .body .link-container .modal-link:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 16px rgba(255, 230, 0, 0.4);
+    }
+
+    /* DOCK */
+    .modal-dock {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 8px 12px 0;
+      flex-shrink: 0;
+      border-top: 1px solid var(--glass-border);
+      margin-top: 4px;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .modal-dock .dock-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      padding: 4px 0 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .modal-dock .dock-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .modal-dock .dock-item:hover {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-dock .dock-item.active {
       color: var(--gold);
     }
 
-    .modal-fav {
-      flex-shrink: 0;
-      background: none;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1px;
-      cursor: pointer;
-      color: #fff;
-      transition: all var(--transition);
-      padding: 0;
-    }
-
-    .modal-fav:hover {
-      transform: scale(1.05);
-    }
-
-    .modal-fav .fav-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-      padding: 0;
-    }
-
-    .modal-fav .fav-icon svg {
+    .modal-dock .dock-item.active::after {
       width: 20px;
-      height: 20px;
-      fill: currentColor;
-      stroke: none;
-    }
-
-    .modal-fav.favorited .fav-icon {
-      color: #ff4757;
-      background: rgba(255, 71, 87, 0.2);
-      border-color: rgba(255, 71, 87, 0.2);
-    }
-
-    .modal-fav .fav-label {
-      font-size: clamp(8px, 1.8vw, 10px);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
-      font-weight: 300;
     }
 
     /* ============================================================
-       RESPONSIVIDADE
-       ============================================================ */
+           RESPONSIVIDADE
+           ============================================================ */
     @media (max-height: 640px) {
       .app {
         padding: 4px 8px 2px 8px;
       }
+
       .header {
         min-height: 32px;
         padding: 0 0 4px 0;
       }
+
       .header-brand .brand-main {
         font-size: clamp(18px, 4vw, 22px);
       }
+
       .cat-tab {
         font-size: clamp(11px, 2.4vw, 13px);
         padding: 2px 10px;
         min-height: 22px;
       }
+
       .search-filter-row .search-input-wrap input {
         font-size: clamp(12px, 2.6vw, 14px);
         padding: 4px 42px 4px 12px;
         min-height: 30px;
       }
+
       .filter-toggle-btn {
         font-size: 11px;
         padding: 2px 10px;
         min-height: 30px;
       }
+
       .chip {
         font-size: clamp(10px, 2.2vw, 12px);
         padding: 2px 10px;
         min-height: 22px;
       }
+
       .carousel-card {
         flex: 0 0 85vw;
         width: 85vw;
@@ -2532,43 +2745,69 @@
         min-height: 220px;
         max-height: 400px;
       }
+
       .card-overlay h3 {
         font-size: clamp(14px, 3vw, 16px);
       }
-      .card-tag {
-        font-size: clamp(8px, 1.8vw, 10px);
-      }
+
       .tendencias-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 4px;
       }
+
       .galeria-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 4px;
       }
+
       .fav-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 4px;
       }
+
       .footer-links a {
         font-size: clamp(8px, 1.8vw, 10px);
         padding: 1px 6px;
         min-height: 16px;
       }
+
       .modal-content {
         height: 90vh;
-        width: 90vw;
+        max-height: 700px;
       }
-      .modal-text .modal-title {
-        font-size: clamp(16px, 3.4vw, 20px);
+
+      .modal-topbar {
+        padding: 10px 14px;
       }
+
+      .modal-topbar .btn-close,
+      .modal-topbar .btn-fav {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+
       .modal-indicators {
-        bottom: 80px;
+        bottom: 90px;
       }
+
+      .modal-signature {
+        bottom: 100px;
+      }
+
+      .modal-panel {
+        max-height: 56px;
+      }
+
+      .modal-panel .header .name {
+        font-size: 16px;
+      }
+
       .footer {
         min-height: 40px;
         padding: 2px 0;
       }
+
       .toast {
         bottom: 75px;
         font-size: 11px;
@@ -2583,12 +2822,14 @@
         height: 55vh;
         min-height: 200px;
       }
+
       .app {
         padding: 4px 6px 2px 6px;
       }
+
       .modal-content {
         height: 90vh;
-        width: 90vw;
+        max-height: 600px;
       }
     }
 
@@ -2600,9 +2841,10 @@
         min-height: 260px;
         max-height: 480px;
       }
+
       .modal-content {
         height: 90vh;
-        width: 90vw;
+        max-height: 720px;
       }
     }
 
@@ -2614,12 +2856,14 @@
         min-height: 280px;
         max-height: 500px;
       }
+
       .app {
         max-width: 600px;
       }
+
       .modal-content {
         height: 85vh;
-        width: 80vw;
+        max-height: 760px;
       }
     }
 
@@ -2631,19 +2875,23 @@
         min-height: 300px;
         max-height: 520px;
       }
+
       .app {
         max-width: 430px;
       }
+
       .tendencias-grid {
         grid-template-columns: repeat(3, 1fr);
       }
+
       .galeria-grid {
         grid-template-columns: repeat(4, 1fr);
       }
+
       .modal-content {
         height: 85vh;
-        width: 70vw;
-        max-width: 520px;
+        max-height: 800px;
+        max-width: 440px;
       }
     }
   </style>
@@ -2701,7 +2949,8 @@
         <button class="menu-item" id="menuHome">
           <span class="icon">
             <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
-              <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              <path
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
           </span>
           Catálogo
@@ -2727,7 +2976,8 @@
         <button class="menu-item" id="menuFavs">
           <span class="icon">
             <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
           </span>
           Favoritos <span class="item-count empty" id="menuFavCount">0</span>
@@ -2745,7 +2995,8 @@
         <button class="menu-item" id="menuContato">
           <span class="icon">
             <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
-              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <path
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </span>
           Contato
@@ -2797,8 +3048,10 @@
           <div class="filter-options">
             <span class="filter-opt active-opt" data-filter="cat" data-val="all">Todos</span>
             <span class="filter-opt" data-filter="cat" data-val="Corte">Cortes <span class="tag-count">13</span></span>
-            <span class="filter-opt" data-filter="cat" data-val="Coloração">Colorações <span class="tag-count">12</span></span>
-            <span class="filter-opt" data-filter="cat" data-val="Produto">Produtos <span class="tag-count">12</span></span>
+            <span class="filter-opt" data-filter="cat" data-val="Coloração">Colorações <span
+                class="tag-count">12</span></span>
+            <span class="filter-opt" data-filter="cat" data-val="Produto">Produtos <span
+                class="tag-count">12</span></span>
           </div>
         </div>
         <div class="filter-group">
@@ -2931,10 +3184,13 @@
         </div>
         <div class="page-scroll">
           <div class="sobre-content">
-            <p><strong style="color:var(--text-primary);font-family:'Playfair Display',serif;font-style:italic;">HairOS</strong> é uma seleção de estilos capilares — um catálogo vivo que reúne tendências, clássicos e inspirações.</p>
+            <p><strong
+                style="color:var(--text-primary);font-family:'Playfair Display',serif;font-style:italic;">HairOS</strong>
+              é uma seleção de estilos capilares — um catálogo vivo que reúne tendências, clássicos e inspirações.</p>
             <div class="sobre-card">
               <h4>origem</h4>
-              <p>Nascida da estética atemporal da Vogue Paris dos anos 1960, a HairOS reúne 37 estilos entre cortes, colorações e produtos.</p>
+              <p>Nascida da estética atemporal da Vogue Paris dos anos 1960, a HairOS reúne 37 estilos entre cortes,
+                colorações e produtos.</p>
             </div>
             <div class="sobre-card">
               <h4>missão</h4>
@@ -2943,7 +3199,8 @@
             <div class="sobre-stats">
               <div class="stat"><span class="number">37</span><span class="label">estilos</span></div>
               <div class="stat"><span class="number">4.8</span><span class="label">★ avaliação</span></div>
-              <div class="stat"><span class="number" id="favCountStat">0</span><span class="label">♥ favoritos</span></div>
+              <div class="stat"><span class="number" id="favCountStat">0</span><span class="label">♥ favoritos</span>
+              </div>
             </div>
           </div>
         </div>
@@ -2960,22 +3217,41 @@
 
             <!-- REDES SOCIAIS -->
             <div style="text-align:center;">
-              <p style="font-size:10px;color:var(--text-muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;font-weight:300;">siga a hairOS</p>
+              <p
+                style="font-size:10px;color:var(--text-muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;font-weight:300;">
+                siga a hairOS</p>
               <div class="contato-social">
                 <a href="https://instagram.com/seuusuario" target="_blank" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="19.5" cy="4.5" r="1.5"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle cx="19.5" cy="4.5" r="1.5" />
+                  </svg>
                 </a>
                 <a href="https://www.youtube.com/@seucanal" target="_blank" aria-label="YouTube">
-                  <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" />
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                  </svg>
                 </a>
                 <a href="https://www.tiktok.com/@seuusuario" target="_blank" aria-label="TikTok">
-                  <svg viewBox="0 0 24 24"><path d="M16.6 5.82a4.2 4.2 0 0 1 3.9 3.8 4.2 4.2 0 0 1-1.6-3.8 4.2 4.2 0 0 0-2.3-1.4 4.2 4.2 0 0 1-4.2 3.8v5.4a4.2 4.2 0 1 1-4.2-4.2v2.2a2 2 0 1 0 2 2V5.82h2.4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M16.6 5.82a4.2 4.2 0 0 1 3.9 3.8 4.2 4.2 0 0 1-1.6-3.8 4.2 4.2 0 0 0-2.3-1.4 4.2 4.2 0 0 1-4.2 3.8v5.4a4.2 4.2 0 1 1-4.2-4.2v2.2a2 2 0 1 0 2 2V5.82h2.4z" />
+                  </svg>
                 </a>
                 <a href="https://wa.me/5511914809693" target="_blank" aria-label="WhatsApp">
-                  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/><path d="M11 8a4 4 0 00-4 4 4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+                    <path d="M11 8a4 4 0 00-4 4 4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4z" />
+                  </svg>
                 </a>
                 <a href="https://www.facebook.com/seuusuario" target="_blank" aria-label="Facebook">
-                  <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                  </svg>
                 </a>
               </div>
             </div>
@@ -2983,24 +3259,34 @@
             <div style="border-top:1px solid var(--border-subtle);margin:6px 0 10px 0;"></div>
 
             <!-- PIX CARD -->
-            <div style="background:var(--bg-card);border-radius:12px;padding:16px 14px 18px 14px;border:1px solid var(--border-gold);box-shadow:0 2px 16px rgba(0,0,0,0.04);text-align:center;">
-              <p style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin-bottom:6px;">
+            <div
+              style="background:var(--bg-card);border-radius:12px;padding:16px 14px 18px 14px;border:1px solid var(--border-gold);box-shadow:0 2px 16px rgba(0,0,0,0.04);text-align:center;">
+              <p
+                style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin-bottom:6px;">
                 Caixinha Pix
               </p>
-              <div style="background:#ffffff;border-radius:12px;padding:8px;display:inline-block;margin:0 auto 6px auto;box-shadow:0 2px 8px rgba(0,0,0,.06);">
-                <img src="img/pix-qrcode.png" alt="QR Code Pix HairOS" style="width:140px;height:140px;object-fit:contain;display:block;" loading="lazy">
+              <div
+                style="background:#ffffff;border-radius:12px;padding:8px;display:inline-block;margin:0 auto 6px auto;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                <img src="img/pix-qrcode.png" alt="QR Code Pix HairOS"
+                  style="width:140px;height:140px;object-fit:contain;display:block;" loading="lazy">
               </div>
-              <div style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(201,169,110,0.06);border:1px solid var(--border-gold);border-radius:100px;padding:4px 6px 4px 14px;margin:4px auto 0 auto;max-width:100%;width:fit-content;">
-                <span style="font-size:clamp(12px,2.6vw,14px);color:var(--text-secondary);font-weight:400;word-break:break-all;">hairbymarciostylist@gmail.com</span>
-                <button id="copyPixBtn" style="background:var(--gold);border:none;border-radius:100px;padding:4px 14px;font-size:clamp(11px,2.4vw,13px);font-weight:600;color:#0a0808;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;white-space:nowrap;min-height:28px;">Copiar</button>
+              <div
+                style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(201,169,110,0.06);border:1px solid var(--border-gold);border-radius:100px;padding:4px 6px 4px 14px;margin:4px auto 0 auto;max-width:100%;width:fit-content;">
+                <span
+                  style="font-size:clamp(12px,2.6vw,14px);color:var(--text-secondary);font-weight:400;word-break:break-all;">hairbymarciostylist@gmail.com</span>
+                <button id="copyPixBtn"
+                  style="background:var(--gold);border:none;border-radius:100px;padding:4px 14px;font-size:clamp(11px,2.4vw,13px);font-weight:600;color:#0a0808;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;white-space:nowrap;min-height:28px;">Copiar</button>
               </div>
-              <p style="font-size:clamp(12px,2.6vw,14px);color:var(--text-muted);font-weight:300;margin-top:8px;letter-spacing:0.04em;">contribua com qualquer valor</p>
+              <p
+                style="font-size:clamp(12px,2.6vw,14px);color:var(--text-muted);font-weight:300;margin-top:8px;letter-spacing:0.04em;">
+                contribua com qualquer valor</p>
             </div>
 
             <div style="border-top:1px solid var(--border-subtle);margin:10px 0 6px 0;"></div>
 
             <!-- FORMULÁRIO -->
-            <p style="font-size:clamp(13px,2.8vw,15px);color:var(--text-secondary);font-weight:300;text-align:center;">Envie uma mensagem para a equipe</p>
+            <p style="font-size:clamp(13px,2.8vw,15px);color:var(--text-secondary);font-weight:300;text-align:center;">
+              Envie uma mensagem para a equipe</p>
             <form class="contato-form" id="contatoForm" novalidate>
               <input type="text" id="contatoNome" placeholder="seu nome" required>
               <input type="email" id="contatoEmail" placeholder="seu e-mail" required>
@@ -3018,27 +3304,45 @@
     <div class="footer">
       <div class="footer-links" id="footerLinks">
         <a class="active-link" data-page="pageHome">
-          <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
           home
         </a>
         <a data-page="pageTendencias">
-          <svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
           tendências
         </a>
         <a data-page="pageGaleria">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l4-4 4 4 6-6 4 4"/><circle cx="8" cy="8" r="1.5"/></svg>
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 15l4-4 4 4 6-6 4 4" />
+            <circle cx="8" cy="8" r="1.5" />
+          </svg>
           galeria
         </a>
         <a data-page="pageFavoritos">
-          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
           fav
         </a>
         <a data-page="pageSobre">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 8v4m0 4h.01" />
+          </svg>
           sobre
         </a>
         <a data-page="pageContato">
-          <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
           contato
         </a>
       </div>
@@ -3050,43 +3354,125 @@
   <!-- ===== MODAL ===== -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose">✕</button>
+
+      <!-- GALERIA -->
       <div class="modal-gallery-wrap">
         <div class="modal-gallery" id="modalGallery"></div>
-        <button class="modal-nav prev" id="modalPrev">‹</button>
-        <button class="modal-nav next" id="modalNext">›</button>
-        <div class="modal-indicators" id="modalIndicators"></div>
-        <div class="modal-info">
-          <div class="modal-text">
-            <span class="modal-class" id="modalClass">corte · médio</span>
-            <span class="modal-title" id="modalTitle">Velvet Bob</span>
-            <span class="modal-desc" id="modalDesc">Clássico moderno com camadas suaves.</span>
-            <span class="modal-image-number" id="modalImageNumber">6.0 · 7.0</span>
-            <div class="modal-tags" id="modalTags"></div>
-            <div class="modal-details" id="modalDetails"></div>
-            <span class="modal-badge" id="modalBadge">tendência</span>
-            <div id="modalLinkContainer" style="margin-top: 4px;"></div>
-            <div class="modal-related" id="modalRelated"></div>
-          </div>
-          <button class="modal-fav" id="modalFavBtn">
-            <span class="fav-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-            </span>
-            <span class="fav-label">favoritar</span>
-          </button>
-        </div>
       </div>
+
+      <!-- GRADIENTE -->
+      <div class="modal-gradient"></div>
+
+      <!-- TOP BAR -->
+      <div class="modal-topbar">
+        <button class="btn-close" id="modalClose">✕</button>
+        <button class="btn-fav" id="modalFavBtn">♥</button>
+      </div>
+
+      <!-- INDICADORES -->
+      <div class="modal-indicators" id="modalIndicators"></div>
+
+      <!-- NAVEGAÇÃO -->
+      <button class="modal-nav prev" id="modalPrev">‹</button>
+      <button class="modal-nav next" id="modalNext">›</button>
+
+      <!-- ASSINATURA -->
+      <div class="modal-signature">
+        HairOS<br>
+        <span class="gold">✦</span> collection 01
+      </div>
+
+      <!-- GLASS CONTAINER -->
+      <div class="modal-glass">
+
+        <!-- PANEL -->
+        <div class="modal-panel" id="modalPanel">
+          <div class="handle" id="panelHandle"></div>
+
+          <div class="header" id="panelHeader">
+            <div>
+              <div class="name" id="modalTitle">Velvet Bob</div>
+              <div class="category" id="modalClass">corte · médio · clássico</div>
+            </div>
+            <button class="toggle" id="toggleBtn">▲</button>
+          </div>
+
+          <div class="body" id="modalBody">
+
+            <!-- Badges -->
+            <div class="section">
+              <div class="badge-row" id="modalBadgeRow">
+                <span class="badge trend" id="modalBadge">tendência</span>
+                <span class="badge" id="modalCategory">Corte</span>
+              </div>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span id="modalRatingText">4.8 · 128</span>
+              </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="section" id="sectionInfo">
+              <div class="section-label">sobre</div>
+              <p class="desc" id="modalDesc">Clássico moderno com camadas suaves que emolduram o rosto.</p>
+            </div>
+
+            <!-- Tags -->
+            <div class="section">
+              <div class="section-label">tags</div>
+              <div class="tags" id="modalTags"></div>
+            </div>
+
+            <!-- Cores -->
+            <div class="section" id="sectionColor">
+              <div class="section-label">cores indicadas</div>
+              <div class="color-swatch" id="modalColors"></div>
+            </div>
+
+            <!-- Características -->
+            <div class="section" id="sectionSpecs">
+              <div class="section-label">características</div>
+              <div class="spec-chips" id="modalDetails"></div>
+            </div>
+
+            <!-- Produtos (com links reais) -->
+            <div class="section" id="sectionProducts">
+              <div class="section-label">produtos</div>
+              <div class="product-scroll" id="modalProducts"></div>
+            </div>
+
+            <!-- Relacionados -->
+            <div class="section">
+              <div class="section-label">relacionados</div>
+              <div class="related-scroll" id="modalRelated"></div>
+            </div>
+
+            <!-- Link -->
+            <div class="section" id="sectionLink">
+              <div class="link-container" id="modalLinkContainer"></div>
+            </div>
+
+          </div>
+
+          <!-- DOCK -->
+          <div class="modal-dock" id="modalDock">
+            <button class="dock-item active" data-section="info">info</button>
+            <button class="dock-item" data-section="color">cores</button>
+            <button class="dock-item" data-section="products">produtos</button>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
   <script>
-    (function() {
+    (function () {
       'use strict';
 
       // ============================================================
-      // SPLASH — com barra de progresso
+      // SPLASH - com barra de progresso
       // ============================================================
       function initSplash() {
         const splash = document.getElementById('splash');
@@ -3096,7 +3482,6 @@
 
         if (!splash) return;
 
-        // PRÉ-CARREGAMENTO DE IMAGENS
         const keys = Object.keys(styleData);
         let imagesLoaded = 0;
         const totalImages = keys.length;
@@ -3107,7 +3492,6 @@
             img.src = styleData[key].img;
             img.onload = () => {
               imagesLoaded++;
-              // Atualiza progresso baseado em imagens
               const percent = Math.min(Math.round((imagesLoaded / totalImages) * 100), 90);
               if (barFill) barFill.style.width = percent + '%';
               if (percentText) {
@@ -3117,9 +3501,7 @@
                 else percentText.textContent = 'PRONTO! ✨';
               }
             };
-            img.onerror = () => {
-              imagesLoaded++;
-            };
+            img.onerror = () => { imagesLoaded++; };
           });
         }
 
@@ -3131,20 +3513,14 @@
 
           if (progress > 100) {
             clearInterval(interval);
-
             setTimeout(() => {
               app.classList.add('visible');
               splash.classList.add('hide');
-
-              setTimeout(() => {
-                if (splash.parentNode) splash.remove();
-              }, 600);
+              setTimeout(() => { if (splash.parentNode) splash.remove(); }, 600);
             }, 200);
-
             return;
           }
 
-          // Atualiza barra se ainda não foi preenchida pelas imagens
           if (barFill && imagesLoaded < totalImages) {
             const imgPercent = Math.min(Math.round((imagesLoaded / totalImages) * 100), 90);
             const currentWidth = Math.max(progress, imgPercent);
@@ -3153,7 +3529,6 @@
             barFill.style.width = progress + '%';
           }
 
-          // Atualiza texto
           if (percentText && imagesLoaded < totalImages) {
             if (progress < 30) percentText.textContent = 'CARREGANDO IMAGENS';
             else if (progress < 60) percentText.textContent = 'PREPARANDO ESTILOS';
@@ -3167,15 +3542,12 @@
           }
         }, 30);
 
-        // Fallback: se algo travar, força saída após 6 segundos
         setTimeout(() => {
           if (!splash.classList.contains('hide')) {
             clearInterval(interval);
             app.classList.add('visible');
             splash.classList.add('hide');
-            setTimeout(() => {
-              if (splash.parentNode) splash.remove();
-            }, 600);
+            setTimeout(() => { if (splash.parentNode) splash.remove(); }, 600);
           }
         }, 6000);
       }
@@ -3197,7 +3569,7 @@
       }
 
       // ============================================================
-      // DATABASE — 37 CARDS (mantido igual)
+      // DATABASE - 37 CARDS com produtos e links
       // ============================================================
       const styleData = {
         'velvet-bob': {
@@ -3215,11 +3587,37 @@
           tags: ['corte', 'bob', 'clássico', 'camadas'],
           img: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg', number: '6.0 · 7.0' },
-            { src: 'https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg', number: '6.1 · 7.1' },
-            { src: 'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg', number: '5.0 · 6.0' }
+            {
+              src: 'https://i.pinimg.com/736x/33/40/f1/3340f1628dc6e94ef489cc02e9aef903.jpg',
+              number: '6.0 · 7.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg',
+              number: '6.1 · 7.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg',
+              number: '5.0 · 6.0'
+            }
           ],
-          related: ['pixie-cut', 'short-bob', 'blunt-cut']
+          related: ['pixie-cut', 'short-bob', 'blunt-cut'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'pixie-cut': {
           title: 'Pixie Cut',
@@ -3236,11 +3634,37 @@
           tags: ['corte', 'pixie', 'curto', 'moderno'],
           img: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg', number: '5.0 · 6.0' },
-            { src: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg', number: '5.1 · 6.1' },
-            { src: 'https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg', number: '4.0 · 5.0' }
+            {
+              src: 'https://i.pinimg.com/736x/1e/59/3c/1e593c46f134db1bc0233b96d12d555f.jpg',
+              number: '5.0 · 6.0'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
+              number: '5.1 · 6.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg',
+              number: '4.0 · 5.0'
+            }
           ],
-          related: ['side-cut', 'short-bob', 'velvet-bob']
+          related: ['side-cut', 'short-bob', 'velvet-bob'],
+          products: [
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            }
+          ]
         },
         'wolf-cut': {
           title: 'Wolf Cut',
@@ -3257,11 +3681,37 @@
           tags: ['corte', 'wolf', 'camadas', 'moderno'],
           img: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg', number: '7.0 · 8.0' },
-            { src: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg', number: '7.2 · 8.2' },
-            { src: 'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg', number: '6.8 · 7.8' }
+            {
+              src: 'https://i.pinimg.com/736x/2a/eb/88/2aeb88213907101e1792b014a75fb4b3.jpg',
+              number: '6.0 · 7.1'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/b7/95/84/b79584466268e95b4d99080cffff97bf.jpg',
+              number: '7.2 · 8.2'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/cc/d4/b9/ccd4b9468a39ef0669e9c1ec22b13ff5.jpg',
+              number: '6.0 · 6.8'
+            }
           ],
-          related: ['shaggy-hair', 'octopus-cut', 'butterfly-cut']
+          related: ['shaggy-hair', 'octopus-cut', 'butterfly-cut'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'side-cut': {
           title: 'Side Cut',
@@ -3278,11 +3728,37 @@
           tags: ['corte', 'undercut', 'alternativo', 'radical'],
           img: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg', number: '5.0 · 7.1' },
-            { src: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg', number: '5.2 · 7.3' },
-            { src: 'https://i.pinimg.com/736x/2c/ff/3e/2cff3e43ed7e8559602509e135fc826b.jpg', number: '4.8 · 6.9' }
+            {
+              src: 'https://i.pinimg.com/736x/83/c7/14/83c714490bf6e4033b8fe38463d2cfd3.jpg',
+              number: '5.0 · 7.1'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/de/4d/24/de4d244b7955694a245cfdb0d916a70c.jpg',
+              number: '5.2 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/f4/b1/a4/f4b1a44654f6f063ed5056c5550537e5.jpg',
+              number: '5.0 · 7.8'
+            }
           ],
-          related: ['pixie-cut', 'nirvana-cut', 'wolf-cut']
+          related: ['pixie-cut', 'nirvana-cut', 'wolf-cut'],
+          products: [
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Máscara Kérastase Résistance', price: 'R$ 189',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2VVxFB1'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'short-bob': {
           title: 'Short Bob',
@@ -3299,11 +3775,37 @@
           tags: ['corte', 'bob', 'curto', 'clássico'],
           img: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg', number: '6.0 · 7.0' },
-            { src: 'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg', number: '6.1 · 7.1' },
-            { src: 'https://i.pinimg.com/736x/a2/eb/48/a2eb48f4c7874ffd4b7668ecec57d651.jpg', number: '5.0 · 6.0' }
+            {
+              src: 'https://i.pinimg.com/736x/bc/6e/36/bc6e36d5a0499c3fb34c6fedb7745c89.jpg',
+              number: '7.0 · 9.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/98/6f/3b/986f3b7f6ece364be7d82c4748a47d19.jpg',
+              number: '6.1 · 8.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/00/15/b1/0015b15cdba2fca92fb77fd9cb5cb88f.jpg',
+              number: '5.0 · 6.0'
+            }
           ],
-          related: ['velvet-bob', 'blunt-cut', 'long-bob']
+          related: ['velvet-bob', 'blunt-cut', 'long-bob'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            }
+          ]
         },
         'kitty-cut': {
           title: 'Kitty Cut',
@@ -3320,11 +3822,37 @@
           tags: ['corte', 'kitty', 'médio', 'romântico'],
           img: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg', number: '7.0 · 7.3' },
-            { src: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg', number: '7.2 · 7.5' },
-            { src: 'https://i.pinimg.com/736x/2e/37/91/2e3791c344263214a752f02f140ef95b.jpg', number: '6.0 · 7.0' }
+            {
+              src: 'https://i.pinimg.com/736x/34/42/7d/34427d6d263a887baee616d629f6138a.jpg',
+              number: '7.0 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/db/62/5d/db625dc302efc77fe3db0543ceb06937.jpg',
+              number: '7.2 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/ba/4b/96/ba4b961cd4aa33b125eb482565088cf8.jpg',
+              number: '6.0 · 7.0'
+            }
           ],
-          related: ['curtain-bangs', 'butterfly-cut', 'long-bob']
+          related: ['curtain-bangs', 'butterfly-cut', 'long-bob'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Leave-in Absolut Repair', price: 'R$ 109',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?w=100&h=100&c=7',
+              link: 'https://meli.la/11HGaBx'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'nirvana-cut': {
           title: 'Nirvana Cut',
@@ -3341,11 +3869,37 @@
           tags: ['corte', 'grunge', 'alternativo', 'rock'],
           img: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg', number: '5.0 · 6.0' },
-            { src: 'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg', number: '5.4 · 6.4' },
-            { src: 'https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg', number: '4.8 · 5.8' }
+            {
+              src: 'https://i.pinimg.com/736x/10/5d/21/105d2125f58a53877f6ac4655275e79e.jpg',
+              number: '5.0 · 6.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg',
+              number: '5.4 · 6.4'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg',
+              number: '4.8 · 5.8'
+            }
           ],
-          related: ['shaggy-hair', 'side-cut', 'wolf-cut']
+          related: ['shaggy-hair', 'side-cut', 'wolf-cut'],
+          products: [
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            }
+          ]
         },
         'long-bob': {
           title: 'Long Bob (Lob)',
@@ -3362,11 +3916,37 @@
           tags: ['corte', 'lob', 'longo', 'versátil'],
           img: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg', number: '7.0 · 8.0' },
-            { src: 'https://i.pinimg.com/736x/2e/37/91/2e3791c344263214a752f02f140ef95b.jpg', number: '7.1 · 8.1' },
-            { src: 'https://i.pinimg.com/736x/cf/b4/c4/cfb4c491b133cb1ced2cabf27f1691de.jpg', number: '6.0 · 7.0' }
+            {
+              src: 'https://i.pinimg.com/1200x/c4/bb/9e/c4bb9eb05ed091dc496194f629e26c6e.jpg',
+              number: '7.0 · 8.0'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/be/68/91/be6891207555f068fa5a0fa0a79ae882.jpg',
+              number: '7.1 · 8.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/e4/f8/66/e4f8660e6edb317bdaf66c66270fb05f.jpg',
+              number: '6.0 · 7.0'
+            }
           ],
-          related: ['curtain-bangs', 'kitty-cut', 'butterfly-cut']
+          related: ['curtain-bangs', 'kitty-cut', 'butterfly-cut'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'butterfly-cut': {
           title: 'Butterfly Cut',
@@ -3383,11 +3963,37 @@
           tags: ['corte', 'butterfly', 'longo', 'romântico'],
           img: 'https://i.pinimg.com/1200x/0f/db/87/0fdb876f80df2b07c5c4ed0e4c928492.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/0f/db/87/0fdb876f80df2b07c5c4ed0e4c928492.jpg', number: '7.0 · 7.3' },
-            { src: 'https://i.pinimg.com/236x/52/40/02/52400232deed3ad1d6a19ebdfacbc0c8.jpg', number: '7.2 · 7.5' },
-            { src: 'https://i.pinimg.com/236x/f7/ff/bb/f7ffbb74791a4e01ad6285a5aa5ab979.jpg', number: '6.8 · 7.1' }
+            {
+              src: 'https://i.pinimg.com/1200x/66/bb/26/66bb266d7934a62d3f30132a9f8e7bc6.jpg',
+              number: '7.0 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/88/27/2c/88272c86c739b50408bc6372972a7dba.jpg',
+              number: '7.2 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/ec/97/85/ec9785ae609edd9958245167b09b776a.jpg',
+              number: '6.8 · 7.1'
+            }
           ],
-          related: ['wolf-cut', 'octopus-cut', 'curtain-bangs']
+          related: ['wolf-cut', 'octopus-cut', 'curtain-bangs'],
+          products: [
+            {
+              name: 'Leave-in Absolut Repair', price: 'R$ 109',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?w=100&h=100&c=7',
+              link: 'https://meli.la/11HGaBx'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            }
+          ]
         },
         'blunt-cut': {
           title: 'Blunt Cut',
@@ -3404,11 +4010,37 @@
           tags: ['corte', 'blunt', 'reto', 'moderno'],
           img: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg', number: '6.0 · 7.0' },
-            { src: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg', number: '6.1 · 7.1' },
-            { src: 'https://i.pinimg.com/736x/45/23/3f/45233f0f5bf2025158ac9ff72701f3c2.jpg', number: '5.9 · 6.9' }
+            {
+              src: 'https://i.pinimg.com/1200x/06/15/ff/0615ff8b4ad4d40cf86d8f738b91eb44.jpg',
+              number: '6.0 · 7.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/64/b9/1f/64b91f2e6d9ce5414ec4f2977c44406c.jpg',
+              number: '6.1 · 7.1'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/b0/de/95/b0de952a5d2eea7092b6272e94f0083b.jpg',
+              number: '5.9 · 6.9'
+            }
           ],
-          related: ['short-bob', 'velvet-bob', 'long-bob']
+          related: ['short-bob', 'velvet-bob', 'long-bob'],
+          products: [
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Máscara Kérastase Résistance', price: 'R$ 189',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2VVxFB1'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'octopus-cut': {
           title: 'Octopus Cut',
@@ -3425,11 +4057,37 @@
           tags: ['corte', 'octopus', 'longo', 'volume'],
           img: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg', number: '5.0 · 6.34' },
-            { src: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg', number: '5.4 · 6.54' },
-            { src: 'https://i.pinimg.com/736x/10/75/c6/1075c68d4b35292480d95cea2225915f.jpg', number: '4.8 · 6.1' }
+            {
+              src: 'https://i.pinimg.com/736x/d7/f2/2b/d7f22bca30309f62004694c1f7dafa73.jpg',
+              number: '5.0 · 6.34'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/e4/4b/da/e44bdac8a5105bfec972ba9a543bfeec.jpg',
+              number: '5.4 · 6.54'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/3c/e7/6d/3ce76d862b49b6857675718fa3a9b118.jpg',
+              number: '4.8 · 6.1'
+            }
           ],
-          related: ['wolf-cut', 'shaggy-hair', 'butterfly-cut']
+          related: ['wolf-cut', 'shaggy-hair', 'butterfly-cut'],
+          products: [
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'shaggy-hair': {
           title: 'Shaggy Hair',
@@ -3446,11 +4104,37 @@
           tags: ['corte', 'shag', 'camadas', 'alternativo'],
           img: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg', number: '6.0 · 7.3' },
-            { src: 'https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg', number: '6.2 · 7.5' },
-            { src: 'https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg', number: '5.8 · 7.1' }
+            {
+              src: 'https://i.pinimg.com/1200x/e7/6a/22/e76a22e038cba1d1daad41e6f2238004.jpg',
+              number: '6.0 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg',
+              number: '6.2 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg',
+              number: '5.8 · 7.1'
+            }
           ],
-          related: ['nirvana-cut', 'wolf-cut', 'octopus-cut']
+          related: ['nirvana-cut', 'wolf-cut', 'octopus-cut'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'curtain-bangs': {
           title: 'Curtain Bangs',
@@ -3467,11 +4151,37 @@
           tags: ['corte', 'franja', 'curtain', 'romântico'],
           img: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg', number: '7.0 · 7.3' },
-            { src: 'https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg', number: '7.2 · 7.5' },
-            { src: 'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg', number: '6.8 · 7.1' }
+            {
+              src: 'https://i.pinimg.com/736x/58/0c/8a/580c8a16db34446e639e3bbf6672cd96.jpg',
+              number: '7.0 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg',
+              number: '7.2 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg',
+              number: '6.8 · 7.1'
+            }
           ],
-          related: ['kitty-cut', 'long-bob', 'butterfly-cut']
+          related: ['kitty-cut', 'long-bob', 'butterfly-cut'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Leave-in Absolut Repair', price: 'R$ 109',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?w=100&h=100&c=7',
+              link: 'https://meli.la/11HGaBx'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'ombre-tiger-eye': {
           title: 'Ombré Tiger Eye',
@@ -3488,11 +4198,37 @@
           tags: ['coloração', 'ombré', 'morenas', 'tigre'],
           img: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg', number: '5.0 · 7.3 · 8.0' },
-            { src: 'https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg', number: '5.3 · 7.5 · 8.2' },
-            { src: 'https://i.pinimg.com/736x/fa/a5/b7/faa5b7c1adedbfb1af0e96a9925a653b.jpg', number: '4.8 · 7.1 · 7.8' }
+            {
+              src: 'https://i.pinimg.com/1200x/fc/77/96/fc7796a5b8212a0fd41f43792ede5351.jpg',
+              number: '5.0 · 7.3 · 8.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg',
+              number: '5.3 · 7.5 · 8.2'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/fa/a5/b7/faa5b7c1adedbfb1af0e96a9925a653b.jpg',
+              number: '4.8 · 7.1 · 7.8'
+            }
           ],
-          related: ['balayage-loira', 'contour-highlights', 'babylights-morena']
+          related: ['balayage-loira', 'contour-highlights', 'babylights-morena'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            }
+          ]
         },
         'babylights-morena': {
           title: 'Babylights Morena',
@@ -3509,11 +4245,37 @@
           tags: ['coloração', 'babylights', 'morenas', 'natural'],
           img: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg', number: '6.0 · 7.0 · 8.0' },
-            { src: 'https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg', number: '6.1 · 7.1 · 8.1' },
-            { src: 'https://i.pinimg.com/736x/8c/2f/fb/8c2ffb69266317402f17c8e2fd120420.jpg', number: '5.9 · 6.9 · 7.9' }
+            {
+              src: 'https://i.pinimg.com/736x/9b/15/b9/9b15b9e256a6114b5148bee2650c1364.jpg',
+              number: '6.0 · 7.0 · 8.0'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg',
+              number: '6.1 · 7.1 · 8.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/8c/2f/fb/8c2ffb69266317402f17c8e2fd120420.jpg',
+              number: '5.9 · 6.9 · 7.9'
+            }
           ],
-          related: ['ombre-tiger-eye', 'contour-highlights', 'balayage-loira']
+          related: ['ombre-tiger-eye', 'contour-highlights', 'balayage-loira'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Máscara Kérastase Résistance', price: 'R$ 189',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2VVxFB1'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'contour-highlights': {
           title: 'Contour Highlights',
@@ -3530,11 +4292,37 @@
           tags: ['coloração', 'contour', 'morenas', 'iluminação'],
           img: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg', number: '5.0 · 7.3 · 8.0' },
-            { src: 'https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg', number: '5.4 · 7.4 · 8.1' },
-            { src: 'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg', number: '4.9 · 7.2 · 7.9' }
+            {
+              src: 'https://i.pinimg.com/736x/a2/8b/0d/a28b0d206e5cc72f3ba38aafa9ad8031.jpg',
+              number: '5.0 · 7.3 · 8.0'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg',
+              number: '5.4 · 7.4 · 8.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
+              number: '4.9 · 7.2 · 7.9'
+            }
           ],
-          related: ['babylights-morena', 'ombre-tiger-eye', 'mechas-contour']
+          related: ['babylights-morena', 'ombre-tiger-eye', 'mechas-contour'],
+          products: [
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            },
+            {
+              name: 'Leave-in Absolut Repair', price: 'R$ 109',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?w=100&h=100&c=7',
+              link: 'https://meli.la/11HGaBx'
+            }
+          ]
         },
         'balayage-loira': {
           title: 'Balayage Loira',
@@ -3551,11 +4339,37 @@
           tags: ['coloração', 'balayage', 'loiras', 'natural'],
           img: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg', number: '7.0 · 8.0 · 7.3' },
-            { src: 'https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg', number: '7.2 · 8.2 · 7.5' },
-            { src: 'https://i.pinimg.com/1200x/85/03/4b/85034b9e76143badec90e47cdac4ae36.jpg', number: '6.8 · 7.8 · 7.1' }
+            {
+              src: 'https://i.pinimg.com/736x/67/53/d4/6753d4546e18a5b6e121879b4e45a5f5.jpg',
+              number: '7.0 · 8.0 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg',
+              number: '7.2 · 8.2 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/85/03/4b/85034b9e76143badec90e47cdac4ae36.jpg',
+              number: '6.8 · 7.8 · 7.1'
+            }
           ],
-          related: ['californianas', 'highlights-loira', 'ombre-tiger-eye']
+          related: ['californianas', 'highlights-loira', 'ombre-tiger-eye'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'californianas': {
           title: 'Californianas',
@@ -3572,11 +4386,37 @@
           tags: ['coloração', 'californianas', 'loiras', 'sol'],
           img: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg', number: '7.0 · 8.0 · 8.1' },
-            { src: 'https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg', number: '7.2 · 8.2 · 8.3' },
-            { src: 'https://i.pinimg.com/1200x/80/f3/bb/80f3bbce1fb5bb37fd8c921cd8ada7d2.jpg', number: '6.8 · 7.8 · 7.9' }
+            {
+              src: 'https://i.pinimg.com/736x/c7/92/25/c7922574476f525938331938daf277f7.jpg',
+              number: '7.0 · 8.0 · 8.1'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg',
+              number: '7.2 · 8.2 · 8.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/80/f3/bb/80f3bbce1fb5bb37fd8c921cd8ada7d2.jpg',
+              number: '6.8 · 7.8 · 7.9'
+            }
           ],
-          related: ['balayage-loira', 'highlights-loira', 'mechas-contour']
+          related: ['balayage-loira', 'highlights-loira', 'mechas-contour'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'mechas-contour': {
           title: 'Mechas Contour',
@@ -3593,11 +4433,37 @@
           tags: ['coloração', 'contour', 'loiras', 'iluminação'],
           img: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg', number: '8.0 · 8.1 · 10.12' },
-            { src: 'https://i.pinimg.com/1200x/ba/ea/88/baea88db56d4ee70ac25ef7ebe6b4bfa.jpg', number: '8.2 · 8.3 · 10.3' },
-            { src: 'https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg', number: '7.8 · 7.9 · 9.9' }
+            {
+              src: 'https://i.pinimg.com/1200x/05/42/66/05426622b672a5271cdfcd4813595269.jpg',
+              number: '8.0 · 8.1 · 10.12'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/ba/ea/88/baea88db56d4ee70ac25ef7ebe6b4bfa.jpg',
+              number: '8.2 · 8.3 · 10.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg',
+              number: '7.8 · 7.9 · 9.9'
+            }
           ],
-          related: ['contour-highlights', 'californianas', 'highlights-loira']
+          related: ['contour-highlights', 'californianas', 'highlights-loira'],
+          products: [
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Máscara Kérastase Résistance', price: 'R$ 189',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2VVxFB1'
+            },
+            {
+              name: 'Leave-in Absolut Repair', price: 'R$ 109',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?w=100&h=100&c=7',
+              link: 'https://meli.la/11HGaBx'
+            }
+          ]
         },
         'highlights-loira': {
           title: 'Highlights Loira',
@@ -3614,11 +4480,37 @@
           tags: ['coloração', 'highlights', 'loiras', 'brilho'],
           img: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg', number: '7.0 · 8.0 · 8.3' },
-            { src: 'https://i.pinimg.com/736x/23/ed/1a/23ed1a0d684e9c188c09ae26b62ff6cb.jpg', number: '7.1 · 8.1 · 7.4' },
-            { src: 'https://i.pinimg.com/736x/c8/68/95/c8689579f77d930f3cb347d695ef9cdf.jpg', number: '6.9 · 7.9 · 7.2' }
+            {
+              src: 'https://i.pinimg.com/1200x/6f/04/f7/6f04f7f22120c572e80a8d903f0f2baf.jpg',
+              number: '7.0 · 8.0 · 8.3'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/23/ed/1a/23ed1a0d684e9c188c09ae26b62ff6cb.jpg',
+              number: '7.1 · 8.1 · 7.4'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/c8/68/95/c8689579f77d930f3cb347d695ef9cdf.jpg',
+              number: '6.9 · 7.9 · 7.2'
+            }
           ],
-          related: ['balayage-loira', 'californianas', 'mechas-contour']
+          related: ['balayage-loira', 'californianas', 'mechas-contour'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'cherry-cola': {
           title: 'Cherry Cola',
@@ -3635,11 +4527,37 @@
           tags: ['coloração', 'cherry', 'ruivas', 'vibrante'],
           img: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg', number: '5.0 · 6.34 · 7.4' },
-            { src: 'https://i.pinimg.com/1200x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg', number: '5.2 · 6.5 · 7.6' },
-            { src: 'https://i.pinimg.com/1200x/33/57/b2/3357b2fd2041dd93adda096095757b2b.jpg', number: '4.8 · 6.1 · 7.2' }
+            {
+              src: 'https://i.pinimg.com/736x/72/3a/68/723a6849cd6b74d8aa9b1282cfceb7c9.jpg',
+              number: '5.0 · 6.34 · 7.4'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
+              number: '5.2 · 6.5 · 7.6'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/33/57/b2/3357b2fd2041dd93adda096095757b2b.jpg',
+              number: '4.8 · 6.1 · 7.2'
+            }
           ],
-          related: ['cowgirl-copper', 'ruivo-doce-leite', 'octopus-cut']
+          related: ['cowgirl-copper', 'ruivo-doce-leite', 'octopus-cut'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Lowell Cacho Mágico', price: 'R$ 49',
+              img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1RKdy8e'
+            }
+          ]
         },
         'cowgirl-copper': {
           title: 'Cowgirl Copper',
@@ -3656,11 +4574,37 @@
           tags: ['coloração', 'copper', 'ruivas', 'moderno'],
           img: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg', number: '6.0 · 7.4 · 7.3' },
-            { src: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg', number: '6.2 · 7.6 · 7.5' },
-            { src: 'https://i.pinimg.com/736x/3e/08/65/3e0865833599c47473882c25165ecbfc.jpg', number: '5.8 · 7.2 · 7.1' }
+            {
+              src: 'https://i.pinimg.com/1200x/7a/d4/f4/7ad4f49a2f9604293e2bc16d65a6d30f.jpg',
+              number: '6.0 · 7.4 · 7.3'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
+              number: '6.2 · 7.6 · 7.5'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/3e/08/65/3e0865833599c47473882c25165ecbfc.jpg',
+              number: '5.8 · 7.2 · 7.1'
+            }
           ],
-          related: ['cherry-cola', 'ruivo-doce-leite', 'octopus-cut']
+          related: ['cherry-cola', 'ruivo-doce-leite', 'octopus-cut'],
+          products: [
+            {
+              name: 'Shampoo Absolut Repair Gold', price: 'R$ 149',
+              img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jX3Cvq'
+            },
+            {
+              name: 'Máscara Kérastase Résistance', price: 'R$ 189',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2VVxFB1'
+            },
+            {
+              name: 'Spray Silhouette', price: 'R$ 69',
+              img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1jdT4rg'
+            }
+          ]
         },
         'ruivo-doce-leite': {
           title: 'Ruivo Doce de Leite',
@@ -3677,11 +4621,37 @@
           tags: ['coloração', 'ruivo', 'doce leite', 'caramelo'],
           img: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg', number: '6.34 · 7.3 · 7.0' },
-            { src: 'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg', number: '6.5 · 7.5 · 7.2' },
-            { src: 'https://i.pinimg.com/736x/23/30/46/233046bbedfc1312e61ba72b32ac6c12.jpg', number: '6.1 · 7.1 · 6.8' }
+            {
+              src: 'https://i.pinimg.com/736x/8a/7c/d4/8a7cd4c0523d1384c8ac71d6b97b1541.jpg',
+              number: '6.34 · 7.3 · 7.0'
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
+              number: '6.5 · 7.5 · 7.2'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/23/30/46/233046bbedfc1312e61ba72b32ac6c12.jpg',
+              number: '6.1 · 7.1 · 6.8'
+            }
           ],
-          related: ['cowgirl-copper', 'cherry-cola', 'ombre-tiger-eye']
+          related: ['cowgirl-copper', 'cherry-cola', 'ombre-tiger-eye'],
+          products: [
+            {
+              name: 'Shampoo Vitamino Color', price: 'R$ 89',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/2wJK2SK'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'grisalhos-frios': {
           title: 'Grisalhos Frios',
@@ -3698,11 +4668,37 @@
           tags: ['coloração', 'grisalhos', 'prateado', 'sophisticated'],
           img: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg', number: '7.1 · 8.1 · 6.0' },
-            { src: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg', number: '7.3 · 8.3 · 6.2' },
-            { src: 'https://i.pinimg.com/736x/b0/f1/d6/b0f1d6fdfc4df443e6409aeea819567d.jpg', number: '6.9 · 7.9 · 5.8' }
+            {
+              src: 'https://i.pinimg.com/1200x/0f/8b/f7/0f8bf776c83fa00d99150792aac564fd.jpg',
+              number: '7.1 · 8.1 · 6.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
+              number: '7.3 · 8.3 · 6.2'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/b0/f1/d6/b0f1d6fdfc4df443e6409aeea819567d.jpg',
+              number: '6.9 · 7.9 · 5.8'
+            }
           ],
-          related: ['grisalhos-quentes', 'mechas-contour', 'highlights-loira']
+          related: ['grisalhos-quentes', 'mechas-contour', 'highlights-loira'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Metal Detox Máscara', price: 'R$ 139',
+              img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg?w=100&h=100&c=7',
+              link: 'https://meli.la/2wbpFNR'
+            },
+            {
+              name: 'Elixir Ultime Oil', price: 'R$ 159',
+              img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?w=100&h=100&c=7',
+              link: 'https://meli.la/1ZKxHad'
+            }
+          ]
         },
         'grisalhos-quentes': {
           title: 'Grisalhos Quentes',
@@ -3719,15 +4715,41 @@
           tags: ['coloração', 'grisalhos', 'quente', 'natural'],
           img: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg',
           gallery: [
-            { src: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg', number: '7.3 · 8.3 · 7.0' },
-            { src: 'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg', number: '7.5 · 8.5 · 7.2' },
-            { src: 'https://i.pinimg.com/736x/58/1f/87/581f87188095c4a9b5e6d81c4b14a77c.jpg', number: '7.1 · 8.1 · 6.8' }
+            {
+              src: 'https://i.pinimg.com/736x/1e/aa/75/1eaa7549f9babe98cf52aee19771aa68.jpg',
+              number: '7.3 · 8.3 · 7.0'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg',
+              number: '7.5 · 8.5 · 7.2'
+            },
+            {
+              src: 'https://i.pinimg.com/736x/58/1f/87/581f87188095c4a9b5e6d81c4b14a77c.jpg',
+              number: '7.1 · 8.1 · 6.8'
+            }
           ],
-          related: ['grisalhos-frios', 'ruivo-doce-leite', 'ombre-tiger-eye']
+          related: ['grisalhos-frios', 'ruivo-doce-leite', 'ombre-tiger-eye'],
+          products: [
+            {
+              name: 'Shampoo Silver', price: 'R$ 79',
+              img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1uQ9ppW'
+            },
+            {
+              name: 'Máscara Absolut Repair', price: 'R$ 129',
+              img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/1T8Ucwp'
+            },
+            {
+              name: 'Condicionador Joico', price: 'R$ 99',
+              img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?w=100&h=100&c=7',
+              link: 'https://mercadolivre.com/sec/26hayjy'
+            }
+          ]
         },
         'shampoo-vitamino-color': {
           title: 'Shampoo Vitamino Color 750ml',
-          desc: 'Shampoo que protege a cor e mantém o brilho dos cabelos coloridos. Limpeza suave com ativos que prolongam a cor.',
+          desc: 'Shampoo que protege a cor e mantém o brilho dos cabelos coloridos.',
           badge: 'proteção da cor',
           categoria: 'Produto',
           size: null,
@@ -3741,15 +4763,25 @@
           link: 'https://mercadolivre.com/sec/2wJK2SK',
           img: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/1200x/49/13/db/4913db0aeb90eaa39af627682e595518.jpg', number: '' },
-            { src: 'https://i.pinimg.com/736x/da/fe/12/dafe123ec0af05e28c1284fa75b7413d.jpg', number: '' }
+            {
+              src: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/49/13/db/4913db0aeb90eaa39af627682e595518.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/da/fe/12/dafe123ec0af05e28c1284fa75b7413d.jpg',
+              number: ''
+            }
           ],
-          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold'],
+          products: []
         },
         'mascara-absolut-repair': {
           title: 'Máscara Absolut Repair 250ml',
-          desc: 'Máscara de reconstrução profunda com proteína de trigo. Repara danos e devolve a força aos fios.',
+          desc: 'Máscara de reconstrução profunda com proteína de trigo.',
           badge: 'reconstrução',
           categoria: 'Produto',
           size: null,
@@ -3763,15 +4795,25 @@
           link: 'https://mercadolivre.com/sec/1T8Ucwp',
           img: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/736x/34/59/ce/3459cebc3044e956410bb887d8a53457.jpg', number: '' },
-            { src: 'https://i.pinimg.com/736x/5c/fb/bc/5cfbbc5d6d6967494e0c536185551fac.jpg', number: '' }
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/34/59/ce/3459cebc3044e956410bb887d8a53457.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/5c/fb/bc/5cfbbc5d6d6967494e0c536185551fac.jpg',
+              number: ''
+            }
           ],
-          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
+          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold'],
+          products: []
         },
         'mascara-kerastase': {
           title: 'Máscara Kérastase Résistance 200ml',
-          desc: 'Máscara de reconstrução intensa da linha Résistance. Reparação profunda para cabelos fragilizados.',
+          desc: 'Máscara de reconstrução intensa da linha Résistance.',
           badge: 'reconstrução intensa',
           categoria: 'Produto',
           size: null,
@@ -3785,11 +4827,21 @@
           link: 'https://mercadolivre.com/sec/2VVxFB1',
           img: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/736x/f7/c2/e3/f7c2e3d49a4f6e4af307529e5cc5932f.jpg', number: '' },
-            { src: 'https://i.pinimg.com/736x/78/8d/23/788d2303aa3cf99214dcae3c74401cd2.jpg', number: '' }
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/f7/c2/e3/f7c2e3d49a4f6e4af307529e5cc5932f.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/78/8d/23/788d2303aa3cf99214dcae3c74401cd2.jpg',
+              number: ''
+            }
           ],
-          related: ['mascara-absolut-repair', 'condicionador-joico']
+          related: ['mascara-absolut-repair', 'condicionador-joico'],
+          products: []
         },
         'spray-silhouette': {
           title: 'Silhouette Hair Spray 500ml',
@@ -3807,15 +4859,25 @@
           link: 'https://mercadolivre.com/sec/1jdT4rg',
           img: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/736x/c3/28/5b/c3285b4bc5e8eb0bf3126eb695c8c1ac.jpg', number: '' },
-            { src: 'https://i.pinimg.com/736x/cd/12/a9/cd12a9ed93db2fde11af4ec7f3151d8d.jpg', number: '' }
+            {
+              src: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/c3/28/5b/c3285b4bc5e8eb0bf3126eb695c8c1ac.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/cd/12/a9/cd12a9ed93db2fde11af4ec7f3151d8d.jpg',
+              number: ''
+            }
           ],
-          related: ['lowell-cacho-magico']
+          related: ['lowell-cacho-magico'],
+          products: []
         },
         'lowell-cacho-magico': {
           title: 'Lowell Cacho Mágico 200ml',
-          desc: 'Fluido ativador de cachos que define e hidrata sem deixar o fio duro. Ideal para cabelos cacheados e crespos.',
+          desc: 'Fluido ativador de cachos que define e hidrata sem deixar o fio duro.',
           badge: 'definição de cachos',
           categoria: 'Produto',
           size: null,
@@ -3829,15 +4891,25 @@
           link: 'https://mercadolivre.com/sec/1RKdy8e',
           img: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/1200x/3d/55/ff/3d55ff810947174c1b831725ce01d4e5.jpg', number: '' },
-            { src: 'https://i.pinimg.com/1200x/98/b9/5a/98b95a2d7ff1873bfbfc8b83cbb508f4.jpg', number: '' }
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/3d/55/ff/3d55ff810947174c1b831725ce01d4e5.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/98/b9/5a/98b95a2d7ff1873bfbfc8b83cbb508f4.jpg',
+              number: ''
+            }
           ],
-          related: ['spray-silhouette']
+          related: ['spray-silhouette'],
+          products: []
         },
         'shampoo-silver': {
           title: "Shampoo L'Oréal Silver 300ml",
-          desc: 'Shampoo matizador para cabelos grisalhos e com mechas. Neutraliza tons amarelos e mantém o brilho.',
+          desc: 'Shampoo matizador para cabelos grisalhos e com mechas.',
           badge: 'matizador',
           categoria: 'Produto',
           size: null,
@@ -3851,15 +4923,25 @@
           link: 'https://mercadolivre.com/sec/1uQ9ppW',
           img: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://i.pinimg.com/1200x/02/ff/b3/02ffb31d69b8890b1b01c2222a821e74.jpg', number: '' },
-            { src: 'https://i.pinimg.com/1200x/52/77/45/5277459ef9364596d15fa25439659bb9.jpg', number: '' }
+            {
+              src: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/02/ff/b3/02ffb31d69b8890b1b01c2222a821e74.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/52/77/45/5277459ef9364596d15fa25439659bb9.jpg',
+              number: ''
+            }
           ],
-          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
+          related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold'],
+          products: []
         },
         'shampoo-absolut-repair-gold': {
           title: 'Shampoo Absolut Repair Gold 750ml',
-          desc: 'Shampoo reconstructor com Quinoa e Proteína. Limpeza profunda com ação reparadora.',
+          desc: 'Shampoo reconstructor com Quinoa e Proteína.',
           badge: 'reconstrutor',
           categoria: 'Produto',
           size: null,
@@ -3873,15 +4955,25 @@
           link: 'https://mercadolivre.com/sec/1jX3Cvq',
           img: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
           gallery: [
-            { src: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0', number: '' },
-            { src: 'https://i.pinimg.com/1200x/78/dd/06/78dd0605f1f607b98881d9b62cdefe8a.jpg', number: '' },
-            { src: 'https://i.pinimg.com/736x/ee/5d/ab/ee5dabfab9fa5b8e016ebc8931dd3492.jpg', number: '' }
+            {
+              src: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/78/dd/06/78dd0605f1f607b98881d9b62cdefe8a.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/ee/5d/ab/ee5dabfab9fa5b8e016ebc8931dd3492.jpg',
+              number: ''
+            }
           ],
-          related: ['shampoo-vitamino-color', 'mascara-absolut-repair']
+          related: ['shampoo-vitamino-color', 'mascara-absolut-repair'],
+          products: []
         },
         'condicionador-joico': {
           title: 'Condicionador Joico Moisture Recovery 250ml',
-          desc: 'Condicionador de hidratação profunda para cabelos secos e grossos. Desembaraça e nutre intensamente.',
+          desc: 'Condicionador de hidratação profunda para cabelos secos e grossos.',
           badge: 'hidratação profunda',
           categoria: 'Produto',
           size: null,
@@ -3895,15 +4987,25 @@
           link: 'https://mercadolivre.com/sec/26hayjy',
           img: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
           gallery: [
-            { src: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000', number: '' },
-            { src: 'https://i.pinimg.com/736x/9a/aa/9d/9aaa9db9764ac6550439b1d9f9fd8368.jpg', number: '' },
-            { src: 'https://i.pinimg.com/1200x/5b/53/8f/5b538f30589b753ff074ef689bc5d13c.jpg', number: '' }
+            {
+              src: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/736x/9a/aa/9d/9aaa9db9764ac6550439b1d9f9fd8368.jpg',
+              number: ''
+            },
+            {
+              src: 'https://i.pinimg.com/1200x/5b/53/8f/5b538f30589b753ff074ef689bc5d13c.jpg',
+              number: ''
+            }
           ],
-          related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
+          related: ['shampoo-absolut-repair-gold', 'mascara-kerastase'],
+          products: []
         },
         'leave-in-absolut-repair': {
           title: "Leave-in Molecular L'Oréal Absolut Repair 100 ml",
-          desc: 'Leave-in Molecular com tecnologia de reparação capilar avançada. Ação profunda que reconstrói a fibra capilar, reduz quebras e devolve a força aos fios. Ideal para cabelos danificados e com química.',
+          desc: 'Leave-in Molecular com tecnologia de reparação capilar avançada.',
           badge: 'reparação molecular',
           categoria: 'Produto',
           size: null,
@@ -3917,15 +5019,25 @@
           link: 'https://meli.la/11HGaBx',
           img: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://tse2.mm.bing.net/th/id/OIP.tB8ZRBcacvXmiLB2sWvtNAHaG1?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://tse1.mm.bing.net/th/id/OIP.g_dCl8HI89ULsZfYa07R-AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' }
+            {
+              src: 'https://tse1.mm.bing.net/th/id/OIP.C0eAjizwHfjxbNPx3FhuDgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://tse2.mm.bing.net/th/id/OIP.tB8ZRBcacvXmiLB2sWvtNAHaG1?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://tse1.mm.bing.net/th/id/OIP.g_dCl8HI89ULsZfYa07R-AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            }
           ],
-          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold'],
+          products: []
         },
         'metal-detox-mascara': {
           title: "L'Oréal Metal Detox Máscara 250ml",
-          desc: 'Máscara que neutraliza metais pesados acumulados no cabelo, restaurando a saúde dos fios.',
+          desc: 'Máscara que neutraliza metais pesados acumulados no cabelo.',
           badge: 'detox',
           categoria: 'Produto',
           size: null,
@@ -3939,15 +5051,25 @@
           link: 'https://meli.la/2wbpFNR',
           img: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg',
           gallery: [
-            { src: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg', number: '' },
-            { src: 'https://thekit.ca/wp-content/uploads/2023/07/Sized-Inline-2-Metal-Detox.jpg', number: '' },
-            { src: 'https://th.bing.com/th/id/R.27e90a1a88881a68840a4957b92b49e5?rik=adiD0OgEGiT0%2fQ&riu=http%3a%2f%2fhighfy.pk%2fcdn%2fshop%2ffiles%2fMetal-Detox_Mask-1.jpg%3fv%3d1726648606&ehk=9Hk9YakC%2bQote4uryYitwpdBG6AfrS0mbvdkUzTBdkU%3d&risl=&pid=ImgRaw&r=0', number: '' }
+            {
+              src: 'https://br.lorealpartnershop.com/on/demandware.static/-/Sites-master-PPD-BR/default/dwd0e6bb9d/products/30163478_EN_1.jpg',
+              number: ''
+            },
+            {
+              src: 'https://thekit.ca/wp-content/uploads/2023/07/Sized-Inline-2-Metal-Detox.jpg',
+              number: ''
+            },
+            {
+              src: 'https://th.bing.com/th/id/R.27e90a1a88881a68840a4957b92b49e5?rik=adiD0OgEGiT0%2fQ&riu=http%3a%2f%2fhighfy.pk%2fcdn%2fshop%2ffiles%2fMetal-Detox_Mask-1.jpg%3fv%3d1726648606&ehk=9Hk9YakC%2bQote4uryYitwpdBG6AfrS0mbvdkUzTBdkU%3d&risl=&pid=ImgRaw&r=0',
+              number: ''
+            }
           ],
-          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+          related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold'],
+          products: []
         },
         'elixir-ultime-oil': {
           title: 'Leave-In Protetor Térmico Anti Ressecamento Kérastase Nutritive Nectar Thermique 150ml',
-          desc: 'Leave-in protetor térmico com proteínas vegetais e niacinamida que hidrata, nutre e protege os fios contra o calor. Ideal para cabelos médios a grossos, previne o ressecamento e devolve maciez e brilho com toque sedoso.',
+          desc: 'Leave-in protetor térmico com proteínas vegetais e niacinamida que hidrata, nutre e protege os fios contra o calor.',
           badge: 'proteção térmica + nutrição',
           categoria: 'Produto',
           size: null,
@@ -3961,15 +5083,25 @@
           link: 'https://meli.la/1ZKxHad',
           img: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?rik=JzIwXFcQei6vAQ&riu=http%3a%2f%2fconceptcshop.com%2fcdn%2fshop%2ffiles%2fkerastase-nutritive-nectar-thermique-150-ml-582017.png%3fv%3d1750310904%26width%3d2048&ehk=dtp43%2fbNlCZmYdcz1BaoB5hJqL2AlOGbFfCj3FcM3fw%3d&risl=&pid=ImgRaw&r=0',
           gallery: [
-            { src: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?rik=JzIwXFcQei6vAQ&riu=http%3a%2f%2fconceptcshop.com%2fcdn%2fshop%2ffiles%2fkerastase-nutritive-nectar-thermique-150-ml-582017.png%3fv%3d1750310904%26width%3d2048&ehk=dtp43%2fbNlCZmYdcz1BaoB5hJqL2AlOGbFfCj3FcM3fw%3d&risl=&pid=ImgRaw&r=0', number: '' },
-            { src: 'https://tse4.mm.bing.net/th/id/OIP.nLWo8PK2y7dcWIlb7-Nq3QHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://tse4.mm.bing.net/th/id/OIP.1Yb5HyJYKkIZBGSdT3yr4AAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' }
+            {
+              src: 'https://th.bing.com/th/id/R.092399c54f14c855e2149acc7924af60?rik=JzIwXFcQei6vAQ&riu=http%3a%2f%2fconceptcshop.com%2fcdn%2fshop%2ffiles%2fkerastase-nutritive-nectar-thermique-150-ml-582017.png%3fv%3d1750310904%26width%3d2048&ehk=dtp43%2fbNlCZmYdcz1BaoB5hJqL2AlOGbFfCj3FcM3fw%3d&risl=&pid=ImgRaw&r=0',
+              number: ''
+            },
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP.nLWo8PK2y7dcWIlb7-Nq3QHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP.1Yb5HyJYKkIZBGSdT3yr4AAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            }
           ],
-          related: ['spray-silhouette', 'lowell-cacho-magico']
+          related: ['spray-silhouette', 'lowell-cacho-magico'],
+          products: []
         },
         'pli-thermo-spray': {
           title: "L'Oréal Paris Spray Protetor De Estilo Calor Da Prancha 170ml",
-          desc: 'Protetor térmico em spray que prepara e protege os fios contra o calor da chapinha e prancha. Fórmula leve que alinha, dá brilho e mantém o estilo por mais tempo. Ideal para o dia a dia de quem usa ferramentas de calor.',
+          desc: 'Protetor térmico em spray que prepara e protege os fios contra o calor da chapinha e prancha.',
           badge: 'proteção térmica + brilho',
           categoria: 'Produto',
           size: null,
@@ -3983,11 +5115,21 @@
           link: 'https://meli.la/2n6FhZQ',
           img: 'https://tse4.mm.bing.net/th/id/OIP.QUSgvPVsa9LdRi4biO0SkQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
           gallery: [
-            { src: 'https://tse4.mm.bing.net/th/id/OIP.QUSgvPVsa9LdRi4biO0SkQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://tse1.mm.bing.net/th/id/OIP.kkO61v0KpHoFC4GmCA6a9gHaGN?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', number: '' },
-            { src: 'https://th.bing.com/th/id/R.8baf232768ba8ff0906932701a6436a0?rik=mUdJ7lIs99NoNg&pid=ImgRaw&r=0', number: '' }
+            {
+              src: 'https://tse4.mm.bing.net/th/id/OIP.QUSgvPVsa9LdRi4biO0SkQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://tse1.mm.bing.net/th/id/OIP.kkO61v0KpHoFC4GmCA6a9gHaGN?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+              number: ''
+            },
+            {
+              src: 'https://th.bing.com/th/id/R.8baf232768ba8ff0906932701a6436a0?rik=mUdJ7lIs99NoNg&pid=ImgRaw&r=0',
+              number: ''
+            }
           ],
-          related: ['elixir-ultime-oil', 'spray-silhouette']
+          related: ['elixir-ultime-oil', 'spray-silhouette'],
+          products: []
         }
       };
 
@@ -4003,13 +5145,16 @@
         modalKey: null,
         modalIndex: 0,
         dropdownOpen: false,
-        scrollPosition: 0
+        scrollPosition: 0,
+        modalExpanded: false
       };
 
       // ============================================================
       // HELPERS
       // ============================================================
-      function isFavorite(key) { return STATE.favorites.includes(key); }
+      function isFavorite(key) {
+        return STATE.favorites.includes(key);
+      }
 
       function toggleFavorite(key) {
         const isFav = isFavorite(key);
@@ -4018,12 +5163,10 @@
         localStorage.setItem('hairos_favorites', JSON.stringify(STATE.favorites));
         updateAllFavUI();
 
-        // Toast
         const message = isFav ? 'Removido dos favoritos' : 'Adicionado aos favoritos';
         const icon = isFav ? '♡' : '♥';
         showToast(message, icon);
 
-        // Pulse animation
         document.querySelectorAll(`[data-fav-key="${key}"]`).forEach(el => {
           el.classList.add('pulse');
           setTimeout(() => el.classList.remove('pulse'), 400);
@@ -4041,6 +5184,16 @@
         document.getElementById('favCountHeader').textContent = `(${count})`;
         document.getElementById('favCountStat').textContent = count;
         if (document.getElementById('pageFavoritos').classList.contains('active-page')) renderFavorites();
+        updateModalFavButton();
+      }
+
+      function updateModalFavButton() {
+        const key = STATE.modalKey;
+        if (!key) return;
+        const fav = isFavorite(key);
+        const btn = document.getElementById('modalFavBtn');
+        btn.classList.toggle('active', fav);
+        btn.textContent = fav ? '♥' : '♥';
       }
 
       function getFilteredKeys() {
@@ -4076,7 +5229,7 @@
       }
 
       // ============================================================
-      // RENDER
+      // RENDER FUNCTIONS
       // ============================================================
       function renderChips(activeKey) {
         const container = document.getElementById('chipCarousel');
@@ -4106,7 +5259,6 @@
         if (!activeKey || !keys.includes(activeKey)) activeKey = 'velvet-bob';
         STATE.currentStyle = activeKey;
 
-        // Update results count
         document.getElementById('countNumber').textContent = keys.length;
 
         const sorted = [activeKey, ...keys.filter(k => k !== activeKey)];
@@ -4114,51 +5266,41 @@
         track.innerHTML = '';
         const items = [];
 
-        // Adiciona classe loading
         track.classList.add('loading');
 
         sorted.forEach(key => {
           const data = styleData[key];
           if (!data) return;
           const fav = isFavorite(key);
-          const tagsHtml = data.tags.slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('');
+          const tagsHtml = data.tags.slice(0, 3).map(t =>
+            `<span class="card-tag">${t}</span>`
+          ).join('');
           const cardNumber = data.gallery && data.gallery[0] ? data.gallery[0].number : '';
 
           const card = document.createElement('div');
           card.className = `carousel-card${key === activeKey ? ' active-card' : ''}`;
           card.dataset.key = key;
           card.innerHTML = `
-            <button class="fav-btn ${fav ? 'favorited' : ''}" data-fav-key="${key}" aria-label="${fav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
-              <svg viewBox="0 0 24 24" fill="${fav ? 'currentColor' : 'none'}" stroke="${fav ? 'none' : 'currentColor'}" stroke-width="1.5">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-            </button>
-            <div class="card-img">
-              <img src="${data.img}" alt="${data.title}" loading="lazy">
-              <div class="shimmer"></div>
-            </div>
-            <div class="card-overlay">
-              <div class="card-tags">${tagsHtml}</div>
-              <h3>${data.title}</h3>
-              ${cardNumber ? `<span class="card-sub">${cardNumber}</span>` : ''}
-              <span class="card-badge">${data.badge}</span>
-            </div>
-            <button class="info-btn-card" data-key="${key}" aria-label="Ver detalhes">
-              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 8v4m0 4h.01"/>
-              </svg>
-            </button>
-          `;
+                        <button class="fav-btn ${fav ? 'favorited' : ''}" data-fav-key="${key}" aria-label="${fav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                            <svg viewBox="0 0 24 24" fill="${fav ? 'currentColor' : 'none'}" stroke="${fav ? 'none' : 'currentColor'}" stroke-width="1.5">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                        <div class="card-img">
+                            <img src="${data.img}" alt="${data.title}" loading="lazy">
+                            <div class="shimmer"></div>
+                        </div>
+                        <div class="card-overlay">
+                            <div class="card-tags">${tagsHtml}</div>
+                            <h3>${data.title}</h3>
+                            ${cardNumber ? `<span class="card-sub">${cardNumber}</span>` : ''}
+                            <span class="card-badge">${data.badge}</span>
+                        </div>
+                    `;
 
-          // Imagem load handler
           const img = card.querySelector('.card-img img');
-          img.onload = () => {
-            img.classList.add('loaded');
-          };
-          img.onerror = () => {
-            img.classList.add('loaded');
-          };
+          img.onload = () => { img.classList.add('loaded'); };
+          img.onerror = () => { img.classList.add('loaded'); };
 
           card.querySelector('.fav-btn').addEventListener('click', e => {
             e.stopPropagation();
@@ -4166,32 +5308,22 @@
             updateAllFavButtons(key);
           });
 
-          card.querySelector('.info-btn-card').addEventListener('click', e => {
-            e.stopPropagation();
-            openModal(key);
-          });
-
           card.addEventListener('click', () => openModal(key));
           track.appendChild(card);
           items.push(card);
         });
 
-        // Remove loading após renderizar
-        setTimeout(() => {
-          track.classList.remove('loading');
-        }, 300);
+        setTimeout(() => { track.classList.remove('loading'); }, 300);
 
         updateIndicators(items);
         renderChips(activeKey);
         updateActiveFiltersBar();
 
-        // Scroll suave para o card ativo
         setTimeout(() => {
           const idx = sorted.indexOf(activeKey);
           if (idx >= 0 && items[idx]) {
             items[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
           }
-          // Restaura posição de scroll salva
           if (STATE.scrollPosition && !activeKey) {
             track.scrollLeft = STATE.scrollPosition;
           }
@@ -4207,7 +5339,10 @@
           dot.className = `dot${i === 0 ? ' active-dot' : ''}`;
           dot.addEventListener('click', () => {
             const idx = Math.min(i * 2, items.length - 1);
-            if (items[idx]) items[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (items[idx]) items[idx].scrollIntoView({
+              behavior: 'smooth', block: 'nearest',
+              inline: 'center'
+            });
           });
           container.appendChild(dot);
         }
@@ -4229,11 +5364,14 @@
           pill.addEventListener('click', () => {
             if (f.type === 'cat') {
               STATE.category = 'all';
-              document.querySelectorAll('[data-filter="cat"]').forEach(el => el.classList.remove('active-opt'));
-              document.querySelector('[data-filter="cat"][data-val="all"]')?.classList.add('active-opt');
+              document.querySelectorAll('[data-filter="cat"]').forEach(el => el.classList.remove(
+                'active-opt'));
+              document.querySelector('[data-filter="cat"][data-val="all"]')?.classList.add(
+                'active-opt');
             } else {
               delete STATE.filters[f.type];
-              document.querySelectorAll(`[data-filter="${f.type}"]`).forEach(el => el.classList.remove('active-opt'));
+              document.querySelectorAll(`[data-filter="${f.type}"]`).forEach(el => el.classList.remove(
+                'active-opt'));
             }
             renderCarousel(STATE.currentStyle);
             updateFilterBadge();
@@ -4268,7 +5406,9 @@
       function renderTendencias() {
         const grid = document.getElementById('tendenciasGrid');
         grid.innerHTML = '';
-        const tendencias = ['wolf-cut', 'butterfly-cut', 'pixie-cut', 'curtain-bangs', 'long-bob', 'kitty-cut', 'ombre-tiger-eye', 'balayage-loira', 'cherry-cola'];
+        const tendencias = ['wolf-cut', 'butterfly-cut', 'pixie-cut', 'curtain-bangs', 'long-bob', 'kitty-cut',
+          'ombre-tiger-eye', 'balayage-loira', 'cherry-cola'
+        ];
         tendencias.forEach(key => {
           const data = styleData[key];
           if (!data) return;
@@ -4276,13 +5416,13 @@
           const card = document.createElement('div');
           card.className = 'tendencia-card';
           card.innerHTML = `
-            <div class="tendencia-img"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
-            <div class="tendencia-info">
-              <h4>${data.title}</h4>
-              ${cardNumber ? `<div class="tendencia-colors">${cardNumber}</div>` : ''}
-              <span class="tendencia-tag">${data.badge}</span>
-            </div>
-          `;
+                        <div class="tendencia-img"><img src="${data.img}" alt="${data.title}" loading="lazy"></div>
+                        <div class="tendencia-info">
+                            <h4>${data.title}</h4>
+                            ${cardNumber ? `<div class="tendencia-colors">${cardNumber}</div>` : ''}
+                            <span class="tendencia-tag">${data.badge}</span>
+                        </div>
+                    `;
           card.addEventListener('click', () => openModal(key));
           grid.appendChild(card);
         });
@@ -4299,12 +5439,12 @@
           const item = document.createElement('div');
           item.className = 'galeria-item';
           item.innerHTML = `
-            <img src="${data.img}" alt="${data.title}" loading="lazy">
-            <div class="galeria-overlay">
-              <span>${data.title}</span>
-              ${cardNumber ? `<div class="galeria-colors">${cardNumber}</div>` : ''}
-            </div>
-          `;
+                        <img src="${data.img}" alt="${data.title}" loading="lazy">
+                        <div class="galeria-overlay">
+                            <span>${data.title}</span>
+                            ${cardNumber ? `<div class="galeria-colors">${cardNumber}</div>` : ''}
+                        </div>
+                    `;
           item.addEventListener('click', () => openModal(key));
           grid.appendChild(item);
         });
@@ -4314,7 +5454,8 @@
         const grid = document.getElementById('favGrid');
         grid.innerHTML = '';
         if (!STATE.favorites.length) {
-          grid.innerHTML = `<div class="empty-state"><span class="heart-big">♡</span>Toque no ♥ de um estilo para salvá-lo!</div>`;
+          grid.innerHTML =
+            `<div class="empty-state"><span class="heart-big">♡</span>Toque no ♥ de um estilo para salvá-lo!</div>`;
           return;
         }
         STATE.favorites.forEach(key => {
@@ -4324,13 +5465,13 @@
           const item = document.createElement('div');
           item.className = 'fav-item';
           item.innerHTML = `
-            <button class="fav-remove" data-fav-key="${key}" aria-label="Remover dos favoritos">✕</button>
-            <img src="${data.img}" alt="${data.title}" loading="lazy">
-            <div class="fav-overlay">
-              <span>${data.title}</span>
-              ${cardNumber ? `<div class="fav-colors">${cardNumber}</div>` : ''}
-            </div>
-          `;
+                        <button class="fav-remove" data-fav-key="${key}" aria-label="Remover dos favoritos">✕</button>
+                        <img src="${data.img}" alt="${data.title}" loading="lazy">
+                        <div class="fav-overlay">
+                            <span>${data.title}</span>
+                            ${cardNumber ? `<div class="fav-colors">${cardNumber}</div>` : ''}
+                        </div>
+                    `;
           item.querySelector('.fav-remove').addEventListener('click', e => {
             e.stopPropagation();
             toggleFavorite(key);
@@ -4369,98 +5510,147 @@
       // ============================================================
       // MODAL
       // ============================================================
+      function toggleModalPanel(open) {
+        STATE.modalExpanded = (open !== undefined) ? open : !STATE.modalExpanded;
+        const panel = document.getElementById('modalPanel');
+        const toggle = document.getElementById('toggleBtn');
+        panel.classList.toggle('expanded', STATE.modalExpanded);
+        toggle.classList.toggle('expanded', STATE.modalExpanded);
+        toggle.textContent = STATE.modalExpanded ? '▼' : '▲';
+      }
+
       function openModal(key) {
         const data = styleData[key];
         if (!data) return;
+
         STATE.modalKey = key;
         STATE.modalIndex = 0;
         const images = data.gallery || [{ src: data.img, number: '' }];
 
+        // Cores dinâmicas
         const colorFamily = data.colorFamily || 'morenas';
         document.getElementById('modalOverlay').dataset.color = colorFamily;
 
+        // Título e classe
         document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalDesc').textContent = data.desc;
-        document.getElementById('modalClass').textContent = [data.categoria, data.size, data.style].filter(Boolean).join(' · ');
+        document.getElementById('modalClass').textContent = [data.categoria, data.size, data.style].filter(Boolean)
+          .join(' · ');
+
+        // Badge e categoria
         document.getElementById('modalBadge').textContent = data.badge;
+        document.getElementById('modalCategory').textContent = data.categoria;
 
-        const tagsHtml = (data.tags || []).map(t => `<span>${t}</span>`).join('');
-        document.getElementById('modalTags').innerHTML = tagsHtml;
+        // Descrição
+        document.getElementById('modalDesc').textContent = data.desc;
 
-        const details = [];
-        if (data.manutencao) details.push(`✧ Manutenção: ${data.manutencao}`);
-        if (data.rosto) details.push(`✧ Rosto: ${data.rosto}`);
-        if (data.textura) details.push(`✧ Textura: ${data.textura}`);
-        if (data.volume) details.push(`✧ Volume: ${data.volume}`);
-        if (data.colorFamily && data.colorFamily !== 'produto') details.push(`✧ Família: ${data.colorFamily}`);
-        document.getElementById('modalDetails').innerHTML = details.map(d => `<span>${d}</span>`).join('');
+        // Tags
+        const tagsContainer = document.getElementById('modalTags');
+        tagsContainer.innerHTML = '';
+        (data.tags || []).forEach(t => {
+          const span = document.createElement('span');
+          span.className = 'highlight';
+          span.textContent = '#' + t;
+          tagsContainer.appendChild(span);
+        });
 
-        if (images[0] && images[0].number) {
-          document.getElementById('modalImageNumber').textContent = images[0].number;
-          document.getElementById('modalImageNumber').style.display = 'inline-block';
-        } else {
-          document.getElementById('modalImageNumber').style.display = 'none';
-        }
-
-        const linkContainer = document.getElementById('modalLinkContainer');
-        if (linkContainer) {
-          linkContainer.innerHTML = '';
-          if (data.link) {
-            const linkEl = document.createElement('a');
-            linkEl.href = data.link;
-            linkEl.target = '_blank';
-            linkEl.rel = 'noopener noreferrer';
-            linkEl.textContent = '🛒 Comprar no Mercado Livre';
-            linkEl.style.cssText =
-              'display:inline-block;background:#ffe600;color:#0a0808;padding:6px 18px;border-radius:100px;font-weight:700;font-size:13px;text-decoration:none;margin-top:6px;transition:all 0.3s ease;border:none;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.04em;width:fit-content;';
-            linkEl.addEventListener('mouseenter', () => {
-              linkEl.style.transform = 'scale(1.03)';
-              linkEl.style.boxShadow = '0 4px 16px rgba(255,230,0,0.4)';
-            });
-            linkEl.addEventListener('mouseleave', () => {
-              linkEl.style.transform = 'scale(1)';
-              linkEl.style.boxShadow = 'none';
-            });
-            linkContainer.appendChild(linkEl);
+        // Cores
+        const colorsContainer = document.getElementById('modalColors');
+        colorsContainer.innerHTML = '';
+        const colors = data.gallery && data.gallery[0] && data.gallery[0].number ?
+          data.gallery[0].number.split(' · ') :
+          ['6.0', '7.0', '8.0'];
+        const colorClasses = ['c1', 'c2', 'c3'];
+        colors.forEach((num, i) => {
+          if (i < 3) {
+            const swatch = document.createElement('span');
+            swatch.className = 'swatch';
+            swatch.innerHTML = `<span class="circle ${colorClasses[i] || 'c1'}"></span> ${num}`;
+            colorsContainer.appendChild(swatch);
           }
-        }
+        });
 
+        // Características
+        const detailsContainer = document.getElementById('modalDetails');
+        detailsContainer.innerHTML = '';
+        const specs = [];
+        if (data.manutencao) specs.push(`${data.manutencao} manutenção`);
+        if (data.rosto) specs.push(data.rosto);
+        if (data.textura) specs.push(data.textura);
+        if (data.volume) specs.push(data.volume);
+        if (data.colorFamily && data.colorFamily !== 'produto') specs.push(data.colorFamily);
+        if (data.size) specs.push(data.size);
+        specs.forEach(s => {
+          const chip = document.createElement('span');
+          chip.className = 'spec-chip';
+          chip.textContent = s;
+          detailsContainer.appendChild(chip);
+        });
+
+        // PRODUTOS (apenas os específicos do estilo)
+        const productsContainer = document.getElementById('modalProducts');
+        productsContainer.innerHTML = '';
+        const products = data.products || [];
+
+        if (products.length > 0) {
+          products.forEach(p => {
+            const item = document.createElement('a');
+            item.className = 'product-item';
+            item.href = p.link || '#';
+            item.target = '_blank';
+            item.rel = 'noopener noreferrer';
+            item.innerHTML = `
+            <img src="${p.img}" alt="${p.name}">
+            <div class="name">${p.name}</div>
+        `;
+            productsContainer.appendChild(item);
+          });
+        }
+        // FIM - SEM FALLBACK, SEM REPETIÇÃO
+
+        // Relacionados
         const relatedContainer = document.getElementById('modalRelated');
         relatedContainer.innerHTML = '';
         if (data.related && data.related.length) {
-          const label = document.createElement('span');
-          label.className = 'related-label';
-          label.textContent = '→ relacionados:';
-          relatedContainer.appendChild(label);
           data.related.forEach(relKey => {
             const relData = styleData[relKey];
             if (!relData) return;
-            const chip = document.createElement('span');
-            chip.className = 'related-chip';
-            chip.textContent = relData.title;
-            chip.addEventListener('click', (e) => {
+            const card = document.createElement('div');
+            card.className = 'related-card';
+            card.innerHTML = `
+            <img src="${relData.img}" alt="${relData.title}">
+            <div class="info">
+                <div class="name">${relData.title}</div>
+                <div class="sub">${relData.categoria} · ${relData.size || 'médio'}</div>
+            </div>
+        `;
+            card.addEventListener('click', (e) => {
               e.stopPropagation();
               closeModal();
               setTimeout(() => {
                 STATE.currentStyle = relKey;
                 renderCarousel(relKey);
                 navigateTo('pageHome');
-              }, 300);
+                showToast(relData.title + ' carregado');
+              }, 400);
             });
-            relatedContainer.appendChild(chip);
+            relatedContainer.appendChild(card);
           });
         }
 
-        const fav = isFavorite(key);
-        const modalBtn = document.getElementById('modalFavBtn');
-        modalBtn.dataset.favKey = key;
-        modalBtn.classList.toggle('favorited', fav);
-        const icon = modalBtn.querySelector('.fav-icon svg');
-        if (icon) {
-          icon.setAttribute('fill', fav ? 'currentColor' : 'currentColor');
+        // Link do produto (se for um produto)
+        const linkContainer = document.getElementById('modalLinkContainer');
+        linkContainer.innerHTML = '';
+        if (data.link) {
+          const linkEl = document.createElement('a');
+          linkEl.href = data.link;
+          linkEl.target = '_blank';
+          linkEl.rel = 'noopener noreferrer';
+          linkEl.className = 'modal-link';
+          linkEl.textContent = '🛒 Comprar no Mercado Livre';
+          linkContainer.appendChild(linkEl);
         }
-        modalBtn.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
 
+        // Gallery
         const gallery = document.getElementById('modalGallery');
         gallery.innerHTML = '';
         images.forEach((img, i) => {
@@ -4468,34 +5658,60 @@
           el.src = img.src;
           el.alt = data.title;
           el.loading = 'lazy';
-          el.dataset.number = img.number || '';
           el.onload = () => el.classList.add('loaded');
           el.onerror = () => el.classList.add('loaded');
           if (i === 0) el.classList.add('loaded');
           gallery.appendChild(el);
         });
 
+        // Indicadores
         const indicators = document.getElementById('modalIndicators');
         indicators.innerHTML = '';
         images.forEach((_, i) => {
           const dot = document.createElement('span');
-          dot.className = `modal-dot${i === 0 ? ' active-modal-dot' : ''}`;
-          dot.addEventListener('click', () => goToModalImage(i));
+          dot.className = `dot${i === 0 ? ' active' : ''}`;
+          dot.dataset.index = i;
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToModalImage(i);
+          });
           indicators.appendChild(dot);
         });
 
+        // Navegação
         document.getElementById('modalPrev').style.display = images.length > 1 ? 'flex' : 'none';
         document.getElementById('modalNext').style.display = images.length > 1 ? 'flex' : 'none';
         indicators.style.display = images.length > 1 ? 'flex' : 'none';
+
+        // Fav button
+        const fav = isFavorite(key);
+        const favBtn = document.getElementById('modalFavBtn');
+        favBtn.dataset.favKey = key;
+        favBtn.classList.toggle('active', fav);
+
+        // Abrir modal
         document.getElementById('modalOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Reset panel
+        if (STATE.modalExpanded) toggleModalPanel(false);
+
+        // Reset scroll
+        document.getElementById('modalBody').scrollTop = 0;
+
+        // Dock ativo
+        document.querySelectorAll('.dock-item').forEach(el => el.classList.remove('active'));
+        document.querySelector('.dock-item[data-section="info"]')?.classList.add('active');
+
         setTimeout(() => { gallery.scrollTo({ left: 0, behavior: 'auto' }); }, 50);
+        updateAllFavUI();
       }
 
       function closeModal() {
         document.getElementById('modalOverlay').classList.remove('active');
         document.body.style.overflow = '';
         document.getElementById('modalOverlay').dataset.color = '';
+        if (STATE.modalExpanded) toggleModalPanel(false);
       }
 
       function goToModalImage(index) {
@@ -4504,20 +5720,13 @@
         if (index < 0) index = images.length - 1;
         if (index >= images.length) index = 0;
         STATE.modalIndex = index;
+
+        const gallery = document.getElementById('modalGallery');
         const imgWidth = images[0]?.offsetWidth || 0;
-        document.getElementById('modalGallery').scrollTo({ left: index * imgWidth, behavior: 'smooth' });
-        images.forEach((img, i) => {
-          img.classList.toggle('active-modal-img', i === index);
-        });
-        const currentImg = images[index];
-        if (currentImg && currentImg.dataset.number) {
-          document.getElementById('modalImageNumber').textContent = currentImg.dataset.number;
-          document.getElementById('modalImageNumber').style.display = 'inline-block';
-        } else {
-          document.getElementById('modalImageNumber').style.display = 'none';
-        }
-        document.querySelectorAll('.modal-dot').forEach((dot, i) => {
-          dot.classList.toggle('active-modal-dot', i === index);
+        gallery.scrollTo({ left: index * imgWidth, behavior: 'smooth' });
+
+        document.querySelectorAll('#modalIndicators .dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
         });
       }
 
@@ -4561,6 +5770,13 @@
             track.scrollBy({ left: -300, behavior: 'smooth' });
           }
         });
+
+        document.addEventListener('keydown', (e) => {
+          if (!document.getElementById('modalOverlay').classList.contains('active')) return;
+          if (e.key === 'Escape') closeModal();
+          if (e.key === 'ArrowLeft') goToModalImage(STATE.modalIndex - 1);
+          if (e.key === 'ArrowRight') goToModalImage(STATE.modalIndex + 1);
+        });
       }
 
       // ============================================================
@@ -4570,8 +5786,8 @@
         applyTheme(STATE.theme);
         initSplash();
 
-        // === BOTÃO DE TEMA DO HEADER ===
-        document.getElementById('themeToggle').addEventListener('click', function() {
+        // THEME TOGGLE
+        document.getElementById('themeToggle').addEventListener('click', function () {
           applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
         });
 
@@ -4594,18 +5810,30 @@
         menuClose.addEventListener('click', closeMenu);
         menuOverlay.addEventListener('click', e => { if (e.target === e.currentTarget) closeMenu(); });
 
-        document.getElementById('menuHome').addEventListener('click', () => { navigateTo('pageHome');
-          closeMenu(); });
-        document.getElementById('menuTendencias').addEventListener('click', () => { navigateTo('pageTendencias');
-          closeMenu(); });
-        document.getElementById('menuGaleria').addEventListener('click', () => { navigateTo('pageGaleria');
-          closeMenu(); });
-        document.getElementById('menuFavs').addEventListener('click', () => { navigateTo('pageFavoritos');
-          closeMenu(); });
-        document.getElementById('menuSobre').addEventListener('click', () => { navigateTo('pageSobre');
-          closeMenu(); });
-        document.getElementById('menuContato').addEventListener('click', () => { navigateTo('pageContato');
-          closeMenu(); });
+        document.getElementById('menuHome').addEventListener('click', () => {
+          navigateTo('pageHome');
+          closeMenu();
+        });
+        document.getElementById('menuTendencias').addEventListener('click', () => {
+          navigateTo('pageTendencias');
+          closeMenu();
+        });
+        document.getElementById('menuGaleria').addEventListener('click', () => {
+          navigateTo('pageGaleria');
+          closeMenu();
+        });
+        document.getElementById('menuFavs').addEventListener('click', () => {
+          navigateTo('pageFavoritos');
+          closeMenu();
+        });
+        document.getElementById('menuSobre').addEventListener('click', () => {
+          navigateTo('pageSobre');
+          closeMenu();
+        });
+        document.getElementById('menuContato').addEventListener('click', () => {
+          navigateTo('pageContato');
+          closeMenu();
+        });
         document.getElementById('menuThemeToggle').addEventListener('click', () => {
           applyTheme(STATE.theme === 'dark' ? 'light' : 'dark');
           closeMenu();
@@ -4613,7 +5841,7 @@
 
         // CATEGORY TABS
         document.querySelectorAll('.cat-tab').forEach(tab => {
-          tab.addEventListener('click', function() {
+          tab.addEventListener('click', function () {
             document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active-cat'));
             this.classList.add('active-cat');
             STATE.category = this.dataset.cat;
@@ -4641,13 +5869,14 @@
         });
 
         document.querySelectorAll('.filter-opt').forEach(opt => {
-          opt.addEventListener('click', function() {
+          opt.addEventListener('click', function () {
             const filter = this.dataset.filter;
             const val = this.dataset.val;
 
             if (filter === 'cat') {
               STATE.category = val;
-              document.querySelectorAll('[data-filter="cat"]').forEach(el => el.classList.remove('active-opt'));
+              document.querySelectorAll('[data-filter="cat"]').forEach(el => el.classList.remove(
+                'active-opt'));
               this.classList.add('active-opt');
               document.querySelectorAll('.cat-tab').forEach(t => {
                 t.classList.toggle('active-cat', t.dataset.cat === val);
@@ -4658,7 +5887,8 @@
                 this.classList.remove('active-opt');
               } else {
                 STATE.filters[filter] = val;
-                document.querySelectorAll(`[data-filter="${filter}"]`).forEach(el => el.classList.remove('active-opt'));
+                document.querySelectorAll(`[data-filter="${filter}"]`).forEach(el => el
+                  .classList.remove('active-opt'));
                 this.classList.add('active-opt');
               }
             }
@@ -4688,7 +5918,7 @@
         const clearSearchBtn = document.getElementById('clearSearchBtn');
         let searchTimer;
 
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
           clearTimeout(searchTimer);
           const val = this.value.trim().toLowerCase();
           clearSearchBtn.classList.toggle('show', val.length > 0);
@@ -4722,26 +5952,93 @@
         });
 
         // BACK BUTTONS
-        document.querySelectorAll('.back-home').forEach(btn => btn.addEventListener('click', () => navigateTo('pageHome')));
+        document.querySelectorAll('.back-home').forEach(btn => btn.addEventListener('click', () => navigateTo(
+          'pageHome')));
         document.getElementById('homeBtn').addEventListener('click', () => {
           STATE.category = 'all';
           STATE.filters = {};
-          document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active-cat', t.dataset.cat === 'all'));
+          document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active-cat', t.dataset
+            .cat === 'all'));
           document.querySelectorAll('.filter-opt').forEach(el => el.classList.remove('active-opt'));
           document.querySelector('[data-filter="cat"][data-val="all"]')?.classList.add('active-opt');
           navigateTo('pageHome');
           updateFilterBadge();
         });
 
-        // MODAL
+        // MODAL EVENTS
         document.getElementById('modalClose').addEventListener('click', closeModal);
-        document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === e.currentTarget)
-          closeModal(); });
-        document.getElementById('modalPrev').addEventListener('click', e => { e.stopPropagation();
-          goToModalImage(STATE.modalIndex - 1); });
-        document.getElementById('modalNext').addEventListener('click', e => { e.stopPropagation();
-          goToModalImage(STATE.modalIndex + 1); });
-        document.getElementById('modalGallery').addEventListener('scroll', function() {
+        document.getElementById('modalOverlay').addEventListener('click', e => {
+          if (e.target === e.currentTarget) closeModal();
+        });
+
+        document.getElementById('modalPrev').addEventListener('click', e => {
+          e.stopPropagation();
+          goToModalImage(STATE.modalIndex - 1);
+        });
+
+        document.getElementById('modalNext').addEventListener('click', e => {
+          e.stopPropagation();
+          goToModalImage(STATE.modalIndex + 1);
+        });
+
+        // Panel toggle
+        const panel = document.getElementById('modalPanel');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const panelHandle = document.getElementById('panelHandle');
+        const panelHeader = document.getElementById('panelHeader');
+
+        panelHandle.addEventListener('click', toggleModalPanel);
+        panelHeader.addEventListener('click', toggleModalPanel);
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleModalPanel();
+        });
+
+        // Modal fav
+        document.getElementById('modalFavBtn').addEventListener('click', function () {
+          const key = this.dataset.favKey;
+          if (key) {
+            toggleFavorite(key);
+            updateAllFavButtons(key);
+            const fav = isFavorite(key);
+            this.classList.toggle('active', fav);
+          }
+        });
+
+        // Modal dock
+        document.querySelectorAll('.dock-item').forEach(el => {
+          el.addEventListener('click', function () {
+            const section = this.dataset.section;
+            document.querySelectorAll('.dock-item').forEach(item => item.classList.remove(
+              'active'));
+            this.classList.add('active');
+
+            const sectionMap = {
+              'info': 'sectionInfo',
+              'color': 'sectionColor',
+              'products': 'sectionProducts'
+            };
+
+            const targetId = sectionMap[section];
+            if (targetId) {
+              const target = document.getElementById(targetId);
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (!STATE.modalExpanded) toggleModalPanel();
+              }
+            }
+
+            const msgs = {
+              'info': 'informações do estilo',
+              'color': 'cores indicadas',
+              'products': 'produtos recomendados'
+            };
+            showToast(msgs[section] || section);
+          });
+        });
+
+        // Modal gallery scroll sync
+        document.getElementById('modalGallery').addEventListener('scroll', function () {
           const images = this.querySelectorAll('img');
           if (!images.length) return;
           const imgWidth = images[0]?.offsetWidth || 0;
@@ -4749,57 +6046,22 @@
           const idx = Math.round(this.scrollLeft / imgWidth);
           if (idx !== STATE.modalIndex && idx >= 0 && idx < images.length) {
             STATE.modalIndex = idx;
-            images.forEach((img, i) => {
-              img.classList.toggle('active-modal-img', i === idx);
-            });
-            const currentImg = images[idx];
-            if (currentImg && currentImg.dataset.number) {
-              document.getElementById('modalImageNumber').textContent = currentImg.dataset.number;
-              document.getElementById('modalImageNumber').style.display = 'inline-block';
-            } else {
-              document.getElementById('modalImageNumber').style.display = 'none';
-            }
-            document.querySelectorAll('.modal-dot').forEach((dot, i) => {
-              dot.classList.toggle('active-modal-dot', i === idx);
+            document.querySelectorAll('#modalIndicators .dot').forEach((dot, i) => {
+              dot.classList.toggle('active', i === idx);
             });
           }
         });
-
-        document.getElementById('modalFavBtn').addEventListener('click', function() {
-          const key = this.dataset.favKey;
-          if (key) {
-            toggleFavorite(key);
-            updateAllFavButtons(key);
-            const fav = isFavorite(key);
-            this.classList.toggle('favorited', fav);
-            const icon = this.querySelector('.fav-icon svg');
-            if (icon) {
-              icon.setAttribute('fill', fav ? 'currentColor' : 'currentColor');
-            }
-            this.querySelector('.fav-label').textContent = fav ? 'favoritado' : 'favoritar';
-            renderFavorites();
-          }
-        });
-
-        // KEYBOARD - Modal
-        document.addEventListener('keydown', e => {
-          if (!document.getElementById('modalOverlay').classList.contains('active')) return;
-          if (e.key === 'Escape') closeModal();
-          if (e.key === 'ArrowLeft') goToModalImage(STATE.modalIndex - 1);
-          if (e.key === 'ArrowRight') goToModalImage(STATE.modalIndex + 1);
-        });
-
-        // KEYBOARD - Carousel shortcuts
-        initKeyboardShortcuts();
 
         // CONTATO
-        document.getElementById('contatoForm').addEventListener('submit', function(e) {
+        document.getElementById('contatoForm').addEventListener('submit', function (e) {
           e.preventDefault();
           const inputs = this.querySelectorAll('input, textarea');
           let valid = true;
           inputs.forEach(input => {
-            if (!input.value.trim()) { input.classList.add('error');
-              valid = false; } else { input.classList.remove('error'); }
+            if (!input.value.trim()) {
+              input.classList.add('error');
+              valid = false;
+            } else { input.classList.remove('error'); }
           });
           if (!valid) {
             showToast('⚠️ Preencha todos os campos.', '⚠️');
@@ -4812,7 +6074,7 @@
         // COPIAR PIX
         const copyBtn = document.getElementById('copyPixBtn');
         if (copyBtn) {
-          copyBtn.addEventListener('click', function() {
+          copyBtn.addEventListener('click', function () {
             const pixKey = 'hairbymarciostylist@gmail.com';
             if (navigator.clipboard) {
               navigator.clipboard.writeText(pixKey).then(() => {
@@ -4853,8 +6115,7 @@
         // CAROUSEL SCROLL SYNC
         const track = document.getElementById('carouselTrack');
         let scrollTimer;
-        track.addEventListener('scroll', function() {
-          // Salva posição de scroll
+        track.addEventListener('scroll', function () {
           STATE.scrollPosition = this.scrollLeft;
 
           clearTimeout(scrollTimer);
@@ -4866,8 +6127,10 @@
             items.forEach(item => {
               const r = item.getBoundingClientRect();
               const dist = Math.abs(r.left + r.width / 2 - rect.left - rect.width / 2);
-              if (dist < closestDist) { closestDist = dist;
-                closest = item; }
+              if (dist < closestDist) {
+                closestDist = dist;
+                closest = item;
+              }
             });
             if (closest) {
               const key = closest.dataset.key;
@@ -4878,13 +6141,17 @@
               const keys = getFilteredKeys();
               const idx = keys.indexOf(key);
               const dotCount = document.querySelectorAll('.dot').length;
-              const dotIdx = Math.min(Math.floor((idx / Math.max(keys.length, 1)) * dotCount), dotCount - 1);
+              const dotIdx = Math.min(Math.floor((idx / Math.max(keys.length, 1)) *
+                dotCount), dotCount - 1);
               document.querySelectorAll('.dot').forEach((d, i) => {
                 d.classList.toggle('active-dot', i === dotIdx);
               });
             }
           }, 80);
         });
+
+        // KEYBOARD SHORTCUTS
+        initKeyboardShortcuts();
 
         // EXPOSE GLOBAL
         window.openModal = openModal;
@@ -4898,8 +6165,10 @@
         updateAllFavUI();
         updateFilterBadge();
 
-        console.log('✅ HAIRÓS — VERSÃO COMPLETA COM TODAS AS MELHORIAS');
-        console.log('✅ 37 estilos | Pré-carregamento | Toast | Shimmer | Keyboard | Scroll persistente');
+        console.log('✅ HAIRÓS — VERSÃO FINAL COMPLETA');
+        console.log('✅ 37 estilos com produtos e links do Mercado Livre');
+        console.log('✅ Modal com glassmorphism, cores dinâmicas e produtos reais');
+        console.log('✅ Favoritos, busca, filtros e temas');
       }
 
       document.addEventListener('DOMContentLoaded', init);
